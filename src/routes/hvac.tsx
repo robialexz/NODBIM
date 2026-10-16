@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ServicePage } from "@/components/site/ServicePage";
 import { canonicalUrl } from "@/lib/site-config";
 import projHvac from "@/assets/proj-hvac.webp";
@@ -105,6 +105,18 @@ export const Route = createFileRoute("/hvac")({
       ]}
       related={["/revit-mep", "/instalatii-termice", "/instalatii-electrice"]}
       note="Serviciul constă în modelare BIM și desenare tehnică pe baza informațiilor de proiect furnizate."
-    />
+    >
+      <p className="max-w-2xl text-base leading-relaxed text-foreground/80">
+        Administrezi o clădire și urmărești reviziile HVAC? Citește{" "}
+        <Link
+          to="/blog/$slug"
+          params={{ slug: "mentenanta-hvac-excel-sau-cmms" }}
+          className="font-medium underline underline-offset-4 hover:text-primary"
+        >
+          ghidul despre alegerea dintre Excel și CMMS
+        </Link>{" "}
+        pentru registrul de echipamente și ordinele de lucru.
+      </p>
+    </ServicePage>
   ),
 });

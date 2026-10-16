@@ -7,9 +7,9 @@ import { CtaSection } from "@/components/site/CtaSection";
 import { canonicalUrl } from "@/lib/site-config";
 import { articles } from "@/lib/blog";
 
-const title = "Jurnal tehnic: Revit MEP, BIM și instalații · NOD BIM";
+const title = "Ghiduri Revit MEP, AutoCAD și mentenanță · NOD BIM";
 const description =
-  "Articole de inginerie cu probe practice: costuri reale, experimente Revit vs AutoCAD, LOD, clash detection. Conținut tehnic, nu umplutură.";
+  "Ghiduri practice pentru documentație Revit MEP, corecturi AutoCAD, PDF în DWG și organizarea mentenanței. Checklisturi, limite și surse tehnice.";
 const url = canonicalUrl("/blog");
 
 export const Route = createFileRoute("/blog/")({
@@ -47,12 +47,12 @@ function BlogIndex() {
             <div>
               <p className="tech-label text-primary">Jurnal tehnic · Inginerie aplicată</p>
               <h1 className="display-xl mt-6 max-w-4xl text-[2.8rem] sm:text-6xl lg:text-7xl">
-                Articole cu probe, nu păreri
+                Ghiduri pentru documentație și mentenanță
               </h1>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/80">
-                Subiecte complicate din instalații, Revit MEP și BIM, explicate din lucrul real:
-                costuri descompuse, experimente măsurate, principii de proiectare pe care nu le
-                găsești explicate în română.
+                Ce pregătești pentru o lucrare Revit MEP sau AutoCAD, ce verifici înainte de predare
+                și cum alegi instrumentele pentru administrarea echipamentelor. Exemple,
+                checklisturi și surse pentru fiecare etapă.
               </p>
             </div>
           </div>

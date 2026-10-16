@@ -3,11 +3,12 @@ import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { MobileCta } from "@/components/site/MobileCta";
 import { freeMaintAffiliateUrl } from "@/lib/products";
+import { track } from "@/lib/analytics";
 import { canonicalUrl } from "@/lib/site-config";
 
-const title = "Software și produse recomandate · NOD BIM";
+const title = "Software pentru mentenanță: FreeMaint CMMS · NOD BIM";
 const description =
-  "Recomandări de software și produse oferite de parteneri NOD BIM, cu furnizorul și relația afiliată explicate transparent.";
+  "Când merită un CMMS pentru mentenanța echipamentelor? Vezi FreeMaint, ce include Core, limitele exportului și ghidul Excel versus CMMS. Link afiliat declarat.";
 const url = canonicalUrl("/recomandari");
 
 export const Route = createFileRoute("/recomandari")({
@@ -102,6 +103,21 @@ function Recomandari() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-6 border-t border-border pt-6">
+                <h3 className="font-display text-xl font-semibold">Ai nevoie de un CMMS?</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  Un tabel poate fi suficient pentru un registru simplu. Dacă intervențiile au mai
+                  mulți responsabili, scadențe și istoric greu de urmărit, compară un CMMS cu fluxul
+                  actual înainte să alegi un abonament.
+                </p>
+                <Link
+                  to="/blog/$slug"
+                  params={{ slug: "mentenanta-hvac-excel-sau-cmms" }}
+                  className="mt-4 inline-block text-sm text-primary underline underline-offset-4"
+                >
+                  Ghid: Excel sau CMMS pentru mentenanța HVAC?
+                </Link>
+              </div>
             </div>
 
             <aside className="flex flex-col border-t border-border-strong pt-6 lg:col-span-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
@@ -118,13 +134,17 @@ function Recomandari() {
                   <p className="tech-label text-muted-foreground">Planuri plătite</p>
                   <p className="mt-2 font-display text-2xl font-semibold">de la 29 USD/lună</p>
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    Tarif per companie; taxele și funcțiile se verifică la checkout.
+                    Tarif per companie. Exporturile PDF/Excel cer Starter; taxele și funcțiile se
+                    verifică la furnizor înainte de migrarea datelor.
                   </p>
                 </div>
               </div>
 
               <a
                 href={freeMaintAffiliateUrl}
+                onClick={() =>
+                  track("affiliate_click", { partner: "freemaint", source: "recomandari" })
+                }
                 target="_blank"
                 rel="sponsored noopener noreferrer"
                 className="tech-label mt-6 inline-flex w-fit border border-foreground bg-foreground px-4 py-3 text-background transition-colors hover:border-primary hover:bg-primary"

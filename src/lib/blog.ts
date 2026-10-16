@@ -26,6 +26,1105 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "comparatie-revizii-dwg-autocad",
+    title: "Cum compari două revizii DWG în AutoCAD înainte de predare",
+    metaTitle: "Compară două revizii DWG în AutoCAD înainte de predare",
+    description:
+      "Primești două versiuni DWG și nu știi ce s-a schimbat? Vezi cum folosești DWG Compare, ce verifici manual și ce trimiți pentru corecturi.",
+    date: "2026-10-16",
+    readingTime: 6,
+    tags: [
+      "AutoCAD",
+      "DWG Compare",
+      "Revizii DWG",
+      "Comparație desene",
+      "Predare DWG",
+      "Corecturi AutoCAD",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Ai primit două fișiere DWG pentru aceeași planșă, însă nota din cartuș nu arată clar ce s-a modificat? În AutoCAD, DWG Compare poate evidenția diferențele dintre două desene, grupându-le în zone pe care le poți parcurge. Rezultatul te ajută să localizezi schimbările și să ceri clarificări înainte de a continua desenul sau de a emite PDF-ul.",
+          "Comparația este un instrument vizual pentru revizuirea fișierelor. Nu stabilește singură care versiune este aprobată și nu confirmă dacă o modificare reprezintă soluția tehnică corectă. Aceste decizii trebuie să vină de la persoana responsabilă de proiect.",
+        ],
+      },
+      {
+        heading: "Identifică desenul de bază și versiunea care trebuie revizuită",
+        paragraphs: [
+          "Înainte să deschizi comparația, identifică ambele fișiere după numărul reviziei, data emiterii și informația din cartuș. Cere confirmarea responsabilului asupra desenului care trebuie păstrat ca versiune curentă. O dată de modificare mai recentă sau un nume de fișier diferit nu dovedește, singure, că documentul a fost acceptat.",
+          "Păstrează fișierele primite separat și lucrează pe copii dacă urmează să imporți obiecte sau să faci corecturi. Notează care fișier este deschis ca desen curent și care va fi selectat pentru comparație; orientarea lor determină cum se citesc culorile.",
+        ],
+      },
+      {
+        heading: "Pornește COMPARE și citește diferențele după fișierul curent",
+        paragraphs: [
+          "Pentru două fișiere DWG distincte, deschide desenul pe care îl tratezi drept curent și rulează comanda COMPARE. Selectează al doilea fișier în fereastra de comparație. Documentația Autodesk pentru AutoCAD 2025 descrie acest flux și arată diferențele în desenul curent; verifică disponibilitatea comenzii în produsul și versiunea instalate înainte să te bazezi pe ea.",
+          "În configurarea implicită, obiectele comune celor două desene apar cu gri, obiectele existente numai în desenul selectat pentru comparație apar cu roșu, iar cele existente numai în desenul curent apar cu verde. Schimbă perspectiva dacă ai deschis întâi versiunea mai veche: roșu și verde descriu fișierul de comparație față de cel curent, nu înlocuiesc etichetele de revizie. AutoCAD poate încadra diferențele în nori de revizie și îți permite să treci la următoarea zonă din bara DWG Compare.",
+        ],
+        links: [
+          {
+            label: "Autodesk: compararea diferențelor dintre desene DWG",
+            href: "https://help.autodesk.com/cloudhelp/2025/ENU/AutoCAD-Core/files/GUID-2D69E78D-5C82-464F-B864-CD29D5720EB9.htm",
+          },
+          {
+            label: "Autodesk: pașii și comenzile DWG Compare",
+            href: "https://help.autodesk.com/cloudhelp/2025/ENU/AutoCAD-Core/files/GUID-744D8A49-D582-4C06-80B1-6B0313E92CA2.htm",
+          },
+        ],
+      },
+      {
+        heading: "Parcurge toate zonele și verifică setările care pot ascunde diferențe",
+        paragraphs: [
+          "Folosește săgețile de navigare pentru a inspecta fiecare grup de diferențe, apoi mărește desenul în zona respectivă. Textul și hașurile pot fi ascunse prin filtrele comparației, iar elementele de pe layere oprite sau înghețate în desenul curent nu intră în rezultatul DWG Compare. Dacă te aștepți să găsești modificări care lipsesc, verifică întâi starea layerelor și filtrele active.",
+          "O schimbare apropiată de alte obiecte poate apărea în același grup, iar diferențele nu sunt o listă de observații aprobate. Notează separat ce ai identificat, ce trebuie confirmat și ce urmează să fie desenat. Pentru o copie de revizie, funcția Export Snapshot creează un DWG nou care păstrează reprezentarea comparației și include cele două desene ca blocuri.",
+        ],
+        links: [
+          {
+            label: "Autodesk: navigarea, filtrele și exportul unui snapshot",
+            href: "https://help.autodesk.com/cloudhelp/2025/ENU/AutoCAD-Core/files/GUID-744D8A49-D582-4C06-80B1-6B0313E92CA2.htm",
+          },
+        ],
+      },
+      {
+        heading: "Nu folosi comparația ca verificare completă a planșei",
+        paragraphs: [
+          "DWG Compare operează în Model Space și acceptă fișiere DWG; dacă alegi un desen salvat într-un layout, AutoCAD trece la fila Model. Prin urmare, comparația nu verifică automat fiecare layout, încadrarea pe foaie sau PDF-ul emis. Verifică separat pagina, scara de plotare, textele și legendele în documentele care vor fi predate.",
+          "Autodesk precizează și că unele elemente nu sunt comparate, între care imaginile, norii de puncte, modelele de coordonare și referințele externe care nu sunt DWG. DWG Compare nu detectează nici schimbările de proprietate ByBlock sau ByLayer din blocuri imbricate. Dacă desenul depinde de asemenea obiecte sau proprietăți, cere o verificare separată; un rezultat fără diferențe vizibile nu demonstrează că toate datele au fost comparate.",
+        ],
+        links: [
+          {
+            label: "Autodesk: limitele funcției DWG Compare",
+            href: "https://help.autodesk.com/cloudhelp/2025/ENU/AutoCAD-Core/files/GUID-3D918CC7-4FB7-4951-8F04-C2434DFD04A2.htm",
+          },
+        ],
+        note: "Comparația vizuală localizează diferențe între fișiere; nu aprobă soluția, valorile tehnice sau revizia care trebuie emisă.",
+      },
+      {
+        heading: "Clarifică ce se revizuiește și ce intră în corectură",
+        paragraphs: [
+          "Înainte de ofertare, precizează dacă ai nevoie doar de localizarea diferențelor, de aplicarea unor observații confirmate sau de o planșă DWG/PDF pregătită pentru predare. Trimite ambele versiuni și explică ce fișier este baza. O listă de modificări numerotată, legată de zonele sau planșele afectate, ajută la separarea observațiilor deja aprobate de cele care încă cer răspuns.",
+        ],
+        list: [
+          "Cele două fișiere DWG, cu revizia și data emiterii cunoscute; indică desenul care trebuie folosit ca bază.",
+          "PDF-ul sau planșa de referință, dacă trebuie verificată separat încadrarea și rezultatul pentru tipărire.",
+          "Lista diferențelor de investigat și instrucțiunile aprobate pentru modificările care se aplică.",
+          "Layouturile, formatul foilor și livrabilele cerute: DWG, PDF sau ambele.",
+          "Persoana care confirmă informațiile tehnice și versiunea finală pentru emitere.",
+        ],
+        note: "Nu deduce dimensiuni, valori sau schimbări de soluție din norii de revizie; cere confirmarea proiectantului responsabil.",
+      },
+      {
+        heading: "Ai nevoie de comparație și corecturi pe DWG?",
+        paragraphs: [
+          "NOD BIM poate evalua corecturi pe planșe AutoCAD existente, implementarea observațiilor primite și pregătirea fișierelor DWG și PDF pentru predare. Trimite versiunile disponibile, schimbările aprobate și formatul dorit pentru a putea delimita lucrarea înainte de începere. Desenarea urmează proiectul și informațiile transmise; proiectarea, calculele, verificarea și semnătura de specialitate rămân la proiectantul responsabil.",
+        ],
+        links: [
+          {
+            label: "Servicii AutoCAD: planșe, corecturi DWG și layouturi",
+            href: "/autocad-dwg",
+          },
+          {
+            label: "Articol conex: scara viewporturilor la predarea DWG și PDF",
+            href: "/blog/scara-viewporturilor-autocad-dwg-pdf",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "familii-revit-mep-conectori-echipamente",
+    title: "Familii Revit MEP pentru echipamente: ce clarifici înainte de modelare",
+    metaTitle: "Familii Revit MEP pentru echipamente: checklist",
+    description:
+      "Ce date clarifici despre echipamentele HVAC, termice și electrice, familii Revit și conectori înainte de externalizarea modelării MEP.",
+    date: "2026-10-15",
+    readingTime: 7,
+    tags: [
+      "Revit MEP",
+      "Familii Revit",
+      "Conectori MEP",
+      "Echipamente HVAC",
+      "RFA",
+      "Modelare Revit",
+      "Documentație tehnică",
+      "BIM",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Când un model Revit MEP trebuie să includă echipamente, o geometrie 3D asemănătoare produsului nu este suficientă pentru orice scop. Familia trebuie să corespundă informațiilor proiectului și modului în care elementul va fi folosit în vederi, liste și sisteme. Înainte de externalizarea modelării, clarifică dacă este suficient un tip din biblioteca biroului, trebuie adaptată o familie RFA existentă sau se cere o familie nouă.",
+        ],
+      },
+      {
+        heading: "Familia Revit nu este doar geometria vizibilă",
+        paragraphs: [
+          "O familie Revit reunește o reprezentare grafică și proprietăți comune. În funcție de utilizare, aceste proprietăți pot susține diferențierea tipurilor, completarea parametrilor și afișarea elementului în model și în documentație. O reprezentare care arată corect în 3D nu confirmă singură că familia are datele sau comportamentul MEP cerut.",
+          "De aceea, descrie separat forma necesară și informația care trebuie să rămână utilizabilă în fișier. Dacă echipamentul apare în liste, precizează câmpurile și convenția de denumire aprobate de birou; dacă trebuie conectat la un sistem, notează cerințele MEP confirmate de proiectant.",
+        ],
+        links: [
+          {
+            label: "Autodesk: familiile Revit și proprietățile lor",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-4EBB97AD-C7B6-4828-91EB-BC0E99B81E43.htm",
+          },
+          {
+            label: "Autodesk: proprietăți de tip și de instanță",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-GetStarted/files/GUID-7AEC5D66-C2E0-40E2-9504-3CC13781B87A.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică întâi familiile existente, apoi decide dacă este nevoie de una nouă",
+        paragraphs: [
+          "Autodesk recomandă să identifici familiile necesare și să cauți în biblioteca Revit, pe web, în template-urile Revit sau în template-ul biroului. Dacă găsești o familie potrivită, dar lipsește tipul cerut, poți porni de la un tip nou; dacă există una similară, poate fi adaptată. O familie nouă se justifică atunci când opțiunile existente nu acoperă cerința.",
+          "Pentru ofertare, separă aceste cazuri: folosirea unei familii existente, modificarea unui RFA și crearea unei familii noi pot însemna scopuri diferite. Nu presupune că un obiect descărcat de la producător este deja pregătit pentru template-ul și sistemele proiectului.",
+        ],
+        links: [
+          {
+            label: "Autodesk: fluxul de lucru pentru familii încărcabile",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-5987A3C5-C2F2-438B-AA4D-58322F8E61BB.htm",
+          },
+        ],
+      },
+      {
+        heading: "Stabilește cum trebuie să arate și să se comporte echipamentul",
+        paragraphs: [
+          "Înainte de modelare, confirmă variantele dimensionale, vederile în care elementul trebuie să apară, existența unei gazde, nivelul de detaliu și punctul de inserție. Aceste alegeri influențează geometria, vizibilitatea și felul în care familia se plasează în proiect. O vedere de plan pentru documentație poate cere altă reprezentare decât o vedere 3D folosită la coordonare.",
+          "Pentru un echipament cu mai multe variante, trimite lista tipurilor și dimensiunile aprobate. Precizează și parametrii care trebuie să fie de tip sau de instanță, dacă proiectul folosește aceste valori în etichete ori schedule-uri. Valorile tehnice se preiau din documentația confirmată de proiectant, nu se deduc dintr-o imagine sau din forma carcasei.",
+        ],
+        links: [
+          {
+            label: "Autodesk: ce planifici înainte de a crea o familie încărcabilă",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Customize/files/GUID-AB5F6B3C-663F-4E0C-941E-E661A2914CDA.htm",
+          },
+        ],
+      },
+      {
+        heading: "Conectorii contează când familia trebuie să participe într-un sistem MEP",
+        paragraphs: [
+          "În Revit, o componentă fără conectori nu poate participa în topologia unui sistem MEP. Dacă echipamentul trebuie conectat, clarifică disciplina fiecărui conector — de exemplu tubulatură, conducte sau electric — împreună cu poziția, dimensiunea și orientarea aprobate. Revit folosește dimensiunea și orientarea conectorului pentru a stabili ce componente compatibile se pot conecta.",
+          "Pentru conectorii de tubulatură sau conductă, săgeata indică direcția în care este creat segmentul pentru completarea conexiunii, nu sensul curgerii. Nu folosi o captură 3D drept validare a sistemului. Responsabilul tehnic trebuie să confirme tipul, valorile și comportamentul cerute pentru proiect.",
+        ],
+        links: [
+          {
+            label: "Autodesk: conectorii din familiile MEP",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-92B74F31-03EB-4D14-93A1-BD4E4294A629.htm",
+          },
+          {
+            label: "Autodesk: dimensiunea și orientarea conectorilor",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Customize/files/GUID-BE4F1954-1049-46EC-BCB2-D03D27B4C77A.htm",
+          },
+          {
+            label: "Autodesk: sensul săgeții unui conector",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Customize/files/GUID-3181AA1C-7D3E-4D2F-8E06-ED74E6EEEFF5.htm",
+          },
+        ],
+      },
+      {
+        heading: "Checklist: ce trimiți și ce decizii ceri înainte de începere",
+        paragraphs: [
+          "Atașează informațiile disponibile și marchează explicit ce trebuie confirmat de proiectant. O cerere clară poate include:",
+        ],
+        list: [
+          "Echipamentul și varianta cerută, cu documentația tehnică sau fișierul furnizorului pe care proiectantul îl aprobă pentru modelare.",
+          "Dimensiunile, punctul de inserție, poziția și orientarea în model, precum și nivelul de detaliu necesar în plan, secțiune și 3D.",
+          "Familiile existente, template-ul biroului, versiunea Revit și regulile de numire sau de parametri care trebuie urmate.",
+          "Pentru conectare: disciplina, numărul și poziția conectorilor, dimensiunile și celelalte valori confirmate pentru sistemul proiectat.",
+          "Tipurile, parametrii și coloanele de schedule care intră în livrare, cu valorile de referință aprobate.",
+          "Dacă scopul cere doar plasarea echipamentului în RVT sau include și modificarea/crearea familiei RFA; precizează dacă fișierul RFA se predă separat.",
+          "Livrabilele cerute — RVT, planșe DWG și/sau PDF — și persoana care confirmă datele tehnice și acceptarea modelului.",
+        ],
+        note: "Nu completa prin presupunere dimensiunile, conexiunile, performanțele sau parametrii tehnici care nu au fost transmiși și aprobați.",
+      },
+      {
+        heading: "Verifică familia în contextul în care va fi folosită",
+        paragraphs: [
+          "La predare, verifică elementul în fișierul și template-ul convenite: tipul și valorile cerute apar corect, reprezentarea este lizibilă în vederile agreate, iar câmpurile cerute sunt prezente în proprietăți și utilizabile în lista convenită. Dacă familia trebuie să se conecteze, controlul ei se face în contextul sistemului și al cerințelor aprobate, nu doar prin inspectarea formei 3D.",
+          "Notează separat ce a fost modelat, ce date au fost furnizate și ce așteaptă confirmare. Acest control urmărește conformitatea livrabilului cu scopul scris; nu înlocuiește verificarea soluției de instalații, calculele sau aprobarea proiectantului responsabil.",
+        ],
+      },
+      {
+        heading: "Delimitează modelarea și documentația Revit MEP",
+        paragraphs: [
+          "NOD BIM preia modelarea Revit MEP și planșele HVAC, termice și electrice pe baza temei și a informațiilor tehnice primite. Dacă echipamentul necesită o familie RFA nouă ori modificată, include această cerință explicit în scop pentru evaluare; livrarea fișierului editabil se stabilește înainte de începere. Proiectarea, calculele, verificarea și semnătura de specialitate rămân la proiectantul responsabil.",
+          "Pentru modelare și documentație Revit MEP, vezi serviciul și pregătește fișierele și criteriile de acceptare înainte de preluare.",
+        ],
+        links: [
+          {
+            label: "Modelare Revit MEP pentru birouri de proiectare",
+            href: "/revit-mep",
+          },
+          {
+            label: "Articol conex: ce conține un template Revit MEP bun",
+            href: "/blog/template-revit-mep-bun",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "scara-viewporturilor-autocad-dwg-pdf",
+    title: "Scara viewporturilor AutoCAD: ce confirmi la predarea DWG și PDF",
+    metaTitle: "Scara viewporturilor AutoCAD la predarea DWG și PDF",
+    description:
+      "Află cum se deosebesc scara viewportului și scara de plot, ce blochează viewport lock și ce confirmi pentru un DWG și PDF la scară.",
+    date: "2026-10-14",
+    readingTime: 6,
+    tags: [
+      "AutoCAD",
+      "DWG",
+      "Layout",
+      "Paper Space",
+      "Model Space",
+      "Viewport",
+      "Scară de plot",
+      "PDF",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Un DWG poate arăta corect în zona de desen și totuși să iasă pe hârtie la altă scară dacă se confundă dimensiunea modelului, scara fiecărui viewport și setarea de plotare. Pentru predarea DWG-ului împreună cu PDF-ul, clarifică separat scara vederilor și formatul paginii, apoi controlează rezultatul exportat.",
+        ],
+      },
+      {
+        heading: "Model Space păstrează geometria, Paper Space pregătește foaia",
+        paragraphs: [
+          "În fluxul obișnuit, desenezi geometria în Model Space la dimensiunea reală, folosind unitățile convenite. De exemplu, dacă unitatea aleasă este milimetrul, o distanță de 1 m înseamnă 1.000 de unități. În Paper Space, fiecare layout reprezintă o foaie; cartușul, notele și viewporturile sunt așezate în raport cu dimensiunea acelei foi.",
+          "Un desen început de altcineva poate avea unități sau convenții care trebuie confirmate. Cere unitatea folosită și o dimensiune de referință validată înainte de a trata scara afișată drept dovadă că modelul este corect dimensionat.",
+        ],
+        links: [
+          {
+            label: "Autodesk: Model Space și Paper Space",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-Core/files/GUID-990538B6-DDA1-4190-BCC0-BB5BA94C9879.htm",
+          },
+        ],
+      },
+      {
+        heading: "Scara viewportului stabilește cât din model încape pe foaie",
+        paragraphs: [
+          "Viewportul este fereastra din layout prin care vezi o porțiune din Model Space. Scara sa raportează dimensiunea modelului la dimensiunea de pe foaie. Dacă unitățile modelului și ale foii sunt ambele milimetri, la 1:100 fiecare milimetru de pe foaie corespunde la 100 mm din model.",
+          "Fiecare viewport poate avea propria scară, de exemplu o vedere generală la 1:100 și un detaliu la 1:20. Redimensionarea conturului viewportului schimbă zona vizibilă sau forma ferestrei, dar nu schimbă prin ea însăși scara vederii. Verifică proprietatea Standard Scale sau valoarea personalizată pentru fiecare viewport cerut.",
+        ],
+        links: [
+          {
+            label: "Autodesk: scara vederilor din viewporturile layoutului",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-LT-MAC/files/GUID-0DA94ACE-29D0-41C5-8B68-186EF463A734.htm",
+          },
+          {
+            label: "Autodesk: modificarea scării unui viewport de layout",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-Core/files/GUID-9929178F-64E4-4B76-BDE2-00BFDAEFC8B6.htm",
+          },
+        ],
+      },
+      {
+        heading: "Scara de plotare controlează ieșirea paginii, nu vederea din viewport",
+        paragraphs: [
+          "Într-un layout există două relații de scară. Viewportul raportează modelul la foaie; scara de plotare raportează layoutul întreg la hârtie. Pentru o planșă la scară exactă, configurația obișnuită este scara cerută în viewport și plotarea layoutului la 1:1 pe formatul de hârtie convenit.",
+          "La plotarea directă din Model Space, scara se stabilește la etapa de plotare. Opțiunea Fit to Paper încadrează zona aleasă în format și poate modifica factorul rezultat; nu o folosi dacă planșa trebuie măsurată la o scară fixă. Dacă documentul se predă ca PDF pentru consultare vizuală, spune asta separat de cerința unei scări fizice exacte. În dialogul documentat de Autodesk, Fit to Paper nu este disponibil când Plot Area este setat la Layout.",
+        ],
+        links: [
+          {
+            label: "Autodesk: cum se stabilește scara de plotare",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-Core/files/GUID-89604826-0B55-4994-8214-1CA93FA66985.htm",
+          },
+          {
+            label: "Autodesk: opțiunile din dialogul Plot",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-MAC-Core/files/GUID-D2820944-F8F0-4810-9E85-C41604FF58D9.htm",
+          },
+        ],
+      },
+      {
+        heading: "Viewport lock păstrează scara după ce a fost aleasă",
+        paragraphs: [
+          "După ce ai setat și verificat scara unui viewport, activează Display Locked pentru a reduce riscul ca un zoom accidental să o schimbe. Autodesk precizează că, atunci când viewportul este blocat, zoomul se aplică întregului layout, iar scara viewportului rămâne neschimbată.",
+          "Blocarea nu validează valoarea inițială și nu fixează formatul ori setările de plotare. Confirmă scara mai întâi, apoi blochează separat fiecare viewport relevant.",
+        ],
+        links: [
+          {
+            label: "Autodesk: blocarea scării unui viewport de layout",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-Core/files/GUID-F9A37755-68A8-489D-B508-253EDD88F356.htm",
+          },
+        ],
+      },
+      {
+        heading: "Ce confirmi înainte să ceri predarea DWG și PDF",
+        paragraphs: [
+          "O cerere completă îi permite desenatorului să pregătească planșele după scopul tău, fără să ghicească unitățile sau scara de pe fiecare vedere. Confirmă în scris următoarele:",
+        ],
+        list: [
+          "DWG-ul de bază și emiterea pe care se lucrează; dacă există o dimensiune de control, transmite valoarea confirmată și unitatea.",
+          "Layouturile care intră în livrare și formatul fizic al fiecărei foi, de exemplu A3 sau A1, împreună cu orientarea.",
+          "Scara cerută pentru fiecare viewport sau vedere; precizează separat detaliile care folosesc altă scară.",
+          "Dacă PDF-ul trebuie să păstreze scara când este tipărit la dimensiunea originală sau este doar pentru citire pe ecran.",
+          "Dacă predarea include DWG editabil, PDF, sau ambele, și cine aprobă dimensiunile și informațiile tehnice afișate.",
+          "Convenția de unități a desenului și orice excepție față de template-ul folosit de biroul tău.",
+        ],
+        note: "Scările, dimensiunile și conținutul cu semnificație tehnică trebuie confirmate de client sau de proiectantul responsabil.",
+      },
+      {
+        heading: "Verifică fiecare viewport în DWG și fiecare pagină în PDF",
+        paragraphs: [
+          "În DWG, selectează viewporturile din layout și verifică scara din proprietăți, apoi confirmă Display Locked pentru cele a căror scară a fost aprobată. Înainte de export, deschide previzualizarea de plotare și verifică formatul, orientarea, zona Layout și încadrarea paginii.",
+          "Deschide PDF-ul exportat și compară dimensiunea paginii și conținutul cu cerința convenită. Dacă este importantă scara pe hârtie, tipărește pagina la dimensiunea originală, fără redimensionarea de tip Fit, și compară o distanță de referință aprobată. Mărirea pe ecran nu înlocuiește controlul paginii tipărite la scara cerută.",
+        ],
+        links: [
+          {
+            label: "Autodesk: previzualizare și scara implicită la plotarea unui layout",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/AutoCAD-MAC-Core/files/GUID-D2820944-F8F0-4810-9E85-C41604FF58D9.htm",
+          },
+        ],
+      },
+      {
+        heading: "Ai nevoie de layouturi AutoCAD pregătite pentru predare?",
+        paragraphs: [
+          "Serviciile AutoCAD NOD BIM includ desenare și corecturi pe planșe existente, layouturi cu viewporturi și scări, precum și pregătirea fișierelor DWG și PDF. Trimite desenul, formatul foilor, scările solicitate și livrabilele dorite pentru evaluarea lucrării. Desenarea urmează informațiile furnizate; proiectarea, calculele, verificarea și semnătura de specialitate rămân la proiectantul responsabil.",
+        ],
+        links: [
+          {
+            label: "Servicii AutoCAD: planșe, corecturi DWG și layouturi",
+            href: "/autocad-dwg",
+          },
+          {
+            label: "Articol conex: ce clarifici la predarea unui DWG corectat",
+            href: "/blog/corecturi-dwg-pdf-redline-layout-predare",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "coordonate-linkuri-revit-mep-externalizare",
+    title: "Coordonatele linkurilor Revit MEP: ce clarifici înainte de externalizare",
+    metaTitle: "Coordonate Revit MEP: poziționarea linkurilor",
+    description:
+      "Ce clarifici despre origini, coordonate partajate și controlul linkurilor Revit înainte de externalizarea modelării MEP.",
+    date: "2026-10-13",
+    readingTime: 7,
+    tags: ["Revit MEP", "Coordonate partajate", "Legături Revit", "Externalizare", "BIM"],
+    sections: [
+      {
+        paragraphs: [
+          "Într-un model Revit MEP legat de arhitectură, structură sau topografie, traseele și planșele depind de poziția și orientarea referinței. Înainte de externalizare, biroul de proiectare trebuie să precizeze ce model este reperul și cum se așteaptă să fie poziționat în fișierul MEP.",
+          "Revit oferă mai multe reguli de plasare. Numele opțiunii nu confirmă singur că două fișiere folosesc același reper. Fără fișierul gazdă, legăturile relevante și reperul confirmat de proiectant, nu se poate stabili dinainte care metodă aliniază corect proiectul.",
+        ],
+      },
+      {
+        heading: "Separă originea internă de punctele proiectului și ale topografiei",
+        paragraphs: [
+          "Revit folosește un sistem de coordonate al proiectului și unul de topografie. Project Base Point definește originea sistemului proiectului, iar Survey Point indică un reper în sistemul de topografie și oferă contextul amplasamentului. Internal Origin stă la baza sistemelor. Project Base Point poate fi mutat, deci nu presupune că mai coincide cu originea internă.",
+          "Coordonatele partajate descriu poziția relativă a fișierelor legate. În cererea de modelare, precizează dacă reperul convenit este originea internă, un punct comun din model sau coordonatele de topografie.",
+        ],
+        links: [
+          {
+            label: "Autodesk: Project Base Point și Survey Point",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-Model/files/GUID-68611F67-ED48-4659-9C3B-59C5024CE5F2.htm",
+          },
+          {
+            label: "Autodesk: sistemele de coordonate în Revit",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-E67ED082-2556-475B-84A7-4605329F612F.htm",
+          },
+        ],
+      },
+      {
+        heading: "Origin to Origin folosește origini interne aliniate",
+        paragraphs: [
+          "Opțiunea Auto - Origin to Origin plasează originea geometriei primite la originea internă a modelului gazdă. Într-un fișier Revit, aceasta nu înseamnă automat alinierea Project Base Point-urilor: punctul de bază poate fi mutat față de originea internă.",
+          "Metoda este potrivită când fișierele au fost pregătite în jurul unui punct de origine comun. Autodesk o indică drept alegere uzuală în multe cazuri, dar recomandă By Shared Coordinates când modelul gazdă folosește coordonate partajate. Alege regula după convenția proiectului, nu doar după cum arată prima vedere.",
+        ],
+        links: [
+          {
+            label: "Autodesk: poziționarea importurilor și a legăturilor",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-Model/files/GUID-C922A152-0A30-4E27-BED2-BCE9FF2E5E30.htm",
+          },
+          {
+            label: "Autodesk: legarea unui model Revit la alt model",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-Collaborate/files/GUID-3D79F9CC-005B-4C4D-9F47-60CEAAE65638.htm",
+          },
+        ],
+      },
+      {
+        heading: "By Shared Coordinates folosește o relație coordonată între fișiere",
+        paragraphs: [
+          "Auto - By Shared Coordinates poziționează geometria folosind coordonatele partajate. Folosește-o când relația dintre modelul gazdă și legături a fost definită și confirmată de echipa proiectului. Pentru proiecte cu mai multe legături, Autodesk recomandă coordonarea aceleiași poziții cu participanții proiectului.",
+          "Dacă un model Revit legat nu împarte coordonate cu gazda, opțiunea poate folosi poziționarea Center to Center. Prin urmare, selectarea By Shared Coordinates nu creează singură coordonate comune și nu este dovadă că amplasarea corespunde ridicării sau modelului de referință.",
+        ],
+        links: [
+          {
+            label: "Autodesk: poziționarea partajată a modelelor",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-Collaborate/files/GUID-049BE99D-249F-4D1F-A79C-A348955AB49C.htm",
+          },
+          {
+            label: "Autodesk: reguli pentru poziționarea importurilor și a legăturilor",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-Model/files/GUID-C922A152-0A30-4E27-BED2-BCE9FF2E5E30.htm",
+          },
+        ],
+      },
+      {
+        heading: "Checklist: ce să clarifice biroul înainte de predare",
+        paragraphs: [
+          "Trimite instrucțiuni legate de legătura dintre modelele proiectului, nu doar o captură în care par să se suprapună. Include următoarele informații atunci când sunt relevante:",
+        ],
+        list: [
+          "Care fișier este gazda și care este modelul de referință: arhitectură, structură sau topografie; indică revizia pe care trebuie să se bazeze lucrul.",
+          "Ce regulă de plasare este convenită: Origin to Origin sau By Shared Coordinates; notează cine confirmă reperul de coordonate.",
+          "Dacă se folosesc coordonate partajate, indică amplasamentul/site-ul denumit și sursa sa. Atașează datele de topografie aprobate dacă fac parte din proiect.",
+          "Marchează un punct comun identificabil și poziția/orientarea așteptată. Menționează nivelurile și relația dintre Project North și True North dacă proiectul le diferențiază.",
+          "Precizează versiunea Revit salvată pentru modelul gazdă și fiecare legătură, precum și dacă este permisă conversia unui fișier la o versiune mai nouă.",
+          "Dacă modelele au faze diferite, indică ce corespondență de faze și ce vedere trebuie folosite pentru verificarea vizuală.",
+        ],
+      },
+      {
+        heading: "Verifică legătura în plan și în 3D",
+        paragraphs: [
+          "După plasare, compară modelul legat cu reperul confirmat în cel puțin o vedere de plan și într-o vedere 3D sau de elevație. Verifică punctul comun, orientarea și nivelurile, apoi afișează punctele de bază și de topografie ale legăturii pentru a vedea relația dintre sisteme.",
+          "Dacă legătura nu apare în vedere, verifică mai întâi vizibilitatea și disciplina vederii. Autodesk indică disciplina Coordination pentru afișarea elementelor din toate disciplinele. Dacă geometria pare deplasată, notează vederea și reperul așteptat și cere confirmarea sursei; nu trage linkul până când suprapunerea pare convenabilă.",
+        ],
+        links: [
+          {
+            label: "Autodesk: legarea unui model și afișarea coordonatelor de bază",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-Collaborate/files/GUID-3D79F9CC-005B-4C4D-9F47-60CEAAE65638.htm",
+          },
+        ],
+      },
+      {
+        heading: "Acquire și Publish schimbă relația coordonatelor",
+        paragraphs: [
+          "În proprietățile unei legături, Acquire preia coordonatele linkului în modelul gazdă, iar Publish transmite coordonatele gazdei către link. Autodesk arată că operația schimbă sistemul de coordonate folosit de unul dintre modele și cere reconcilierea pozițiilor.",
+          "Aceste comenzi nu sunt o corecție vizuală fără efecte asupra fișierelor. Folosește-le numai după ce responsabilul proiectului confirmă modelul de referință și autorizează modificarea relației dintre fișiere.",
+          "În Revit Cloud Worksharing nu se pot publica coordonate partajate către modelul legat; Autodesk permite preluarea lor prin Acquire. Convenția trebuie clarificată și în funcție de modul de colaborare al proiectului.",
+        ],
+        links: [
+          {
+            label: "Autodesk: Acquire sau Publish prin proprietățile legăturii",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-008933F3-DE4C-471F-890A-1A4B82D9C808.htm",
+          },
+        ],
+      },
+      {
+        heading: "Versiunea și faza se verifică separat de poziționare",
+        paragraphs: [
+          "Cere versiunea Revit a gazdei și a fiecărui fișier legat. La legarea unui model care necesită upgrade, Revit afișează un mesaj. Upgrade-ul făcut pentru legare este temporar și nu salvează linkul odată cu gazda; actualizarea permanentă cere deschiderea și salvarea separată a modelului legat. După upgrade și salvare, modelul nu mai poate fi deschis cu versiunea anterioară. Clarifică dinainte cu proprietarul dacă este permisă această conversie.",
+          "Fazele contează numai când proiectul trebuie să afișeze stări diferite ale lucrării. Pentru un link Revit cu mai multe faze, verifică Phase Mapping și setările vederii; ele controlează corespondența și afișarea fazelor, nu stabilesc coordonatele comune.",
+        ],
+        links: [
+          {
+            label: "Autodesk: legături Revit care necesită upgrade",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-5DEE0468-9BB9-49BF-8605-9B3C8F1CE939.htm",
+          },
+          {
+            label: "Autodesk: maparea fazelor între modele legate",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-97E3F329-B78A-4854-841D-CDE2EAA1FD73.htm",
+          },
+        ],
+      },
+      {
+        heading: "Coordonatele și proiectarea rămân la responsabilul proiectului",
+        paragraphs: [
+          "Modelarea Revit MEP poate urma fișierele, coordonatele și standardele confirmate de biroul de proiectare. Alegerea reperului de topografie, validarea poziției proiectului și deciziile tehnice rămân la proiectantul responsabil. Un link care se suprapune vizual nu verifică soluția tehnică și nu ține loc de măsurători sau de validarea coordonatelor.",
+          "Pentru modelare și documentație HVAC, termică sau electrică în Revit, consultă serviciul și clarifică fișierele și scopul proiectului înainte de preluare.",
+        ],
+        links: [
+          {
+            label: "Modelare Revit MEP pentru birouri de proiectare",
+            href: "/revit-mep",
+          },
+          {
+            label: "Ce fișiere trimiți pentru modelarea Revit MEP",
+            href: "/blog/ce-fisiere-trimiti-pentru-modelare-mep",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "mentenanta-hvac-excel-sau-cmms",
+    title: "Mentenanța HVAC: Excel sau un CMMS?",
+    metaTitle: "Mentenanță HVAC: Excel sau CMMS?",
+    description:
+      "Află când ajunge un tabel pentru echipamente și revizii HVAC și când un CMMS ajută la ordine de lucru, scadențe, responsabili și istoric.",
+    date: "2026-10-12",
+    readingTime: 7,
+    tags: ["HVAC", "Mentenanță", "CMMS", "Excel", "Mentenanță preventivă"],
+    sections: [
+      {
+        paragraphs: [
+          "Pentru mentenanța HVAC, alegerea dintre Excel și un CMMS ține mai puțin de numărul de funcții și mai mult de felul în care sunt urmărite echipamentele, scadențele și intervențiile. Un tabel poate fi suficient dacă există puține active, un responsabil clar și un mod consecvent de a înregistra fiecare lucrare. Un CMMS devine util când lucrările recurente, mai mulți oameni sau mai multe locații fac dificilă păstrarea aceleiași imagini.",
+          "Un CMMS este un sistem de administrare a mentenanței. El poate centraliza activele, solicitările, ordinele de lucru și planurile preventive. Nu stabilește singur intervalul tehnic potrivit unui anumit echipament și nu înlocuiește documentația producătorului ori deciziile responsabilului de mentenanță.",
+        ],
+        links: [
+          {
+            label: "DOE/FEMP: Operations & Maintenance Best Practices Guide, Release 3.0",
+            href: "https://www.energy.gov/sites/default/files/2020/04/f74/omguide_complete_w-eo-disclaimer.pdf",
+          },
+        ],
+      },
+      {
+        heading: "Când ajunge Excel și când merită un CMMS",
+        paragraphs: [
+          "Înainte să migrezi datele, descrie fluxul real: cine observă o problemă, cine aprobă lucrarea, cine o execută, cum afli că este terminată și unde rămân constatările. Ghidul DOE/FEMP recomandă evaluarea nevoilor și a funcțiilor necesare înaintea alegerii unui CMMS; avertizează și asupra funcțiilor prea complexe pentru ce poate administra echipa.",
+        ],
+        table: {
+          head: ["Situație", "Excel poate ajunge", "Un CMMS poate fi mai potrivit"],
+          rows: [
+            [
+              "Responsabili și locații",
+              "Un singur responsabil actualizează același registru, iar versiunea curentă este ușor de găsit.",
+              "Mai mulți tehnicieni sau administratori trebuie să vadă aceeași lucrare și să-i schimbe responsabilul ori starea.",
+            ],
+            [
+              "Scadențe",
+              "Revizuirea periodică a unei liste de termene este ușor de făcut și verificat.",
+              "Există multe lucrări recurente și este util ca planurile să genereze ordine de lucru și să apară într-un calendar.",
+            ],
+            [
+              "Istoric",
+              "Intervențiile pot fi adăugate ca rânduri noi fără să fie suprascris istoricul.",
+              "Trebuie căutate rapid lucrările, constatările și atașamentele pentru un echipament sau o locație.",
+            ],
+            [
+              "Complexitate",
+              "Procesul este stabil, iar formulele și câmpurile pot fi menținute fără automatizări fragile.",
+              "Urmărirea manuală produce sarcini dublate, date lipsă sau neclaritate privind ce este în lucru.",
+            ],
+          ],
+        },
+        links: [
+          {
+            label: "Ghidul DOE/FEMP despre evaluarea nevoii și funcțiile CMMS",
+            href: "https://www.energy.gov/sites/default/files/2020/04/f74/omguide_complete_w-eo-disclaimer.pdf",
+          },
+        ],
+      },
+      {
+        heading: "Descarcă două registre pentru a începe în Excel",
+        paragraphs: [
+          "Poți începe fără un abonament: descarcă registrul de echipamente și registrul de ordine de lucru, apoi folosește același cod de echipament în ambele. Fișierele CSV sunt gratuite, cu separator punct și virgulă și diacritice UTF-8. În Excel, dacă datele apar într-o singură coloană, importă fișierul și selectează separatorul punct și virgulă.",
+          "Șterge rândul DEMO înainte de utilizare și completează numai datele verificate ale echipamentelor tale. Fiecare intervenție primește un rând nou în registrul de ordine de lucru, pentru a păstra istoricul. Sursa intervalului și scadențele se completează după documentația modelului și procedura aplicabilă.",
+        ],
+        note: "Sunt șabloane independente pentru organizarea datelor. Nu reprezintă un plan tehnic de mentenanță și nu este garantat importul lor direct în FreeMaint sau alt CMMS.",
+        links: [
+          {
+            label: "Descarcă registrul de echipamente HVAC (CSV pentru Excel)",
+            href: "/resurse/registru-echipamente-hvac.csv",
+          },
+          {
+            label: "Descarcă registrul de ordine de lucru HVAC (CSV pentru Excel)",
+            href: "/resurse/registru-ordine-de-lucru-hvac.csv",
+          },
+        ],
+      },
+      {
+        heading: "Începe cu un registru de echipamente folositor",
+        paragraphs: [
+          "Indiferent de instrument, registrul trebuie să lege fiecare intervenție de echipamentul corect. Folosește un identificator unic și păstrează informațiile utile pentru localizare, identificare și planificare. Nu completa după presupuneri câmpurile necunoscute; marchează-le pentru verificare la echipament sau în documentația existentă.",
+        ],
+        list: [
+          "Identificator stabil și denumire ușor de recunoscut, de exemplu CTA-01 sau Split-Oficiu-02.",
+          "Clădirea, nivelul și încăperea ori zona în care este montat echipamentul.",
+          "Tipul echipamentului, producătorul, modelul și seria, când sunt disponibile.",
+          "Linkul sau locația manualului potrivit modelului și reviziei echipamentului.",
+          "Planul sau procedura aplicabilă, cu sursa intervalului și persoana care validează revizia.",
+          "Data ultimei lucrări, lucrarea efectuată, responsabilul, starea și următoarea scadență.",
+        ],
+        links: [
+          {
+            label: "FreeMaint Docs: înregistrarea unui activ și câmpurile sale",
+            href: "https://freemaint.com/docs/assets/registering",
+          },
+        ],
+      },
+      {
+        heading: "Separă planul preventiv de ordinul de lucru",
+        paragraphs: [
+          "Un plan preventiv descrie ce lucrare se repetă și după ce regulă se planifică. Un ordin de lucru este intervenția concretă: ce trebuie făcut, pentru ce activ și locație, cine răspunde, care este termenul și ce documente sau constatări se atașează. O solicitare de intervenție poate porni, la rândul ei, o lucrare corectivă în afara calendarului preventiv.",
+          "În Excel, păstrează registrul activelor separat de istoricul lucrărilor sau folosește foi legate prin același identificator. Într-un CMMS, verifică dacă activul și locația sunt asociate ordinului, dacă poți atribui responsabilul și dacă stările reflectă fluxul folosit în realitate. Nu suprascrie rândul ultimei revizii cu o dată nouă: adaugă o înregistrare nouă pentru a păstra istoricul.",
+        ],
+        links: [
+          {
+            label: "FreeMaint Docs: ce conține și cum se urmărește o ordine de lucru",
+            href: "https://freemaint.com/docs/getting-started/create-work-order",
+          },
+          {
+            label: "DOE/FEMP: CMMS și istoricul lucrărilor",
+            href: "https://www.energy.gov/sites/default/files/2020/04/f74/omguide_complete_w-eo-disclaimer.pdf",
+          },
+        ],
+      },
+      {
+        heading: "Intervalul se preia din documentația echipamentului",
+        paragraphs: [
+          "Înregistrează sursa intervalului, nu doar frecvența introdusă într-un calendar. Ghidul DOE/FEMP precizează că îndrumările sale generale nu înlocuiesc specificațiile și recomandările producătorului. Pentru un aparat HVAC, verifică manualul potrivit modelului și reviziei, apoi notează cerința și locul din document din care a fost preluată. Dacă intervalul trebuie adaptat condițiilor de exploatare, consemnează cine l-a verificat și pe ce bază.",
+          "Un plan calendaristic poate urmări o periodicitate exprimată în timp. Dacă sarcina depinde de ore de funcționare sau de alte citiri, verifică dacă instrumentul și planul ales pot folosi acel tip de declanșare. Software-ul poate calcula următoarea scadență după regula introdusă; nu validează că regula este corectă pentru echipament.",
+        ],
+        links: [
+          {
+            label: "DOE/FEMP: recomandările producătorului și programul preventiv",
+            href: "https://www.energy.gov/sites/default/files/2020/04/f74/omguide_complete_w-eo-disclaimer.pdf",
+          },
+          {
+            label:
+              "FreeMaint Docs: programarea mentenanței pe timp și recomandarea de pornire de la intervalul producătorului",
+            href: "https://freemaint.com/docs/preventive-maintenance/optimizing",
+          },
+          {
+            label: "FreeMaint Docs: planuri preventive calendaristice",
+            href: "https://freemaint.com/docs/preventive-maintenance/time-based",
+          },
+        ],
+      },
+      {
+        heading: "Exemplu ipotetic: o clădire mică, un responsabil",
+        paragraphs: [
+          "Imaginează-ți o clădire cu o unitate rooftop și câteva aparate split, iar o singură persoană ține registrul și verifică termenele. Într-un tabel, fiecare echipament are un cod și o locație; manualul corect este atașat sau localizat; periodicitatea este introdusă numai după verificarea cerinței pentru modelul respectiv; fiecare intervenție se adaugă ca înregistrare nouă, cu dată, responsabil și observații.",
+          "Dacă aceeași persoană poate verifica lista la intervalul stabilit, tabelul poate rămâne suficient. Dacă lucrările ajung să fie împărțite între tehnicieni, locațiile se înmulțesc ori nimeni nu mai știe ce ordin este deschis, testează un CMMS pe câteva active reprezentative. Acesta este un exemplu de proces, nu o măsurare a economiilor sau a performanței.",
+        ],
+      },
+      {
+        heading: "Ce oferă FreeMaint la data verificării",
+        paragraphs: [
+          "La consultarea paginii oficiale de prețuri din 12 octombrie 2026, FreeMaint afișa Core la 0 USD și Starter de la 29 USD pe companie pe lună, cu taxele aplicabile calculate la checkout. Pagina listează în Core utilizatori, active și ordine de lucru nelimitate, planuri preventive calendaristice, solicitări și locații. Starter adaugă, între altele, contoare și declanșatoare preventive bazate pe citiri, plus export PDF/Excel. Prețul și funcțiile sunt un instantaneu al paginii consultate și trebuie reverificate înaintea unei decizii.",
+        ],
+        links: [
+          {
+            label: "FreeMaint: prețuri și comparația planurilor",
+            href: "https://freemaint.com/pricing",
+          },
+          {
+            label: "FreeMaint Docs: declanșatoare de mentenanță pe contoare",
+            href: "https://freemaint.com/docs/preventive-maintenance/meter-based",
+          },
+        ],
+      },
+      {
+        heading: "Testează exportul și planul înainte de migrare",
+        paragraphs: [
+          "Exportul merită verificat pe modulul, formatul și planul de care ai nevoie, nu doar printr-o afirmație generală că datele pot fi exportate. La verificarea read-only din 7 octombrie 2026, exportul Assets în format Excel/CSV din contul Core a afișat mesajul că funcția bulk export cere Starter. Pe 8 octombrie, arhiva JSON a workspace-ului existent s-a descărcat; testul respectiv a confirmat acea cale de arhivare, nu toate exporturile individuale.",
+          "La consultarea din 12 octombrie, tabelul de planuri FreeMaint pune exportul PDF/Excel în Starter, dar FAQ-ul menționează CSV import/export în Core, iar paginile de documentație despre export și portabilitate descriu exporturi CSV/Excel fără o limitare de plan. Aceste afirmații nu se potrivesc complet cu mesajul observat în modulul Assets. Înainte de a migra, verifică din contul propriu formatul exact, modulul, volumul și permisiunile necesare; păstrează separat o copie verificată a datelor.",
+        ],
+        links: [
+          {
+            label: "FreeMaint: comparația planurilor și FAQ-ul",
+            href: "https://freemaint.com/pricing",
+          },
+          {
+            label: "FreeMaint Docs: exportul din module",
+            href: "https://freemaint.com/docs/import-export/data-export",
+          },
+          {
+            label: "FreeMaint Docs: formate și portabilitatea datelor",
+            href: "https://freemaint.com/docs/import-export/data-portability",
+          },
+        ],
+      },
+      {
+        heading: "O verificare practică înainte să alegi",
+        list: [
+          "Numără echipamentele și locațiile, apoi identifică cine va administra registrul și cine va închide lucrările.",
+          "Ia câteva active diferite și confirmă că manualul, modelul și intervalul sunt asociați corect fiecăruia.",
+          "Încearcă un caz preventiv și unul corectiv: planificare, atribuire, stare, atașament și păstrarea istoricului.",
+          "Verifică dacă aplicația oferă calendarul sau declanșatorul cerut de procedură, fără să presupui că toate tipurile de plan sunt disponibile în fiecare abonament.",
+          "Exportă date de test din exact ecranul și formatul de care depinzi, apoi deschide fișierul și confirmă că identificatorii și câmpurile utile sunt păstrate.",
+          "Compară funcțiile cu nevoia reală și timpul disponibil pentru administrare; un CMMS folosit parțial poate lăsa același gol de evidență ca un tabel neactualizat.",
+        ],
+        links: [
+          {
+            label: "DOE/FEMP: evaluarea nevoii și a capacității de utilizare a unui CMMS",
+            href: "https://www.energy.gov/sites/default/files/2020/04/f74/omguide_complete_w-eo-disclaimer.pdf",
+          },
+        ],
+      },
+      {
+        heading: "Transparență privind recomandarea",
+        paragraphs: [
+          "FreeMaint este un produs furnizat de FreeMaint, nu un serviciu de mentenanță HVAC livrat de NOD BIM. Pagina NOD BIM de recomandări conține linkul afiliat; dacă alegi oferta prin acea pagină, NOD BIM poate primi comision pentru plățile eligibile. Contul gratuit nu generează comision. Alegerea unui CMMS rămâne opțională: folosește instrumentul care permite echipei tale să păstreze corect registrul și istoricul.",
+        ],
+        links: [
+          {
+            label: "Vezi oferta FreeMaint și condițiile afișate de NOD BIM",
+            href: "/recomandari",
+          },
+          {
+            label: "FreeMaint: pagina oficială a programului de afiliere",
+            href: "https://freemaint.com/affiliates/kit",
+          },
+        ],
+      },
+      {
+        heading: "Surse primare consultate la 12 octombrie 2026",
+        paragraphs: [
+          "Pentru organizarea mentenanței am folosit ghidul DOE/FEMP Operations & Maintenance Best Practices Guide, Release 3.0. Pentru funcțiile și limitele produsului am verificat pagina FreeMaint de prețuri și documentația oficială despre active, ordine de lucru, planuri preventive și export. Capturile și notele interne consemnează testele read-only din 7–8 octombrie 2026.",
+        ],
+        links: [
+          {
+            label: "DOE/FEMP: Operations & Maintenance Best Practices Guide, Release 3.0",
+            href: "https://www.energy.gov/sites/default/files/2020/04/f74/omguide_complete_w-eo-disclaimer.pdf",
+          },
+          {
+            label: "FreeMaint: prețuri și funcții pe planuri",
+            href: "https://freemaint.com/pricing",
+          },
+          {
+            label: "FreeMaint Docs: active, ordine de lucru, planuri preventive și export",
+            href: "https://freemaint.com/docs",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "corectare-atribute-blocuri-autocad-dwg",
+    title: "Blocuri AutoCAD cu atribute: cum corectezi valorile din DWG",
+    metaTitle: "Corectare atribute de bloc în AutoCAD și DWG",
+    description:
+      "Ai identificatori sau texte greșite în blocurile unui DWG? Vezi ce modifici la o singură inserție, ce ține de definiția blocului și ce trimiți pentru o corectură clară.",
+    date: "2026-10-12",
+    readingTime: 5,
+    tags: ["AutoCAD", "DWG", "Blocuri", "Atribute", "Corecturi"],
+    sections: [
+      {
+        paragraphs: [
+          "Un DWG poate afișa același simbol în mai multe locuri, dar fiecare inserție poate avea o valoare proprie: un cod, un număr de încăpere sau un câmp din cartuș. Dacă etichetele sunt goale, greșite ori formatate diferit, cererea de corectură trebuie să precizeze dacă se schimbă o singură inserție sau structura blocului.",
+          "Distincția contează înainte de estimare: modificarea unui text punctual nu implică redesenarea planșei, iar sincronizarea definiției unui bloc nu înlocuiește automat valorile individuale.",
+        ],
+      },
+      {
+        heading: "Verifică dacă textul este atribut sau text obișnuit",
+        paragraphs: [
+          "Definiția blocului păstrează geometria comună, iar fiecare inserție din desen este o referință la acea definiție. Un atribut este un câmp al blocului a cărui valoare poate varia între referințe. Autodesk folosește drept exemple numărul unei încăperi și informațiile dintr-un cartuș.",
+          "Textul obișnuit inclus în definiție se repetă în fiecare inserție. De aceea, înainte să ceri schimbarea unui cod, verifică dacă este atribut, text fix sau geometrie desenată. Aspectul din plan nu arată singur cum este construit.",
+        ],
+        links: [
+          {
+            label: "Autodesk: blocuri, referințe și atribute",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-OnBoarding/files/ACD_FOUNDATIONS_MAIN11.html",
+          },
+        ],
+      },
+      {
+        heading: "Alege nivelul corect al corecturii",
+        paragraphs: [
+          "Descrie problema în funcție de ce trebuie să se schimbe. O listă de valori noi nu indică neapărat dacă se modifică o singură inserție, toate referințele aceluiași bloc sau chiar geometria simbolului.",
+        ],
+        table: {
+          head: ["Problema observată", "Ce trebuie clarificat", "Ce să transmiți"],
+          rows: [
+            [
+              "Un singur cod sau o singură denumire este greșită",
+              "Care inserție și care atribut se modifică?",
+              "Planșa, zona, eticheta și perechea valoare veche–valoare aprobată.",
+            ],
+            [
+              "Eticheta ori afișarea este greșită în bloc",
+              "Se schimbă definiția? Se aplică referințelor existente?",
+              "Numele blocului, aspectul dorit și inserțiile vizate.",
+            ],
+            [
+              "Mai multe coduri individuale trebuie corectate",
+              "Care este lista confirmată pentru fiecare inserție?",
+              "Un tabel cu poziția blocului și valoarea aprobată pentru fiecare câmp.",
+            ],
+            [
+              "Simbolul sau geometria este greșită",
+              "Este necesară o intervenție grafică separată?",
+              "O observație marcată și sursa care confirmă geometria cerută.",
+            ],
+          ],
+        },
+        note: "Tabelul este o propunere pentru delimitarea cererii. Valorile și geometria cu semnificație tehnică trebuie confirmate de proiectantul responsabil.",
+      },
+      {
+        heading: "ATTEDIT și Block Attribute Manager fac schimbări diferite",
+        paragraphs: [
+          "Pentru valoarea dintr-o anumită referință de bloc, comanda ATTEDIT deschide editarea atributelor acelei referințe. Este potrivită când se corectează, de exemplu, un singur cod identificat pe planșă.",
+          "Block Attribute Manager modifică definiția atributului: tagul, promptul, valoarea implicită, modul de afișare și alte proprietăți. Înainte de aplicare, stabilește dacă modificarea se aplică inserțiilor existente sau doar celor noi.",
+        ],
+        links: [
+          {
+            label: "Autodesk: ATTEDIT pentru valorile unei referințe",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-AB03D5EE-6B27-492A-8147-671D0F536CB5.htm",
+          },
+          {
+            label: "Autodesk: modificarea definițiilor atributelor",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-F351FDBB-2731-40C1-A186-1B1F47779E32.htm",
+          },
+        ],
+      },
+      {
+        heading: "Sincronizarea definiției nu rescrie valorile",
+        paragraphs: [
+          "Block Attribute Manager poate sincroniza referințele existente cu definiția curentă. Autodesk precizează că Sync actualizează proprietățile atributelor, dar nu schimbă valorile atribuite fiecărei referințe. Schimbarea tagului, a promptului sau a valorii implicite nu înlocuiește automat valorile deja completate.",
+          "Prin urmare, dacă mai multe coduri sunt incorecte, sincronizarea nu este o înlocuire în masă a codurilor. Pregătește separat lista valorilor aprobate și leagă fiecare valoare de inserția corectă. Dacă managerul evidențiază taguri duplicate, clarifică structura înainte de redenumirea lor.",
+        ],
+        links: [
+          {
+            label: "Autodesk: editarea și sincronizarea atributelor existente",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-889213DA-A3AF-4020-89F0-1E5049AD26EC.htm",
+          },
+        ],
+      },
+      {
+        heading: "Pregătește lista înainte de corectarea multor inserții",
+        paragraphs: [
+          "Pentru un desen cu multe blocuri, valorile atributelor pot fi extrase într-un tabel sau într-un fișier CSV. Compară lista cu datele aprobate de proiectant și notează diferențele care trebuie corectate. Exportul arată valorile existente; nu confirmă că sunt corecte tehnic.",
+          "Înainte de modificare, păstrează desenul de bază și verifică o inserție reprezentativă. După intervenție, compară valorile și aspectul cu lista aprobată și deschide PDF-ul rezultat pentru a controla ce se vede pe planșă.",
+        ],
+        links: [
+          {
+            label: "Autodesk: stocarea și extragerea valorilor atributelor",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-OnBoarding/files/ACD_FOUNDATIONS_MAIN11.html",
+          },
+        ],
+      },
+      {
+        heading: "Checklist înainte să ceri corectura",
+        list: [
+          "Trimite DWG-ul de lucru și identifică emiterea folosită ca bază.",
+          "Marchează planșa și poziția fiecărei inserții vizate.",
+          "Indică tagul și valoarea actuală, apoi valoarea aprobată.",
+          "Precizează dacă se schimbă o singură inserție sau definiția blocului.",
+          "Confirmă cine aprobă valorile și geometria cu semnificație tehnică.",
+          "Stabilește livrabilele: DWG editabil, PDF sau ambele.",
+        ],
+        note: "Checklistul organizează preluarea și verificarea desenului; nu înlocuiește verificarea proiectantului responsabil.",
+      },
+      {
+        heading: "Corecturi AutoCAD pe un DWG existent",
+        paragraphs: [
+          "Serviciile AutoCAD NOD BIM includ corecturi pe DWG-uri existente și organizarea blocurilor. Trimite desenul, valorile confirmate și cerințele de livrare pentru evaluarea lucrării; costul se stabilește după verificarea fișierelor și înainte de începere. Desenarea și documentarea nu înlocuiesc soluțiile tehnice, calculele sau semnătura proiectantului responsabil.",
+        ],
+        links: [
+          {
+            label: "Servicii AutoCAD: corecturi și pregătire DWG/PDF",
+            href: "/autocad-dwg",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "instalatii-existente-revit-mep-date-limite",
+    title: "Instalații existente în Revit: date pentru modelare",
+    metaTitle: "Releveu instalații în Revit: date și limite",
+    description:
+      "Ai măsurători, fotografii și schițe ale instalațiilor existente? Vezi ce trimiți pentru modelare Revit MEP și cum se documentează zonele neconfirmate.",
+    date: "2026-10-11",
+    readingTime: 5,
+    tags: ["Revit MEP", "Instalații existente", "Releveu", "Documentație"],
+    sections: [
+      {
+        paragraphs: [
+          "Ai nevoie de un model Revit al instalațiilor existente și ai măsurători, fotografii sau schițe din clădire. Înainte de externalizarea modelării, trebuie stabilit ce informații descriu situația observată și unde documentația rămâne incompletă.",
+          "Pentru HVAC, instalații termice și electrice, un model util trebuie să păstreze această diferență. Un traseu desenat continuu poate părea confirmat chiar dacă o parte este ascunsă. Cererea de modelare trebuie să precizeze cum se reprezintă și se documentează astfel de zone.",
+        ],
+      },
+      {
+        heading: "Leagă măsurătorile de repere identificabile",
+        paragraphs: [
+          "Trimite planul de bază cu nivelurile și încăperile identificate. Pentru fiecare zonă, indică reperele folosite la măsurare, unitățile și cotele relevante: poziții față de pereți sau axe, înălțimi și dimensiuni ale elementelor observate.",
+          "O listă de dimensiuni fără localizare lasă întrebări deschise. Numerotează schițele și folosește aceleași coduri în fotografii și pe plan. Indică data observațiilor și cine poate clarifica neconcordanțele. Nu cere modelatorului să aleagă între două cote contradictorii fără confirmarea sursei.",
+        ],
+      },
+      {
+        heading: "Fotografiile trebuie însoțite de informațiile măsurate",
+        paragraphs: [
+          "Include imagini de ansamblu și detalii ale echipamentelor, racordurilor și schimbărilor de direcție vizibile. Marchează poziția și orientarea fotografiei pe plan, ca persoana care modelează să poată identifica zona.",
+          "Însoțește imaginile de dimensiunile cunoscute și de informațiile lizibile de pe etichete. Separă datele citite de cele presupuse. Dacă documentele vechi și fotografiile recente diferă, arată discrepanța și precizează ce sursă a fost confirmată pentru lucru.",
+        ],
+      },
+      {
+        heading: "Stabilește cum se tratează traseele ascunse",
+        paragraphs: [
+          "Precizează ce zone nu au fost accesibile și ce se cunoaște despre legăturile dintre elementele vizibile. O continuitate dedusă trebuie documentată ca atare. Nu transforma o presupunere într-un traseu prezentat drept măsurat.",
+          "Poți conveni o clasificare simplă pentru preluarea datelor. Tabelul de mai jos este o propunere de organizare, adaptabilă procesului clientului.",
+        ],
+        table: {
+          head: ["Stare propusă", "Ce se documentează", "Ce rămâne de clarificat"],
+          rows: [
+            [
+              "Măsurat și localizat",
+              "Dimensiunea, reperul și sursa măsurătorii.",
+              "Eventualele contradicții între surse.",
+            ],
+            [
+              "Vizibil, cu date incomplete",
+              "Elementul și fotografia în care apare.",
+              "Dimensiunile sau poziția care lipsesc.",
+            ],
+            [
+              "Ascuns sau neconfirmat",
+              "Zona afectată și informațiile disponibile.",
+              "Continuitatea, configurația ori datele care nu au fost observate.",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Păstrează sursa și starea documentării",
+        paragraphs: [
+          "Informația poate fi păstrată într-un registru asociat modelului sau în parametrii agreați ai proiectului. Autodesk documentează folosirea parametrilor de proiect pentru liste, sortare și filtrare, cu aplicare la categoriile selectate și stocare pe tip ori pe instanță.",
+          "Dacă urmărești observații diferite pentru fiecare element, discută cu modelatorul cum se păstrează acele valori individuale. Folosește câmpurile existente în template când sunt potrivite. Nu presupune că un parametru numit «confirmat» reprezintă o verificare efectuată: valoarea trebuie legată de o sursă și de cine a confirmat-o.",
+        ],
+        links: [
+          {
+            label: "Autodesk: parametrii de proiect și utilizarea lor",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-Model/files/GUID-28CBBEC2-6262-42D3-AE41-B36166E8318F.htm",
+          },
+        ],
+      },
+      {
+        heading: "Separă situația existentă de intervențiile propuse",
+        paragraphs: [
+          "Dacă modelul include și o intervenție viitoare, stabilește fazele și documentele care trebuie să arate situația existentă, elementele eliminate sau propunerile. În Revit, elementele folosesc proprietățile Phase Created și Phase Demolished, iar vederile au Phase și Phase Filter.",
+          "Statutul Existing este relativ la faza vederii: elementul a fost creat într-o fază anterioară. Filtrele de fază controlează afișarea elementelor după statutul lor. Aceste setări organizează reprezentarea; ele nu confirmă că poziția, dimensiunea sau existența unui element au fost verificate în clădire.",
+        ],
+        links: [
+          {
+            label: "Autodesk: proprietăți și statut de fază",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-DocumentPresent/files/GUID-602AB1FE-6C10-4A80-BD74-76ED77D4B601.htm",
+          },
+          {
+            label: "Autodesk: filtrele de fază și afișarea elementelor",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-DocumentPresent/files/GUID-DB104358-4D5A-494E-ACAE-BB8B4E72E572.htm",
+          },
+        ],
+      },
+      {
+        heading: "Checklist înainte de cererea de modelare",
+        list: [
+          "Planul de bază, nivelurile, încăperile și unitățile sunt identificate.",
+          "Măsurătorile indică reperele și zonele cărora le aparțin.",
+          "Fotografiile și schițele pot fi asociate cu pozițiile de pe plan.",
+          "Echipamentele și datele citite de pe etichete sunt identificate.",
+          "Zonele inaccesibile, contradicțiile și ipotezele sunt semnalate.",
+          "Este stabilit cine clarifică și confirmă informațiile.",
+          "Scopul, nivelul de reprezentare și livrabilele sunt precizate.",
+        ],
+      },
+      {
+        heading: "Ce verifici în documentația primită",
+        paragraphs: [
+          "Compară câteva repere și dimensiuni cunoscute cu modelul și planșele rezultate. Cere ca zonele neconfirmate să poată fi identificate și ca lista întrebărilor deschise să fie livrată împreună cu documentația.",
+          "Acceptarea trebuie raportată la sursele și limitele convenite. Aspectul complet al modelului nu este o măsurare suplimentară. Dacă apar observații noi din clădire, acestea trebuie transmise înainte de actualizarea reprezentării.",
+        ],
+      },
+      {
+        heading: "Întrebări frecvente",
+        paragraphs: [
+          "Se poate porni numai de la fotografii? Pot fi evaluate ca sursă, dar trebuie clarificate localizarea, dimensiunile și informațiile care lipsesc înainte de stabilirea lucrării.",
+          "Modelarea include măsurători la fața locului? Serviciul descris aici pornește de la măsurătorile, fotografiile și schițele furnizate de client.",
+          "Când poate fi predat ca as-built? Stabilește ce situație și ce nivel de confirmare trebuie să documenteze predarea. Zonele neobservate și ipotezele trebuie consemnate, chiar dacă fișierul este numit as-built.",
+        ],
+      },
+      {
+        heading: "Ai date despre instalațiile existente?",
+        paragraphs: [
+          "NOD BIM documentează instalații HVAC, termice și electrice în AutoCAD sau Revit pe baza măsurătorilor, fotografiilor și schițelor tale. Trimite sursele și rezultatul dorit pentru evaluarea scopului și a livrării RVT, DWG sau PDF. Soluțiile tehnice, calculele și semnătura de specialitate rămân la proiectanții responsabili.",
+        ],
+        links: [
+          {
+            label: "Modelare Revit MEP și documentarea instalațiilor existente",
+            href: "/revit-mep",
+          },
+          {
+            label: "Desenare și documentație AutoCAD",
+            href: "/autocad-dwg",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "predare-model-revit-mep-central-local-copie",
+    title: "Model Revit MEP la predare: worksharing sau copie independentă?",
+    metaTitle: "Predare model Revit MEP: worksharing sau copie independentă",
+    description:
+      "Înainte să trimiți un model Revit MEP, stabilește dacă destinatarul continuă lucrul în proiectul partajat sau are nevoie de o copie independentă.",
+    date: "2026-10-10",
+    readingTime: 5,
+    tags: ["Revit MEP", "Worksharing", "Predare model", "RVT"],
+    sections: [
+      {
+        paragraphs: [
+          "Ai primit un fișier RVT și trebuie să continui modelarea sau planșele. Înainte să începi, clarifică dacă fișierul face parte dintr-un proiect cu worksharing și ce fel de predare așteaptă proprietarul. O copie locală folosită în worksharing nu este automat o copie independentă: poate aparține încă fluxului de sincronizare cu modelul central.",
+          "Diferența contează când mai multe persoane lucrează pe același proiect, când există elemente cu proprietari diferiți sau când se cere o versiune separată pentru verificare. Cere tipul de acces și rezultatul dorit înainte să schimbi modelul.",
+        ],
+      },
+      {
+        heading: "Ce rol au modelul central și copia locală?",
+        paragraphs: [
+          "Într-un proiect workshared, modelul central păstrează proiectul comun și informațiile despre cine deține workset-urile și elementele. Fiecare participant lucrează în propria copie locală; prin Synchronize with Central publică modificările către modelul comun și primește schimbările celorlalți.",
+          "Prin urmare, simpla trimitere a unui fișier local nu confirmă că destinatarul poate continua colaborarea. Trebuie clarificat accesul la modelul central, starea ultimei sincronizări și dacă modificările locale au fost deja publicate.",
+        ],
+        links: [
+          {
+            label: "Autodesk: fluxul unui proiect workshared",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-D9797137-09C7-4F92-AFC3-670202D043E2.htm",
+          },
+          {
+            label: "Autodesk: lucrul într-un proiect în echipă",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-D2579433-CBF9-4853-8BE6-1D6013CD3BFC.htm",
+          },
+        ],
+      },
+      {
+        heading: "Când trebuie să continue aceeași colaborare",
+        paragraphs: [
+          "Dacă modificările trebuie să ajungă în același proiect, stabilește cu proprietarul cum se oferă accesul la modelul central și ce rol primește fiecare persoană. Nu lucra pe o copie paralelă prezentată drept modelul curent: schimbările făcute acolo nu ajung automat la ceilalți participanți.",
+          "Înainte de intervenție, cere confirmarea că modelul a fost sincronizat și că sursele de care depinde — de exemplu modele Revit legate — sunt disponibile în contextul proiectului. Dacă nu ai accesul sau fișierele necesare, marchează limita și cere clarificare; nu repoziționa ori înlocui legături doar ca să dispară avertismentele.",
+        ],
+      },
+      {
+        heading: "Când este necesară o copie independentă",
+        paragraphs: [
+          "Pentru o verificare sau editare separată, proprietarul poate pregăti o copie detașată de modelul central. Autodesk explică faptul că, după Detach from Central, copia nu mai păstrează calea și informațiile de permisiuni ale modelului inițial și nu poate sincroniza schimbări înapoi către acesta. La salvare, ea devine un model separat.",
+          "La detașare trebuie aleasă și păstrarea sau eliminarea workset-urilor. Eliminarea lor șterge workset-urile, atribuirea elementelor și setările de vizibilitate asociate; acestea nu pot fi recuperate. Alegerea aparține persoanei responsabile de proiect. Nu detașa și nu elimina workset-uri fără acordul proprietarului și fără să fie clar ce se întâmplă cu rezultatul.",
+        ],
+        links: [
+          {
+            label: "Autodesk: deschiderea independentă a unui model workshared",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-2B3E48F7-96A3-4379-BF6B-538D8C9ED5EF.htm",
+          },
+          {
+            label: "Autodesk: detașarea și eliminarea workset-urilor",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-6A3C4C65-ED01-4F73-8F7E-5D63F205CF9B.htm",
+          },
+        ],
+      },
+      {
+        heading: "Checklist înainte de predarea fișierului",
+        list: [
+          "Este modelul workshared sau un proiect RVT obișnuit?",
+          "Destinatarul trebuie să continue sincronizarea în proiectul existent sau să lucreze separat?",
+          "Care este ultima versiune confirmată și există modificări locale nesincronizate?",
+          "Cine aprobă accesul, detașarea și alegerea privind workset-urile?",
+          "Ce modele legate și alte surse sunt necesare pentru contextul de lucru?",
+          "Ce se predă la final: modificări în proiectul comun, un RVT independent, planșe sau documente exportate?",
+        ],
+        note: "Checklistul delimitează predarea; nu înlocuiește regulile de colaborare stabilite de proprietarul proiectului.",
+      },
+      {
+        heading: "Înainte de continuarea modelării Revit MEP",
+        paragraphs: [
+          "Odată stabilite accesul, starea modelului și livrabilele, poți descrie clar partea de modelare sau documentație care trebuie continuată. Ghidurile conexe te ajută să verifici modelul și să pregătești fișierele pentru evaluare.",
+          "NOD BIM preia lucrări delimitate de modelare și planșe Revit MEP după clarificarea fișierelor și a cerințelor. Soluția tehnică și semnarea proiectului rămân la proiectanții responsabili.",
+        ],
+        links: [
+          {
+            label: "Cum verifici un model Revit primit",
+            href: "/blog/cum-verifici-un-model-revit-primit",
+          },
+          {
+            label: "Ce fișiere trimiți pentru modelare MEP",
+            href: "/blog/ce-fisiere-trimiti-pentru-modelare-mep",
+          },
+          {
+            label: "Servicii de modelare și documentație Revit MEP",
+            href: "/revit-mep",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "xref-lipsa-autocad-preluare-dwg",
     title: "DWG cu Xref lipsă: ce verifici înainte de preluare",
     metaTitle: "Xref lipsă în AutoCAD: preluarea corectă a DWG-ului",

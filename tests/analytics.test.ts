@@ -93,7 +93,7 @@ describe("Google Ads conversion payload", () => {
     }
   });
 
-  test("phone_click respectă consimțământul", () => {
+  test("phone_click și affiliate_click respectă consimțământul fără conversie Ads", () => {
     const savedWindow = globalThis.window;
     const savedStorage = globalThis.localStorage;
     const store = new Map<string, string>();
@@ -114,8 +114,10 @@ describe("Google Ads conversion payload", () => {
 
     try {
       trackConversion("phone_click", { source: "header" });
+      track("affiliate_click", { partner: "freemaint", source: "recomandari" });
       writeConsent("necessary");
       trackConversion("phone_click", { source: "header" });
+      track("affiliate_click", { partner: "freemaint", source: "recomandari" });
       expect(dataLayer).toEqual([]);
       expect(calls).toEqual([]);
 
@@ -123,6 +125,16 @@ describe("Google Ads conversion payload", () => {
       trackConversion("phone_click", { source: "header" });
       expect(dataLayer).toEqual([{ event: "phone_click", source: "header" }]);
       expect(calls).toEqual([["event", "phone_click", { source: "header" }]]);
+      track("affiliate_click", { partner: "freemaint", source: "recomandari" });
+      expect(dataLayer.at(-1)).toEqual({
+        event: "affiliate_click",
+        partner: "freemaint",
+        source: "recomandari",
+      });
+      expect(calls).toEqual([
+        ["event", "phone_click", { source: "header" }],
+        ["event", "affiliate_click", { partner: "freemaint", source: "recomandari" }],
+      ]);
     } finally {
       mutableSite.gaMeasurementId = savedGa;
       clearConsent();

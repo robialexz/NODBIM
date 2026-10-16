@@ -93,6 +93,17 @@ describe("agent-content — negotiere markdown", () => {
     expect(shop).not.toContain("?via=bsx7y7fx2v58");
   });
 
+  test("ghidul CMMS este accesibil din HVAC și din jurnalul Markdown", async () => {
+    const guide = "/blog/mentenanta-hvac-excel-sau-cmms";
+    const hvac = await markdownResponseForPath("/hvac")?.text();
+    const revit = await markdownResponseForPath("/revit-mep")?.text();
+    const journal = await markdownResponseForPath("/blog")?.text();
+    expect(hvac).toContain(guide);
+    expect(revit).not.toContain(guide);
+    expect(journal).toContain(guide);
+    expect(journal).toContain("organizarea mentenanței");
+  });
+
   test("agent-instructions.txt conține ghidul când/cum să folosești site-ul", () => {
     const txt = agentInstructionsTxt();
     expect(txt).toContain("# Agent instructions");

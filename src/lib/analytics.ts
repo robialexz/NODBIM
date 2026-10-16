@@ -17,7 +17,8 @@ export type ConversionEvent =
   | "quote_form_success"
   | "lead_form_success"
   | "phone_click"
-  | "email_click";
+  | "email_click"
+  | "affiliate_click";
 
 declare global {
   interface Window {
