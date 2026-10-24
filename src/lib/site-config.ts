@@ -142,6 +142,7 @@ export function quoteContextForPath(pathname: string) {
   const en = path.startsWith("/en/");
   const installations = ["/hvac", "/instalatii-termice", "/instalatii-electrice"].includes(path);
   return {
+    isTraining: training,
     projectType: training
       ? "Cursuri Revit și Dynamo"
       : autocad
@@ -164,6 +165,9 @@ export function quoteContextForPath(pathname: string) {
             : "Salut! Am găsit NOD BIM pe site și am nevoie de planșe de instalații sau modelare Revit MEP. Pot să îți trimit fișierele pentru o ofertă?",
   };
 }
+
+export const trainingEvaluationWhatsappMessage =
+  "Salut! Aș dori să programăm o discuție scurtă de evaluare (15 minute pe Google Meet sau WhatsApp) pentru cursurile Revit / Dynamo. Ce doresc să învăț prioritar: ";
 
 export const disclaimer =
   "Serviciile constau în desenare tehnică, modelare BIM și pregătirea documentației. Documentațiile care necesită verificare, autorizare sau semnătură de specialitate trebuie validate de profesioniști autorizați.";

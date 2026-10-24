@@ -5,28 +5,77 @@ import { enHomePath, localeForPath } from "@/lib/i18n";
 import { site } from "@/lib/site-config";
 import { PhoneLink } from "@/components/site/PhoneLink";
 
+type ServiceCategory = {
+  title: string;
+  items: {
+    label: string;
+    description: string;
+    href: string;
+  }[];
+};
+
 const copy = {
   ro: {
     home: "/",
     skip: "Sari la conținut",
     services: "Servicii",
-    serviceLinks: [
+    serviceCategories: [
       {
-        label: "Desenare AutoCAD",
-        description: "Planuri scanate, schițe, corecturi",
-        href: "/autocad-dwg",
+        title: "Revit MEP & Instalații",
+        items: [
+          {
+            label: "Modelare Revit MEP",
+            description: "Model 3D și planșe pentru birouri de proiectare",
+            href: "/revit-mep",
+          },
+          {
+            label: "Instalații HVAC",
+            description: "Planșe și tubulaturi de ventilare/climatizare",
+            href: "/hvac",
+          },
+          {
+            label: "Instalații termice",
+            description: "Centrale, distribuitoare, conducte și radiatoare",
+            href: "/instalatii-termice",
+          },
+          {
+            label: "Instalații electrice",
+            description: "Circuite, tablouri, iluminat și prize",
+            href: "/instalatii-electrice",
+          },
+        ],
       },
       {
-        label: "PDF în DWG",
-        description: "Plan PDF sau scanat, redesenat manual",
-        href: "/pdf-in-dwg",
+        title: "AutoCAD & Planșe",
+        items: [
+          {
+            label: "Desenare AutoCAD",
+            description: "Planuri scanate, schițe, corecturi pe layere",
+            href: "/autocad-dwg",
+          },
+          {
+            label: "PDF în DWG",
+            description: "Plan PDF sau scanat, redesenat manual la scară",
+            href: "/pdf-in-dwg",
+          },
+        ],
       },
       {
-        label: "Revit MEP și instalații",
-        description: "Model 3D și planșe pentru birouri de proiectare",
-        href: "/revit-mep",
+        title: "Cursuri & Automatizări",
+        items: [
+          {
+            label: "Cursuri Revit de la zero",
+            description: "Sesiuni live pentru începători, până la planșă",
+            href: "/cursuri-revit",
+          },
+          {
+            label: "Automatizări Dynamo",
+            description: "Fluxuri repetitive automatizate la cerere",
+            href: "/cursuri-revit#automatizari-dynamo",
+          },
+        ],
       },
-    ],
+    ] as ServiceCategory[],
     links: [
       { label: "Exemple", href: "/portofoliu" },
       { label: "Prețuri", href: "/#preturi" },
@@ -44,7 +93,7 @@ const copy = {
     home: enHomePath,
     skip: "Skip to content",
     services: "",
-    serviceLinks: [],
+    serviceCategories: [] as ServiceCategory[],
     links: [
       { label: "Revit MEP", href: enHomePath },
       { label: "AutoCAD", href: "/en/autocad-drafting" },
@@ -151,53 +200,129 @@ export function Header({ ctaHref }: { ctaHref?: string }) {
             className="ml-auto hidden items-center gap-7 text-[0.95rem] lg:flex"
             aria-label={t.mainNav}
           >
-            {t.serviceLinks.length > 0 && (
-              <details
-                ref={servicesRef}
-                open={servicesOpen}
-                onToggle={(e) => setServicesOpen(e.currentTarget.open)}
-                onBlur={(e) => {
-                  if (
-                    e.relatedTarget instanceof Node &&
-                    !e.currentTarget.contains(e.relatedTarget)
-                  ) {
-                    setServicesOpen(false);
-                  }
-                }}
-                className="relative"
-              >
-                <summary
-                  ref={summaryRef}
-                  className="flex cursor-pointer list-none items-center gap-1.5 whitespace-nowrap hover:text-primary [&::-webkit-details-marker]:hidden"
-                >
-                  {t.services}
-                  <span
-                    aria-hidden="true"
-                    className={`h-1.5 w-1.5 border-b-[1.5px] border-r-[1.5px] border-current transition-transform ${
-                      servicesOpen
-                        ? "-translate-y-px -rotate-[135deg]"
-                        : "-translate-y-0.5 rotate-45"
-                    }`}
-                  />
-                </summary>
-                <ul className="absolute left-[-1rem] top-[calc(100%+0.9rem)] w-[21rem] border border-border-strong bg-card p-2">
-                  {t.serviceLinks.map((s) => (
-                    <li key={s.href}>
-                      <Link
-                        to={s.href}
-                        onClick={closeAll}
-                        className="grid min-h-11 gap-0.5 px-3 py-2.5 hover:bg-background"
-                      >
-                        <span>{s.label}</span>
-                        <small className="text-[0.82rem] text-muted-foreground">
-                          {s.description}
-                        </small>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            )}
+            {t.serviceCategories.length >= 3 &&
+              (() => {
+                const [mepCategory, cadCategory, trainingCategory] = t.serviceCategories;
+                if (!mepCategory || !cadCategory || !trainingCategory) return null;
+
+                return (
+                  <details
+                    ref={servicesRef}
+                    open={servicesOpen}
+                    onToggle={(e) => setServicesOpen(e.currentTarget.open)}
+                    onBlur={(e) => {
+                      if (
+                        e.relatedTarget instanceof Node &&
+                        !e.currentTarget.contains(e.relatedTarget)
+                      ) {
+                        setServicesOpen(false);
+                      }
+                    }}
+                    className="relative"
+                  >
+                    <summary
+                      ref={summaryRef}
+                      className="flex cursor-pointer list-none items-center gap-1.5 whitespace-nowrap hover:text-primary [&::-webkit-details-marker]:hidden"
+                    >
+                      {t.services}
+                      <span
+                        aria-hidden="true"
+                        className={`h-1.5 w-1.5 border-b-[1.5px] border-r-[1.5px] border-current transition-transform ${
+                          servicesOpen
+                            ? "-translate-y-px -rotate-[135deg]"
+                            : "-translate-y-0.5 rotate-45"
+                        }`}
+                      />
+                    </summary>
+                    <div className="absolute left-[-2rem] top-[calc(100%+0.9rem)] w-[36rem] border border-border-strong bg-card p-4 shadow-xl">
+                      <div className="grid grid-cols-2 gap-4">
+                        {/* Coloana 1: Revit MEP & Instalații */}
+                        <div>
+                          <p className="tech-label px-3 py-1 text-xs uppercase tracking-wider text-primary">
+                            {mepCategory.title}
+                          </p>
+                          <ul className="mt-1 space-y-0.5">
+                            {mepCategory.items.map((s) => (
+                              <li key={s.href}>
+                                <Link
+                                  to={s.href}
+                                  onClick={closeAll}
+                                  className="grid gap-0.5 px-3 py-2 transition-colors hover:bg-background"
+                                >
+                                  <span className="text-sm font-medium">{s.label}</span>
+                                  <small className="text-[0.78rem] text-muted-foreground">
+                                    {s.description}
+                                  </small>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Coloana 2: AutoCAD & Planșe + Cursuri & Automatizări */}
+                        <div className="flex flex-col justify-between">
+                          <div>
+                            <p className="tech-label px-3 py-1 text-xs uppercase tracking-wider text-primary">
+                              {cadCategory.title}
+                            </p>
+                            <ul className="mt-1 space-y-0.5">
+                              {cadCategory.items.map((s) => (
+                                <li key={s.href}>
+                                  <Link
+                                    to={s.href}
+                                    onClick={closeAll}
+                                    className="grid gap-0.5 px-3 py-2 transition-colors hover:bg-background"
+                                  >
+                                    <span className="text-sm font-medium">{s.label}</span>
+                                    <small className="text-[0.78rem] text-muted-foreground">
+                                      {s.description}
+                                    </small>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="mt-3 border-t border-border pt-3">
+                            <p className="tech-label px-3 py-1 text-xs uppercase tracking-wider text-primary">
+                              {trainingCategory.title}
+                            </p>
+                            <ul className="mt-1 space-y-0.5">
+                              {trainingCategory.items.map((s) => (
+                                <li key={s.href}>
+                                  {s.href.includes("#") ? (
+                                    <a
+                                      href={s.href}
+                                      onClick={closeAll}
+                                      className="grid gap-0.5 px-3 py-2 transition-colors hover:bg-background"
+                                    >
+                                      <span className="text-sm font-medium">{s.label}</span>
+                                      <small className="text-[0.78rem] text-muted-foreground">
+                                        {s.description}
+                                      </small>
+                                    </a>
+                                  ) : (
+                                    <Link
+                                      to={s.href}
+                                      onClick={closeAll}
+                                      className="grid gap-0.5 px-3 py-2 transition-colors hover:bg-background"
+                                    >
+                                      <span className="text-sm font-medium">{s.label}</span>
+                                      <small className="text-[0.78rem] text-muted-foreground">
+                                        {s.description}
+                                      </small>
+                                    </Link>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </details>
+                );
+              })()}
             {t.links.map((l) => (
               <NavLink key={l.href} href={l.href} label={l.label} />
             ))}
@@ -241,29 +366,51 @@ export function Header({ ctaHref }: { ctaHref?: string }) {
           className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-border bg-background px-5 pb-5 lg:hidden"
         >
           <ul>
-            {t.serviceLinks.map((s) => (
-              <li key={s.href} className="border-t border-border">
-                <Link
-                  to={s.href}
-                  onClick={closeAll}
-                  className="grid min-h-11 gap-0.5 py-3 whitespace-nowrap"
-                >
-                  <span>{s.label}</span>
-                  <small className="whitespace-normal text-[0.82rem] text-muted-foreground">
-                    {s.description}
-                  </small>
-                </Link>
+            {t.serviceCategories.map((cat) => (
+              <li key={cat.title} className="border-t border-border pt-3 pb-1">
+                <p className="tech-label px-3 text-xs uppercase tracking-wider text-primary">
+                  {cat.title}
+                </p>
+                <ul className="mt-1.5 space-y-0.5">
+                  {cat.items.map((s) => (
+                    <li key={s.href}>
+                      {s.href.includes("#") ? (
+                        <a
+                          href={s.href}
+                          onClick={closeAll}
+                          className="grid min-h-11 gap-0.5 px-3 py-2"
+                        >
+                          <span className="text-sm font-medium">{s.label}</span>
+                          <small className="text-[0.82rem] text-muted-foreground">
+                            {s.description}
+                          </small>
+                        </a>
+                      ) : (
+                        <Link
+                          to={s.href}
+                          onClick={closeAll}
+                          className="grid min-h-11 gap-0.5 px-3 py-2"
+                        >
+                          <span className="text-sm font-medium">{s.label}</span>
+                          <small className="text-[0.82rem] text-muted-foreground">
+                            {s.description}
+                          </small>
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
             {t.links.map((l) => (
               <li key={l.href} className="border-t border-border">
-                <div className="flex min-h-11 items-center py-2">
+                <div className="flex min-h-11 items-center px-3 py-2">
                   <NavLink href={l.href} label={l.label} onClick={closeAll} />
                 </div>
               </li>
             ))}
           </ul>
-          <a href={cta} onClick={closeAll} className="btn btn-primary mt-3 w-full">
+          <a href={cta} onClick={closeAll} className="btn btn-primary mt-4 w-full">
             {t.cta}
           </a>
         </nav>

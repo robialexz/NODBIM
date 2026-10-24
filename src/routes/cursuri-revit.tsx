@@ -2,8 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
+import { QuoteForm } from "@/components/site/QuoteForm";
 import { Reveal } from "@/components/site/Reveal";
-import { canonicalUrl, quoteContextForPath, whatsappLink } from "@/lib/site-config";
+import {
+  canonicalUrl,
+  quoteContextForPath,
+  trainingEvaluationWhatsappMessage,
+  whatsappLink,
+} from "@/lib/site-config";
 import { trackConversion } from "@/lib/analytics";
 import shopAutomation from "@/assets/shop-automation.webp";
 import shopStarterKit from "@/assets/shop-starter-kit.webp";
@@ -16,6 +22,7 @@ const whatsappMessage =
   quoteContextForPath("/cursuri-revit")?.whatsappMessage ??
   "Salut! Mă interesează cursurile Revit și automatizările Dynamo. Îmi poți trimite detaliile?";
 const whatsappHref = whatsappLink(whatsappMessage);
+const evaluationWhatsappHref = whatsappLink(trainingEvaluationWhatsappMessage);
 
 const programs = [
   {
@@ -181,16 +188,8 @@ function CursuriRevit() {
                   <a href="#cursuri" className="btn btn-primary">
                     Vezi ce poți învăța
                   </a>
-                  <a
-                    href={contactHref}
-                    onClick={
-                      whatsappHref
-                        ? () => trackConversion("whatsapp_click", { source: "cursuri_revit" })
-                        : undefined
-                    }
-                    className="btn btn-secondary"
-                  >
-                    Întreabă de o sesiune
+                  <a href="#evaluare" className="btn btn-secondary">
+                    Evaluare gratuită 15 min
                   </a>
                 </div>
                 <p className="mt-6 tech-label text-muted-foreground">
@@ -372,40 +371,105 @@ function CursuriRevit() {
           </Reveal>
         </section>
 
-        <section
-          id="inscriere"
-          className="border-t border-border-strong bg-graphite text-graphite-foreground"
-        >
+        <section id="evaluare" className="border-t border-border-strong bg-sheet">
+          <div className="mx-auto max-w-[1200px] px-5 py-12 md:px-8 md:py-16">
+            <Reveal>
+              <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
+                <div className="lg:col-span-7">
+                  <p className="tech-label text-primary">Sesiune 1-la-1 · 15 minute online</p>
+                  <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl">
+                    Nu știi exact de unde să începi? Hai să vorbim 15 minute.
+                  </h2>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                    Ne conectăm pe Google Meet sau vorbim direct pe WhatsApp. Îmi spui ce experiență
+                    ai și ce vrei să poți realiza în Revit sau Dynamo, iar eu îți spun sincer dacă
+                    un curs live este potrivit pentru tine, de la ce nivel merită să pornești și cât
+                    ar dura.
+                  </p>
+                  <ul className="mt-5 space-y-2.5 text-sm text-foreground/85">
+                    <li className="flex items-center gap-2.5">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-primary" />
+                      Clarificăm nivelul tău actual și obiectivele concrete
+                    </li>
+                    <li className="flex items-center gap-2.5">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-primary" />
+                      Afli durata estimată și costul fix înainte de înscriere
+                    </li>
+                    <li className="flex items-center gap-2.5">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-primary" />
+                      Fără vânzare agresivă: dacă un tutorial sau un template existent îți rezolvă
+                      nevoia, îți spun direct
+                    </li>
+                  </ul>
+                </div>
+                <div className="sheet-frame p-6 lg:col-span-5 md:p-8">
+                  <h3 className="font-display text-xl font-semibold">
+                    Discuție de evaluare gratuită
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    Stabilește o discuție de 15 minute sau lasă-mi detaliile în formularul de mai
+                    jos:
+                  </p>
+                  <div className="mt-6 flex flex-col gap-3">
+                    {evaluationWhatsappHref && (
+                      <a
+                        href={evaluationWhatsappHref}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        onClick={() =>
+                          trackConversion("whatsapp_click", { source: "cursuri_evaluare_15min" })
+                        }
+                        className="btn btn-primary w-full text-center"
+                      >
+                        Programează pe WhatsApp ↗
+                      </a>
+                    )}
+                    <a href="#inscriere" className="btn btn-secondary w-full text-center">
+                      Trimite formularul de înscriere
+                    </a>
+                  </div>
+                  <p className="mt-4 text-xs text-muted-foreground">
+                    Răspund în 1–2 zile lucrătoare pentru a stabili intervalul convenabil pe Google
+                    Meet.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section id="inscriere" className="border-t border-border-strong bg-background">
           <div className="mx-auto max-w-[1200px] px-5 py-12 md:px-8 md:py-20">
             <div className="grid gap-12 lg:grid-cols-12">
               <div className="lg:col-span-5">
-                <p className="tech-label text-primary">Înscriere · întrebări frecvente</p>
-                <h2 className="mt-6 text-4xl md:text-5xl">Spune-mi ce vrei să faci în Revit.</h2>
-                <p className="mt-5 text-sm leading-relaxed text-graphite-foreground/70 md:text-base">
-                  Trimite-mi nivelul tău actual și ce ai vrea să înveți. Îți răspund cu formatul,
-                  durata și prețul înainte de orice înscriere.
+                <p className="tech-label text-primary">Înscriere & evaluare · Pasul 1</p>
+                <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl">
+                  Spune-mi ce vrei să înveți în Revit.
+                </h2>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  Completează formularul sau scrie-mi pe WhatsApp. Îți răspund cu recomandarea de
+                  modul, durata recomandată și costul înainte de orice decizie.
                 </p>
-                <a
-                  href={contactHref}
-                  onClick={
-                    whatsappHref
-                      ? () => trackConversion("whatsapp_click", { source: "cursuri_revit" })
-                      : undefined
-                  }
-                  className="btn btn-primary mt-8"
-                >
-                  Cere detalii despre cursuri
-                </a>
+
+                <div className="mt-10 border-t border-border pt-8">
+                  <h3 className="font-display text-xl">Întrebări frecvente</h3>
+                  <div className="mt-4 space-y-4">
+                    {courseFaq.map(([question, answer]) => (
+                      <details key={question} className="border-b border-border pb-4">
+                        <summary className="cursor-pointer text-base font-medium hover:text-primary">
+                          {question}
+                        </summary>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                          {answer}
+                        </p>
+                      </details>
+                    ))}
+                  </div>
+                </div>
               </div>
+
               <div className="lg:col-span-7">
-                {courseFaq.map(([question, answer]) => (
-                  <details key={question} className="border-t border-graphite-foreground/20 py-5">
-                    <summary className="cursor-pointer text-lg font-medium">{question}</summary>
-                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-graphite-foreground/70">
-                      {answer}
-                    </p>
-                  </details>
-                ))}
+                <QuoteForm />
               </div>
             </div>
           </div>

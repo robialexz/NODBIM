@@ -14,6 +14,7 @@ const copy = {
       "Corectare planșă",
       "Planșe de instalații",
       "Modelare Revit MEP",
+      "Cursuri Revit și Dynamo",
       "Altceva",
     ],
     files: ["RVT", "DWG", "PDF", "Schițe / imagini", "Nu există încă fișiere"],
@@ -128,6 +129,23 @@ type Errors = Partial<Record<"name" | "phone" | "email" | "details" | "form", st
 export function QuoteForm() {
   const t = copy[useLocale()];
   const context = quoteContextForPath(useLocation().pathname);
+  const [selectedType, setTip] = useState<string>();
+  const isTraining = Boolean(context?.isTraining) || selectedType === "Cursuri Revit și Dynamo";
+  const trainingTypes = [
+    "Revit de la zero",
+    "Revit MEP (HVAC / Termice)",
+    "Automatizări Dynamo",
+    "Discuție evaluare 15 min",
+  ];
+  const trainingFiles = [
+    "De la zero (fără fișiere)",
+    "Am proiect Revit existent",
+    "Planuri suport (PDF/DWG)",
+    "Flux de automatizat",
+  ];
+  const typeOptions = isTraining ? trainingTypes : t.types;
+  const fileOptions = isTraining ? trainingFiles : t.files;
+
   const send = useServerFn(submitLead);
   const honeypotRef = useRef<HTMLInputElement>(null);
   // Token de idempotență: generat la prima încercare de trimitere, refolosit
@@ -141,9 +159,14 @@ export function QuoteForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [selectedType, setTip] = useState<string>();
-  const tip = selectedType ?? context?.projectType ?? t.types[0] ?? "";
-  const [files, setFiles] = useState<string[]>(["PDF"]);
+  const tip =
+    selectedType ??
+    (context?.isTraining ? trainingTypes[0] : context?.projectType) ??
+    t.types[0] ??
+    "";
+  const [files, setFiles] = useState<string[]>(
+    context?.isTraining ? [trainingFiles[0] ?? "De la zero (fără fișiere)"] : ["PDF"],
+  );
   const [planse, setPlanse] = useState("");
   const [termen, setTermen] = useState("");
   const [detalii, setDetalii] = useState("");
@@ -437,7 +460,7 @@ export function QuoteForm() {
       <fieldset className="mt-8 border-0 p-0">
         <legend className="tech-label text-muted-foreground">{t.type}</legend>
         <div className="mt-3 flex flex-wrap gap-2">
-          {t.types.map((option) => (
+          {typeOptions.map((option) => (
             <button
               key={option}
               type="button"
@@ -461,7 +484,7 @@ export function QuoteForm() {
       <fieldset className="mt-8 border-0 p-0">
         <legend className="tech-label text-muted-foreground">{t.available}</legend>
         <div className="mt-3 flex flex-wrap gap-2">
-          {t.files.map((f) => (
+          {fileOptions.map((f) => (
             <button
               key={f}
               type="button"
@@ -485,23 +508,23 @@ export function QuoteForm() {
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="planse" className="tech-label text-muted-foreground">
-            {t.sheets}
+            {isTraining ? "Număr persoane / ore estimate (opțional)" : t.sheets}
           </label>
           <input
             id="planse"
-            inputMode="numeric"
+            inputMode={isTraining ? "text" : "numeric"}
             value={planse}
             onChange={(e) => {
               changed();
               setPlanse(e.target.value);
             }}
-            placeholder={t.sheetsHint}
+            placeholder={isTraining ? "ex: 1 persoană, 6-8 ore" : t.sheetsHint}
             className="mt-2 w-full border border-input bg-background px-3 py-3 text-base focus:border-primary md:text-sm"
           />
         </div>
         <div>
           <label htmlFor="termen" className="tech-label text-muted-foreground">
-            {t.deadline}
+            {isTraining ? "Disponibilitate / Perioadă dorită" : t.deadline}
           </label>
           <input
             id="termen"
@@ -510,7 +533,7 @@ export function QuoteForm() {
               changed();
               setTermen(e.target.value);
             }}
-            placeholder={t.deadlineHint}
+            placeholder={isTraining ? "ex: serile după 18:00 sau în weekend" : t.deadlineHint}
             className="mt-2 w-full border border-input bg-background px-3 py-3 text-base focus:border-primary md:text-sm"
           />
         </div>
@@ -518,7 +541,7 @@ export function QuoteForm() {
 
       <div className="mt-5">
         <label htmlFor="detalii" className="tech-label text-muted-foreground">
-          {t.details}
+          {isTraining ? "Ce dorești să înveți prioritar? *" : t.details}
         </label>
         <textarea
           id="detalii"
@@ -528,7 +551,11 @@ export function QuoteForm() {
             changed();
             setDetalii(e.target.value);
           }}
-          placeholder={t.detailsHint}
+          placeholder={
+            isTraining
+              ? "Ex.: pornesc de la zero și vreau să ajung la planșe, sau știu bazele și vreau instalații MEP / Dynamo. Doresc o discuție de evaluare de 15 min pe Google Meet."
+              : t.detailsHint
+          }
           aria-invalid={!!errors.details}
           aria-describedby={errors.details ? "detalii-error" : undefined}
           className="mt-2 w-full resize-y border border-input bg-background px-3 py-3 text-base focus:border-primary md:text-sm"
@@ -554,9 +581,13 @@ export function QuoteForm() {
         disabled={submitting}
         className="tech-label mt-7 w-full border border-foreground bg-foreground px-6 py-4 text-background transition-colors hover:border-primary hover:bg-primary disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {submitting ? t.sending : t.submit}
+        {submitting ? t.sending : isTraining ? "Trimite cererea de curs / evaluare" : t.submit}
       </button>
-      <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{t.after}</p>
+      <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+        {isTraining
+          ? "Răspund în 1–2 zile lucrătoare sau stabilim o discuție de 15 minute pe Google Meet pentru a evalua nivelul și formatul potrivit."
+          : t.after}
+      </p>
       <p className="mt-4 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
         {t.privacy}{" "}
         <a href={t.privacyHref} className="underline underline-offset-4 hover:text-primary">
