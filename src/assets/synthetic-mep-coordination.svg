@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1448" height="1086" viewBox="0 0 1448 1086">
+  <title>Schemă axonometrică MEP sintetică</title>
+  <desc>Scenariu fictiv pentru demonstrarea coordonării MEP. Nu este proiect de client, model Revit livrat sau documentație pentru execuție.</desc>
+  <defs>
+    <pattern id="blueprint-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#32424a" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="slab" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#58656a"/>
+      <stop offset="1" stop-color="#303b41"/>
+    </linearGradient>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #edf0ed; }
+      .small { font-size: 18px; letter-spacing: 2px; }
+      .muted { fill: #a8b2b2; }
+      .label { font-size: 20px; font-weight: 600; }
+    </style>
+  </defs>
+  <rect width="1448" height="1086" fill="#182329"/>
+  <rect x="28" y="28" width="1392" height="1030" fill="url(#blueprint-grid)" stroke="#8f9b9b" stroke-width="2"/>
+  <text x="72" y="84" class="small" fill="#81b7d0">NOD BIM  /  STUDIU DEMONSTRATIV</text>
+  <text x="72" y="137" font-size="38" font-weight="700">Coordonare MEP · vedere axonometrică</text>
+  <text x="1376" y="88" text-anchor="end" class="small muted">02 / 03</text>
+  <path d="M72 165H1376" stroke="#718087" stroke-width="2"/>
+
+  <g opacity=".55" stroke="#89969a" stroke-width="4" fill="none">
+    <path d="M210 580 628 782 1064 548 646 346Z"/>
+    <path d="M310 532V664M445 466V728M580 400V794M715 414V721M850 480V648M985 548V580" stroke-dasharray="8 9"/>
+    <path d="M310 532 728 734 1164 500M445 466 863 668 1299 434M580 400 998 602 1434 368" stroke-dasharray="8 9"/>
+  </g>
+
+  <g stroke="#1b252a" stroke-width="4" stroke-linejoin="round">
+    <polygon points="180,578 634,346 1125,590 667,830" fill="url(#slab)"/>
+    <polygon points="180,578 180,636 667,892 667,830" fill="#202d32"/>
+    <polygon points="667,830 1125,590 1125,648 667,892" fill="#253238"/>
+    <polygon points="180,578 634,346 634,398 180,636" fill="#3c4a50"/>
+    <polygon points="634,346 1125,590 1125,648 634,398" fill="#344249"/>
+  </g>
+
+  <g stroke="#aab5b6" stroke-width="10" fill="none" stroke-linecap="square" opacity=".88">
+    <path d="M325 504 325 657 816 902"/>
+    <path d="M490 420 490 602 990 850"/>
+    <path d="M665 368 665 555 1080 761"/>
+    <path d="M325 657 785 416M490 602 942 363M665 555 1082 338"/>
+  </g>
+  <g stroke="#f0f1e9" stroke-width="6" fill="none" opacity=".9">
+    <path d="M325 504 490 420 665 368 824 447 990 529 1080 575"/>
+    <path d="M325 657 490 602 665 555 824 636 990 718 1080 761"/>
+  </g>
+
+  <g fill="none" stroke="#71b4d3" stroke-width="28" stroke-linejoin="round" stroke-linecap="square">
+    <path d="M260 548 452 450 670 556 881 448 1060 536"/>
+    <path d="M452 450 452 584 670 694 881 586 881 448" stroke-width="19"/>
+  </g>
+  <g fill="none" stroke="#df9c72" stroke-width="14" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M276 584 480 482 662 572 850 478 1046 574"/>
+    <path d="M480 482 480 612 662 702 850 608 850 478" stroke-width="9"/>
+  </g>
+  <g fill="none" stroke="#a9cf9a" stroke-width="8" stroke-linejoin="round" stroke-dasharray="14 10">
+    <path d="M280 620 432 542 588 620 744 540 916 626 1068 548"/>
+    <path d="M432 542 432 682M744 540 744 696M916 626 916 710" stroke-width="5"/>
+  </g>
+
+  <g fill="#f2f0e8" stroke="#182329" stroke-width="4">
+    <rect x="247" y="529" width="26" height="38" rx="3" transform="rotate(-26 260 548)"/>
+    <rect x="658" y="537" width="26" height="38" rx="3" transform="rotate(26 671 556)"/>
+    <rect x="1047" y="517" width="26" height="38" rx="3" transform="rotate(-26 1060 536)"/>
+  </g>
+  <g fill="#182329" stroke="#d8e0de" stroke-width="3">
+    <circle cx="452" cy="450" r="12"/><circle cx="881" cy="448" r="12"/><circle cx="480" cy="482" r="9"/><circle cx="850" cy="478" r="9"/>
+  </g>
+
+  <g>
+    <path d="M1050 296 1100 322" stroke="#71b4d3" stroke-width="12"/><text x="1123" y="330" class="label">Traseu HVAC</text>
+    <path d="M1050 352 1100 378" stroke="#df9c72" stroke-width="8"/><text x="1123" y="386" class="label">Conducte demo</text>
+    <path d="M1050 408 1100 434" stroke="#a9cf9a" stroke-width="6" stroke-dasharray="10 8"/><text x="1123" y="442" class="label">Traseu electric</text>
+  </g>
+
+  <path d="M72 920H1376" stroke="#718087" stroke-width="2"/>
+  <text x="72" y="965" class="small" fill="#81b7d0">DEMONSTRAȚIE SINTETICĂ · SCENARIU FICTIV</text>
+  <text x="72" y="1008" font-size="20" class="muted">Schemă vizuală fără geometrie verificată, dimensionare sau utilizare pentru execuție.</text>
+  <text x="1376" y="1008" text-anchor="end" class="small muted">BIM / DEMO</text>
+</svg>

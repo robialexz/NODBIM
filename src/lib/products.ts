@@ -5,6 +5,8 @@ import shopHealthCheck from "@/assets/shop-health-check.webp";
 import shopStarterKit from "@/assets/shop-starter-kit.webp";
 
 export const freeMaintAffiliateUrl = "https://freemaint.com/pricing?via=bsx7y7fx2v58";
+export const freeMaintAcademyAffiliateUrl =
+  "https://freemaint.com/academy/implementing-a-cmms?via=nodbim-academy";
 
 export type ShopProduct = {
   id: string;

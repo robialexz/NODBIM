@@ -15,6 +15,7 @@ import { Route as AgentInstructionsDottxtRouteImport } from './routes/agent-inst
 import { Route as AgentDotjsonRouteImport } from './routes/agent[.]json'
 import { Route as AutocadDwgRouteImport } from './routes/autocad-dwg'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CursuriRevitRouteImport } from './routes/cursuri-revit'
 import { Route as DespreRouteImport } from './routes/despre'
 import { Route as HvacRouteImport } from './routes/hvac'
 import { Route as InformatiiLegaleRouteImport } from './routes/informatii-legale'
@@ -69,6 +70,11 @@ const AutocadDwgRoute = AutocadDwgRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CursuriRevitRoute = CursuriRevitRouteImport.update({
+  id: '/cursuri-revit',
+  path: '/cursuri-revit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DespreRoute = DespreRouteImport.update({
@@ -200,6 +206,7 @@ export interface FileRoutesByFullPath {
   '/agent.json': typeof AgentDotjsonRoute
   '/autocad-dwg': typeof AutocadDwgRoute
   '/contact': typeof ContactRoute
+  '/cursuri-revit': typeof CursuriRevitRoute
   '/despre': typeof DespreRoute
   '/hvac': typeof HvacRoute
   '/informatii-legale': typeof InformatiiLegaleRoute
@@ -232,6 +239,7 @@ export interface FileRoutesByTo {
   '/agent.json': typeof AgentDotjsonRoute
   '/autocad-dwg': typeof AutocadDwgRoute
   '/contact': typeof ContactRoute
+  '/cursuri-revit': typeof CursuriRevitRoute
   '/despre': typeof DespreRoute
   '/hvac': typeof HvacRoute
   '/informatii-legale': typeof InformatiiLegaleRoute
@@ -265,6 +273,7 @@ export interface FileRoutesById {
   '/agent.json': typeof AgentDotjsonRoute
   '/autocad-dwg': typeof AutocadDwgRoute
   '/contact': typeof ContactRoute
+  '/cursuri-revit': typeof CursuriRevitRoute
   '/despre': typeof DespreRoute
   '/hvac': typeof HvacRoute
   '/informatii-legale': typeof InformatiiLegaleRoute
@@ -299,6 +308,7 @@ export interface FileRouteTypes {
     | '/agent.json'
     | '/autocad-dwg'
     | '/contact'
+    | '/cursuri-revit'
     | '/despre'
     | '/hvac'
     | '/informatii-legale'
@@ -331,6 +341,7 @@ export interface FileRouteTypes {
     | '/agent.json'
     | '/autocad-dwg'
     | '/contact'
+    | '/cursuri-revit'
     | '/despre'
     | '/hvac'
     | '/informatii-legale'
@@ -363,6 +374,7 @@ export interface FileRouteTypes {
     | '/agent.json'
     | '/autocad-dwg'
     | '/contact'
+    | '/cursuri-revit'
     | '/despre'
     | '/hvac'
     | '/informatii-legale'
@@ -396,6 +408,7 @@ export interface RootRouteChildren {
   AgentDotjsonRoute: typeof AgentDotjsonRoute
   AutocadDwgRoute: typeof AutocadDwgRoute
   ContactRoute: typeof ContactRoute
+  CursuriRevitRoute: typeof CursuriRevitRoute
   DespreRoute: typeof DespreRoute
   HvacRoute: typeof HvacRoute
   InformatiiLegaleRoute: typeof InformatiiLegaleRoute
@@ -464,6 +477,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cursuri-revit': {
+      id: '/cursuri-revit'
+      path: '/cursuri-revit'
+      fullPath: '/cursuri-revit'
+      preLoaderRoute: typeof CursuriRevitRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/despre': {
@@ -645,6 +665,7 @@ const rootRouteChildren: RootRouteChildren = {
   AgentDotjsonRoute: AgentDotjsonRoute,
   AutocadDwgRoute: AutocadDwgRoute,
   ContactRoute: ContactRoute,
+  CursuriRevitRoute: CursuriRevitRoute,
   DespreRoute: DespreRoute,
   HvacRoute: HvacRoute,
   InformatiiLegaleRoute: InformatiiLegaleRoute,

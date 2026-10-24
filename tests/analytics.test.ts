@@ -118,6 +118,7 @@ describe("Google Ads conversion payload", () => {
       writeConsent("necessary");
       trackConversion("phone_click", { source: "header" });
       track("affiliate_click", { partner: "freemaint", source: "recomandari" });
+      track("affiliate_click", { partner: "freemaint", source: "recomandari-academy" });
       expect(dataLayer).toEqual([]);
       expect(calls).toEqual([]);
 
@@ -126,14 +127,16 @@ describe("Google Ads conversion payload", () => {
       expect(dataLayer).toEqual([{ event: "phone_click", source: "header" }]);
       expect(calls).toEqual([["event", "phone_click", { source: "header" }]]);
       track("affiliate_click", { partner: "freemaint", source: "recomandari" });
+      track("affiliate_click", { partner: "freemaint", source: "recomandari-academy" });
       expect(dataLayer.at(-1)).toEqual({
         event: "affiliate_click",
         partner: "freemaint",
-        source: "recomandari",
+        source: "recomandari-academy",
       });
       expect(calls).toEqual([
         ["event", "phone_click", { source: "header" }],
         ["event", "affiliate_click", { partner: "freemaint", source: "recomandari" }],
+        ["event", "affiliate_click", { partner: "freemaint", source: "recomandari-academy" }],
       ]);
     } finally {
       mutableSite.gaMeasurementId = savedGa;

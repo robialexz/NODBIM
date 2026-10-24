@@ -26,6 +26,276 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "circuit-electric-tablou-revit-mep-checklist",
+    title: "Circuitul electric și tabloul în Revit: ce verifici înainte de predare",
+    metaTitle: "Circuite electrice și tablouri în Revit MEP",
+    description:
+      "Un circuit apare în Revit, dar tabelul tabloului nu este gata de predare? Verifică legătura la panou, datele de intrare, parametrii și foaia exportată.",
+    date: "2026-10-23",
+    readingTime: 6,
+    tags: [
+      "Revit MEP",
+      "Instalații electrice",
+      "Circuite electrice",
+      "Tablouri electrice",
+      "Panel Schedule",
+      "Documentație Revit",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Într-un model Revit, dispozitivele pot fi plasate corect în plan, dar circuitul poate rămâne asociat cu alt panou, tabelul poate afișa câmpuri nepotrivite sau simbolurile și traseele pot aglomera foaia. Verifică separat datele modelului, conexiunea logică la panou și prezentarea tabelului.",
+          "Acest ghid privește modelarea și documentația. Tensiunile, numărul de poli, atribuirea circuitelor, sarcinile și criteriile electrice trebuie furnizate ori aprobate de proiectantul responsabil; Revit nu înlocuiește această decizie.",
+        ],
+      },
+      {
+        heading: "Cere datele electrice înainte să creezi circuitul",
+        paragraphs: [
+          "Înainte de conectarea dispozitivelor, confirmă cu proiectantul panoul care alimentează circuitul și distribuția prevăzută. Panourile și transformatoarele trebuie configurate pentru un sistem de distribuție înainte să poată fi folosite cu circuite; Revit creează circuite pentru componente electrice compatibile, apoi le conectează la echipament.",
+          "Pentru circuitele de putere și iluminat, notează și valorile aprobate pentru tensiune și numărul de poli. Nu le deduce din aspectul simbolului sau dintr-un circuit asemănător din alt proiect.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: configurarea echipamentelor electrice și a circuitelor",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-D9575C51-F666-4617-9FF0-B3FBE52370EA.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: circuite de putere și iluminat",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-267A4006-80D3-4306-A404-0AF77F3D49A8.htm",
+          },
+        ],
+      },
+      {
+        heading: "Separă circuitul logic de traseul de cablaj",
+        paragraphs: [
+          "După crearea circuitului, Revit îl poate reprezenta printr-o linie întreruptă între componente. Această relație logică păstrează informația sistemului chiar dacă proiectul nu conține cablaj permanent desenat. Adăugarea cablajului este opțională și trebuie decisă după livrabilul cerut.",
+          "Prin urmare, o linie întreruptă nu dovedește că traseul de cablu sau tubulatură este modelat. Dacă se cere și documentarea traseelor, precizează separat reprezentarea, nivelul de detaliu și ce trebuie să apară în RVT sau pe planșe.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: circuite logice și cablaj permanent",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-267A4006-80D3-4306-A404-0AF77F3D49A8.htm",
+          },
+        ],
+      },
+      {
+        heading: "Rulează verificarea circuitelor și urmărește avertizările",
+        paragraphs: [
+          "Comanda Check Circuits examinează dacă fiecare circuit este conectat corespunzător la un panou. Când găsește erori, poți deschide detaliul avertizării și evidenția dispozitivul în vedere pentru a investiga legătura.",
+          "Rezolvă avertizările cu informațiile aprobate pentru proiect, apoi rulează verificarea din nou. Rezultatul acestei comenzi privește conexiunea circuitelor la panouri; nu confirmă proiectarea, dimensionarea sau conformitatea instalației.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: Check Circuits",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-1EF3CCFF-5F15-4DEC-AAD5-235BBCE5F71E.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică datele din tabelul tabloului",
+        paragraphs: [
+          "Un panel schedule afișează informații despre panou, circuitele conectate și sarcinile corespunzătoare. Tabelul are patru părți: antet, tabelul circuitelor, rezumatul sarcinilor și subsol. Compară panoul selectat și circuitul atribuit cu tema și planșa de referință înainte să consideri tabelul gata.",
+          "Valorile afișate provin din model și din setările de calcul. Un tabel completat vizual nu este, de unul singur, verificare inginerească; confirmarea sarcinilor și a criteriilor electrice rămâne la proiectantul responsabil.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: ce informații afișează un panel schedule",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-3D2D0E77-ED17-4FBF-AAE4-CB9185A3F779.htm",
+          },
+        ],
+      },
+      {
+        heading: "Confirmă că șablonul include parametrii ceruți",
+        paragraphs: [
+          "Dacă tabelul nu conține câmpul așteptat, verifică șablonul panel schedule și categoria parametrului. Autodesk permite parametri din Electrical Equipment, Electrical Circuits și Project Information, însă fiecare parte a șablonului acceptă categorii diferite: parametrii circuitelor intră în tabelul circuitelor, iar rezumatul sarcinilor acceptă parametri ai echipamentelor electrice.",
+          "Compară antetul, coloanele, unitățile și ordinea circuitelor cu standardul biroului. Etichetele scrise în șablon sunt text static; nu presupune că ele reprezintă automat valoarea unui parametru.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: adăugarea parametrilor în șablonul tabloului",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-3136A502-5E67-4A51-AC05-80F8C761B26D.htm",
+          },
+        ],
+      },
+      {
+        heading: "Controlează foaia și fișierele care se predau",
+        paragraphs: [
+          "Deschide foaia la scara de predare și verifică dacă tabelul poate fi citit, dacă numele panoului și numerele circuitelor corespund planului și dacă notele nu sunt tăiate. Compară PDF-ul exportat cu foaia din Revit; confirmă formatul și versiunea care trebuie transmise.",
+          "Înainte de închidere, stabilește dacă livrabilul include model RVT, foi PDF și eventual DWG, precum și regulile de denumire și revizie. Un export reușit nu aprobă datele electrice; păstrează identificarea reviziei și responsabilul pentru verificarea tehnică.",
+        ],
+      },
+      {
+        heading: "Checklist pentru cererea de modelare Revit MEP",
+        paragraphs: [
+          "Pentru o cerere clară, transmite modelul și criteriile după care va fi acceptată documentația:",
+        ],
+        list: [
+          "Fișierul RVT de pornire, șablonul și standardul de denumire aplicabil.",
+          "Lista panourilor și sistemele de distribuție configurate sau confirmate de proiectant.",
+          "Dispozitivele care aparțin fiecărui circuit, panoul de destinație și valorile aprobate pentru circuit.",
+          "Parametrii obligatorii, aspectul tabelului, regulile de numerotare și un exemplu de planșă acceptată.",
+          "Dacă se cere doar circuitul logic sau și cablajul/traseele desenate.",
+          "Lista foilor și formatele finale: RVT, PDF și/sau DWG, inclusiv revizia care trebuie predată.",
+        ],
+        note: "Modelarea și verificarea documentației urmează datele și criteriile primite. Proiectarea, calculul și aprobarea soluției electrice rămân la inginerul responsabil.",
+      },
+      {
+        heading: "Delimitează serviciul și criteriul de acceptare",
+        paragraphs: [
+          "Pot prelua modelarea Revit MEP și organizarea planșelor pe baza temei și a fișierelor aprobate. Delimitează de la început circuitele care trebuie reprezentate, informația cerută în tabele și fișierele de predare. Proiectantul responsabil validează atribuirea și datele electrice.",
+        ],
+        links: [
+          {
+            label: "Modelare Revit MEP pentru birouri de proiectare",
+            href: "/revit-mep",
+          },
+          {
+            label: "Articol conex: familii Revit MEP și conectori de echipamente",
+            href: "/blog/familii-revit-mep-conectori-echipamente",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "afisare-link-revit-mep-planse",
+    title: "Linkul arhitectural în Revit MEP: cum stabilești afișarea în planșe",
+    metaTitle: "Afișarea linkului Revit în planșele MEP",
+    description:
+      "Linkul arhitectural este aliniat, dar aglomerează planșele MEP? Află când folosești By Host View, By Linked View sau Custom și ce clarifici înainte de predare.",
+    date: "2026-10-18",
+    readingTime: 7,
+    tags: [
+      "Revit MEP",
+      "Link Revit",
+      "Vizibilitate Revit",
+      "Planșe MEP",
+      "View Templates",
+      "Documentație Revit",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Ai un model Revit MEP legat de arhitectură, dar planșele nu se citesc la fel: într-o vedere linkul este prea încărcat, în alta lipsesc elemente sau apar grile și adnotări care nu sunt necesare. Înainte de corecturi, separă problema de poziționare a modelului de felul în care este afișat linkul în fiecare vedere.",
+          "Dacă poziția linkului este corectă, controlează-i vizibilitatea în vederea gazdă prin Visibility/Graphics și fila Revit Links. Revit oferă trei moduri de afișare — By Host View, By Linked View și Custom — iar alegerea trebuie verificată pe planșa pe care o vei preda.",
+        ],
+      },
+      {
+        heading: "Confirmă poziția înainte să schimbi grafica",
+        paragraphs: [
+          "Dacă modelul arhitectural pare deplasat sau rotit față de proiect, clarifică mai întâi reperul și regula de poziționare. Ascunderea categoriilor ori schimbarea stilului grafic nu corectează coordonatele.",
+          "Dacă poziția este corectă, dar linkul lipsește sau este prea încărcat numai în anumite vederi, deschide Visibility/Graphics și verifică fila Revit Links. Vizibilitatea linkului se controlează pe vedere. Dacă același model are mai multe instanțe, setarea părintelui afectează toate instanțele, iar setarea unei instanțe afectează numai acea copie.",
+        ],
+        links: [
+          {
+            label: "Autodesk: vizibilitatea modelelor Revit legate",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-EB571589-C335-4525-A8BE-CF1A2493B2F5.htm",
+          },
+          {
+            label: "Articol conex: coordonatele și poziționarea linkurilor Revit MEP",
+            href: "/blog/coordonate-linkuri-revit-mep-externalizare",
+          },
+        ],
+      },
+      {
+        heading: "By Host View: aplici regulile vederii MEP",
+        paragraphs: [
+          "By Host View este setarea implicită. Ea aplică linkului și modelelor imbricate filtrele și alte suprascrieri grafice definite în vederea gazdă. Este o opțiune de verificat când vrei ca linkul arhitectural să urmeze regulile grafice ale vederii MEP.",
+          "Există o limită tehnică importantă: setările Hidden Lines aplicate prin By Host View nu schimbă afișarea modelelor legate. Dacă o muchie ascunsă nu se comportă cum te aștepți, testează separat vederea și modul de afișare al linkului înainte să extinzi regula la planșe.",
+        ],
+        links: [
+          {
+            label: "Autodesk: afișarea unui model legat după vederea gazdă",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-A39798E1-7567-40EC-9D52-77CDF1B0EA43.htm",
+          },
+        ],
+      },
+      {
+        heading: "By Linked View: folosești o vedere din modelul arhitectural",
+        paragraphs: [
+          "By Linked View folosește afișarea unei vederi selectate din modelul legat. Dacă acea vedere are un filtru aplicat, filtrul se aplică linkului din vederea gazdă. Opțiunea poate fi utilă când biroul arhitectural pregătește o vedere pentru coordonare sau pentru planșele MEP.",
+          "Notează numele exact al vederii și confirmă cu responsabilul arhitectural că reprezintă categoriile și adnotările dorite. O vedere cu nume asemănător poate avea alte setări sau alt scop; aprobă rezultatul pe un exemplu înainte să-l folosești în mai multe planșe.",
+        ],
+        links: [
+          {
+            label: "Autodesk: afișarea unui model legat după vederea selectată",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-62DD9C0C-C689-4D08-B9E2-4CE53A993B27.htm",
+          },
+        ],
+      },
+      {
+        heading: "Custom: reglezi categoriile necesare planșei",
+        paragraphs: [
+          "Când setările generale nu corespund planșei, Custom permite controlul afișării linkului pe categorii. Separă elementele modelului de adnotări și importuri: de exemplu, stabilește dacă pereții și ușile rămân vizibile, iar grilele sau anumite adnotări trebuie ascunse ori afișate discret.",
+          "Păstrează schimbările în modelul MEP și precizează dacă se aplică numai unor vederi. Pentru adnotări și categorii importate, Revit permite suprascrieri de proiecție și suprafață, nu toate setările disponibile pentru categoriile de model.",
+        ],
+        links: [
+          {
+            label: "Autodesk: suprascrierea afișării categoriilor, inclusiv în linkuri",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-CFE335EC-D17A-447C-999D-4D2E91C62C77.htm",
+          },
+        ],
+      },
+      {
+        heading: "Folosește șabloane pentru vederi consecvente",
+        paragraphs: [
+          "Setările de vizibilitate ale linkului sunt legate de vedere. Dacă mai multe planuri, secțiuni sau vederi de coordonare trebuie să arate arhitectura după aceleași reguli, verifică dacă proiectul folosește view templates și dacă acestea controlează setările Revit Links.",
+          "Aprobă câte un exemplu pentru fiecare tip de vedere înainte să aplici regula pe toate planșele. O vedere de coordonare poate necesita mai multe categorii decât planul MEP destinat predării.",
+        ],
+        links: [
+          {
+            label: "Autodesk: vizibilitatea linkurilor și șabloanele de vedere",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-EB571589-C335-4525-A8BE-CF1A2493B2F5.htm",
+          },
+        ],
+      },
+      {
+        heading: "Checklist pentru cererea de modelare și documentare",
+        paragraphs: [
+          "Pentru ca afișarea să poată fi estimată și verificată, trimite fișierele și criteriile care descriu rezultatul așteptat:",
+        ],
+        list: [
+          "Modelul gazdă MEP și fiecare link Revit relevant, cu revizia folosită în proiect.",
+          "Lista vederilor și planșelor care trebuie continuate sau create; atașează câte un exemplu pentru plan, secțiune sau coordonare, după caz.",
+          "Modul de afișare dorit pentru link: By Host View, By Linked View cu numele vederii selectate sau reguli Custom.",
+          "Categoriile arhitecturale și adnotările care trebuie afișate, estompate ori ascunse în fiecare tip de vedere.",
+          "Șablonul de vedere și standardul biroului care trebuie urmate, dacă există.",
+          "Livrabilele cerute: RVT, PDF și/sau DWG, inclusiv lista de planșe și setările de export aprobate.",
+        ],
+        note: "Modelul și planșele se verifică după scopul transmis. Afișarea corectă a linkului nu validează soluția tehnică sau coordonatele proiectului.",
+      },
+      {
+        heading: "Verifică separat PDF-ul și exportul DWG",
+        paragraphs: [
+          "Nu valida planșa doar în zona de desen a Revit. Verifică o foaie reprezentativă și PDF-ul la dimensiunea de predare, ca să confirmi că linkul, adnotările și traseele MEP rămân lizibile împreună.",
+          "Dacă se cere și DWG, confirmă setarea de export și maparea layerelor. La exportul DWG/DXF, un link afișat By Host View este tratat ca suprascriere; Autodesk documentează opțiunile de export care păstrează, ignoră sau mută suprascrierile grafice pe layere noi. Cere și verifică un DWG de probă înainte de predarea finală.",
+        ],
+        links: [
+          {
+            label: "Autodesk: maparea layerelor la exportul DWG/DXF din Revit",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-3541F82B-9E25-47C5-BE52-3F6C6F40DA02.htm",
+          },
+        ],
+      },
+      {
+        heading: "Delimitează serviciul Revit MEP și criteriul de acceptare",
+        paragraphs: [
+          "Pot prelua modelarea Revit MEP și organizarea documentației pe baza temei și a fișierelor primite. Înainte de începere, stabilește modelul de referință, vederile, aspectul linkului și livrabilele. Soluția tehnică și aprobarea finală rămân la proiectantul responsabil.",
+        ],
+        links: [
+          {
+            label: "Modelare Revit MEP pentru birouri de proiectare",
+            href: "/revit-mep",
+          },
+          {
+            label: "Articol conex: coordonatele linkurilor Revit MEP",
+            href: "/blog/coordonate-linkuri-revit-mep-externalizare",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "comparatie-revizii-dwg-autocad",
     title: "Cum compari două revizii DWG în AutoCAD înainte de predare",
     metaTitle: "Compară două revizii DWG în AutoCAD înainte de predare",

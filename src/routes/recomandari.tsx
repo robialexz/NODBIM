@@ -2,13 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { MobileCta } from "@/components/site/MobileCta";
-import { freeMaintAffiliateUrl } from "@/lib/products";
+import { freeMaintAcademyAffiliateUrl, freeMaintAffiliateUrl } from "@/lib/products";
 import { track } from "@/lib/analytics";
 import { canonicalUrl } from "@/lib/site-config";
 
 const title = "Software pentru mentenanță: FreeMaint CMMS · NOD BIM";
 const description =
-  "Când merită un CMMS pentru mentenanța echipamentelor? Vezi FreeMaint, ce include Core, limitele exportului și ghidul Excel versus CMMS. Link afiliat declarat.";
+  "Când merită un CMMS pentru mentenanță? Compară FreeMaint Core, limitele exportului și cursul gratuit de implementare. Linkurile afiliate sunt declarate.";
 const url = canonicalUrl("/recomandari");
 
 export const Route = createFileRoute("/recomandari")({
@@ -173,6 +173,36 @@ function Recomandari() {
                 >
                   Prețuri oficiale
                 </a>
+              </div>
+              <div className="mt-8 border-t border-border-strong pt-6">
+                <p className="tech-label text-primary">Resursă gratuită · FreeMaint Academy</p>
+                <h3 className="mt-3 font-display text-xl font-semibold">
+                  Înțelege implementarea înainte să alegi un CMMS
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  Cursul oficial are 10 lecții de aproximativ 90 de minute în total. Lecțiile se
+                  citesc fără cont; pentru examenul final și certificatul gratuit este necesar un
+                  cont gratuit. Furnizorul spune că metoda se aplică oricărui CMMS și folosește
+                  FreeMaint doar ca exemplu în unele lecții.
+                </p>
+                <a
+                  href={freeMaintAcademyAffiliateUrl}
+                  onClick={() =>
+                    track("affiliate_click", {
+                      partner: "freemaint",
+                      source: "recomandari-academy",
+                    })
+                  }
+                  target="_blank"
+                  rel="sponsored noopener noreferrer"
+                  className="tech-label mt-4 inline-flex w-fit border border-foreground px-4 py-3 transition-colors hover:border-primary hover:text-primary"
+                >
+                  Începe cursul gratuit ↗
+                </a>
+                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                  Link afiliat NOD BIM. Lectiile și contul de bază sunt gratuite; comisionul poate
+                  proveni numai din plăți eligibile raportate de furnizor.
+                </p>
               </div>
             </aside>
           </article>

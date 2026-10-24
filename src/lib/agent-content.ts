@@ -8,7 +8,7 @@ import { enAbout, enDrafting, enOutsourcing } from "./en-content";
 import { faq, process, serviceHref, services } from "./home-content";
 import { enHomePath } from "./i18n";
 import { estimateLabel, formatLei, jobRates, packagePrice } from "./pricing";
-import { freeMaintAffiliateUrl, products } from "./products";
+import { freeMaintAcademyAffiliateUrl, freeMaintAffiliateUrl, products } from "./products";
 import { site } from "./site-config";
 
 const base = () => site.siteUrl;
@@ -23,6 +23,7 @@ const staticPaths = new Set([
   "/en/cookies",
   "/contact",
   "/magazin",
+  "/cursuri-revit",
   "/recomandari",
   "/portofoliu",
   "/blog",
@@ -67,6 +68,7 @@ export function markdownResponseForPath(pathname: string): Response | null {
   if (clean === "/despre") return simpleMdResponse(aboutMarkdown());
   if (clean === "/contact") return simpleMdResponse(contactMarkdown());
   if (clean === "/magazin") return simpleMdResponse(shopMarkdown());
+  if (clean === "/cursuri-revit") return simpleMdResponse(trainingMarkdown());
   if (clean === "/recomandari") return simpleMdResponse(recommendationsMarkdown());
   if (clean === "/portofoliu") return simpleMdResponse(portfolioMarkdown());
   if (clean === "/blog") return simpleMdResponse(blogIndexMarkdown());
@@ -222,6 +224,36 @@ function contactMarkdown(): string {
   ].join("\n");
 }
 
+function trainingMarkdown(): string {
+  return [
+    "# Cursuri Revit de la zero și automatizări Dynamo — " + site.businessName,
+    "",
+    "> Cursuri live de Revit pentru începători, aprofundare Revit MEP pentru HVAC și instalații termice, plus automatizări Dynamo definite după fluxul de lucru.",
+    "",
+    "## Revit de la zero",
+    "",
+    "Înveți interfața și organizarea proiectului, niveluri și vederi, modelare de bază, adnotări și pregătirea planșelor. Lucrăm pe un proiect demonstrativ, cu explicații pas cu pas.",
+    "",
+    "## Aprofundare Revit MEP",
+    "",
+    "Pentru cei care cunosc deja bazele Revit: legarea modelului de arhitectură, sisteme, conducte și echipamente HVAC/termice, vederi, liste și documentație. Tema se adaptează nivelului și obiectivului cursantului.",
+    "",
+    "## Automatizări Dynamo",
+    "",
+    "Poți învăța Dynamo sau poți defini o automatizare pentru o sarcină repetitivă în Revit. Începem cu fluxul concret, stabilim intrările și rezultatul, apoi construim și verificăm graful pe un fișier de test.",
+    "",
+    "## Format și înscriere",
+    "",
+    "Sesiunile sunt live. Nivelul, durata, formatul și prețul se confirmă înainte de înscriere, după clarificarea obiectivelor.",
+    "",
+    "Instruirea acoperă folosirea Revit și Dynamo. Nu înlocuiește proiectarea de specialitate, calculele, verificarea sau semnarea documentației.",
+    "",
+    "- [Cere detalii despre cursuri](" + base() + "/contact)",
+    "- [Cursuri Revit și Dynamo](" + base() + "/cursuri-revit)",
+    "",
+  ].join("\n");
+}
+
 function shopMarkdown(): string {
   return [
     `# Magazin — ${site.businessName}`,
@@ -274,6 +306,14 @@ function recommendationsMarkdown(): string {
     ``,
     `[Vezi planurile FreeMaint prin linkul afiliat](${freeMaintAffiliateUrl})`,
     ``,
+    `## Curs gratuit de implementare CMMS`,
+    ``,
+    `FreeMaint Academy oferă un curs pentru începători cu 10 lecții și aproximativ 90 de minute de conținut. Lecțiile se citesc fără cont; un cont gratuit este necesar pentru examenul final și certificatul gratuit. Furnizorul precizează că metoda se aplică oricărui CMMS și că FreeMaint apare doar ca exemplu în unele lecții.`,
+    ``,
+    `[Deschide cursul FreeMaint Academy prin linkul afiliat](${freeMaintAcademyAffiliateUrl})`,
+    ``,
+    `Linkul este afiliat; NOD BIM poate primi comision numai din plăți eligibile raportate de furnizor. Lecțiile și contul de bază sunt gratuite.`,
+    ``,
     `## Ai nevoie de un CMMS?`,
     ``,
     `Un tabel poate fi suficient pentru un registru simplu. Dacă intervențiile au mai mulți responsabili, scadențe și istoric greu de urmărit, compară un CMMS cu fluxul actual înainte să alegi un abonament.`,
@@ -293,13 +333,15 @@ function recommendationsMarkdown(): string {
 
 function portfolioMarkdown(): string {
   return [
-    `# Exemple de planșe și modele — ${site.businessName}`,
+    `# Mostre de documentație — ${site.businessName}`,
     ``,
-    `> Exemple de modelare Revit MEP și documentație pentru instalații HVAC, termice și electrice.`,
+    `> Fragmente reale anonimizate și demonstrații sintetice pentru Revit MEP, HVAC și AutoCAD.`,
     ``,
-    `Imaginile arată: model 3D, planuri HVAC și termice, secțiuni, sheet-uri și exemple DWG. Imaginile sunt ilustrații de prezentare, nu lucrări predate.`,
+    `Primele două imagini sunt fragmente din același set de planuri reale. Textul a fost eliminat, cartușele au fost decupate, iar imaginea este puternic estompată. Nu reprezintă proiecte distincte sau clienți diferiți.`,
     ``,
-    `Pentru imagini și detalii complete, vezi pagina [Exemple](${base()}/portofoliu).`,
+    `Celelalte exemple sunt demonstrații sintetice create de la zero pentru scenarii fictive și nu sunt lucrări predate clienților. Nicio mostră nu este documentație pentru execuție.`,
+    ``,
+    `Vezi pagina [Mostre de documentație](${base()}/portofoliu).`,
     ``,
   ].join("\n");
 }
@@ -457,7 +499,7 @@ function notFoundText(pathname: string): string {
 
 /** Ce pagini au variantă markdown — aceeași afirmație în llms.txt, agent.json și agent-instructions.txt. */
 const markdownClaim =
-  "Service, portfolio, shop, partner-recommendation, journal, about and contact pages are also available as Markdown at the same URL via `Accept: text/markdown` content negotiation. /modelare-revit and the legal pages are HTML only.";
+  "Service, training, portfolio, shop, partner-recommendation, journal, about and contact pages are also available as Markdown at the same URL via `Accept: text/markdown` content negotiation. /modelare-revit and the legal pages are HTML only.";
 
 /** /llms.txt conform spec-ului llmstxt.org (H1, blockquote, detalii, secțiuni cu linkuri). */
 export function llmsTxt(): string {
@@ -468,7 +510,7 @@ export function llmsTxt(): string {
     ``,
     `## When to use this`,
     ``,
-    `This is the site of a B2B Revit MEP / BIM production outsourcing service for MEP consultancies, engineering offices and design teams: modelling and drawing production inside the client's template and standards. Engineering design, calculations, checking and sign-off stay with the client's engineers. Reach for it when a user needs:`,
+    `This site has two separate offers: B2B Revit MEP / BIM production outsourcing for MEP consultancies, engineering offices and design teams, and live Revit training with Dynamo automation. Engineering design, calculations, checking and sign-off stay with the client's engineers. Reach for it when a user needs:`,
     ``,
     `- **Revit MEP / BIM modelling** — HVAC, heating or electrical models built from the client's design: 3D model, views, sections, sheets, schedules`,
     `- **AutoCAD / DWG drafting** — PDF or scan to DWG redrafting, drawing cleanup to the client's CAD standards, markups and revisions`,
@@ -476,7 +518,9 @@ export function llmsTxt(): string {
     `- **Domain knowledge** — pricing breakdowns, LOD levels, Revit vs AutoCAD, clash detection; answers are in the journal`,
     `- **BIM resources** — RVT/DWG health checks, Revit MEP office kits, Dynamo/pyRevit automation packs, external capacity packages and MEP training models`,
     ``,
-    `Do NOT use this site for: engineering design, calculations or sign-off (they stay with the client's engineer), plumbing/drainage (out of scope), construction execution, or Revit training courses (not offered).`,
+    `- **Training** — live Revit classes from beginner level, Revit MEP workflows for HVAC/heating, or Dynamo automation for a repetitive task`,
+    ``,
+    `Do NOT use this site for: engineering design, calculations or sign-off (they stay with the client's engineer), plumbing/drainage (out of scope), or construction execution.`,
     ``,
     markdownClaim,
     ``,
@@ -491,6 +535,12 @@ export function llmsTxt(): string {
     `- [Instalații electrice](${base()}/instalatii-electrice): iluminat, prize, circuite, tablouri`,
     `- [Desenare AutoCAD](${base()}/autocad-dwg): curățare, layere, redesenare, pregătire print`,
     `- [PDF în DWG](${base()}/pdf-in-dwg): plan în PDF sau scanat, redesenat manual în AutoCAD, la scară`,
+    ``,
+    `## Cursuri și automatizări`,
+    ``,
+    "- [Cursuri Revit și automatizări Dynamo](" +
+      base() +
+      "/cursuri-revit): cursuri live de la zero, aprofundare Revit MEP pentru HVAC/termice și automatizări Dynamo la cerere",
     ``,
     `## Conținut`,
     ``,
@@ -531,7 +581,7 @@ export function agentInstructionsTxt(): string {
     ``,
     `## When to use this`,
     ``,
-    `This site is a B2B Revit MEP / BIM production outsourcing service: modelling and drawing production for HVAC, heating and electrical installations, inside the client's template and standards. Engineering design, calculations, checking and sign-off stay with the client.`,
+    `This site offers B2B Revit MEP / BIM production outsourcing and a separate training line with live Revit courses and Dynamo automation. Engineering design, calculations, checking and sign-off stay with the client.`,
     ``,
     `Use it when the user asks about:`,
     ``,
@@ -540,13 +590,15 @@ export function agentInstructionsTxt(): string {
     `- Estimates for such work (price, deadline) — point the user to the form and contact page`,
     `- MEP knowledge: plan pricing, LOD, Revit vs AutoCAD workflows, clash detection (see journal)`,
     `- BIM resources, RVT/DWG audits, Revit office kits, Dynamo/pyRevit automation packs and MEP training models (see shop)`,
+    `- Live Revit courses from beginner level, Revit MEP training for HVAC/heating workflows, and Dynamo automation (see /cursuri-revit)`,
     ``,
-    `Do NOT use this site for: engineering design, calculations or sign-off (they stay with the client's engineer), plumbing/drainage, construction site execution, Revit training courses.`,
+    `Do NOT use this site for: engineering design, calculations or sign-off (they stay with the client's engineer), plumbing/drainage, or construction site execution.`,
     ``,
     `## How to call`,
     ``,
     `- Estimate: https://nodbim.com/#estimare (form) — user sends DWG/PDF/RVT + scope + deadline`,
     `- Contact: https://nodbim.com/contact`,
+    "- Revit courses and Dynamo automation: https://nodbim.com/cursuri-revit",
     `- ${markdownClaim}`,
     ``,
     `## Sitemap`,
@@ -566,7 +618,7 @@ export function agentDescriptorJson(): string {
       name: site.businessName,
       url: `${site.siteUrl}/`,
       description:
-        "B2B Revit MEP / BIM production outsourcing: modelling and drawing production for HVAC, heating and electrical installations inside the client's template and standards, AutoCAD/DWG drafting, plus BIM audits, office kits, automation packs and MEP training models. Engineering design, calculations and sign-off stay with the client.",
+        "B2B Revit MEP / BIM production outsourcing, plus a separate line of live Revit training from beginner level, Revit MEP courses for HVAC/heating workflows and Dynamo automation. Engineering design, calculations and sign-off stay with the client.",
       language: ["ro", "en"],
       capabilities: [
         {
@@ -587,6 +639,7 @@ export function agentDescriptorJson(): string {
         },
       ],
       resources: [
+        site.siteUrl + "/cursuri-revit",
         `${site.siteUrl}/llms.txt`,
         `${site.siteUrl}/agent-instructions.txt`,
         `${site.siteUrl}/sitemap.xml`,

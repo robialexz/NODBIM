@@ -7,17 +7,15 @@ import { MobileCta } from "@/components/site/MobileCta";
 import { Reveal } from "@/components/site/Reveal";
 import { CtaSection } from "@/components/site/CtaSection";
 import { canonicalUrl } from "@/lib/site-config";
-import hero3d from "@/assets/hero-3d-professional.webp";
-import portfolioDwg from "@/assets/portfolio-dwg-conversion.webp";
-import portfolioElectrical from "@/assets/portfolio-electrical-plan.webp";
-import portfolioHvac from "@/assets/portfolio-hvac-plan.webp";
-import portfolioSection from "@/assets/portfolio-section.webp";
-import portfolioSheet from "@/assets/portfolio-sheet.webp";
-import portfolioThermal from "@/assets/portfolio-thermal-plan.webp";
+import realSampleOne from "@/assets/real-anonymized-01.jpg";
+import realSampleTwo from "@/assets/real-anonymized-02.jpg";
+import syntheticHvac from "@/assets/synthetic-hvac-plan.svg";
+import syntheticCoordination from "@/assets/synthetic-mep-coordination.svg";
+import syntheticDwg from "@/assets/synthetic-dwg-redline.svg";
 
-const title = "Exemple de planșe și modele Revit MEP · NOD BIM";
+const title = "Mostre de documentație Revit MEP · NOD BIM";
 const description =
-  "Exemple de modelare Revit MEP și documentație tehnică: modele 3D, planuri HVAC, termice și electrice, secțiuni și planșe. Ilustrații de prezentare.";
+  "Fragmente reale anonimizate și demonstrații sintetice pentru Revit MEP, HVAC și AutoCAD. Mostre de prezentare, fără utilizare pentru execuție.";
 const url = canonicalUrl("/portofoliu");
 
 export const Route = createFileRoute("/portofoliu")({
@@ -48,61 +46,54 @@ type Item = {
   h: number;
   span: string;
   dark?: boolean;
+  anonymized?: boolean;
 };
 
 const items: Item[] = [
   {
-    src: portfolioSheet,
-    alt: "Panou de documentație tehnică cu plan, secțiune și detalii Revit MEP",
-    caption: "Documentație · Planșe tehnice",
-    meta: "Revit MEP · RVT · DWG · PDF",
+    src: realSampleOne,
+    alt: "Fragment de plan real cu textul eliminat și imaginea puternic estompată",
+    caption: "Documentație tehnică · Fragment 01",
+    meta: "Mostră reală anonimizată",
+    w: 1200,
+    h: 815,
+    span: "lg:col-span-6",
+    anonymized: true,
+  },
+  {
+    src: realSampleTwo,
+    alt: "Al doilea fragment din același set de planuri, fără text sau cartuș",
+    caption: "Documentație tehnică · Fragment 02",
+    meta: "Mostră reală anonimizată",
+    w: 1200,
+    h: 815,
+    span: "lg:col-span-6",
+    anonymized: true,
+  },
+  {
+    src: syntheticHvac,
+    alt: "Schemă sintetică de plan HVAC într-un spațiu de birouri fictiv",
+    caption: "HVAC · Plan demonstrativ",
+    meta: "Scenariu fictiv · fără scară",
     w: 1448,
     h: 1086,
     span: "lg:col-span-7",
   },
   {
-    src: portfolioSection,
-    alt: "Secțiune BIM printr-o clădire cu trasee HVAC, termice și electrice coordonate",
-    caption: "Coordonare · Secțiune BIM",
-    meta: "Model 3D · Coordonare MEP",
+    src: syntheticCoordination,
+    alt: "Schemă axonometrică sintetică pentru coordonarea traseelor MEP într-o clădire fictivă",
+    caption: "Revit MEP · Coordonare demonstrativă",
+    meta: "Schemă axonometrică · fără scară",
     w: 1448,
     h: 1086,
     span: "lg:col-span-5",
     dark: true,
   },
   {
-    src: portfolioHvac,
-    alt: "Plan HVAC coordonat cu tubulaturi, difuzoare și grile într-un nivel de clădire",
-    caption: "HVAC · Plan coordonat",
-    meta: "Ventilare · Climatizare",
-    w: 1448,
-    h: 1086,
-    span: "lg:col-span-12",
-  },
-  {
-    src: portfolioThermal,
-    alt: "Plan de instalații termice cu radiatoare, distribuitor și conducte tur-retur",
-    caption: "Termice · Distribuție",
-    meta: "Radiatoare · Distribuitor · Trasee",
-    w: 1448,
-    h: 1086,
-    span: "lg:col-span-6",
-  },
-  {
-    src: portfolioElectrical,
-    alt: "Plan de instalații electrice cu corpuri de iluminat, prize și trasee de circuit",
-    caption: "Electrice · Plan coordonat",
-    meta: "Iluminat · Prize · Circuite",
-    w: 1448,
-    h: 1086,
-    span: "lg:col-span-6",
-    dark: true,
-  },
-  {
-    src: portfolioDwg,
-    alt: "Comparație între un plan DWG curățat și modelul 3D Revit MEP rezultat",
-    caption: "DWG → Revit · Conversie",
-    meta: "Import · Curățare · Modelare",
+    src: syntheticDwg,
+    alt: "Exemplu sintetic de observații pe un PDF și desenul DWG demonstrativ rezultat",
+    caption: "AutoCAD · Redline demonstrativ",
+    meta: "PDF și DWG fictive · flux explicativ",
     w: 1448,
     h: 1086,
     span: "lg:col-span-12",
@@ -135,40 +126,21 @@ function Portofoliu() {
         <section className="border-b border-border-strong">
           <div className="mx-auto max-w-[1200px] px-5 py-14 md:px-8 md:py-20">
             <div>
-              <p className="tech-label text-primary">Exemple · Revit MEP · BIM</p>
+              <p className="tech-label text-primary">Documentație tehnică · Revit MEP · AutoCAD</p>
               <h1 className="display-xl mt-6 max-w-4xl text-[2.8rem] sm:text-6xl lg:text-7xl">
-                Exemple de planșe și modele
+                Mostre de documentație
               </h1>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/80">
-                Exemple de modelare Revit MEP și documentație pentru instalații HVAC, termice și
-                electrice, plus exemple de corectare și pregătire DWG.
+                Primele două imagini sunt fragmente din același set de planuri reale, cu textul
+                eliminat, cartușele decupate și imaginea puternic estompată. Celelalte exemple sunt
+                demonstrații sintetice create pentru scenarii fictive. Mostrele au scop de
+                prezentare și nu pot fi folosite pentru execuție.
               </p>
             </div>
           </div>
         </section>
 
         <section className="mx-auto max-w-[1200px] px-5 py-12 md:px-8 md:py-16">
-          <Reveal>
-            <figure className="border border-border-strong bg-graphite">
-              <img
-                src={hero3d}
-                alt="Model 3D Revit MEP: trasee de tubulatură, conducte și echipamente într-o structură"
-                width={1536}
-                height={1024}
-                className="w-full object-cover"
-              />
-              <figcaption className="flex flex-wrap items-center justify-between gap-3 border-t border-graphite-foreground/15 px-5 py-4 text-graphite-foreground">
-                <span className="font-display text-2xl">Model 3D Revit MEP</span>
-                <span className="tech-label text-graphite-foreground/55">
-                  HVAC · Termice · Electrice · Model BIM
-                </span>
-                <span className="tech-label basis-full text-graphite-foreground/55">
-                  Ilustrație de prezentare
-                </span>
-              </figcaption>
-            </figure>
-          </Reveal>
-
           <div className="mt-4 grid gap-4 lg:grid-cols-12">
             {items.map((it, i) => (
               <Reveal key={it.caption} delay={(i % 6) * 80} className={`${it.span}`}>
@@ -212,7 +184,9 @@ function Portofoliu() {
                         it.dark ? "text-graphite-foreground/50" : "text-muted-foreground"
                       }`}
                     >
-                      Ilustrație de prezentare
+                      {it.anonymized
+                        ? "Mostră reală anonimizată · text eliminat · nu pentru execuție"
+                        : "Demonstrație sintetică · scenariu fictiv · nu pentru execuție"}
                     </span>
                   </figcaption>
                 </figure>
@@ -279,7 +253,9 @@ function Portofoliu() {
                 {openIndex + 1} / {items.length}
               </span>
               <span className="basis-full text-graphite-foreground/50">
-                Ilustrație de prezentare
+                {open.anonymized
+                  ? "Mostră reală anonimizată · text eliminat · nu pentru execuție"
+                  : "Demonstrație sintetică · scenariu fictiv · nu pentru execuție"}
               </span>
             </figcaption>
           </figure>

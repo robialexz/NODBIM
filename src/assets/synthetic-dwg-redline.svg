@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1448" height="1086" viewBox="0 0 1448 1086">
+  <title>Flux PDF redline către DWG sintetic</title>
+  <desc>Comparație demonstrativă între o planșă fictivă cu marcaje și un desen schematic curat. Nu este o conversie reală și nu se folosește pentru execuție.</desc>
+  <defs>
+    <pattern id="paper-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#e0ddd3" stroke-width="1"/>
+    </pattern>
+    <marker id="flow-arrow" markerWidth="16" markerHeight="16" refX="13" refY="8" orient="auto">
+      <path d="M2 2 14 8 2 14Z" fill="#477f9e"/>
+    </marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #28323a; }
+      .small { font-size: 17px; letter-spacing: 2px; }
+      .muted { fill: #69737a; }
+      .label { font-size: 22px; font-weight: 700; }
+    </style>
+  </defs>
+  <rect width="1448" height="1086" fill="#f2f0e9"/>
+  <rect x="28" y="28" width="1392" height="1030" fill="#faf9f4" stroke="#29333a" stroke-width="2"/>
+  <text x="72" y="84" class="small" fill="#477f9e">NOD BIM  /  STUDIU DEMONSTRATIV</text>
+  <text x="72" y="137" font-size="38" font-weight="700">Observații PDF → organizare DWG</text>
+  <text x="1376" y="88" text-anchor="end" class="small muted">03 / 03</text>
+  <path d="M72 165H1376" stroke="#29333a" stroke-width="2"/>
+
+  <g>
+    <rect x="72" y="210" width="565" height="642" fill="#f0eee7" stroke="#a7a59c" stroke-width="2"/>
+    <text x="105" y="260" class="small muted">01 / PDF DE DEMO</text>
+    <text x="105" y="300" class="label">Observații simulate</text>
+    <rect x="120" y="345" width="470" height="370" fill="#faf9f4" stroke="#d3d0c5" stroke-width="2"/>
+    <g stroke="#69747a" stroke-width="8" fill="none" stroke-linejoin="round">
+      <path d="M165 390H545V670H165Z"/>
+      <path d="M335 390V500M165 520H545M335 590V670" stroke-width="5"/>
+      <path d="M265 500V520M405 500V520" stroke-width="4"/>
+    </g>
+    <g stroke="#c4654b" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M190 465H295L315 485"/>
+      <path d="M395 550H510L530 570"/>
+      <ellipse cx="235" cy="610" rx="42" ry="25" stroke-dasharray="9 7"/>
+      <path d="M190 625 280 585M452 430 520 470"/>
+    </g>
+    <g fill="#c4654b">
+      <circle cx="315" cy="485" r="14"/><circle cx="530" cy="570" r="14"/><circle cx="235" cy="610" r="14"/>
+    </g>
+    <g fill="#faf9f4" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle">
+      <text x="315" y="490">1</text><text x="530" y="575">2</text><text x="235" y="615">3</text>
+    </g>
+    <path d="M120 753H590" stroke="#c5c2b8" stroke-width="2"/>
+    <text x="120" y="790" font-size="18" class="muted">Marcaje fictiv pentru exemplificarea clarificărilor.</text>
+  </g>
+
+  <g>
+    <path d="M664 524H768" stroke="#477f9e" stroke-width="8" marker-end="url(#flow-arrow)"/>
+    <text x="714" y="490" text-anchor="middle" class="small muted">PRELUCRARE</text>
+  </g>
+
+  <g>
+    <rect x="810" y="210" width="566" height="642" fill="#e8e6de" stroke="#29333a" stroke-width="2"/>
+    <text x="844" y="260" class="small" fill="#477f9e">02 / DWG DE DEMO</text>
+    <text x="844" y="300" class="label">Desen schematic organizat</text>
+    <rect x="855" y="345" width="470" height="370" fill="#faf9f4" stroke="#c4c1b6" stroke-width="2"/>
+    <g stroke="#343e43" stroke-width="8" fill="none" stroke-linejoin="round">
+      <path d="M900 390H1280V670H900Z"/>
+      <path d="M1070 390V500M900 520H1280M1070 590V670" stroke-width="5"/>
+      <path d="M1000 500V520M1140 500V520" stroke-width="4"/>
+    </g>
+    <g stroke="#477f9e" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M926 465H1025V477M1160 550H1245V570"/>
+      <path d="M950 630H1018V610"/>
+    </g>
+    <g fill="#477f9e" stroke="#faf9f4" stroke-width="3">
+      <circle cx="1025" cy="477" r="11"/><circle cx="1245" cy="570" r="11"/><circle cx="1018" cy="610" r="11"/>
+    </g>
+    <g class="small muted" font-size="15">
+      <text x="925" y="446">LAYER A</text><text x="1145" y="534">LAYER B</text>
+    </g>
+    <path d="M855 753H1325" stroke="#c5c2b8" stroke-width="2"/>
+    <text x="855" y="790" font-size="18" class="muted">Rezultatul ilustrează un flux, nu o conversie reală.</text>
+  </g>
+
+  <path d="M72 920H1376" stroke="#29333a" stroke-width="2"/>
+  <text x="72" y="965" class="small" fill="#477f9e">DEMONSTRAȚIE SINTETICĂ · SCENARIU FICTIV</text>
+  <text x="72" y="1008" font-size="20" class="muted">Nu provine din fișierul unui client și nu este desen de execuție.</text>
+  <text x="1376" y="1008" text-anchor="end" class="small muted">DWG / DEMO</text>
+</svg>

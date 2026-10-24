@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1448" height="1086" viewBox="0 0 1448 1086">
+  <title>Plan HVAC sintetic pentru un spațiu fictiv</title>
+  <desc>Schema conceptuală fără scară, creată pentru prezentare. Nu este proiect de client și nu se folosește pentru execuție.</desc>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#ddd9cf" stroke-width="1"/>
+    </pattern>
+    <marker id="air-arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M1 1 10 6 1 11Z" fill="#427ba0"/>
+    </marker>
+    <marker id="return-arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M1 1 10 6 1 11Z" fill="#c16c4c"/>
+    </marker>
+    <g id="diffuser" fill="#f7f5ee" stroke="#427ba0" stroke-width="3">
+      <rect x="-17" y="-17" width="34" height="34" rx="3"/>
+      <path d="M-11-11 11 11M11-11-11 11" fill="none" stroke-width="2"/>
+      <circle r="3" fill="#427ba0" stroke="none"/>
+    </g>
+    <g id="grille" fill="#f7f5ee" stroke="#c16c4c" stroke-width="3">
+      <circle r="15"/>
+      <path d="M-9-7 9-7M-9 0 9 0M-9 7 9 7" fill="none" stroke-width="2"/>
+    </g>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #28323a; }
+      .small { font-size: 18px; letter-spacing: 2px; }
+      .label { font-size: 21px; font-weight: 600; }
+      .muted { fill: #657078; }
+      .fine { stroke: #b9b7ae; stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+  <rect width="1448" height="1086" fill="#f2f0e9"/>
+  <rect x="28" y="28" width="1392" height="1030" fill="none" stroke="#29333a" stroke-width="2"/>
+  <text x="72" y="84" class="small" fill="#427ba0">NOD BIM  /  STUDIU DEMONSTRATIV</text>
+  <text x="72" y="137" font-size="38" font-weight="700">Plan HVAC · spațiu de birouri</text>
+  <text x="1376" y="88" text-anchor="end" class="small muted">01 / 03</text>
+  <path d="M72 165H1376" stroke="#29333a" stroke-width="2"/>
+
+  <rect x="72" y="205" width="910" height="670" fill="#faf9f4" stroke="#29333a" stroke-width="2"/>
+  <rect x="72" y="205" width="910" height="670" fill="url(#grid)" opacity=".55"/>
+  <text x="102" y="246" class="small muted">NIVEL DEMO A  ·  PLAN CONCEPTUAL</text>
+
+  <g fill="#f7f5ee" stroke="#374148" stroke-width="13" stroke-linejoin="round">
+    <path d="M128 290H905V802H128Z" fill="none"/>
+  </g>
+  <g stroke="#737c80" stroke-width="7" fill="none">
+    <path d="M395 290V505M630 290V505M128 505H905M128 655H395M630 655H905M395 655V802M630 655V802"/>
+    <path d="M480 505V560M548 505V560M480 655V600M548 655V600" stroke-width="4"/>
+  </g>
+  <g class="fine">
+    <path d="M128 270V248M395 270V248M630 270V248M905 270V248M105 290H84M105 505H84M105 655H84M105 802H84"/>
+    <path d="M128 260H905M94 290V802" stroke-dasharray="5 7"/>
+  </g>
+  <g class="small muted" text-anchor="middle">
+    <text x="128" y="240">A</text><text x="395" y="240">B</text><text x="630" y="240">C</text><text x="905" y="240">D</text>
+    <text x="76" y="300">1</text><text x="76" y="513">2</text><text x="76" y="663">3</text><text x="76" y="810">4</text>
+  </g>
+  <g font-size="18" class="muted" text-anchor="middle">
+    <text x="260" y="368">BIROU 01</text><text x="512" y="368">BIROU 02</text><text x="765" y="368">SALĂ PROIECT</text>
+    <text x="255" y="588">HOL</text><text x="510" y="588">NUCLEU</text><text x="766" y="588">MEETING</text>
+    <text x="262" y="727">BIROU 03</text><text x="512" y="727">BIROU 04</text><text x="765" y="727">RECEPȚIE</text>
+  </g>
+  <g fill="none" stroke="#427ba0" stroke-width="17" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M170 450H870M260 450V355M515 450V355M765 450V355M260 450V550M765 450V550M260 450V740M515 450V740M765 450V740"/>
+  </g>
+  <g fill="none" stroke="#c16c4c" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2">
+    <path d="M170 780H870M300 780V590M700 780V590M365 780V375M635 780V375"/>
+  </g>
+  <g>
+    <use href="#diffuser" x="260" y="355"/><use href="#diffuser" x="515" y="355"/><use href="#diffuser" x="765" y="355"/>
+    <use href="#diffuser" x="260" y="550"/><use href="#diffuser" x="765" y="550"/>
+    <use href="#diffuser" x="260" y="740"/><use href="#diffuser" x="515" y="740"/><use href="#diffuser" x="765" y="740"/>
+    <use href="#grille" x="300" y="590"/><use href="#grille" x="700" y="590"/><use href="#grille" x="365" y="375"/><use href="#grille" x="635" y="375"/>
+  </g>
+  <g fill="#f2f0e9" stroke="#29333a" stroke-width="3">
+    <rect x="855" y="316" width="28" height="56"/><rect x="855" y="720" width="28" height="56"/>
+  </g>
+  <text x="842" y="308" text-anchor="end" font-size="15" class="muted">RUTE DE UȘĂ</text>
+
+  <g>
+    <rect x="1014" y="205" width="362" height="670" fill="#e7e5dd" stroke="#29333a" stroke-width="2"/>
+    <text x="1050" y="258" class="small" fill="#427ba0">LEGENDĂ</text>
+    <path d="M1050 282H1340" stroke="#aaa9a1" stroke-width="2"/>
+    <path d="M1052 338H1150" stroke="#427ba0" stroke-width="15" stroke-linecap="round"/>
+    <text x="1175" y="345" font-size="20">Introducere aer</text>
+    <path d="M1052 406H1150" stroke="#c16c4c" stroke-width="10" stroke-dasharray="7 7" stroke-linecap="round"/>
+    <text x="1175" y="413" font-size="20">Retur aer</text>
+    <use href="#diffuser" x="1100" y="482"/>
+    <text x="1175" y="489" font-size="20">Difuzor</text>
+    <use href="#grille" x="1100" y="557"/>
+    <text x="1175" y="564" font-size="20">Grilă de retur</text>
+    <path d="M1050 625H1340" stroke="#aaa9a1" stroke-width="2"/>
+    <text x="1050" y="672" class="small muted">NOTE DE SCENARIU</text>
+    <text x="1050" y="716" font-size="19">Trasee schematice, fără calcul</text>
+    <text x="1050" y="748" font-size="19">și fără dimensionare tehnică.</text>
+    <text x="1050" y="800" font-size="17" class="muted">Planul nu are scară de lucru.</text>
+  </g>
+
+  <path d="M72 920H1376" stroke="#29333a" stroke-width="2"/>
+  <text x="72" y="965" class="small" fill="#427ba0">DEMONSTRAȚIE SINTETICĂ · SCENARIU FICTIV</text>
+  <text x="72" y="1008" font-size="20" class="muted">Nu este proiect de client. Nu reprezintă proiectare verificată și nu se folosește pentru execuție.</text>
+  <text x="1376" y="1008" text-anchor="end" class="small muted">HVAC / DEMO</text>
+</svg>

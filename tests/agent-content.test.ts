@@ -20,7 +20,34 @@ describe("agent-content — negotiere markdown", () => {
     expect(isKnownPath("/en/about")).toBe(true);
     expect(isKnownPath("/en/privacy")).toBe(true);
     expect(isKnownPath("/pdf-in-dwg")).toBe(true);
+    expect(isKnownPath("/cursuri-revit")).toBe(true);
     expect(isKnownPath("/n-avem-asa-ceva")).toBe(false);
+  });
+
+  test("pagina cursurilor Revit este disponibilă pentru citire și indexarea AI", async () => {
+    const response = markdownResponseForPath("/cursuri-revit");
+    expect(response?.status).toBe(200);
+
+    const body = response ? await response.text() : "";
+    expect(body).toContain("Cursuri Revit");
+    expect(body).toContain("de la zero");
+    expect(body).toContain("Dynamo");
+    expect(llmsTxt()).toContain("https://nodbim.com/cursuri-revit");
+    expect(agentInstructionsTxt()).toContain("https://nodbim.com/cursuri-revit");
+    expect(agentInstructionsTxt()).not.toContain("Revit training courses.");
+
+    const descriptor = JSON.parse(agentDescriptorJson()) as { resources?: string[] };
+    expect(descriptor.resources).toContain("https://nodbim.com/cursuri-revit");
+  });
+
+  test("portofoliul distinge mostrele reale anonimizate de demonstrațiile sintetice", async () => {
+    const response = markdownResponseForPath("/portofoliu");
+    expect(response).not.toBeNull();
+    const body = await response!.text();
+    expect(body).toContain("același set de planuri reale");
+    expect(body).toContain("Textul a fost eliminat");
+    expect(body).toContain("demonstrații sintetice create de la zero");
+    expect(body).not.toContain("Toate imaginile au fost create de la zero");
   });
 
   test("slug-urile de articol din blog sunt recunoscute", () => {
@@ -89,6 +116,10 @@ describe("agent-content — negotiere markdown", () => {
     expect(markdown).toContain("FreeMaint CMMS");
     expect(markdown).toContain("linkul afiliat");
     expect(markdown).toContain("?via=bsx7y7fx2v58");
+    expect(markdown).toContain(
+      "https://freemaint.com/academy/implementing-a-cmms?via=nodbim-academy",
+    );
+    expect(markdown).toContain("10 lecții și aproximativ 90 de minute");
     expect(shop).toContain("/recomandari");
     expect(shop).not.toContain("?via=bsx7y7fx2v58");
   });

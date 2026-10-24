@@ -122,10 +122,12 @@ export const defaultWhatsappMessageEn =
 /** Același serviciu în formular și în primul mesaj, inclusiv pe paginile EN. */
 export function quoteContextForPath(pathname: string) {
   const path = pathname.replace(/\/+$/, "");
+  const training = path === "/cursuri-revit";
   const pdf = path === "/pdf-in-dwg";
   const autocad = pdf || path === "/autocad-dwg" || path === "/en/autocad-drafting";
   if (
     !autocad &&
+    !training &&
     ![
       "/revit-mep",
       "/modelare-revit",
@@ -140,22 +142,26 @@ export function quoteContextForPath(pathname: string) {
   const en = path.startsWith("/en/");
   const installations = ["/hvac", "/instalatii-termice", "/instalatii-electrice"].includes(path);
   return {
-    projectType: autocad
-      ? en
-        ? "AutoCAD / PDF to DWG"
-        : "Redesenare / PDF în DWG"
-      : en
-        ? "Revit MEP modelling"
-        : installations
-          ? "Planșe de instalații"
-          : "Modelare Revit MEP",
+    projectType: training
+      ? "Cursuri Revit și Dynamo"
+      : autocad
+        ? en
+          ? "AutoCAD / PDF to DWG"
+          : "Redesenare / PDF în DWG"
+        : en
+          ? "Revit MEP modelling"
+          : installations
+            ? "Planșe de instalații"
+            : "Modelare Revit MEP",
     whatsappMessage: en
       ? `Hello, I found NOD BIM online and need ${autocad ? "AutoCAD drafting / PDF to DWG" : "Revit MEP modelling"}. Can I send you the files for an estimate?`
-      : pdf
-        ? "Salut! Am găsit NOD BIM pe site și am un plan PDF de redesenat în DWG. Pot să îți trimit fișierul pentru o ofertă?"
-        : autocad
-          ? "Salut! Am găsit NOD BIM pe site și am un plan de desenat în AutoCAD. Pot să îți trimit fișierele pentru o ofertă?"
-          : "Salut! Am găsit NOD BIM pe site și am nevoie de planșe de instalații sau modelare Revit MEP. Pot să îți trimit fișierele pentru o ofertă?",
+      : training
+        ? "Salut! Mă interesează cursurile Revit și automatizările Dynamo. Îmi poți trimite detaliile și opțiunile disponibile?"
+        : pdf
+          ? "Salut! Am găsit NOD BIM pe site și am un plan PDF de redesenat în DWG. Pot să îți trimit fișierul pentru o ofertă?"
+          : autocad
+            ? "Salut! Am găsit NOD BIM pe site și am un plan de desenat în AutoCAD. Pot să îți trimit fișierele pentru o ofertă?"
+            : "Salut! Am găsit NOD BIM pe site și am nevoie de planșe de instalații sau modelare Revit MEP. Pot să îți trimit fișierele pentru o ofertă?",
   };
 }
 

@@ -18,6 +18,7 @@ describe("site-config", () => {
       ["/pdf-in-dwg", "Redesenare / PDF în DWG", "am un plan PDF de redesenat în DWG"],
       ["/en/autocad-drafting", "AutoCAD / PDF to DWG", "AutoCAD drafting / PDF to DWG"],
       ["/revit-mep", "Modelare Revit MEP", "modelare Revit MEP"],
+      ["/cursuri-revit", "Cursuri Revit și Dynamo", "cursurile Revit și automatizările Dynamo"],
       ["/en/revit-mep-outsourcing", "Revit MEP modelling", "Revit MEP modelling"],
     ] as const) {
       const context = quoteContextForPath(path);
@@ -34,6 +35,7 @@ describe("site-config", () => {
     expect(quoteContextForPath("/en/revit-mep-outsourcing")?.whatsappMessage).toStartWith(
       "Hello, I found NOD BIM online and need ",
     );
+    expect(quoteContextForPath("/cursuri-revit")?.whatsappMessage).not.toContain("ofertă");
     expect(quoteContextForPath("/modelare-revit")?.projectType).toBe("Modelare Revit MEP");
     for (const path of ["/hvac", "/instalatii-termice", "/instalatii-electrice"]) {
       expect(quoteContextForPath(path)?.projectType).toBe("Planșe de instalații");

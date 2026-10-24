@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "build": "vite build && node scripts/patch-compat-date.mjs",
     "build:dev": "vite build --mode development",
-    "preview": "wrangler dev",
+    "preview": "wrangler dev --local-protocol https",
     "deploy": "npm run build && wrangler deploy",
     "cf-typegen": "wrangler types",
     "typecheck": "tsc --noEmit",

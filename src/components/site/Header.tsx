@@ -30,6 +30,7 @@ const copy = {
     links: [
       { label: "Exemple", href: "/portofoliu" },
       { label: "Prețuri", href: "/#preturi" },
+      { label: "Cursuri Revit", href: "/cursuri-revit" },
       { label: "Despre", href: "/despre" },
     ],
     cta: "Cere ofertă",
