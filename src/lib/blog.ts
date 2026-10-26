@@ -25,6 +25,102 @@ export type Article = {
 };
 
 export const articles: Article[] = [
+{
+  "slug": "externalizare-modelare-revit-mep-pachet-livrare",
+  "title": "Externalizarea modelării Revit MEP: cum delimitezi pachetul de lucru",
+  "metaTitle": "Externalizare Revit MEP: pachet, fișiere și livrabile",
+  "description": "Ai nevoie de capacitate suplimentară pentru planșe sau actualizări? Vezi ce fișiere, standarde și criterii de predare să clarifici înainte să externalizezi producția Revit MEP.",
+  "date": "2026-10-26",
+  "readingTime": 5,
+  "tags": [
+    "Revit MEP",
+    "Externalizare BIM",
+    "Modelare Revit",
+    "Planșe MEP",
+    "Proiectare instalații"
+  ],
+  "sections": [
+    {
+      "paragraphs": [
+        "Când volumul de desenare crește, un birou de proiectare poate externaliza o parte din producția Revit MEP fără să transfere deciziile inginerești. Ca sprijinul să fie util, delimitează ce se modelează, în ce fișier și cum arată livrabilul acceptat.",
+        "Ghidul privește modelarea și pregătirea documentației pe baza informațiilor și soluției aprobate de echipa responsabilă."
+      ]
+    },
+    {
+      "heading": "Ce poți include într-un pachet de lucru",
+      "paragraphs": [
+        "Un pachet poate acoperi doar partea de producție de care echipa are nevoie în acel moment:"
+      ],
+      "list": [
+        "modelarea sau actualizarea fișierului Revit după planurile și indicațiile aprobate;",
+        "organizarea vederilor, secțiunilor și planșelor incluse în listă;",
+        "introducerea corecturilor documentate pe redline, în limita reviziei convenite;",
+        "extracția planșelor și tabelelor și pregătirea exporturilor RVT, PDF sau DWG cerute."
+      ],
+      "note": "Calculele, dimensionarea, alegerea soluției tehnice și semnătura rămân la proiectantul responsabil."
+    },
+    {
+      "heading": "Ce trimiți înainte de estimare",
+      "paragraphs": [
+        "Fișierele și criteriile clare reduc întrebările și refacerea documentației. Pentru o estimare, pregătește:"
+      ],
+      "list": [
+        "modelul de pornire și linkurile necesare, cu reviziile confirmate;",
+        "planurile, tema și observațiile aprobate care descriu soluția de modelat;",
+        "template-ul, regulile de denumire, familiile și standardul de vedere al biroului, dacă se folosesc;",
+        "lista planșelor și livrabilelor, numărul de revizii și termenul dorit;",
+        "o foaie reprezentativă sau un exemplu de predare care arată rezultatul așteptat."
+      ]
+    },
+    {
+      "heading": "Stabilește criteriul de acceptare înainte să înceapă lucrul",
+      "paragraphs": [
+        "„Gata în Revit” nu descrie singur o predare. Confirmă ce trebuie să conțină fiecare planșă: vederea, scara, titlul, legendele, cotele, simbolurile și setările de export. Verifică o foaie reprezentativă în model și în PDF înainte să aplici aceleași setări pe restul setului.",
+        "Delimitează și reviziile. O schimbare aprobată după începerea lucrului poate modifica volumul și termenul. Notează ce se schimbă, ce rămâne, cine confirmă și care este noua dată de predare."
+      ]
+    },
+    {
+      "heading": "Păstrează responsabilitatea tehnică la echipa de proiectare",
+      "paragraphs": [
+        "Un colaborator extern poate organiza modelul și produce documentația conform informațiilor primite. Proiectantul responsabil stabilește și aprobă soluția, verifică dimensionările și semnează. Dacă datele lipsesc sau se contrazic, clarifică-le înainte să introduci ipoteze în model.",
+        "Înainte de predare, verifică revizia fișierelor, lista planșelor, exporturile și observațiile rămase deschise. Astfel, echipa știe ce a fost produs și ce mai trebuie validat."
+      ]
+    },
+    {
+      "heading": "Checklist pentru o cerere clară",
+      "paragraphs": [
+        "În mesajul inițial, include:"
+      ],
+      "list": [
+        "disciplina și partea de producție pe care vrei s-o externalizezi;",
+        "fișierele disponibile și revizia care trebuie folosită;",
+        "numărul aproximativ de planșe și formatele cerute;",
+        "standardul, template-ul și exemplul de predare;",
+        "termenul și persoana care validează soluția și livrabilele."
+      ]
+    },
+    {
+      "heading": "Cum începi",
+      "paragraphs": [
+        "Trimite o planșă reprezentativă, lista livrabilelor, fișierele disponibile și termenul. NOD BIM poate analiza volumul și reveni cu o propunere de scop, cost și dată de predare înainte de începerea lucrului."
+      ],
+      "links": [
+        {
+          "label": "Servicii de modelare Revit MEP",
+          "href": "/revit-mep"
+        },
+        {
+          "label": "Mostre de documentație",
+          "href": "/portofoliu"
+        },
+        {
+          "label": "Cere o estimare",
+          "href": "/contact"
+        }
+      ]
+    }
+  ]
+},
   {
     slug: "circuit-electric-tablou-revit-mep-checklist",
     title: "Circuitul electric și tabloul în Revit: ce verifici înainte de predare",
