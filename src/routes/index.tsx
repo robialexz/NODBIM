@@ -249,7 +249,7 @@ function Home() {
                       <dt className="text-[0.75rem] uppercase tracking-[0.06em] text-muted-foreground">
                         {k}
                       </dt>
-                      <dd>{v}</dd>
+                      <dd className="break-words">{v}</dd>
                     </div>
                   ))}
                 </dl>
