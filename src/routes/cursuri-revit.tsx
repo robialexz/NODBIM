@@ -32,7 +32,7 @@ const programs = [
     label: "Începători",
     name: "Revit de la zero",
     description:
-      "Înveți interfața și organizarea proiectului, nivelurile și vederile, modelarea de bază, adnotările și pregătirea primelor planșe.",
+      "Rezultatul urmărit este o planșă PDF dintr-un proiect demonstrativ: pornești de la interfață și niveluri, apoi construiești modelul, vederile și adnotările.",
     points: ["Setarea proiectului și navigarea", "Model și vederi", "Adnotări și planșe"],
   },
   {

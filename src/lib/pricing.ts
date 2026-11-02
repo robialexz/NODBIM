@@ -1,13 +1,22 @@
-/** Singura sursă a prețurilor afișate pe site (în lei, fără TVA). */
+/** Singura sursă a prețurilor afișate pe site; moneda este explicită pentru fiecare serviciu. */
 export type JobType = "redesenare" | "corectare" | "instalatii";
 
 export const jobRates: Record<
   JobType,
-  { label: string; waName: string; min: number; max: number | null; unit: string; note: string }
+  {
+    label: string;
+    waName: string;
+    min: number;
+    max: number | null;
+    currency: "RON" | "EUR";
+    unit: string;
+    note: string;
+  }
 > = {
   redesenare: {
     label: "Redesenare plan sau PDF în DWG",
     waName: "de redesenat (PDF în DWG)",
+    currency: "RON",
     min: 350,
     max: 800,
     unit: "plan",
@@ -16,22 +25,28 @@ export const jobRates: Record<
   corectare: {
     label: "Modificare sau corectare planșă existentă",
     waName: "de modificat sau corectat",
+    currency: "RON",
     min: 250,
     max: null,
     unit: "planșă",
     note: "Preț de pornire pe planșă, în funcție de volumul observațiilor.",
   },
   instalatii: {
-    label: "Planșă de instalații (HVAC, termice, electrice)",
+    label: "Planșă completă de instalații (HVAC, termice, electrice)",
     waName: "de instalații, de desenat",
-    min: 300,
+    currency: "EUR",
+    min: 200,
     max: null,
     unit: "planșă",
-    note: "Pachetul de 5 planșe pornește de la 1.500 lei.",
+    note: "Modelare și documentare din soluția tehnică aprobată. Volumul modelului și reviziile incluse se stabilesc în ofertă.",
   },
 };
 
-export const packagePrice = { sheets: 5, min: 1500 };
+export const packagePrice = {
+  sheets: 5,
+  min: jobRates.instalatii.min * 5,
+  currency: jobRates.instalatii.currency,
+};
 
 /** Numărul de planșe adus la un întreg între 1 și 20 (NaN devine 1). */
 function clampSheets(sheets: number): number {
@@ -54,13 +69,16 @@ export function formatLei(value: number): string {
 
 export function estimateLabel(type: JobType, sheets: number): string {
   const { min, max } = estimate(type, sheets);
-  return max === null ? `de la ${formatLei(min)} lei` : `${formatLei(min)} – ${formatLei(max)} lei`;
+  const currency = jobRates[type].currency === "RON" ? "lei" : "EUR";
+  return max === null
+    ? `de la ${formatLei(min)} ${currency}`
+    : `${formatLei(min)} – ${formatLei(max)} ${currency}`;
 }
 
 /** Tariful pe unitate: „350–800 lei / plan”, „de la 250 lei / planșă”. */
 export function rateLabel(type: JobType, separator = " / "): string {
-  const { min, max, unit } = jobRates[type];
-  return `${max === null ? `de la ${min}` : `${min}–${max}`} lei${separator}${unit}`;
+  const { min, max, unit, currency } = jobRates[type];
+  return `${max === null ? `de la ${min}` : `${min}–${max}`} ${currency === "RON" ? "lei" : "EUR"}${separator}${unit}`;
 }
 
 /** „1 planșă”, „3 planșe”, „20 de planșe”. */
@@ -75,14 +93,14 @@ export function estimateWhatsappMessage(type: JobType, sheets: number): string {
 
 /** Nod Offer pentru datele structurate; maxPrice apare doar când există. */
 export function offerSchema(type: JobType) {
-  const { label, min, max, unit } = jobRates[type];
+  const { label, min, max, unit, currency } = jobRates[type];
   return {
     "@type": "Offer",
     name: label,
-    priceCurrency: "RON",
+    priceCurrency: currency,
     priceSpecification: {
       "@type": "UnitPriceSpecification",
-      priceCurrency: "RON",
+      priceCurrency: currency,
       minPrice: min,
       ...(max === null ? {} : { maxPrice: max }),
       unitText: unit,

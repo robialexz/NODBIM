@@ -129,6 +129,7 @@ export function quoteContextForPath(pathname: string) {
     !autocad &&
     !training &&
     ![
+      "", // Rădăcina este normalizată fără slash; oferta principală este Revit MEP.
       "/revit-mep",
       "/modelare-revit",
       "/hvac",

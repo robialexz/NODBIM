@@ -5,7 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { CtaSection } from "@/components/site/CtaSection";
 
 const profile: [string, string][] = [
-  ["Formare", "Inginer de instalații — facultatea de inginerie a instalațiilor"],
+  ["Formare", "Studii de inginerie a instalațiilor în curs — finalizare estimată iulie 2027"],
   ["Experiență profesională", "Proiectarea și coordonarea instalațiilor"],
   ["Software", "Revit MEP · AutoCAD"],
   ["Discipline", "HVAC · instalații termice · instalații electrice"],
@@ -28,12 +28,12 @@ export function DespreContent() {
             <div>
               <p className="tech-label text-primary">Despre NOD BIM</p>
               <h1 className="display-xl mt-6 max-w-4xl text-[2.8rem] sm:text-6xl lg:text-7xl">
-                Lucrezi direct cu mine, inginer de instalații
+                Lucrezi direct cu specialistul care îți pregătește planșele
               </h1>
               <p className="mt-7 max-w-2xl text-base leading-relaxed text-foreground/80 md:text-lg">
                 NOD BIM oferă modelare Revit MEP, planșe de instalații și lucrări AutoCAD / DWG,
-                realizate direct de un inginer de instalații. Nu există intermediari: cine face
-                estimarea este și cine lucrează pe fișierele tale.
+                realizate direct de un specialist Revit și AutoCAD. Nu există intermediari: cine
+                face estimarea este și cine lucrează pe fișierele tale.
               </p>
             </div>
           </div>
@@ -44,14 +44,16 @@ export function DespreContent() {
             <Reveal className="lg:col-span-7">
               <h2 className="text-3xl md:text-4xl">Specialistul din spatele brandului</h2>
               <p className="mt-5 text-base leading-relaxed text-foreground/85">
-                Sunt inginer, absolvent al facultății de inginerie a instalațiilor. Profesional
-                lucrez în proiectarea și coordonarea instalațiilor, unde documentația exactă și
-                coordonarea între discipline sunt obligatorii.
+                Am 4 ani de experiență în Revit și AutoCAD, iar studiile de inginerie a
+                instalațiilor sunt în curs, cu finalizare estimată în iulie 2027. Profesional lucrez
+                în proiectarea și coordonarea instalațiilor, unde documentația exactă și coordonarea
+                între discipline sunt obligatorii.
               </p>
               <p className="mt-4 text-base leading-relaxed text-foreground/85">
                 Proiectele din activitatea profesională aparțin angajatorului și clienților săi și
-                nu sunt prezentate aici ca lucrări NOD BIM. Imaginile de pe site sunt ilustrații de
-                prezentare și exemple demonstrative, nu lucrări ale clienților.
+                nu sunt prezentate aici ca lucrări NOD BIM. Portofoliul separă mostrele reale
+                anonimizate furnizate pentru prezentare de demonstrațiile sintetice. Originalele și
+                informațiile de identificare nu se publică.
               </p>
 
               <h2 className="mt-12 text-3xl md:text-4xl">Cum lucrez</h2>

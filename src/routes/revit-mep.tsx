@@ -3,8 +3,12 @@ import { ServicePage } from "@/components/site/ServicePage";
 import { canonicalUrl } from "@/lib/site-config";
 import { hreflangLinks } from "@/lib/i18n";
 import hero3d from "@/assets/hero-3d.webp";
+import hero3d640 from "@/assets/hero-3d-640.webp";
+import hero3d960 from "@/assets/hero-3d-960.webp";
 import projSectiune from "@/assets/proj-sectiune.webp";
+import projSectiune640 from "@/assets/proj-sectiune-640.webp";
 import projSheet from "@/assets/proj-sheet.webp";
+import projSheet640 from "@/assets/proj-sheet-640.webp";
 
 const title = "Modelare Revit MEP pentru birouri de proiectare · NOD BIM";
 const description =
@@ -27,6 +31,7 @@ export const Route = createFileRoute("/revit-mep")({
   component: () => (
     <ServicePage
       label="Revit MEP"
+      offers={["instalatii"]}
       h1="Modelare Revit MEP pentru birouri de proiectare"
       intro="Ai soluția tehnică, dar nu ai timp de modelare și planșe? NOD BIM preia modelarea Revit MEP pe tema ta și livrează modelul RVT, planșele DWG și PDF-urile gata de predare."
       lead="Discipline: HVAC, instalații termice și instalații electrice. Pornesc de la RVT, DWG sau PDF, inclusiv de la proiecte începute de altcineva. Soluția tehnică și semnătura rămân la proiectant; instalațiile sanitare nu sunt incluse."
@@ -73,18 +78,21 @@ export const Route = createFileRoute("/revit-mep")({
       images={[
         {
           src: hero3d,
+          srcSet: `${hero3d640} 640w, ${hero3d960} 960w, ${hero3d} 1200w`,
           alt: "Model 3D Revit MEP cu trasee de ventilare, conducte și echipamente de instalații",
           caption: "Model 3D Revit MEP",
           meta: "MEP-3D-01",
         },
         {
           src: projSectiune,
+          srcSet: `${projSectiune640} 640w, ${projSectiune} 1200w`,
           alt: "Secțiune printr-un model Revit MEP cu tubulaturi, conducte și susțineri",
           caption: "Secțiune din model",
           meta: "SEC-01",
         },
         {
           src: projSheet,
+          srcSet: `${projSheet640} 640w, ${projSheet} 1600w`,
           alt: "Sheet Revit cu vederi, secțiuni, legende și indicator pentru instalații",
           caption: "Sheet organizat",
           meta: "SH-01",

@@ -15,15 +15,15 @@ import {
 test("tarifele din specificație", () => {
   expect(jobRates.redesenare).toMatchObject({ min: 350, max: 800, unit: "plan" });
   expect(jobRates.corectare).toMatchObject({ min: 250, max: null });
-  expect(jobRates.instalatii).toMatchObject({ min: 300, max: null });
-  expect(packagePrice).toEqual({ sheets: 5, min: 1500 });
+  expect(jobRates.instalatii).toMatchObject({ min: 200, max: null, currency: "EUR" });
+  expect(packagePrice).toEqual({ sheets: 5, min: 1000, currency: "EUR" });
 });
 
 describe("estimate", () => {
   test("interval și preț de pornire", () => {
     expect(estimate("redesenare", 1)).toEqual({ sheets: 1, min: 350, max: 800 });
     expect(estimate("redesenare", 3)).toEqual({ sheets: 3, min: 1050, max: 2400 });
-    expect(estimate("instalatii", 5)).toEqual({ sheets: 5, min: 1500, max: null });
+    expect(estimate("instalatii", 5)).toEqual({ sheets: 5, min: 1000, max: null });
   });
   test("numărul de planșe e adus în 1–20, întreg", () => {
     for (const [input, want] of [
@@ -52,7 +52,7 @@ test("sheetsLabel și formatLei", () => {
     "20 de planșe",
     "20 de planșe",
   ]);
-  expect(formatLei(packagePrice.min)).toBe("1.500");
+  expect(formatLei(packagePrice.min)).toBe("1.000");
 });
 
 test("mesajul WhatsApp: acord și formulare", () => {
@@ -83,4 +83,13 @@ test("rateLabel: interval, preț de pornire și separator", () => {
   expect(rateLabel("redesenare")).toBe("350–800 lei / plan");
   expect(rateLabel("redesenare", " pe ")).toBe("350–800 lei pe plan");
   expect(rateLabel("corectare", "/")).toBe("de la 250 lei/planșă");
+});
+
+test("planșele complete păstrează pragul în euro în estimator și schema Google", () => {
+  expect(rateLabel("instalatii")).toBe("de la 200 EUR / planșă");
+  expect(estimateLabel("instalatii", 5)).toBe("de la 1.000 EUR");
+  expect(offerSchema("instalatii")).toMatchObject({
+    priceCurrency: "EUR",
+    priceSpecification: { priceCurrency: "EUR", minPrice: 200 },
+  });
 });

@@ -108,7 +108,13 @@ const workingTerms: [string, string][] = [
 
 export type ServiceSection = { title: string; body: string; items?: string[] };
 
-export type ServiceImage = { src: string; alt: string; caption: string; meta: string };
+export type ServiceImage = {
+  src: string;
+  srcSet?: string;
+  alt: string;
+  caption: string;
+  meta: string;
+};
 
 export function ServicePage({
   label,
@@ -295,6 +301,8 @@ export function ServicePage({
                     </div>
                     <img
                       src={img.src}
+                      srcSet={img.srcSet}
+                      sizes="(min-width: 1200px) 446px, (min-width: 1024px) calc(42vw - 60px), (min-width: 768px) calc(100vw - 64px), calc(100vw - 40px)"
                       alt={img.alt}
                       loading="lazy"
                       width={1200}

@@ -3,7 +3,6 @@ import { hasWhatsapp, phoneHref, whatsappLink } from "@/lib/site-config";
 import {
   estimateLabel,
   estimateWhatsappMessage,
-  formatLei,
   jobRates,
   packagePrice,
   rateLabel,
@@ -142,9 +141,9 @@ export function PriceEstimator({ defaultType = "redesenare" }: { defaultType?: J
           </div>
         ))}
         <div className="flex justify-between gap-4 border-b border-border py-3">
-          <dt>{`Pachet ${packagePrice.sheets} planșe`}</dt>
+          <dt>{`Pachet ${packagePrice.sheets} planșe complete de instalații`}</dt>
           <dd className="whitespace-nowrap font-mono text-[0.8rem] text-muted-foreground">
-            {`de la ${formatLei(packagePrice.min)} lei`}
+            {estimateLabel("instalatii", packagePrice.sheets)}
           </dd>
         </div>
       </dl>

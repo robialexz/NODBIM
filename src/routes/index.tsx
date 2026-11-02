@@ -9,7 +9,7 @@ import { BeforeAfter } from "@/components/site/BeforeAfter";
 import {
   site,
   whatsappLink,
-  defaultWhatsappMessage,
+  quoteContextForPath,
   hasWhatsapp,
   hasEmail,
   canonicalUrl,
@@ -28,9 +28,9 @@ import projSectiune640 from "@/assets/proj-sectiune-640.webp";
 import projSheet from "@/assets/proj-sheet.webp";
 import projSheet640 from "@/assets/proj-sheet-640.webp";
 
-const title = "Desenare AutoCAD și Revit la comandă, online · NOD BIM";
+const title = "Modelare Revit MEP și planșe pentru birouri · NOD BIM";
 const description =
-  "Desenez în AutoCAD și Revit, online: planuri redesenate din PDF în DWG, corecturi pe planșe și planșe de instalații. Preț stabilit înainte de start.";
+  "Modelare Revit MEP și planșe HVAC, termice și electrice pe standardul biroului tău. Livrare RVT, DWG și PDF. Planșe complete de la 200 EUR.";
 const url = canonicalUrl("/");
 const orgId = `${url}#org`;
 
@@ -38,10 +38,10 @@ const orgId = `${url}#org`;
 const homeFaq = faq.slice(0, 6);
 
 const titleBlock = [
-  ["Planșă", "Plan apartament · exemplu demonstrativ"],
-  ["Scara", "1:50"],
-  ["Format", "A3"],
-  ["Fișiere", "DWG + PDF"],
+  ["Planșă", "Instalații · ilustrație de prezentare"],
+  ["Scop", "Modelare + documentare"],
+  ["Standard", "Al biroului tău"],
+  ["Fișiere", "RVT · DWG · PDF"],
 ] as const;
 
 const examples: {
@@ -162,7 +162,7 @@ const onGraphiteHover =
   "hover:border-graphite-foreground hover:bg-graphite-foreground hover:text-graphite";
 
 function Home() {
-  const waHref = whatsappLink(defaultWhatsappMessage);
+  const waHref = whatsappLink(quoteContextForPath("/")?.whatsappMessage ?? "");
 
   return (
     <div className="min-h-screen bg-background">
@@ -175,16 +175,16 @@ function Home() {
           >
             <div className="min-w-0">
               <p className="tech-label text-muted-foreground">
-                Desenare tehnică · AutoCAD · Revit MEP
+                Revit MEP · Suport pentru birouri de proiectare
               </p>
               <h1 className="display-xl mt-5 text-[2.3rem] sm:text-5xl xl:text-[4rem]">
-                Trimiți PDF-ul sau schița. Primești{" "}
-                <span className="text-primary">planul desenat în AutoCAD</span>.
+                Ai proiectul. Preiau{" "}
+                <span className="text-primary">modelarea și planșele Revit MEP</span>.
               </h1>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                Redesenare în AutoCAD, conversie PDF în DWG și modelare Revit MEP pentru instalații.
-                Lucrez cu persoane fizice, arhitecți și birouri de proiectare. Prețul îl afli în
-                scris înainte să încep.
+                Pentru birouri care au soluția tehnică, dar au nevoie de ajutor la livrare. Modelez
+                instalațiile HVAC, termice și electrice pe template-ul și standardele tale. Primești
+                RVT, DWG și PDF, cu scopul, termenul și prețul stabilite în scris.
               </p>
 
               {(phoneHref || hasWhatsapp) && (
@@ -207,6 +207,11 @@ function Home() {
                   )}
                 </div>
               )}
+              <p className="mt-6 text-base">
+                <Link to="/revit-mep" className={textLink}>
+                  Vezi livrabilele și condițiile colaborării →
+                </Link>
+              </p>
               <p className="mt-4 text-sm">
                 <a href="#preturi" className={`inline-flex min-h-11 items-center ${textLink}`}>
                   {phoneHref || hasWhatsapp ? "sau calculează" : "Calculează"} un preț orientativ
@@ -216,7 +221,7 @@ function Home() {
               <ul className="mt-6 flex flex-col gap-x-3 gap-y-1.5 border-t border-border pt-5 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:[&>li+li]:before:mr-3 sm:[&>li+li]:before:content-['·']">
                 {[
                   "Preț în scris înainte să încep",
-                  "fișiere DWG și PDF",
+                  "planșe complete de la 200 EUR",
                   "ofertă de regulă în 1–2 zile lucrătoare",
                 ].map((fact) => (
                   <li key={fact} className="max-sm:first-letter:uppercase">
@@ -226,13 +231,15 @@ function Home() {
               </ul>
             </div>
 
-            {/* Planșa: singurul element „desenat” al paginii */}
+            {/* Ilustrație demonstrativă, fără proiecte de client. */}
             <figure className="sheet-frame min-w-0 p-2.5 md:p-4">
               <img
-                src={demoPlan}
-                alt="Plan de apartament cu două camere: pereți, uși, ferestre, cote și indicator"
-                width={960}
-                height={600}
+                src={projSheet}
+                srcSet={`${projSheet640} 640w, ${projSheet} 1600w`}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                alt="Ilustrație demonstrativă: planșă de instalații cu vederi, secțiuni și indicator"
+                width={1600}
+                height={1104}
                 className="block h-auto w-full border border-foreground/50 bg-white"
               />
               <figcaption>
@@ -319,7 +326,7 @@ function Home() {
             Două alegeri și ai o cifră de pornire.
           </p>
           <div className="mt-8 md:mt-12">
-            <PriceEstimator />
+            <PriceEstimator defaultType="instalatii" />
           </div>
         </section>
 
@@ -390,9 +397,9 @@ function Home() {
             <div className="min-w-0">
               <h2 className={h2}>Lucrezi direct cu mine</h2>
               <p className="mt-5 max-w-xl leading-relaxed text-muted-foreground">
-                Sunt inginer de instalații și desenez personal fiecare planșă. Cine îți face oferta
-                este și cine lucrează pe fișierele tale. NOD BIM este numele sub care ofer aceste
-                servicii, nu o societate.
+                Am 4 ani de experiență în Revit și AutoCAD și desenez personal fiecare planșă. Cine
+                îți face oferta este și cine lucrează pe fișierele tale. NOD BIM este numele sub
+                care ofer aceste servicii, nu o societate.
               </p>
               <p className="mt-4">
                 <Link to="/despre" className={`inline-flex min-h-11 items-center ${textLink}`}>

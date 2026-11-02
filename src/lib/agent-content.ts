@@ -7,7 +7,7 @@ import { articles } from "./blog";
 import { enAbout, enDrafting, enOutsourcing } from "./en-content";
 import { faq, process, serviceHref, services } from "./home-content";
 import { enHomePath } from "./i18n";
-import { estimateLabel, formatLei, jobRates, packagePrice } from "./pricing";
+import { estimateLabel, jobRates, packagePrice } from "./pricing";
 import { freeMaintAcademyAffiliateUrl, freeMaintAffiliateUrl, products } from "./products";
 import { site } from "./site-config";
 
@@ -130,7 +130,7 @@ function homeMarkdown(): string {
   return [
     `# ${site.businessName}`,
     ``,
-    `> Desenare tehnică la comandă, online: planuri redesenate în AutoCAD, conversie PDF în DWG, corecturi pe planșe și planșe de instalații în AutoCAD și Revit MEP. Prețul se comunică în scris înainte de start.`,
+    `> Modelare Revit MEP și planșe de instalații pentru birouri de proiectare, pe baza soluției tehnice aprobate și a standardelor biroului. Livrare RVT, DWG și PDF. Separat: redesenare AutoCAD și PDF în DWG. Prețul se comunică în scris înainte de start.`,
     ``,
     `## Servicii`,
     ``,
@@ -147,7 +147,7 @@ function homeMarkdown(): string {
     ...(["redesenare", "corectare", "instalatii"] as const).map(
       (type) => `- ${jobRates[type].label}: ${estimateLabel(type, 1)} / ${jobRates[type].unit}`,
     ),
-    `- Pachet ${packagePrice.sheets} planșe: de la ${formatLei(packagePrice.min)} lei`,
+    `- Pachet ${packagePrice.sheets} planșe complete de instalații: ${estimateLabel("instalatii", packagePrice.sheets)}`,
     ``,
     `## Proces`,
     ``,
@@ -175,11 +175,11 @@ function aboutMarkdown(): string {
   return [
     `# Despre ${site.businessName}`,
     ``,
-    `> NOD BIM este un brand (nu o societate) prin care un inginer de instalații oferă direct modelare Revit MEP și desenare AutoCAD. Experiența de mai jos este a specialistului.`,
+    `> NOD BIM este un brand (nu o societate) prin care un specialist Revit și AutoCAD oferă direct modelare Revit MEP și desenare AutoCAD. Experiența de mai jos este a specialistului.`,
     ``,
     `## Formare`,
     ``,
-    `- Absolvent al facultății de inginerie a instalațiilor`,
+    `- Studii de inginerie a instalațiilor în curs; finalizare estimată în iulie 2027`,
     `- Experiență profesională în proiectarea și coordonarea instalațiilor (proiectele angajatorului nu sunt prezentate ca lucrări NOD BIM)`,
     ``,
     `## Metoda de lucru`,
@@ -337,7 +337,7 @@ function portfolioMarkdown(): string {
     ``,
     `> Fragmente reale anonimizate și demonstrații sintetice pentru Revit MEP, HVAC și AutoCAD.`,
     ``,
-    `Primele două imagini sunt fragmente din același set de planuri reale. Textul a fost eliminat, cartușele au fost decupate, iar imaginea este puternic estompată. Nu reprezintă proiecte distincte sau clienți diferiți.`,
+    `Primele două imagini sunt fragmente din același set de planuri reale. Textul a fost eliminat, cartușele au fost decupate, iar imaginea este puternic estompată. Primul fragment privește instalațiile termice, al doilea ventilația. Nu reprezintă proiecte distincte sau clienți diferiți.`,
     ``,
     `Celelalte exemple sunt demonstrații sintetice create de la zero pentru scenarii fictive și nu sunt lucrări predate clienților. Nicio mostră nu este documentație pentru execuție.`,
     ``,
@@ -561,7 +561,7 @@ export function llmsTxt(): string {
     ``,
     `## Despre`,
     ``,
-    `- [Despre](${base()}/despre): brand operat de un inginer de instalații`,
+    `- [Despre](${base()}/despre): brand operat de un specialist Revit și AutoCAD`,
     `- [About (English)](${base()}/en/about): ${enAbout.description}`,
     `- [Contact](${base()}/contact): formular, WhatsApp, email`,
     ``,

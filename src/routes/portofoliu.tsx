@@ -53,7 +53,7 @@ const items: Item[] = [
   {
     src: realSampleOne,
     alt: "Fragment de plan real cu textul eliminat și imaginea puternic estompată",
-    caption: "Documentație tehnică · Fragment 01",
+    caption: "Instalații termice · Fragment anonimizat",
     meta: "Mostră reală anonimizată",
     w: 1200,
     h: 815,
@@ -63,7 +63,7 @@ const items: Item[] = [
   {
     src: realSampleTwo,
     alt: "Al doilea fragment din același set de planuri, fără text sau cartuș",
-    caption: "Documentație tehnică · Fragment 02",
+    caption: "Ventilație · Fragment anonimizat",
     meta: "Mostră reală anonimizată",
     w: 1200,
     h: 815,
