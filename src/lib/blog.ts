@@ -1,3 +1,5 @@
+import { estimateLabel } from "./pricing";
+
 /**
  * Articolele tehnice NOD BIM — conținut de inginerie cu probe practice,
  * nu umplutură SEO. Fiecare articol are o temă complicată, explicată
@@ -19,6 +21,7 @@ export type Article = {
   metaTitle: string;
   description: string;
   date: string;
+  updatedAt?: string;
   readingTime: number;
   tags: string[];
   sections: ArticleSection[];
@@ -2703,9 +2706,9 @@ export const articles: Article[] = [
     slug: "cat-costa-o-plansa-de-instalatii",
     title: "Cât costă cu adevărat o planșă de instalații? Anatomia unui preț",
     metaTitle: "Cât costă cu adevărat o planșă de instalații",
-    description:
-      "Descompun prețul unei planșe de instalații în etape, ore și factori reali: de ce costă „de la 300 lei” și de unde apar diferențele între oferte.",
+    description: `Ce include o planșă de instalații și cum se stabilește oferta. La NOD BIM, o planșă completă pornește ${estimateLabel("instalatii", 1)}.`,
     date: "2026-08-21",
+    updatedAt: "2026-11-02",
     readingTime: 8,
     tags: ["Prețuri", "Revit MEP", "Proces"],
     sections: [
@@ -2746,7 +2749,7 @@ export const articles: Article[] = [
             ],
             [
               "Numărul de planșe identice",
-              "Planul 2 costă mai puțin decât planul 1: baza de lucru e deja construită",
+              "Repetiția poate reduce timpul de pregătire; prețul fiecărei planșe și scopul pachetului se confirmă în ofertă",
             ],
             [
               "Termenul",
@@ -2754,7 +2757,7 @@ export const articles: Article[] = [
             ],
             [
               "Reviziile",
-              "1–2 runde normale sunt incluse; reviziile cauzate de schimbări majore de temă sunt lucrare nouă",
+              "Numărul de runde incluse se stabilește în ofertă; schimbările majore de temă se evaluează separat",
             ],
           ],
         },
@@ -2762,10 +2765,10 @@ export const articles: Article[] = [
       {
         heading: "De ce diferențe mari între oferte pentru aceeași lucrare",
         paragraphs: [
-          "Pentru aceeași cerere poți primi oferte de la 200 lei la 2.000 lei. Nu e neapărat „țeapă” vs. „corect” — e vorba despre ce se livrează de fapt. O planșă „desenată” fără verificare, fără organizarea fișierelor și fără responsabilitate pentru predare costă altceva decât un livrabil care poate intra direct în documentație.",
+          "Ofertele pot avea prețuri diferite pentru că includ livrabile, verificări și revizii diferite. O planșă „desenată” fără verificare, fără organizarea fișierelor și fără responsabilitate pentru predare costă altceva decât un livrabil care poate intra direct în documentație.",
           "Regula mea simplă: dacă o ofertă nu îți spune ce primești (formate, număr de planșe, revizii incluse, termen), cere-i să o facă. Un preț fără scopul lucrării nu înseamnă nimic.",
         ],
-        note: "Pe site-ul NOD BIM prețurile orientative sunt publice tocmai ca să poți compara corect — de la corectare de planșă până la pachete de proiect.",
+        note: `La NOD BIM, o planșă completă de instalații pornește ${estimateLabel("instalatii", 1)}. Corecturile pe o planșă existentă sunt un serviciu separat. Volumul modelului și reviziile incluse se confirmă în ofertă.`,
       },
       {
         heading: "Concluzia practică",
@@ -3040,64 +3043,41 @@ export const articles: Article[] = [
   },
   {
     slug: "cat-costa-modelarea-bim-pe-tip-de-cladire",
-    title: "Cât costă modelarea BIM în 2026: prețuri reale pe tip de clădire",
-    metaTitle: "Cât costă modelarea BIM în 2026, pe tip de clădire",
+    title: "Cât costă modelarea BIM: cum se stabilește oferta",
+    metaTitle: "Cost modelare BIM: volum, planșe și ofertă",
     description:
-      "Prețuri orientative pentru modelare BIM pe tipuri de clădiri: casă, apartament, birou, hală. Ce determină prețul și cum compari corect ofertele.",
+      "Ce informații trebuie să conțină un brief BIM: număr de planșe, discipline, model existent și revizii. Cum compari ofertele pentru același scop.",
     date: "2026-08-24",
+    updatedAt: "2026-11-02",
     readingTime: 9,
     tags: ["Prețuri", "BIM", "Revit MEP"],
     sections: [
       {
         paragraphs: [
-          "Modelarea BIM nu are un preț unic — dar nici nu e un mister. Dacă prețurile din piață par aleatorii, e pentru că aproape nimeni nu le explică public. Acest articol descompune costul modelării pe tipuri reale de clădiri, cu intervale orientative și cu factorii care le schimbă.",
+          "Modelarea BIM nu are un preț unic — dar nici nu e un mister. Dacă prețurile din piață par aleatorii, e pentru că aproape nimeni nu le explică public. Oferta se stabilește după livrabilele cerute și fișierele primite, nu doar după destinația clădirii. Mai jos sunt datele necesare pentru a delimita lucrarea.",
         ],
       },
       {
-        heading: "Prețuri orientative pe tip de clădire (modelare + planșe rezultate)",
+        heading: "Ce trebuie stabilit înainte de preț",
         table: {
-          head: ["Tip clădire", "Interval orientativ", "Ce include de regulă"],
+          head: ["Date de intrare", "Ce clarifici în brief"],
           rows: [
-            [
-              "Apartament (tip 2-3 camere)",
-              "800 – 1.500 lei",
-              "1-2 discipline, planuri de nivel, 2-3 planșe",
-            ],
-            [
-              "Casă P+1 / P+2",
-              "1.500 – 3.500 lei",
-              "2-3 discipline, planuri + secțiuni, 4-8 planșe",
-            ],
-            [
-              "Birou / spațiu comercial (100-300 mp)",
-              "2.500 – 6.000 lei",
-              "3 discipline, coordonare, 6-12 planșe",
-            ],
-            [
-              "Clădire rezidențială (bloc mic)",
-              "8.000 – 20.000 lei",
-              "Toate disciplinele, model coordonat, 20+ planșe",
-            ],
-            [
-              "Hală industrială",
-              "10.000 – 30.000 lei",
-              "Model MEP + coordonare, echipamente specifice",
-            ],
-            [
-              "Centru de date / spațiu critic",
-              "la cerere",
-              "Redundanță modelată ca sisteme separate, standarde Tier",
-            ],
+            ["Clădire și niveluri", "Planurile de arhitectură și nivelurile incluse"],
+            ["Discipline", "HVAC, termice sau electrice, din soluția aprobată"],
+            ["Model existent", "RVT/DWG/PDF disponibile și versiunea Revit"],
+            ["Planșe și detaliu", "Numărul, formatele și vederile necesare"],
+            ["Revizii și termen", "Observațiile incluse și calendarul de predare"],
           ],
         },
+        note: `O planșă completă de instalații la NOD BIM pornește ${estimateLabel("instalatii", 1)}; cinci planșe pornesc ${estimateLabel("instalatii", 5)}. Acestea sunt praguri pentru planșe, nu o ofertă pentru orice model BIM. Volumul modelului și cerințele se evaluează înainte de contractare.`,
       },
       {
         heading: "Ce face ca modelarea să coste mai mult (sau mai puțin)",
         list: [
           "Numărul de discipline: HVAC + termice + electrice înseamnă coordonare triplă, nu doar triplul desenului.",
-          "Starea fișierelor de intrare: un DWG curat e de două ori mai ieftin de modelat decât un PDF scanat.",
+          "Starea fișierelor de intrare: un DWG curat poate reduce timpul de pregătire față de un PDF scanat.",
           "Nivelul de detaliu cerut: LOD 200 (concept) vs LOD 350 (coordonare de montaj) sunt alte lucrări.",
-          "Reviziile incluse: 1-2 runde normale sunt standard; schimbări majore de temă sunt lucrare nouă.",
+          "Reviziile incluse: rundele incluse se stabilesc în ofertă; schimbările majore de temă se evaluează separat.",
           "Termenul: urgența plătește ore suplimentare, nu altceva.",
         ],
       },

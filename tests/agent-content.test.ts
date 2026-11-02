@@ -216,3 +216,15 @@ describe("agent-content — negotiere markdown", () => {
     expect(parsed.resources?.some((r) => r.includes("/llms.txt"))).toBe(true);
   });
 });
+
+test("ghidurile de preț nu contrazic tariful planșelor complete", () => {
+  for (const slug of [
+    "cat-costa-o-plansa-de-instalatii",
+    "cat-costa-modelarea-bim-pe-tip-de-cladire",
+  ]) {
+    const body = articleMarkdown(slug);
+    expect(body).toContain("de la 200 EUR");
+    expect(body).not.toContain("de la 300 lei");
+    expect(body).not.toContain("800 – 1.500 lei");
+  }
+});

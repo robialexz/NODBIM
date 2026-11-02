@@ -39,6 +39,7 @@ export const Route = createFileRoute("/blog/$slug")({
             headline: article.title,
             description: article.description,
             datePublished: article.date,
+            dateModified: article.updatedAt ?? article.date,
             inLanguage: "ro-RO",
             mainEntityOfPage: canonicalUrl(`/blog/${article.slug}`),
           }),
