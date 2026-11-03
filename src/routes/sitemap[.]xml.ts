@@ -17,7 +17,7 @@ interface SitemapEntry {
 const LAST_MODIFIED = "2026-10-07";
 
 const entries: SitemapEntry[] = [
-  { path: "/", lastmod: "2026-11-02", changefreq: "weekly", priority: "1.0" },
+  { path: "/", lastmod: "2026-11-03", changefreq: "weekly", priority: "1.0" },
   { path: "/revit-mep", lastmod: "2026-11-03", changefreq: "monthly", priority: "0.9" },
   { path: "/cursuri-revit", lastmod: "2026-10-26", changefreq: "monthly", priority: "0.8" },
   { path: "/modelare-revit", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.8" },
@@ -46,17 +46,7 @@ const entries: SitemapEntry[] = [
   })),
   { path: "/despre", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.6" },
   { path: "/contact", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.8" },
-  {
-    path: "/politica-de-confidentialitate",
-    lastmod: LAST_MODIFIED,
-    changefreq: "yearly",
-    priority: "0.3",
-  },
-  { path: "/politica-cookies", lastmod: LAST_MODIFIED, changefreq: "yearly", priority: "0.3" },
-  { path: "/termeni-si-conditii", lastmod: LAST_MODIFIED, changefreq: "yearly", priority: "0.3" },
   { path: "/informatii-legale", lastmod: LAST_MODIFIED, changefreq: "yearly", priority: "0.3" },
-  { path: "/en/privacy", lastmod: LAST_MODIFIED, changefreq: "yearly", priority: "0.3" },
-  { path: "/en/cookies", lastmod: LAST_MODIFIED, changefreq: "yearly", priority: "0.3" },
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({
