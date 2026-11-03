@@ -4,8 +4,10 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
 import { CtaSection } from "@/components/site/CtaSection";
-import { canonicalUrl } from "@/lib/site-config";
+import { canonicalUrl, site } from "@/lib/site-config";
 import { getArticle, type ArticleSection } from "@/lib/blog";
+
+const organizationId = `${canonicalUrl("/")}#org`;
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -40,6 +42,18 @@ export const Route = createFileRoute("/blog/$slug")({
             description: article.description,
             datePublished: article.date,
             dateModified: article.updatedAt ?? article.date,
+            author: {
+              "@type": "Organization",
+              "@id": organizationId,
+              name: site.businessName,
+              url: canonicalUrl("/despre"),
+            },
+            publisher: {
+              "@type": "Organization",
+              "@id": organizationId,
+              name: site.businessName,
+              url: canonicalUrl("/"),
+            },
             inLanguage: "ro-RO",
             mainEntityOfPage: canonicalUrl(`/blog/${article.slug}`),
           }),
@@ -94,9 +108,20 @@ function ArticlePage() {
             </Link>
             <h1 className="display-xl mt-6 text-3xl md:text-5xl">{article.title}</h1>
             <div className="mt-6 flex flex-wrap items-center gap-4 border-b border-border-strong pb-6">
-              <span className="tech-label text-muted-foreground">
+              <time dateTime={article.date} className="tech-label text-muted-foreground">
                 {fmtDate.format(new Date(article.date))}
-              </span>
+              </time>
+              <Link
+                to="/despre"
+                className="tech-label text-muted-foreground underline underline-offset-4 hover:text-primary"
+              >
+                Autor: {site.businessName}
+              </Link>
+              {article.updatedAt && article.updatedAt !== article.date && (
+                <time dateTime={article.updatedAt} className="tech-label text-muted-foreground">
+                  Actualizat: {fmtDate.format(new Date(article.updatedAt))}
+                </time>
+              )}
               <span className="tech-label text-muted-foreground">
                 {article.readingTime} min de citit
               </span>
