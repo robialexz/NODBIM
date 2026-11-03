@@ -103,24 +103,31 @@ export const Route = createFileRoute("/instalatii-termice")({
         ],
       ]}
       related={["/revit-mep", "/hvac", "/autocad-dwg"]}
-      note="Serviciul constă în modelare și desenare tehnică pe baza soluției și informațiilor de proiect furnizate."
+      note={
+        "Serviciul principal constă în modelare și desenare tehnică pe baza soluției și " +
+        "informațiilor de proiect furnizate. Calculul hidraulic preliminar din caseta de mai sus " +
+        "este un serviciu separat."
+      }
     >
       <aside
         aria-labelledby="olx-sizing-heading"
         className="grid gap-6 border border-border-strong bg-background p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8"
       >
         <div>
-          <p className="tech-label text-muted-foreground">Anunț NOD BIM pe OLX</p>
+          <p className="tech-label text-muted-foreground">
+            Serviciu separat · Anunț NOD BIM pe OLX
+          </p>
           <h2 id="olx-sizing-heading" className="mt-3 text-2xl md:text-3xl">
-            Calcul hidraulic și dimensionare conducte pentru instalații HVAC
+            Calcul hidraulic preliminar pentru conducte de încălzire și răcire
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground/80">
-            Serviciu de calcul preliminar pentru conducte de apă în instalații de încălzire și
-            răcire, cu verificarea vitezelor și a pierderilor de presiune pe tronsoane.
+            Separat de modelarea și desenarea planșelor din această pagină, ofer un calcul
+            preliminar pentru conducte de apă în instalații de încălzire și răcire, pe baza datelor
+            primite.
           </p>
           <p className="mt-2 max-w-2xl text-xs leading-relaxed text-muted-foreground">
-            Livrabilul nu este proiect tehnic semnat și nu înlocuiește verificarea sau asumarea de
-            către proiectantul autorizat.
+            Calculul preliminar nu este proiectare de specialitate sau proiect tehnic verificat ori
+            semnat. Proiectantul autorizat validează soluția și își asumă dimensionarea finală.
           </p>
         </div>
         <a
@@ -129,7 +136,7 @@ export const Route = createFileRoute("/instalatii-termice")({
           rel="noopener noreferrer"
           className="btn btn-primary w-fit"
         >
-          Vezi anunțul de dimensionare pe OLX
+          Detalii și condiții pe OLX
         </a>
       </aside>
     </ServicePage>
