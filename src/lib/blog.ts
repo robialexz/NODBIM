@@ -29,6 +29,145 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "spatii-mep-revit-incaperi-arhitectura",
+    title:
+      "În Revit MEP, spațiile nu corespund încăperilor din arhitectură? Verifică limitele și fazele",
+    metaTitle: "Spații MEP în Revit: verifică limitele și fazele",
+    description:
+      "Verifică Room Bounding, fazele, limitele verticale și Space Naming când spațiile MEP nu corespund încăperilor din modelul arhitectural legat.",
+    date: "2026-11-03",
+    readingTime: 7,
+    tags: ["Revit MEP", "Spații Revit", "Room Bounding", "Model arhitectural", "Coordonare BIM"],
+    sections: [
+      {
+        paragraphs: [
+          "Într-un proiect Revit, încăperile arhitecturale (Rooms) și spațiile MEP (Spaces) sunt componente diferite. Modelul arhitectural poate conține Rooms, iar Spaces se creează în modelul MEP pentru cerințele stabilite de proiect. Dacă numerele, limitele sau vizibilitatea nu se potrivesc, verifică întâi legătura dintre modele, fazele și poziția fiecărui Space.",
+          "Pașii de mai jos țin de organizarea modelului și a documentației. Prezența unui Space sau a unui număr preluat din arhitectură nu confirmă dimensionarea instalației ori rezultatul unei analize de sarcini.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2027: About Spaces",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-MEPEng/files/GUID-B876A6F6-4091-40CA-ADCD-AA5D0EFC5EE3.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: informații Room/Space între discipline",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-ArchDesign/files/GUID-C58613B6-1792-4273-8F92-0309ABBF2CE8.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică dacă modelul arhitectural poate delimita spațiile",
+        paragraphs: [
+          "Spaces se află în fișierul gazdă MEP, chiar dacă pereții sau alte elemente de delimitare vin dintr-un model Revit legat. În modelul MEP, selectează linkul arhitectural și verifică în Type Properties opțiunea Room Bounding. Autodesk indică faptul că proprietatea este dezactivată implicit; fără ea, elementele linkului nu delimitează Spaces în gazdă.",
+          "Confirmă că ai selectat linkul și revizia așteptate și că elementele arhitecturale relevante trebuie să participe la delimitare. Activarea proprietății nu repară automat un model-sursă cu lipsuri sau cu limite diferite de tema proiectului.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: setează modelul legat ca Room-Bounding",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-7974F425-C353-450A-B4EF-6068EC045D8D.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: Spaces într-un model legat",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-42349A39-EF63-430A-A8EB-866A9B50DF15.htm",
+          },
+        ],
+      },
+      {
+        heading: "Potrivește faza Space-ului cu încăperea și vederea",
+        paragraphs: [
+          "Într-un flux cu model arhitectural legat, faza Space-ului trebuie să corespundă fazei Room-ului pe care îl reprezintă. Dacă denumirile fazelor diferă între proiecte, verifică maparea lor. Verifică și faza vederii gazdă: faza Space-ului trebuie să corespundă fazei vederii, iar schimbarea fazei vederii poate face Space-ul să nu mai apară în acea vedere.",
+          "Dacă lipsește doar dintr-o anumită planșă, compară mai întâi fazele linkului, Space-ului și vederii. Nu schimba faza proiectului doar pentru a face simbolul vizibil, fără să confirmi starea pe care trebuie să o documenteze planșa.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: faze și Spaces",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-523B69EB-738E-4AC4-991F-B78994A51CCC.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: Spaces într-un model legat",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-42349A39-EF63-430A-A8EB-866A9B50DF15.htm",
+          },
+        ],
+      },
+      {
+        heading: "Controlează conturul și înălțimea în plan și secțiune",
+        paragraphs: [
+          "Verifică fiecare zonă într-un plan și într-o secțiune care trece prin ea. În secțiune poți observa dacă limita verticală a Space-ului corespunde nivelului, plafonului sau offsetului cerut și dacă au rămas goluri ori fâșii neacoperite. Autodesk recomandă verificarea limitelor verticale și a contururilor Space-urilor, inclusiv după crearea lor automată.",
+          "La coordonarea cu arhitectura, ține cont că Spaces folosesc înălțimea de calcul definită în modelul arhitectural și sunt măsurate față de fața finisată a peretelui. Dacă un Space pare deplasat sau are o arie diferită, confirmă aceste reguli și limitele din plan înainte să corectezi geometria. Spaces se verifică în plan și secțiune; lipsa lor dintr-o vedere 3D nu dovedește singură că lipsesc din model.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: verificarea Spaces în plan și secțiune",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-20A10350-9EC3-4CE9-9533-35B79B3C1DC5.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: limitele unui Space până la nivelul superior",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-0B44335B-1EE7-4FCA-8A3D-AC71C32BB1A9.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: informații Room/Space între discipline",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-ArchDesign/files/GUID-C58613B6-1792-4273-8F92-0309ABBF2CE8.htm",
+          },
+        ],
+      },
+      {
+        heading: "Preia numele și numerele după ce verifici pozițiile",
+        paragraphs: [
+          "Instrumentul Space Naming poate atribui spațiilor MEP numele și numerele încăperilor arhitecturale. Poți actualiza numele, numerele sau ambele și poți alege toate nivelurile ori numai nivelurile indicate. Folosește-l după ce ai confirmat că pozițiile și fazele Spaces corespund cerințelor.",
+          "Revit raportează Room-ul asociat Space-ului pe baza poziției relative, nu printr-o legătură către un ID unic al Room-ului. Mai multe Spaces pot raporta identitatea aceluiași Room. De aceea, un nume copiat corect nu este suficient ca dovadă că spațiul ocupă conturul sau nivelul dorit.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: atribuie nume din modelul arhitectural",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-8EC27F94-BFDC-42D1-B3B8-7FA750F4F39A.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: informații Room/Space între discipline",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-ArchDesign/files/GUID-C58613B6-1792-4273-8F92-0309ABBF2CE8.htm",
+          },
+        ],
+      },
+      {
+        heading: "Reverifică spațiile după o revizie arhitecturală",
+        paragraphs: [
+          "O schimbare în modelul arhitectural nu șterge automat Spaces din modelul MEP. Unele pot rămâne fără contur, redundante sau ambigue. Confirmă ce revizie a linkului este încărcată, actualizează legătura conform fluxului biroului și verifică din nou conturul și fazele în plan și secțiune.",
+          "Într-un flux cu modele legate în ambele direcții, Autodesk notează că modificările nu se propagă automat; modelul MEP poate necesita deschidere, salvare și reîncărcarea legăturii pentru a reflecta schimbările arhitecturale. Păstrează separat lista reviziilor și criteriul folosit pentru acceptarea documentației.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: Spaces într-un model legat",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-42349A39-EF63-430A-A8EB-866A9B50DF15.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: informații Room/Space între discipline",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-ArchDesign/files/GUID-C58613B6-1792-4273-8F92-0309ABBF2CE8.htm",
+          },
+        ],
+      },
+      {
+        heading: "Checklist pentru preluarea modelului MEP",
+        paragraphs: [
+          "Înainte de modelare sau de refacerea documentației, confirmă împreună cu biroul care furnizează modelul arhitectural:",
+        ],
+        list: [
+          "Fișierul RVT, versiunea și revizia arhitecturală care trebuie folosite.",
+          "Nivelurile și corespondența fazelor între modelul arhitectural, modelul MEP și vederi.",
+          "Elementele care definesc limitele și dacă linkul trebuie să fie Room-Bounding.",
+          "Limitele verticale, înălțimea de calcul și eventualele spații separate care trebuie reprezentate.",
+          "Regulile de nume și numerotare, plus nivelurile pe care se aplică Space Naming.",
+          "Planul sau secțiunea de referință și fișierele de predare cerute: RVT, DWG și/sau PDF.",
+        ],
+        note: "Modelarea urmează tema și informațiile tehnice furnizate. Spațiile și listele din Revit nu înlocuiesc proiectarea, calculul sau verificarea de specialitate, care rămân la proiectantul responsabil.",
+      },
+      {
+        heading: "Predă modelul după criterii clare",
+        paragraphs: [
+          "Când ai nevoie de modelare și planșe Revit MEP pe baza unui proiect arhitectural existent, transmite fișierul-sursă, revizia, faza și regulile de documentare înainte de începere. Vezi serviciul de [modelare Revit MEP pentru birouri de proiectare](/revit-mep) și articolul conex despre [transferul standardelor de proiect Revit MEP](/blog/standarde-proiect-revit-mep-transfer).",
+        ],
+      },
+    ],
+  },
+  {
     slug: "predare-revit-mep-ifc-setari-export",
     title: "Predarea unui model Revit MEP în IFC: ce verifici înainte de export",
     metaTitle: "Predare Revit MEP în IFC: checklist de export",
