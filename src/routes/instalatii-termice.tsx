@@ -104,6 +104,34 @@ export const Route = createFileRoute("/instalatii-termice")({
       ]}
       related={["/revit-mep", "/hvac", "/autocad-dwg"]}
       note="Serviciul constă în modelare și desenare tehnică pe baza soluției și informațiilor de proiect furnizate."
-    />
+    >
+      <aside
+        aria-labelledby="olx-sizing-heading"
+        className="grid gap-6 border border-border-strong bg-background p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8"
+      >
+        <div>
+          <p className="tech-label text-muted-foreground">Anunț NOD BIM pe OLX</p>
+          <h2 id="olx-sizing-heading" className="mt-3 text-2xl md:text-3xl">
+            Calcul hidraulic și dimensionare conducte pentru instalații HVAC
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground/80">
+            Serviciu de calcul preliminar pentru conducte de apă în instalații de încălzire și
+            răcire, cu verificarea vitezelor și a pierderilor de presiune pe tronsoane.
+          </p>
+          <p className="mt-2 max-w-2xl text-xs leading-relaxed text-muted-foreground">
+            Livrabilul nu este proiect tehnic semnat și nu înlocuiește verificarea sau asumarea de
+            către proiectantul autorizat.
+          </p>
+        </div>
+        <a
+          href="https://www.olx.ro/d/311452970/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary w-fit"
+        >
+          Vezi anunțul de dimensionare pe OLX
+        </a>
+      </aside>
+    </ServicePage>
   ),
 });

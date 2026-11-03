@@ -129,6 +129,30 @@ export const Route = createFileRoute("/revit-mep")({
       ]}
       related={["/hvac", "/instalatii-termice", "/instalatii-electrice"]}
       note="Modelarea și desenarea se realizează pe baza temei și a informațiilor tehnice furnizate. Documentațiile care necesită verificare, autorizare sau semnătură de specialitate trebuie validate de profesioniști autorizați."
-    />
+    >
+      <aside
+        aria-labelledby="olx-revit-heading"
+        className="grid gap-6 border border-border-strong bg-background p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8"
+      >
+        <div>
+          <p className="tech-label text-muted-foreground">Anunț NOD BIM pe OLX</p>
+          <h2 id="olx-revit-heading" className="mt-3 text-2xl md:text-3xl">
+            Vezi serviciul Revit MEP pe OLX
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground/80">
+            Consultă detaliile serviciului și exemplele de planșe din anunțul pentru modelare Revit
+            MEP, instalații HVAC și termice.
+          </p>
+        </div>
+        <a
+          href="https://www.olx.ro/d/311453004/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary w-fit"
+        >
+          Deschide anunțul OLX
+        </a>
+      </aside>
+    </ServicePage>
   ),
 });

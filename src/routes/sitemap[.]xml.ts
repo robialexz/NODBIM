@@ -18,11 +18,11 @@ const LAST_MODIFIED = "2026-10-07";
 
 const entries: SitemapEntry[] = [
   { path: "/", lastmod: "2026-11-02", changefreq: "weekly", priority: "1.0" },
-  { path: "/revit-mep", lastmod: "2026-11-02", changefreq: "monthly", priority: "0.9" },
+  { path: "/revit-mep", lastmod: "2026-11-03", changefreq: "monthly", priority: "0.9" },
   { path: "/cursuri-revit", lastmod: "2026-10-26", changefreq: "monthly", priority: "0.8" },
   { path: "/modelare-revit", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.8" },
   { path: "/hvac", lastmod: "2026-10-12", changefreq: "monthly", priority: "0.8" },
-  { path: "/instalatii-termice", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.8" },
+  { path: "/instalatii-termice", lastmod: "2026-11-03", changefreq: "monthly", priority: "0.8" },
   { path: "/instalatii-electrice", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.8" },
   { path: "/autocad-dwg", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.7" },
   { path: "/pdf-in-dwg", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.7" },
