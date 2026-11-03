@@ -289,6 +289,31 @@ function Home() {
               </span>
             </Link>
           </div>
+          <nav aria-label="Servicii pe discipline" className="mt-8 border-t border-border pt-6">
+            <p className="tech-label text-muted-foreground">Servicii pe discipline</p>
+            <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+              <li>
+                <Link to="/hvac" className={textLink}>
+                  Modelare HVAC în Revit
+                </Link>
+              </li>
+              <li>
+                <Link to="/instalatii-termice" className={textLink}>
+                  Planșe de instalații termice
+                </Link>
+              </li>
+              <li>
+                <Link to="/instalatii-electrice" className={textLink}>
+                  Planșe de instalații electrice
+                </Link>
+              </li>
+              <li>
+                <Link to="/pdf-in-dwg" className={textLink}>
+                  Redesenare PDF în DWG
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </section>
 
         {/* COMPARAȚIE */}
