@@ -162,7 +162,17 @@ export const articles: Article[] = [
       {
         heading: "Predă modelul după criterii clare",
         paragraphs: [
-          "Când ai nevoie de modelare și planșe Revit MEP pe baza unui proiect arhitectural existent, transmite fișierul-sursă, revizia, faza și regulile de documentare înainte de începere. Vezi serviciul de [modelare Revit MEP pentru birouri de proiectare](/revit-mep) și articolul conex despre [transferul standardelor de proiect Revit MEP](/blog/standarde-proiect-revit-mep-transfer).",
+          "Când ai nevoie de modelare și planșe Revit MEP pe baza unui proiect arhitectural existent, trimite fișierul-sursă, revizia, faza și regulile de documentare înainte de începere. Poți consulta serviciul de modelare Revit MEP și ghidul despre transferul standardelor de proiect Revit MEP.",
+        ],
+        links: [
+          {
+            label: "Modelare Revit MEP pentru birouri de proiectare",
+            href: "/revit-mep",
+          },
+          {
+            label: "Transferul standardelor de proiect Revit MEP",
+            href: "/blog/standarde-proiect-revit-mep-transfer",
+          },
         ],
       },
     ],
@@ -3306,85 +3316,122 @@ export const articles: Article[] = [
   },
   {
     slug: "documentatie-instalatii-dtac-pt",
-    title:
-      "Documentația de instalații pentru autorizație (DTAC) și proiect tehnic (PTh): pași și greșeli care întârzie",
-    metaTitle: "Documentația de instalații pentru DTAC și PTh",
+    title: "Documentația de instalații pentru DTAC și PTh: conținut, roluri și predare",
+    metaTitle: "Documentație instalații DTAC și PTh: roluri și predare",
     description:
-      "Ce intră în DTAC la instalații, care e diferența față de PTh și ce greșeli blochează autorizarea. Ghid practic pentru beneficiari și arhitecți.",
+      "DTAC sau PTh la instalații? Ghid despre conținut, coordonare și semnătura proiectantului. NOD BIM modelează pe baza soluției tehnice furnizate.",
     date: "2026-08-24",
-    readingTime: 9,
-    tags: ["Autorizație", "Documentație", "Instalații"],
+    updatedAt: "2026-11-03",
+    readingTime: 8,
+    tags: ["DTAC", "Proiect tehnic", "Instalații"],
     sections: [
       {
         paragraphs: [
-          "Documentația tehnică de instalații este partea care întârzie cel mai des autorizațiile — nu pentru că ar fi greu de făcut, ci pentru că se pregătește pe ultima sută de metri și sub presiune. Acest ghid îți arată ce trebuie să conțină și unde se pierde timpul de fapt.",
+          "DTAC este documentația tehnică pentru autorizarea executării lucrărilor. Proiectul tehnic (PTh) dezvoltă soluția pentru etapa de execuție. La instalații, planșele, schemele și memoriile necesare depind de tema proiectului, soluția de specialitate, certificatul de urbanism și avizele aplicabile; o listă generică nu garantează un dosar complet.",
+          "Legea nr. 50/1991 descrie conținutul-cadru al documentației pentru autorizare și responsabilitățile profesioniștilor care o elaborează și semnează. Mai jos găsești ce trebuie coordonat înainte de desenare și unde se termină serviciul de modelare sau redactare.",
+        ],
+        links: [
+          {
+            label: "Legea nr. 50/1991 — Portal Legislativ (art. 9 și anexa nr. 1)",
+            href: "https://legislatie.just.ro/Public/DetaliiDocumentAfis/55794",
+          },
         ],
       },
       {
-        heading: "Ce intră în DTAC la instalații",
+        heading: "Ce se coordonează în documentația de instalații",
+        paragraphs: [
+          "Anexa nr. 1 la Legea nr. 50/1991 definește un conținut-cadru de piese scrise și desenate pentru documentația de autorizare. Pentru instalații, proiectantul stabilește piesele necesare în raport cu obiectivul, soluția tehnică și cerințele din certificatul de urbanism și avize.",
+          "În funcție de proiect, setul coordonat poate cuprinde memorii de specialitate, planuri cu trasee și echipamente, scheme și detalii cerute de temă sau avize. Confirmă lista exactă cu proiectantul coordonator înainte să începi planșele; modelul Revit sau fișierul DWG nu stabilește singur ce trebuie depus.",
+        ],
         list: [
-          "Planuri de instalații pe fiecare nivel, cu trasee, echipamente și simboluri standard",
-          "Scheme de principiu pe discipline (electrice, termice, ventilare)",
-          "Detalii tehnice relevante la scara uzuală",
-          "Legende cu simbolurile folosite, cote și adnotări clare",
-          "Notă de dimensionare pe instalațiile principale, acolo unde este cerută",
-        ],
-        paragraphs: [
-          "Toate piesele trebuie să fie coerente între ele — un plan care nu corespunde cu schema de principiu e primul motiv de respingere.",
+          "Aceeași revizie a arhitecturii, aceleași niveluri și aceleași axe în toate disciplinele.",
+          "Soluția tehnică și datele de intrare aprobate de proiectantul instalațiilor.",
+          "Cerințele din certificatul de urbanism, avize și tema beneficiarului.",
+          "Lista de piese, formatul, scara și regulile de cartuș cerute pentru predare.",
         ],
       },
       {
-        heading: "DTAC vs PTh: diferența reală",
+        heading: "DTAC și PTh au scopuri diferite",
         table: {
-          head: ["", "DTAC (autorizație)", "PTh (proiect tehnic)"],
-          rows: [
-            ["Scop", "Obținerea autorizației de construire", "Execuția propriu-zisă a lucrării"],
-            [
-              "Nivel de detaliu",
-              "Definitivarea conceptului, verificarea conformității",
-              "Detalii de execuție, liste de materiale, amplasări exacte",
-            ],
-            [
-              "Instalații",
-              "Trasee principale, scheme, echipamente",
-              "Trasee complete, cote, detalii de montaj, scheme unifilare",
-            ],
-            ["Cine o folosește", "Autoritatea de autorizare", "Executantul și verificatorii"],
-          ],
-        },
-      },
-      {
-        heading: "Greșelile care întârzie autorizarea",
-        table: {
-          head: ["Greșeală", "Impact"],
+          head: ["", "DTAC", "PTh"],
           rows: [
             [
-              "Planuri fără templet și indice (indicator)",
-              "Documentul se trimite înapoi pentru completare",
+              "Scop",
+              "Documentația pentru autorizarea lucrărilor",
+              "Dezvoltarea soluției tehnice pentru execuție",
             ],
             [
-              "Nerespectarea simbolurilor standard",
-              "Verificatorul nu poate urmări logica instalațiilor",
+              "Bază de lucru",
+              "Certificat de urbanism, avize și soluția de specialitate",
+              "Soluția aprobată și nivelul de detaliu cerut prin proiect",
             ],
             [
-              "Incoerență între planuri și scheme",
-              "Se cere refacerea pieselor sau explicații suplimentare",
+              "Ce se verifică",
+              "Concordanța pieselor cu cerințele de autorizare",
+              "Coordonarea informațiilor necesare executării lucrărilor",
             ],
-            ["Date incomplete despre echipamente", "Dimensionarea devine incertă, apar observații"],
             [
-              "Lipsa notelor și a detaliilor la zona unităților externe",
-              "Observații la fațade și amplasamente",
+              "Responsabilitate",
+              "Proiectanții de specialitate elaborează și semnează părțile care le revin",
+              "Proiectanții de specialitate elaborează și semnează părțile care le revin",
             ],
           ],
         },
+        note: "Tabelul arată diferența de scop, nu o listă universală de planșe. Conținutul exact se stabilește pentru fiecare proiect.",
       },
       {
-        heading: "Cum te pregătești ca să nu refaci nimic",
+        heading: "Greșeli care duc la revizii",
         paragraphs: [
-          "Pregătește de la început documentația ca un set coerent: același template, aceleași simboluri, numerotare unică a planșelor. Dacă arhitectura este la final, instalațiile se pot desena pe un ACAS curat, fără dubluri.",
-          "Aceasta este exact tipul de lucrare pe care o predau ca livrabil de sine stătător — documentația iese din model, cu planșe, legende și indicator gata de depunere.",
+          "Multe întârzieri apar când planșele sunt începute înainte ca informațiile de bază să fie stabilite. Verifică în special:",
         ],
-        links: [{ label: "Modelare Revit MEP și planșe de instalații", href: "/revit-mep" }],
+        list: [
+          "Arhitectura sau tema s-a schimbat, dar traseele și echipamentele au rămas pe o revizie veche.",
+          "Planurile, schemele și listele folosesc denumiri ori date diferite pentru același echipament.",
+          "Lipsesc scara, legenda, indicii de revizie sau formatul cerut pentru setul de predare.",
+          "Un model de coordonare este prezentat ca proiect complet, deși nu a fost verificat și asumat de proiectantul responsabil.",
+        ],
+      },
+      {
+        heading: "Cine elaborează și semnează proiectul",
+        paragraphs: [
+          "Articolul 9 din Legea nr. 50/1991 prevede că documentațiile tehnice și proiectele tehnice sunt elaborate de colective tehnice de specialitate și însușite și semnate de personal tehnic cu pregătirea cerută pentru domeniul respectiv. Semnătura angajează răspunderea persoanelor prevăzute de lege.",
+          "Prin urmare, o planșă DWG sau un model Revit nu devine documentație autorizată doar prin faptul că a fost desenat ori exportat. Confirmă cu proiectantul cine răspunde de soluție, calcule, verificări și semnare pentru fiecare disciplină.",
+        ],
+        links: [
+          {
+            label: "Legea nr. 50/1991 — art. 9, Portal Legislativ",
+            href: "https://legislatie.just.ro/Public/DetaliiDocumentAfis/55794",
+          },
+        ],
+      },
+      {
+        heading: "Ce poate livra NOD BIM",
+        paragraphs: [
+          "NOD BIM oferă modelare Revit MEP și pregătirea planșelor pe baza soluției și informațiilor tehnice furnizate de proiectant. Serviciul nu include proiect autorizat sau semnat, calcule de dimensionare ori verificare de specialitate. Responsabilitatea pentru soluție și documentația care se depune rămâne la proiectantul autorizat.",
+          "Pentru o ofertă clară, trimite fișierul-sursă, revizia arhitecturală, tema și lista de livrabile. Poți vedea serviciile relevante pentru modelare MEP, instalații termice, electrice și HVAC.",
+        ],
+        links: [
+          { label: "Modelare Revit MEP pentru birouri de proiectare", href: "/revit-mep" },
+          { label: "Planșe și modelare pentru instalații termice", href: "/instalatii-termice" },
+          {
+            label: "Planșe de instalații electrice în Revit și DWG",
+            href: "/instalatii-electrice",
+          },
+          { label: "Modelare și coordonare HVAC", href: "/hvac" },
+        ],
+      },
+      {
+        heading: "Checklist înainte să înceapă desenarea",
+        paragraphs: [
+          "Înainte de predare, confirmă în scris scopul setului și persoana care validează rezultatul tehnic. Aceste clarificări reduc refacerea planșelor și separă suportul de modelare de proiectarea de specialitate.",
+        ],
+        list: [
+          "Faza livrabilului: DTAC, PTh sau documentație de coordonare.",
+          "Proiectul și revizia de arhitectură care vor fi folosite.",
+          "Soluția, schemele, datele echipamentelor și notele primite de la proiectant.",
+          "Lista de planșe, formatele cerute și convențiile de cartuș și revizie.",
+          "Cine verifică, își însușește și semnează documentația fiecărei discipline.",
+        ],
       },
     ],
   },
