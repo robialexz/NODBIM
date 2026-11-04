@@ -29,6 +29,125 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "proprietati-revit-mep-blocate-view-template",
+    title: "Proprietățile unei vederi Revit MEP sunt blocate? Verifică View Template",
+    metaTitle: "Proprietăți Revit MEP blocate: verifică View Template",
+    description:
+      "Află de ce o proprietate Revit apare gri, când modifici View Template-ul și când îl elimini sau aplici doar setările pentru o singură vedere.",
+    date: "2026-11-04",
+    readingTime: 6,
+    tags: ["Revit MEP", "View Template", "Vederi Revit", "Planșe MEP"],
+    sections: [
+      {
+        paragraphs: [
+          "Într-o vedere Revit MEP, o proprietate afișată cu gri nu indică neapărat o eroare a fișierului. O cauză posibilă este că vederea este controlată de un View Template. Înainte să schimbi setările sau să refaci vederea, verifică proprietatea View Template și ce parametri include.",
+          "Diferența contează când pregătești mai multe planuri, secțiuni sau vederi de documentație: o modificare făcută în template-ul atribuit poate ajunge și în celelalte vederi care depind de el.",
+        ],
+      },
+      {
+        heading: "Identifică vederea și proprietatea care nu se poate edita",
+        paragraphs: [
+          "Selectează vederea din Project Browser sau din Properties Palette și notează proprietatea care apare blocată. Verifică mai întâi dacă setarea vizată este controlată de View Template.",
+          "Nu schimba imediat template-ul doar pentru a face activ un câmp. Confirmă că lucrezi pe vederea și proprietatea care trebuie corectate, mai ales când setul conține planuri pentru discipline sau scopuri diferite.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: View Properties",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/RevitLT-DocumentPresent/files/GUID-8BEBCEF0-CE2C-4635-8C7C-9D03503C0B79.htm",
+          },
+          {
+            label: "Autodesk: Cannot Change a View Property",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/RevitLT-Troubleshoot/files/GUID-3FD6E8C6-AA45-4A46-814C-859278455FD9.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică dacă template-ul controlează acea proprietate",
+        paragraphs: [
+          "Deschide setările View Template și consultă lista View Properties. Coloana Include arată ce proprietăți sunt preluate de template. Dacă proprietatea vizată este inclusă, template-ul o controlează; poți modifica valoarea acolo sau poți elimina acea proprietate din setul controlat.",
+          "Proprietățile excluse din template nu sunt suprascrise la aplicare, deci pot rămâne specifice fiecărei vederi. Alege această variantă numai dacă standardul proiectului permite diferențe între vederi.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: creează și configurează un View Template",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/RevitLT-Customize/files/GUID-A84B0E96-DD75-4D3E-AB24-C723839873FD.htm",
+          },
+        ],
+      },
+      {
+        heading: "Alege unde trebuie să se aplice corectura",
+        paragraphs: [
+          "Dacă setarea trebuie să fie consecventă în toate vederile asociate, modifică template-ul atribuit și verifică impactul înainte de confirmare. Autodesk precizează că o schimbare în template poate afecta și celelalte vederi dependente de el.",
+          "Dacă vederea are nevoie de o setare locală, verifică dacă proprietatea poate fi scoasă din Include. Poți și să alegi None la View Template: vederea păstrează setările curente, dar nu va mai primi modificările viitoare ale template-ului.",
+          "După o schimbare locală, compară vederea cu planșele similare. O abatere intenționată trebuie să fie clară pentru persoana care verifică setul.",
+        ],
+        links: [
+          {
+            label: "Autodesk: opțiuni când o proprietate de vedere este blocată",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/RevitLT-Troubleshoot/files/GUID-3FD6E8C6-AA45-4A46-814C-859278455FD9.htm",
+          },
+        ],
+      },
+      {
+        heading: "Nu confunda Apply cu Assign",
+        paragraphs: [
+          "Apply Template Properties to Current View copiază setările template-ului în vederea selectată, dar nu atribuie acel template ca proprietate a vederii. Modificările viitoare ale template-ului nu se transmit automat acelei vederi.",
+          "Assign leagă vederea de template. Modificările ulterioare ale proprietăților controlate se aplică vederilor asociate. Folosește Apply pentru o aplicare punctuală și Assign când vederea trebuie să urmeze standardul comun al proiectului.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: Apply a View Template",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Customize/files/GUID-DA062846-32C9-4FFF-9BC1-BBB548868ACA.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică și regula pentru vederile nou create",
+        paragraphs: [
+          "Un tip de vedere poate avea un View Template configurat pentru vederile noi. Verifică și opțiunea New views are dependent on template: ea stabilește dacă template-ul este atribuit vederilor noi și dacă modificările ulterioare se transmit la acestea.",
+          "Această verificare ajută când vederile noi primesc setări diferite de cele existente sau când schimbările de standard nu ajung la toate vederile așteptate.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: View Type Properties",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-7A68686B-2DA4-4ED0-AEF5-6BFBCDA93C89.htm",
+          },
+        ],
+      },
+      {
+        heading: "Checklist înainte să predai planșele MEP",
+        paragraphs: [
+          "Înainte să închizi o rundă de corecturi, verifică setările în contextul întregului set de documentație:",
+        ],
+        list: [
+          "Numele vederii și template-ul atribuit.",
+          "Proprietatea blocată și dacă este inclusă în template.",
+          "Dacă modificarea este comună mai multor vederi sau doar locală.",
+          "Dacă a fost folosit Apply sau Assign și ce se așteaptă la reviziile următoare.",
+          "Vederile nou create și regula template-ului din tipul lor.",
+          "Afișarea și tipărirea planurilor și secțiunilor relevante pe planșe.",
+        ],
+        note: "Un View Template organizează proprietățile și grafica vederii; nu verifică soluția tehnică, calculele sau dimensionarea instalației.",
+      },
+      {
+        heading: "Ai nevoie de corecturi în documentația Revit MEP?",
+        paragraphs: [
+          "Pentru o preluare clară, trimite fișierul RVT sau planurile de referință, vederea vizată, template-ul și setarea care trebuie schimbată. NOD BIM poate pregăti modelul și planșele HVAC, termice sau electrice pe baza soluției și a informațiilor furnizate. Proiectarea, calculele și verificarea de specialitate rămân la proiectantul responsabil.",
+        ],
+        links: [
+          {
+            label: "Modelare Revit MEP pentru birouri de proiectare",
+            href: "/revit-mep",
+          },
+          {
+            label: "Ce trebuie să conțină un template Revit MEP",
+            href: "/blog/template-revit-mep-bun",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "spatii-mep-revit-incaperi-arhitectura",
     title:
       "În Revit MEP, spațiile nu corespund încăperilor din arhitectură? Verifică limitele și fazele",
