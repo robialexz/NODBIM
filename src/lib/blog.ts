@@ -29,6 +29,135 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "revit-2027-3-autodesk-assistant-dynamo",
+    title:
+      "Revit 2027.3 poate genera grafuri Dynamo dintr-un prompt. Cum îl testezi pe documentația MEP?",
+    metaTitle: "Revit 2027.3: AI în Dynamo pentru documentația MEP",
+    description:
+      "Autodesk Assistant poate crea și modifica grafuri Dynamo în Revit 2027.3. Vezi versiunile necesare, un test de nomenclatură MEP și verificările înainte de producție.",
+    date: "2026-11-05",
+    readingTime: 8,
+    tags: ["Revit MEP", "Dynamo", "Autodesk Assistant", "Automatizare BIM"],
+    sections: [
+      {
+        paragraphs: [
+          "În Revit 2027.3, Autodesk Assistant poate lucra direct în spațiul Dynamo și poate crea sau modifica grafuri pe baza unei instrucțiuni scrise în limbaj natural. Asta schimbă un pas concret din automatizare: poți descrie rezultatul urmărit, apoi inspectezi graful vizibil și editabil înainte să îl rulezi.",
+          "Noutatea merită testată pentru sarcini repetitive de documentare, dar nu trebuie confundată cu proiectarea automată a instalațiilor. Un graf generat de AI rămâne o automatizare care cere verificare, iar modelul Revit nu se schimbă până când graful nu este rulat.",
+        ],
+        links: [
+          {
+            label:
+              "Autodesk Support: crearea grafurilor Dynamo cu Autodesk Assistant în Revit 2027",
+            href: "https://help.autodesk.com/view/RVT/2027/ENU/?caas=caas/sfdcarticles/sfdcarticles/Create-Dynamo-graphs-with-Autodesk-Assistant-in-Revit-2027-3.html",
+          },
+        ],
+      },
+      {
+        heading: "Ce s-a schimbat în Revit 2027.3",
+        paragraphs: [
+          "În documentația Autodesk datată 23 septembrie 2026, schimbarea este descrisă astfel: în versiunea inițială Revit 2027, Assistant putea oferi îndrumare din Help despre grafuri Dynamo, dar nu putea genera graful propriu-zis. Începând cu Revit 2027.3 și Dynamo 4.2.x, poate lucra direct cu spațiul Dynamo pentru a crea sau modifica grafuri pornind de la o cerere în limbaj natural.",
+          "Documentația Autodesk folosește ca exemplu redenumirea tuturor vederilor de plan cu prefixul „AR_”. Graful rezultat rămâne la vedere, astfel încât poți inspecta nodurile, rafina pașii și valida automatizarea înainte de rulare. Autodesk precizează că nu este necesară instalarea separată a DynamoMCP.",
+        ],
+        links: [
+          {
+            label: "Autodesk Support: capabilități, pași și limite pentru Assistant în Dynamo",
+            href: "https://help.autodesk.com/view/RVT/2027/ENU/?caas=caas/sfdcarticles/sfdcarticles/Create-Dynamo-graphs-with-Autodesk-Assistant-in-Revit-2027-3.html",
+          },
+          {
+            label: "Autodesk: noutățile Dynamo 4.2.1",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-WhatsNew/files/GUID-ECD5B134-5A8A-4223-9DBA-565D708A4F47.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică versiunile și accesul înainte să începi",
+        paragraphs: [
+          "Înainte să formulezi cererea, verifică instalarea efectivă. Funcția descrisă de Autodesk cere Revit 2027.3 sau o versiune ulterioară compatibilă și Dynamo for Revit 4.2.x sau o versiune ulterioară. Interfața Autodesk Assistant și funcțiile AI pot varia în funcție de regiune.",
+        ],
+        table: {
+          head: ["Verificare", "Cerință documentată"],
+          rows: [
+            ["Revit", "Revit 2027.3 sau o versiune ulterioară compatibilă."],
+            ["Dynamo", "Dynamo for Revit 4.2.x sau mai recent."],
+            [
+              "Conexiune",
+              "Este necesar acces la rețea; Assistant nu funcționează când Dynamo este setat pe NoNetworkMode.",
+            ],
+            [
+              "Pachete externe",
+              "Assistant poate folosi nodurile pachetelor deja instalate, dar nu poate instala sau actualiza pachete.",
+            ],
+          ],
+        },
+        links: [
+          {
+            label: "Autodesk Support: cerințe și limitări",
+            href: "https://help.autodesk.com/view/RVT/2027/ENU/?caas=caas/sfdcarticles/sfdcarticles/Create-Dynamo-graphs-with-Autodesk-Assistant-in-Revit-2027-3.html",
+          },
+        ],
+      },
+      {
+        heading: "Un test MEP util: nomenclatura vederilor",
+        paragraphs: [
+          "Redenumirea vederilor este exemplul oficial Autodesk și poate deveni un test mic pentru standardul unui birou MEP. În loc să pornești pe proiectul activ, duplică fișierul de test și stabilește dinainte ce vederi trebuie incluse, ce prefix cere standardul și ce nume trebuie păstrate neschimbate.",
+          "O cerere-pilot poate suna astfel: „În această copie, pregătește un graf care adaugă prefixul convenit numai vederilor de plan MEP care nu îl au deja. Păstrează restul numelui și exclude celelalte vederi. Arată-mi selecția și pașii grafului înainte să îl rulezi.” Este un scenariu de test propus aici, nu un rezultat verificat de NOD BIM și nici un exemplu garantat de Autodesk pentru nomenclatura MEP.",
+          "Dacă Assistant nu identifică exact vederile cerute sau nu poate exprima regula de denumire în noduri ușor de inspectat, oprește testul și clarifică selecția. Nu compensa o regulă ambiguă printr-o rulare pe toate vederile proiectului.",
+        ],
+      },
+      {
+        heading: "Ce verifici în graf și după rulare",
+        paragraphs: [
+          "Autodesk recomandă revizuirea și validarea fluxurilor generate de AI înainte de folosirea în producție. Pentru testul de nomenclatură, criteriile de acceptare trebuie stabilite de birou înainte de execuție:",
+        ],
+        list: [
+          "Graful selectează numai vederile prevăzute de standard și exclude vederile arhitecturale sau alte categorii care nu fac parte din test.",
+          "Prefixul nu se dublează la vederile care îl au deja, iar restul numelui rămâne intact.",
+          "Poți urmări în graful editabil ce valori sunt citite și ce parametri sunt modificați.",
+          "După rulare, compari lista de nume înainte și după și confirmi fiecare diferență în modelul de test.",
+          "Abia după verificarea rezultatului decizi dacă graful poate fi refolosit într-un flux controlat de birou.",
+        ],
+        note: "Criteriile de mai sus sunt o metodă de verificare propusă pentru pilotul MEP. Autodesk nu certifică prin generarea grafului că regulile interne ale unui birou au fost înțelese corect.",
+        links: [
+          {
+            label:
+              "Autodesk Support: graful rămâne editabil și trebuie testat înainte de producție",
+            href: "https://help.autodesk.com/view/RVT/2027/ENU/?caas=caas/sfdcarticles/sfdcarticles/Create-Dynamo-graphs-with-Autodesk-Assistant-in-Revit-2027-3.html",
+          },
+        ],
+      },
+      {
+        heading: "Unde se oprește automatizarea",
+        paragraphs: [
+          "Assistant poate explica și depana grafuri, conecta noduri, manipula date și construi geometrie. Aceste capabilități accelerează pregătirea unei automatizări; nu confirmă dacă soluția HVAC, termică sau electrică este corectă pentru proiect și nu înlocuiesc verificarea proiectantului responsabil.",
+          "Păstrează graful într-o copie de test până când logica, selecția și rezultatul sunt clare. Dacă automatizarea folosește noduri din pachete externe, acestea trebuie să fie deja instalate. Conexiunea la rețea și disponibilitatea funcției în regiunea utilizatorului sunt și ele condiții reale, nu detalii de ignorat.",
+        ],
+        links: [
+          {
+            label: "Autodesk: capabilitățile Assistant în Dynamo 4.2.1",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-WhatsNew/files/GUID-ECD5B134-5A8A-4223-9DBA-565D708A4F47.htm",
+          },
+          {
+            label: "Autodesk Support: validare, rețea și pachete instalate",
+            href: "https://help.autodesk.com/view/RVT/2027/ENU/?caas=caas/sfdcarticles/sfdcarticles/Create-Dynamo-graphs-with-Autodesk-Assistant-in-Revit-2027-3.html",
+          },
+        ],
+      },
+      {
+        heading: "Ce înseamnă noutatea pentru un set de planșe MEP",
+        paragraphs: [
+          "Pentru un birou de proiectare, valoarea nu este „AI în Revit” în abstract, ci timpul și controlul asupra unei sarcini repetitive concrete. Începe cu un singur flux cu reguli explicite, număr mic de vederi și rezultat ușor de comparat. Dacă pilotul economisește pași fără să ascundă modificările, poate fi documentat și repetat de echipă; dacă regulile rămân ambigue, automatizarea nu este încă pregătită pentru modelul de producție.",
+          "NOD BIM poate pregăti modelare și documentație Revit MEP pe baza soluției și informațiilor furnizate de proiectant. Serviciul nu include proiectarea instalațiilor, calcule, validarea de specialitate sau semnarea proiectului.",
+        ],
+        links: [
+          {
+            label: "Modelare Revit MEP pentru birouri de proiectare",
+            href: "/revit-mep",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "dwg-legat-revit-mep-vizibilitate-straturi",
     title:
       "DWG-ul legat nu apare corect în planul Revit MEP? Verifică vederea, straturile și poziția",
