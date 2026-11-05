@@ -29,6 +29,149 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "dwg-legat-revit-mep-vizibilitate-straturi",
+    title:
+      "DWG-ul legat nu apare corect în planul Revit MEP? Verifică vederea, straturile și poziția",
+    metaTitle: "DWG în Revit MEP: verifică vizibilitatea și poziția",
+    description:
+      "Un checklist pentru fundalurile DWG care lipsesc dintr-o vedere Revit MEP, au straturi absente, scară greșită sau poziție neașteptată.",
+    date: "2026-11-05",
+    readingTime: 7,
+    tags: ["Revit MEP", "DWG", "Legături CAD", "Coordonare BIM"],
+    sections: [
+      {
+        paragraphs: [
+          "Un DWG folosit ca fundal pentru documentația MEP poate lipsi dintr-un plan, poate afișa numai o parte din desen sau poate apărea la o scară ori într-o poziție neașteptată. Aceste simptome au verificări diferite: identifică mai întâi vederea în care a fost plasat fișierul, apoi straturile încărcate, unitățile și regula de poziționare.",
+          "Ghidul tratează legătura CAD ca referință pentru modelare și documentare. Un fundal DWG nu confirmă soluția de proiectare, calculele de instalații sau conformitatea tehnică.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: legarea unui fișier CAD",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/RevitLT-Model/files/GUID-5A021344-77C9-449B-8428-EA5C8B786E09.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: importarea și legarea fișierelor CAD",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-630EC38E-37FE-41BC-8369-2238825BF4F6.htm",
+          },
+        ],
+      },
+      {
+        heading: "Confirmă dacă DWG-ul a fost legat în vederea așteptată",
+        paragraphs: [
+          "Selectează DWG-ul în vederea în care ar trebui să apară și verifică proprietățile instanței. Opțiunea „Current view only” limitează legătura la vederea curentă; fișierul introdus astfel nu apare automat în celelalte vederi. Dacă desenul lipsește doar dintr-un plan sau dintr-o secțiune, verifică această opțiune și vederea în care a fost plasat.",
+          "Pentru o referință folosită în mai multe vederi 2D, verifică dacă DWG-ul a fost legat fără limitarea la vederea curentă. Înainte să îl adaugi din nou, stabilește dacă trebuie să apară în mai multe vederi sau numai pe planșa respectivă.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: opțiunile de import și legare CAD",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-D184A004-D0BF-44D1-9C02-99480B129CAD.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică dacă straturile necesare au fost încărcate",
+        paragraphs: [
+          "La legare, Revit permite încărcarea tuturor straturilor, numai a celor vizibile sau a unei selecții. Dacă straturile arhitecturale ori de instalații necesare nu apar, verifică opțiunea aleasă la inserare și confirmă în DWG că geometria se află pe straturile așteptate.",
+          "Dacă legătura a fost creată cu straturile vizibile sau cu o selecție specificată, reîncărcarea fișierului nu adaugă straturile omise la prima legare. Pentru a include altele, Autodesk indică eliminarea legăturii și reluarea ei cu selecția potrivită. Înainte de această schimbare, notează setările de plasare și verifică efectul în vederea de lucru.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: opțiunile pentru straturi la import și legare",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-D184A004-D0BF-44D1-9C02-99480B129CAD.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: referință pentru importul și legarea CAD",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-8B4759B9-4E81-4980-AF92-20F1D64D1A03.htm",
+          },
+        ],
+      },
+      {
+        heading: "Compară unitățile DWG cu unitatea aleasă în Revit",
+        paragraphs: [
+          "O scară vizibil greșită poate proveni din unitățile desenului sau din unitatea aleasă la import și legare. Verifică unitățile declarate în fișierul DWG și compară-le cu opțiunea din Revit. Dacă unitatea este stabilită prin standardul proiectului, selecteaz-o explicit; folosește detectarea automată numai când este potrivită sursei primite.",
+          "Nu corecta dimensiunea prin redimensionări succesive înainte să afli dacă fișierul sursă este desenat în milimetri, centimetri, metri sau altă unitate. O scalare manuală poate ascunde nepotrivirea și poate afecta verificările ulterioare.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: unități și opțiuni de import/legare CAD",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-D184A004-D0BF-44D1-9C02-99480B129CAD.htm",
+          },
+        ],
+      },
+      {
+        heading: "Alege poziționarea în funcție de coordonatele convenite",
+        paragraphs: [
+          "Opțiunea de poziționare stabilește relația dintre geometria CAD și modelul gazdă. „Auto - Origin to Origin” aliniază originea WCS a fișierului CAD cu originea internă Revit. „Auto - Center to Center” folosește centrele cutiilor geometriei vizibile în vederea activă; poate fi util când originea sursei nu este cunoscută, dar centrul calculat se poate schimba dacă se modifică extinderea geometriei. Coordonatele partajate sunt potrivite când echipa a convenit deja aceeași poziție între fișiere.",
+          "Dacă DWG-ul apare într-un loc neașteptat, confirmă regula de coordonate agreată pentru proiect și opțiunea folosită la legare. Nu muta desenul după un reper ales doar vizual atunci când poziționarea trebuie să respecte coordonatele partajate.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: poziționarea geometriei CAD",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-C922A152-0A30-4E27-BED2-BCE9FF2E5E30.htm",
+          },
+        ],
+      },
+      {
+        heading: "Folosește simptomele pentru a restrânge verificarea",
+        table: {
+          head: ["Simptom", "Verificare inițială"],
+          rows: [
+            [
+              "DWG-ul lipsește din alte vederi",
+              "Verifică dacă a fost legat cu „Current view only”.",
+            ],
+            [
+              "Unele categorii de desen lipsesc",
+              "Verifică straturile alese la legare; reîncărcarea nu readaugă straturile omise.",
+            ],
+            [
+              "Desenul apare prea mare sau prea mic",
+              "Compară unitățile DWG cu unitatea setată în Revit.",
+            ],
+            ["Desenul apare deplasat", "Verifică metoda de poziționare și coordonatele convenite."],
+            [
+              "Este necesară o revizie DWG",
+              "Verifică starea și calea din Manage Links; reîncarcă versiunea salvată când sursa a fost actualizată.",
+            ],
+          ],
+        },
+        paragraphs: [
+          "Manage Links arată starea legăturii și calea salvată a fișierului. Aceste verificări izolează cauza probabilă, dar nu înlocuiesc confirmarea reviziei și coordonatelor de către echipa care furnizează sursa.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: administrarea legăturilor CAD",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-630EC38E-37FE-41BC-8369-2238825BF4F6.htm",
+          },
+          {
+            label: "Autodesk Revit 2026: Manage Links Dialog",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-06B93886-3D55-4967-ABE2-4B6B262663CD.htm",
+          },
+        ],
+      },
+      {
+        heading: "Păstrează referința și predarea verificabile",
+        paragraphs: [
+          "Când sunt așteptate revizii ale DWG-ului, legarea păstrează o referință externă pe care o poți administra și reîncărca. Autodesk descrie legarea drept potrivită când trebuie menținută conexiunea cu fișierul; importarea este o alegere diferită și nu oferă același flux de actualizare prin reîncărcarea legăturii.",
+          "La predare, consemnează fișierul sursă și revizia primită, vederea sau vederile în care se folosește, straturile relevante, unitățile și regula de poziționare agreată. Dacă sursa se schimbă, aceste informații ajută la compararea noii versiuni și la confirmarea rezultatului în documentație.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026: despre importarea și legarea CAD",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-630EC38E-37FE-41BC-8369-2238825BF4F6.htm",
+          },
+        ],
+      },
+      {
+        heading: "Modelare și documentare pe baza surselor furnizate",
+        paragraphs: [
+          "Pentru pregătirea unui model Revit MEP și a planșelor, NOD BIM poate lucra pe baza fișierelor și indicațiilor tehnice furnizate, cu referința DWG documentată potrivit setărilor convenite. Activitatea de modelare și documentare rămâne separată de proiectarea instalațiilor, calcule, verificarea de specialitate și semnarea documentației.",
+        ],
+        links: [{ label: "Servicii Revit MEP", href: "/revit-mep" }],
+      },
+    ],
+  },
+  {
     slug: "proprietati-revit-mep-blocate-view-template",
     title: "Proprietățile unei vederi Revit MEP sunt blocate? Verifică View Template",
     metaTitle: "Proprietăți Revit MEP blocate: verifică View Template",
