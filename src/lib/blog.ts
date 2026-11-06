@@ -158,6 +158,144 @@ export const articles: Article[] = [
     ],
   },
   {
+    slug: "revit-2026-5-1-net10-checklist-addin-mep",
+    title: "Revit 2026.5.1 înainte de predarea planșelor MEP: verifică add-in-urile și exportul",
+    metaTitle: "Revit 2026.5.1 și .NET 10: checklist MEP",
+    description:
+      "Revit 2026.5 a trecut la .NET 10, iar suportul Microsoft pentru .NET 8 și .NET 9 se încheie la 10 noiembrie 2026. Verifică add-in-urile și exportul MEP înainte de actualizare.",
+    date: "2026-11-06",
+    readingTime: 7,
+    tags: ["Revit MEP", "Revit 2026", ".NET 10", "Add-in Revit", "Predare BIM"],
+    sections: [
+      {
+        paragraphs: [
+          "Dacă un model Revit MEP este aproape de predare, actualizarea stației poate afecta un pas practic: încărcarea unui add-in folosit la verificarea modelului, organizarea planșelor sau export. Autodesk a trecut Revit 2026 la .NET 10 în versiunea 2026.5; actualizarea 2026.5.1, lansată la 27 octombrie 2026, este cumulativă și include această tranziție.",
+          "Microsoft încheie suportul pentru .NET 8 și .NET 9 la 10 noiembrie 2026. Aceasta este o dată de suport pentru platformele .NET, nu o garanție că un anumit add-in va eșua sau că un model Revit va deveni inaccesibil. Verifică versiunea Revit și instrumentele folosite înainte să actualizezi stația pe care se finalizează documentația.",
+        ],
+        links: [
+          {
+            label: "Autodesk: cerințe Revit pentru tranziția la .NET 10",
+            href: "https://help.autodesk.com/view/RVT/2025/ENU/?caas=caas/sfdcarticles/sfdcarticles/Revit--Requirements-for-products-affected-by-the-Microsoft--NET-10-transition.html",
+          },
+          {
+            label: "Microsoft Lifecycle: datele de suport pentru .NET",
+            href: "https://learn.microsoft.com/en-us/lifecycle/products/microsoft-net-and-net-core",
+          },
+        ],
+      },
+      {
+        heading: "Identifică runtime-ul după versiunea Revit",
+        paragraphs: [
+          "Verifică versiunea și build-ul din Help > About; anul din numele produsului nu este suficient pentru a alege varianta unui add-in. Autodesk indică .NET 10 pentru Revit 2026.5 și versiunile ulterioare, iar cerințele de sistem listează .NET 8 pentru versiunile anterioare din seria 2026.",
+          "Revit 2026.5.1 afișează build-ul 26.5.10.38. Tranziția a început în 2026.5, nu în 2026.5.1; update-ul .5.1 este cumulativ.",
+        ],
+        table: {
+          head: ["Versiune Revit", "Runtime documentat", "Verificare"],
+          rows: [
+            [
+              "Revit 2026.4.2 și versiunile anterioare din seria 2026",
+              ".NET 8",
+              "Folosește varianta add-in-ului compatibilă cu versiunea instalată.",
+            ],
+            [
+              "Revit 2026.5 / 2026.5.1",
+              ".NET 10",
+              "Verifică suportul add-in-urilor pentru .NET 10.",
+            ],
+            ["Revit 2027", ".NET 10", "Runtime-ul .NET 10 este inclus în Revit 2027."],
+          ],
+        },
+        links: [
+          {
+            label: "Autodesk Revit 2026.5.1: note de lansare și build",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/RevitReleaseNotes/files/2026updates/RevitReleaseNotes_2026updates_2026_5_1_html.html",
+          },
+          {
+            label: "Autodesk: cerințe de sistem Revit 2026 și .NET",
+            href: "https://help.autodesk.com/view/RVT/2026/ENU/?caas=caas/sfdcarticles/sfdcarticles/System-requirements-for-Revit-2026-products.html",
+          },
+          {
+            label: "Autodesk: migrarea Revit 2027 la .NET 10",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-WhatsNew/files/GUID-8D7A4715-EAF8-4BD1-BE78-061F900D0BCE.htm",
+          },
+        ],
+      },
+      {
+        heading: "Compatibilitatea add-in-urilor nu este universală",
+        paragraphs: [
+          "Autodesk spune că tranziția nu schimbă API-ul produselor desktop: se schimbă runtime-ul de la .NET 8 la .NET 10. Add-in-urile existente ar trebui în general să continue să funcționeze; cele afectate de schimbări de runtime pot necesita recompilare și retargetare la .NET 10. Nu presupune nici că toate add-in-urile se vor defecta, nici că fiecare combinație a fost deja verificată pentru stația ta.",
+          "Pentru unele add-in-uri Autodesk există versiuni separate. Autodesk identifică varianta .NET 8 prin „Legacy”, iar pe cea .NET 10 prin „2026.5” sau „2025.5”. Pentru add-in-uri terțe ori dezvoltate intern, verifică suportul la autor. Dacă Revit se închide sau un instrument nu se încarcă, izolează problema într-un mediu de test înainte de a-l reactiva pe stația de producție.",
+        ],
+        list: [
+          "Inventariază add-in-urile folosite la verificarea modelului, pregătirea planșelor și exportul livrabilelor.",
+          "Notează versiunea fiecăruia și confirmă explicit suportul pentru Revit 2026.5 / .NET 10.",
+          "Verifică dacă un add-in Autodesk are variante marcate „Legacy” și „2026.5”.",
+          "Nu instala varianta .NET 10 pe Revit 2026.4 presupunând că versiunile sunt interschimbabile.",
+        ],
+        links: [
+          {
+            label: "Autodesk Developer Blog: actualizarea .NET 10 pentru produsele desktop",
+            href: "https://blog.autodesk.io/autodesk-desktop-products-2025-2026-net-10-updates/",
+          },
+          {
+            label: "Autodesk: variantele .NET 8 și .NET 10 pentru add-in-uri Revit",
+            href: "https://help.autodesk.com/view/RVT/2025/ENU/?caas=caas/sfdcarticles/sfdcarticles/Revit--Requirements-for-products-affected-by-the-Microsoft--NET-10-transition.html",
+          },
+        ],
+      },
+      {
+        heading: "Ce s-a reparat pentru fluxurile MEP în 2026.5.1",
+        paragraphs: [
+          "Notele Autodesk includ două remedieri practice pentru MEP: editarea circuitelor pe modele cu sisteme electrice mari are performanță îmbunătățită, iar în anumite vederi cu MEP Hidden lines a fost corectată lipsa conturului exterior al unei conducte, al unui canal sau al unui fir la imprimare ori export vectorial, când era paralel cu un element aflat la altă înălțime și în interiorul distanței specificate.",
+          "Remedierea nu înseamnă că fiecare proiect va avea o diferență vizibilă. Dacă editarea circuitelor sau această configurație de vedere face parte din predarea ta, compară un rezultat reprezentativ înainte și după update și confirmă-l față de cerința proiectului.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026.5.1: remedieri pentru circuite și MEP Hidden lines",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/RevitReleaseNotes/files/2026updates/RevitReleaseNotes_2026updates_2026_5_1_html.html",
+          },
+        ],
+      },
+      {
+        heading: "Checklist înainte de rollout",
+        paragraphs: [
+          "Testează actualizarea pe o stație pilot și pe o copie de model pregătită conform procedurii biroului. 2026.5.1 nu poate fi dezinstalat pentru a readuce instalarea Revit la starea anterioară update-ului, deci aprobă rollout-ul numai după ce fluxurile necesare au trecut testul.",
+        ],
+        list: [
+          "Înregistrează build-ul Revit și add-in-urile folosite la livrare.",
+          "Instalează update-ul și versiunile de add-in confirmate pentru stația pilot.",
+          "Deschide copia modelului și verifică încărcarea add-in-urilor și disponibilitatea comenzilor necesare.",
+          "Dacă editarea circuitelor intră în flux, verifică un model care conține sistemele relevante.",
+          "Exportă o planșă MEP reprezentativă în PDF și inspectează liniile, mai ales când folosești MEP Hidden lines și export vectorial.",
+          "Dacă folosești Navisworks 2026, verifică perechea documentată de Autodesk: Navisworks 2026.3 și Revit Interoperability 2026.5 sau o versiune ulterioară.",
+          "Notează build-ul, add-in-urile verificate și rezultatul pilotului înainte să actualizezi celelalte stații.",
+        ],
+        links: [
+          {
+            label: "Autodesk: compatibilitatea Revit Interoperability și Navisworks",
+            href: "https://help.autodesk.com/view/RVT/2025/ENU/?caas=caas/sfdcarticles/sfdcarticles/Revit--Requirements-for-products-affected-by-the-Microsoft--NET-10-transition.html",
+          },
+          {
+            label: "Autodesk Revit 2026.5.1: nota privind dezinstalarea",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/RevitReleaseNotes/files/2026updates/RevitReleaseNotes_2026updates_2026_5_1_html.html",
+          },
+        ],
+      },
+      {
+        heading: "Documentația MEP rămâne legată de soluția proiectantului",
+        paragraphs: [
+          "Compatibilitatea stației și testarea add-in-urilor țin de mediul software; nu confirmă soluția de instalații. NOD BIM poate pregăti modelare și documentație Revit MEP pe baza soluției și informațiilor furnizate de proiectant. Proiectarea, calculele, verificarea de specialitate și semnătura rămân responsabilitatea proiectantului autorizat.",
+        ],
+        links: [
+          {
+            label: "Modelare și documentație Revit MEP pentru birouri de proiectare",
+            href: "/revit-mep",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "dwg-legat-revit-mep-vizibilitate-straturi",
     title:
       "DWG-ul legat nu apare corect în planul Revit MEP? Verifică vederea, straturile și poziția",
