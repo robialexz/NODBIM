@@ -29,6 +29,183 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "autocad-2027-1-pdfimport-pdfattach-probleme",
+    title:
+      "PDFIMPORT se blochează în AutoCAD? Ce rezolvă update-ul 2027.1 și când trebuie redesenat DWG-ul",
+    metaTitle: "PDFIMPORT și AutoCAD 2027.1: verificări pentru PDF în DWG",
+    description:
+      "Autodesk documentează o remediere pentru blocări ocazionale la PDFIMPORT și PDFATTACH în AutoCAD 2027.1. Verifică versiunea, scara și ce obiecte a preluat importul.",
+    date: "2026-11-08",
+    readingTime: 7,
+    tags: ["AutoCAD", "PDF în DWG", "PDFIMPORT", "DWG", "Documentație CAD"],
+    sections: [
+      {
+        paragraphs: [
+          "Ai un plan PDF pe care trebuie să-l predai în format DWG editabil, dar AutoCAD se închide când rulezi PDFIMPORT sau PDFATTACH? În notele AutoCAD 2027.1, Autodesk consemnează o remediere pentru blocări ocazionale la importul sau atașarea anumitor fișiere PDF.",
+          "Remedierea privește blocarea aplicației. Nu înseamnă că orice PDF va deveni automat un DWG curat, la scară și ușor de editat. Separă mai întâi o închidere neașteptată de un import care se termină, dar produce geometrie fragmentată, imagini raster sau text transformat în contururi.",
+        ],
+        links: [
+          {
+            label: "Autodesk: remedieri incluse în AutoCAD 2027.1",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-ReleaseNotes/files/autocad_2027_updates/AUTOCAD_2027_1_FIXED_ISSUES.html",
+          },
+        ],
+      },
+      {
+        heading: "Ce confirmă actualizarea AutoCAD 2027.1",
+        paragraphs: [
+          "Notele Autodesk sunt datate 27 iulie 2026 și includ între problemele remediate închiderile ocazionale la importul sau atașarea anumitor PDF-uri prin PDFIMPORT sau PDFATTACH. Formularea este limitată la anumite fișiere și la o problemă ocazională; nu promite că update-ul rezolvă orice eroare de import.",
+          "La verificarea din 8 noiembrie 2026, pagina Autodesk pentru actualizările AutoCAD 2027 listează 2027.1 Update. După aplicare, produsul afișează versiunea X.118.0.0 AutoCAD 2027.1 în fereastra About. Pentru AutoCAD MEP, Electrical și celelalte toolset-uri, Autodesk indică instalarea și a update-urilor aplicabile produselor respective.",
+        ],
+        table: {
+          head: ["Ce verifici", "Ce indică Autodesk"],
+          rows: [
+            ["Data notelor", "27 iulie 2026"],
+            ["Versiunea AutoCAD 2027.1", "X.118.0.0 în fereastra About"],
+            [
+              "Problema PDF",
+              "Blocări ocazionale la PDFIMPORT sau PDFATTACH pentru anumite PDF-uri",
+            ],
+            [
+              "Eliminarea update-ului",
+              "Nu se dezinstalează separat; pentru revenire trebuie dezinstalat și reinstalat AutoCAD",
+            ],
+          ],
+        },
+        note: "Pentru un proiect în lucru, testează mai întâi pe o copie și coordonează instalarea cu administratorul stației. Notele Autodesk descriu o remediere, nu certifică rezultatul unui anumit fișier.",
+        links: [
+          {
+            label: "Autodesk: AutoCAD Updates și versiunea afișată după update",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-ReleaseNotes/files/AUTOCAD_2027_UPDATES.html",
+          },
+          {
+            label: "Autodesk: lista de remedieri AutoCAD 2027.1",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-ReleaseNotes/files/autocad_2027_updates/AUTOCAD_2027_1_FIXED_ISSUES.html",
+          },
+        ],
+      },
+      {
+        heading: "Diagnostică problema înainte să refaci desenul",
+        paragraphs: [
+          "Notează produsul și versiunea din fereastra About, apoi observă când apare problema: la atașarea PDF-ului, în timpul PDFIMPORT sau după ce importul s-a încheiat. Dacă ai AutoCAD 2027, compară versiunea instalată cu X.118.0.0. Pentru altă versiune sau alt produs, nu presupune că aceeași remediere se aplică.",
+          "Păstrează PDF-ul original și salvează DWG-ul de lucru sub alt nume. Repetă importul pe o singură pagină, într-o copie. Dacă aplicația se închide, ai notat un simptom de stabilitate. Dacă rămâne deschisă, dar desenul rezultat nu corespunde cerinței, verifică scara, textul și tipurile de obiecte înainte să concluzionezi că fișierul trebuie refăcut complet.",
+        ],
+        table: {
+          head: ["Ce observi", "Ce verifici în continuare"],
+          rows: [
+            [
+              "AutoCAD se închide la atașare sau import",
+              "Versiunea produsului și reproducerea problemei într-o copie; pentru AutoCAD 2027 verifică dacă apare X.118.0.0",
+            ],
+            [
+              "Planul apare ca imagine, fără linii DWG editabile",
+              "PDF-ul poate conține date raster; AutoCAD 2027 le salvează ca PNG și le atașează desenului",
+            ],
+            [
+              "Textul apare ca multe contururi",
+              "Textul SHX poate fi reprezentat în PDF ca geometrie, nu ca text AutoCAD",
+            ],
+            [
+              "Dimensiunile nu corespund",
+              "Compară o dimensiune cunoscută și verifică factorul de scară din dialogul PDF Import",
+            ],
+          ],
+        },
+        links: [
+          {
+            label: "Autodesk AutoCAD 2027: Import PDF Dialog Box",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-F94D7059-5B4A-4396-97FE-765B1D037D56.htm",
+          },
+          {
+            label: "Autodesk AutoCAD 2027: PDFIMPORT",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-02D97F82-47EC-4EE8-9429-E9CF6198EF34.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică scara, textul și obiectele importate",
+        paragraphs: [
+          "La importul unei pagini PDF, AutoCAD nu folosește valoarea INSUNITS pentru a stabili scara. Dialogul PDF Import permite setarea factorului de scalare. Compară rezultatul cu o dimensiune cunoscută din documentația aprobată înainte să folosești geometria în alte planșe.",
+          "PDF-ul poate păstra unele informații, dar nu toate obiectele ajung în DWG în forma în care au fost create inițial. Autodesk descrie importul geometriei vectoriale, al umpluturilor, imaginilor raster și textului TrueType. Textul cu font SHX este tratat ca geometrie; o imagine raster este atașată ca PNG. Aceste rezultate cer verificări separate, chiar dacă PDFIMPORT se execută fără eroare.",
+          "După import, verifică cel puțin o cotă cunoscută, straturile folosite, lizibilitatea textului și dacă desenul conține linii editabile sau doar imaginea de referință. Pentru un PDF cu mai multe pagini, selectează pagina necesară și verific-o separat.",
+        ],
+        list: [
+          "Lucrează pe o copie a DWG-ului și păstrează PDF-ul original.",
+          "Importă o pagină de probă și compară o dimensiune verificabilă cu planul primit.",
+          "Controlează dacă textul este text editabil ori contur geometric.",
+          "Confirmă că elementele necesare sunt obiecte CAD și nu doar imagine raster atașată.",
+          "Verifică straturile și aspectul la tipărire înainte de predare.",
+        ],
+        links: [
+          {
+            label: "Autodesk AutoCAD 2027: setări de scară, text, geometrie și raster",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-F94D7059-5B4A-4396-97FE-765B1D037D56.htm",
+          },
+          {
+            label: "Autodesk AutoCAD 2027: comanda PDFIMPORT",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-02D97F82-47EC-4EE8-9429-E9CF6198EF34.htm",
+          },
+        ],
+      },
+      {
+        heading: "Când conversia cere redesenare sau curățare manuală",
+        paragraphs: [
+          "Dacă pagina este o scanare, PDFIMPORT poate păstra imaginea în desen ca raster, dar asta nu o transformă în linii CAD editabile. Dacă ai nevoie de geometrie care poate fi modificată, poate fi necesară redesenarea elementelor după documentația primită.",
+          "Un PDF vectorial poate produce obiecte CAD, dar elemente compuse precum hașuri, texte sau linii pot ajunge în forme diferite de obiectele originale. Dacă scopul este o planșă editabilă și organizată, verifică ce trebuie păstrat, ce se poate curăța și ce trebuie redesenat. Remedierea din 2027.1 privește blocările ocazionale raportate, nu acuratețea conversiei sau validarea proiectului.",
+          "Dacă problema persistă după ce ai identificat versiunea și ai reprodus-o într-o copie, păstrează mesajul de eroare și pagina PDF care o declanșează. Documentația consultată nu permite atribuirea automată a fiecărei blocări persistente aceleiași cauze.",
+        ],
+        links: [
+          {
+            label: "Autodesk: lista de remedieri AutoCAD 2027.1",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-ReleaseNotes/files/autocad_2027_updates/AUTOCAD_2027_1_FIXED_ISSUES.html",
+          },
+          {
+            label: "Autodesk: obiecte recunoscute în dialogul PDF Import",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-F94D7059-5B4A-4396-97FE-765B1D037D56.htm",
+          },
+        ],
+      },
+      {
+        heading: "Ce să pregătești pentru o ofertă PDF → DWG",
+        paragraphs: [
+          "Pentru desenare sau corecturi AutoCAD, trimite PDF-ul original și precizează ce trebuie să poți edita în DWG, ce scară sau dimensiune de referință trebuie respectată și dacă ai nevoie și de PDF pregătit pentru tipărire. Dacă există o soluție tehnică aprobată, aceasta trebuie să rămână baza documentației.",
+          "NOD BIM poate evalua fișierele furnizate și stabili costul înainte de începerea lucrării. Serviciul este pentru desenare și documentare; nu include proiectarea sau aprobarea tehnică a soluției.",
+        ],
+        links: [
+          {
+            label: "Serviciul AutoCAD: planșe, corecturi și PDF către DWG",
+            href: "/autocad-dwg",
+          },
+          { label: "Redesenare PDF în DWG", href: "/pdf-in-dwg" },
+        ],
+      },
+      {
+        heading: "Surse Autodesk",
+        paragraphs: [
+          "Notele AutoCAD 2027.1 și documentația AutoCAD 2027 au fost verificate la 8 noiembrie 2026. Notele de lansare sunt datate 27 iulie 2026; paginile de ajutor pentru PDF Import sunt documentația curentă a versiunii 2027.",
+        ],
+        links: [
+          {
+            label: "AutoCAD 2027.1 Update: remedieri PDFIMPORT/PDFATTACH, 27 iulie 2026",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-ReleaseNotes/files/autocad_2027_updates/AUTOCAD_2027_1_FIXED_ISSUES.html",
+          },
+          {
+            label: "AutoCAD Updates: versiunea afișată după update și disponibilitatea",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-ReleaseNotes/files/AUTOCAD_2027_UPDATES.html",
+          },
+          {
+            label: "Import PDF Dialog Box: scară, text, geometrie și raster",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-F94D7059-5B4A-4396-97FE-765B1D037D56.htm",
+          },
+          {
+            label: "PDFIMPORT: importul paginii PDF sau al unei zone dintr-un underlay",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-02D97F82-47EC-4EE8-9429-E9CF6198EF34.htm",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "revit-2027-3-autodesk-assistant-dynamo",
     title:
       "Revit 2027.3 poate genera grafuri Dynamo dintr-un prompt. Cum îl testezi pe documentația MEP?",
