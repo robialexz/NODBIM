@@ -55,6 +55,42 @@ describe("agent-content — negotiere markdown", () => {
     expect(isKnownPath("/blog/inexistent")).toBe(false);
   });
 
+  test("blogul englez și articolele traduse au markdown fără fallback românesc", async () => {
+    const paths = [
+      "/en/blog",
+      "/en/blog/mep-drawing-pricing",
+      "/en/blog/files-for-revit-mep-quotation",
+      "/en/blog/revit-mep-model-handover-checklist",
+    ];
+
+    for (const path of paths) {
+      expect(isKnownPath(path), path).toBe(true);
+      const response = markdownResponseForPath(path);
+      expect(response?.status, path).toBe(200);
+      expect(response?.headers.get("content-type"), path).toBe("text/markdown; charset=utf-8");
+    }
+
+    const index = await markdownResponseForPath("/en/blog")?.text();
+    expect(index).toContain("# English technical journal");
+    for (const path of paths.slice(1)) expect(index).toContain(path);
+    expect(index).not.toContain("Jurnal tehnic");
+
+    const article = await markdownResponseForPath(paths[1]!)?.text();
+    expect(article).toMatch(/^# [A-Z]/);
+    expect(article).toContain("[Back to the journal](https://nodbim.com/en/blog)");
+    expect(article).toContain("min read");
+    expect(article).not.toContain("Înapoi la jurnal");
+    expect(article).not.toContain("min de citit");
+  });
+
+  test("un articol EN necunoscut este 404 și nu este considerat o rută cunoscută", async () => {
+    const path = "/en/blog/slug-neexistenta";
+    const response = markdownResponseForPath(path);
+    expect(isKnownPath(path)).toBe(false);
+    expect(response?.status).toBe(404);
+    expect(await response?.text()).toContain("slug-neexistenta");
+  });
+
   test("răspunsurile markdown au tipul și Vary-ul corect", () => {
     const res = markdownResponseForPath("/");
     expect(res).not.toBeNull();
@@ -108,6 +144,8 @@ describe("agent-content — negotiere markdown", () => {
     expect(txt).toContain("Do NOT use this site for");
     expect(txt).toContain("/sitemap.xml");
     expect(txt).toContain("Accept: text/markdown");
+    expect(txt).toContain("https://nodbim.com/en/blog");
+    expect(txt).toContain("https://nodbim.com/en/blog/mep-drawing-pricing");
   });
 
   test("recomandările afiliate au pagină Markdown separată de magazin", async () => {
@@ -214,6 +252,8 @@ describe("agent-content — negotiere markdown", () => {
     expect(parsed.name).toBe("NOD BIM");
     expect(parsed.capabilities?.some((c) => c.type === "estimate-request")).toBe(true);
     expect(parsed.resources?.some((r) => r.includes("/llms.txt"))).toBe(true);
+    expect(parsed.resources).toContain("https://nodbim.com/en/blog");
+    expect(parsed.resources).toContain("https://nodbim.com/en/blog/mep-drawing-pricing");
   });
 });
 

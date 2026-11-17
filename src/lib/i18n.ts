@@ -3,6 +3,7 @@
  * O pagină EN nouă = o rută sub /en/ + o pereche aici (dacă are echivalent RO).
  */
 import { useRouterState } from "@tanstack/react-router";
+import { blogTranslations } from "./blog-translations";
 import { canonicalUrl } from "./site-config";
 
 export type Locale = "ro" | "en";
@@ -14,6 +15,7 @@ const pagePairs: { ro: string; en: string }[] = [
   { ro: "/despre", en: "/en/about" },
   { ro: "/politica-de-confidentialitate", en: "/en/privacy" },
   { ro: "/politica-cookies", en: "/en/cookies" },
+  ...blogTranslations,
 ];
 
 /** Intrarea în site-ul EN până există /en/. */

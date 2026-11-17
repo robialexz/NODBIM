@@ -38,8 +38,8 @@ export function EnEstimate({ mailHref, source }: { mailHref: string; source: str
             <h2 className="text-4xl md:text-5xl">Request a project estimate</h2>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
               A short brief is enough to start: disciplines, file formats, approximate number of
-              drawings and target date. You receive scope, timeline and cost within 1–2 working
-              days.
+              drawings and target date. You will usually receive scope, timeline and cost within 1–2
+              working days.
             </p>
             {mailHref && (
               <div className="mt-10 border-t border-border-strong pt-6">

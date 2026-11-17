@@ -93,7 +93,7 @@ function AutocadDrafting() {
                 ))}
               </dl>
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                Reply with scope, timeline and cost within 1–2 working days.
+                I usually reply with scope, timeline and cost within 1–2 working days.
               </p>
             </div>
           </div>

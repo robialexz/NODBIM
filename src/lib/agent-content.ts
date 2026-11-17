@@ -3,10 +3,11 @@
  * negotiation (Accept: text/markdown), conform acceptmarkdown.com.
  * Funcții pure, testabile; partea de negociere e în server.ts.
  */
-import { articles } from "./blog";
+import { articles, type Article } from "./blog";
+import { englishArticles, getEnglishArticle } from "./blog-en";
 import { enAbout, enDrafting, enOutsourcing } from "./en-content";
 import { faq, process, serviceHref, services } from "./home-content";
-import { enHomePath } from "./i18n";
+import { enHomePath, type Locale } from "./i18n";
 import { estimateLabel, jobRates, packagePrice } from "./pricing";
 import { freeMaintAcademyAffiliateUrl, freeMaintAffiliateUrl, products } from "./products";
 import { site } from "./site-config";
@@ -27,6 +28,7 @@ const staticPaths = new Set([
   "/recomandari",
   "/portofoliu",
   "/blog",
+  "/en/blog",
   "/revit-mep",
   "/modelare-revit",
   "/hvac",
@@ -46,6 +48,10 @@ export function isKnownPath(pathname: string): boolean {
   if (pathname.startsWith("/blog/")) {
     const slug = pathname.replace("/blog/", "").replace(/\/$/, "");
     return articles.some((a) => a.slug === slug);
+  }
+  if (pathname.startsWith("/en/blog/")) {
+    const slug = pathname.replace("/en/blog/", "").replace(/\/$/, "");
+    return getEnglishArticle(slug) !== undefined;
   }
   return false;
 }
@@ -72,6 +78,7 @@ export function markdownResponseForPath(pathname: string): Response | null {
   if (clean === "/recomandari") return simpleMdResponse(recommendationsMarkdown());
   if (clean === "/portofoliu") return simpleMdResponse(portfolioMarkdown());
   if (clean === "/blog") return simpleMdResponse(blogIndexMarkdown());
+  if (clean === "/en/blog") return simpleMdResponse(englishBlogIndexMarkdown());
   if (clean === enHomePath) return simpleMdResponse(enOutsourcingMarkdown());
   if (clean === "/en/autocad-drafting") return simpleMdResponse(enDraftingMarkdown());
   if (clean === "/en/about") return simpleMdResponse(enAboutMarkdown());
@@ -82,10 +89,33 @@ export function markdownResponseForPath(pathname: string): Response | null {
     const article = articles.find((a) => a.slug === slug);
     if (article) return simpleMdResponse(articleMarkdown(article.slug));
   }
+  if (clean.startsWith("/en/blog/")) {
+    const slug = clean.replace("/en/blog/", "");
+    if (getEnglishArticle(slug)) return simpleMdResponse(articleMarkdown(slug, "en"));
+    return notFoundMarkdown(clean, "en");
+  }
   return null;
 }
 
-export function notFoundMarkdown(pathname: string): Response {
+export function notFoundMarkdown(pathname: string, locale: Locale = "ro"): Response {
+  if (locale === "en") {
+    return simpleMdResponse(
+      [
+        `# Page not found (404)`,
+        ``,
+        `> NOD BIM — Revit MEP modelling and drawing production support for engineering teams.`,
+        ``,
+        `The request for \`${pathname}\` does not match a page.`,
+        ``,
+        `- [English technical journal](${base()}/en/blog)`,
+        `- [Revit MEP outsourcing](${base()}${enHomePath})`,
+        `- [Request an estimate](${base()}${enHomePath}#estimate)`,
+        ``,
+      ].join("\n"),
+      404,
+    );
+  }
+
   return simpleMdResponse(
     [
       `# Pagina nu există (404)`,
@@ -456,18 +486,31 @@ function blogIndexMarkdown(): string {
   ].join("\n");
 }
 
-export function articleMarkdown(slug: string): string {
-  const a = articles.find((x) => x.slug === slug);
-  if (!a) return notFoundMarkdown(`/blog/${slug}`) ? notFoundText(`/blog/${slug}`) : "";
+function englishBlogIndexMarkdown(): string {
+  return [
+    `# English technical journal — ${site.businessName}`,
+    ``,
+    `> English guides for Revit MEP drawing scopes, file handover and model checks.`,
+    ``,
+    ...englishArticles.map(
+      (article) =>
+        `- [${article.title}](${base()}/en/blog/${article.slug}): ${article.description}`,
+    ),
+    ``,
+  ].join("\n");
+}
+
+function renderArticleMarkdown(article: Article, locale: Locale): string {
+  const isEnglish = locale === "en";
   const parts: string[] = [
-    `# ${a.title}`,
+    `# ${article.title}`,
     ``,
-    `> ${a.description}`,
+    `> ${article.description}`,
     ``,
-    `*${a.date} · ${a.readingTime} min de citit · ${a.tags.join(", ")}*`,
+    `*${article.date} · ${article.readingTime} min ${isEnglish ? "read" : "de citit"} · ${article.tags.join(", ")}*`,
     ``,
   ];
-  for (const s of a.sections) {
+  for (const s of article.sections) {
     if (s.heading) parts.push(`## ${s.heading}`, ``);
     for (const p of s.paragraphs ?? []) parts.push(p, ``);
     for (const li of s.list ?? []) parts.push(`- ${li}`);
@@ -480,17 +523,29 @@ export function articleMarkdown(slug: string): string {
       for (const row of s.table.rows) parts.push(`| ${row.join(" | ")} |`);
       parts.push(``);
     }
-    if (s.note) parts.push(`> **Notă:** ${s.note}`, ``);
+    if (s.note) parts.push(`> **${isEnglish ? "Note" : "Notă"}:** ${s.note}`, ``);
     for (const link of s.links ?? []) parts.push(`- [${link.label}](${link.href})`);
     if (s.links?.length) parts.push(``);
   }
   parts.push(
     `---`,
     ``,
-    `[Înapoi la jurnal](${base()}/blog) · [Servicii](${base()}/revit-mep) · [Contact](${base()}/contact)`,
+    isEnglish
+      ? `[Back to the journal](${base()}/en/blog) · [Services](${base()}${enHomePath}) · [Request an estimate](${base()}${enHomePath}#estimate)`
+      : `[Înapoi la jurnal](${base()}/blog) · [Servicii](${base()}/revit-mep) · [Contact](${base()}/contact)`,
     ``,
   );
   return parts.join("\n");
+}
+
+export function articleMarkdown(slug: string, locale: Locale = "ro"): string {
+  if (locale === "en") {
+    const article = getEnglishArticle(slug);
+    return article ? renderArticleMarkdown(article, locale) : notFoundText(`/en/blog/${slug}`);
+  }
+
+  const article = articles.find((candidate) => candidate.slug === slug);
+  return article ? renderArticleMarkdown(article, locale) : notFoundText(`/blog/${slug}`);
 }
 
 function notFoundText(pathname: string): string {
@@ -547,6 +602,11 @@ export function llmsTxt(): string {
     `- [Jurnal tehnic](${base()}/blog): ghiduri pentru documentație Revit MEP, AutoCAD și organizarea mentenanței`,
     ...articles.map((a) => `- [${a.title}](${base()}/blog/${a.slug})`),
     ``,
+    `## English guides`,
+    ``,
+    `- [English technical journal](${base()}/en/blog): practical Revit MEP guides for project teams`,
+    ...englishArticles.map((article) => `- [${article.title}](${base()}/en/blog/${article.slug})`),
+    ``,
     `## Exemple de planșe și modele`,
     ``,
     `- [Exemple](${base()}/portofoliu): exemple de modelare și documentație`,
@@ -589,6 +649,7 @@ export function agentInstructionsTxt(): string {
     `- AutoCAD / DWG drafting: PDF or scan to DWG redrafting, cleanup to the client's CAD standards, markups and revisions`,
     `- Estimates for such work (price, deadline) — point the user to the form and contact page`,
     `- MEP knowledge: plan pricing, LOD, Revit vs AutoCAD workflows, clash detection (see journal)`,
+    `- English Revit MEP guides: https://nodbim.com/en/blog`,
     `- BIM resources, RVT/DWG audits, Revit office kits, Dynamo/pyRevit automation packs and MEP training models (see shop)`,
     `- Live Revit courses from beginner level, Revit MEP training for HVAC/heating workflows, and Dynamo automation (see /cursuri-revit)`,
     ``,
@@ -643,6 +704,8 @@ export function agentDescriptorJson(): string {
         `${site.siteUrl}/llms.txt`,
         `${site.siteUrl}/agent-instructions.txt`,
         `${site.siteUrl}/sitemap.xml`,
+        `${site.siteUrl}/en/blog`,
+        ...englishArticles.map((article) => `${site.siteUrl}/en/blog/${article.slug}`),
       ],
     },
     null,

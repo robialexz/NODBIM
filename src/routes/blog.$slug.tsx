@@ -4,8 +4,10 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
 import { CtaSection } from "@/components/site/CtaSection";
+import { ArticleSections } from "@/components/site/ArticleSections";
 import { canonicalUrl, site } from "@/lib/site-config";
-import { articles, getArticle, type Article, type ArticleSection } from "@/lib/blog";
+import { articles, getArticle, type Article } from "@/lib/blog";
+import { hreflangLinks } from "@/lib/i18n";
 
 const organizationId = `${canonicalUrl("/")}#org`;
 const broadRelatedTags = new Set([
@@ -72,7 +74,10 @@ export const Route = createFileRoute("/blog/$slug")({
         { name: "twitter:title", content: article.title },
         { name: "twitter:description", content: article.description },
       ],
-      links: [{ rel: "canonical", href: canonicalUrl(`/blog/${article.slug}`) }],
+      links: [
+        { rel: "canonical", href: canonicalUrl(`/blog/${article.slug}`) },
+        ...hreflangLinks(`/blog/${article.slug}`),
+      ],
       scripts: [
         {
           type: "application/ld+json",
@@ -178,11 +183,7 @@ function ArticlePage() {
             </div>
           </div>
 
-          <div className="mt-8 space-y-8">
-            {article.sections.map((s, i) => (
-              <Section key={i} section={s} />
-            ))}
-          </div>
+          <ArticleSections sections={article.sections} />
         </article>
 
         {relatedArticles.length > 0 && (
@@ -224,70 +225,5 @@ function ArticlePage() {
       <Footer />
       <MobileCta />
     </div>
-  );
-}
-
-function Section({ section }: { section: ArticleSection }) {
-  return (
-    <section>
-      {section.heading && <h2 className="text-2xl md:text-3xl">{section.heading}</h2>}
-      {section.paragraphs?.map((p, i) => (
-        <p key={i} className="mt-4 text-base leading-relaxed text-foreground/85">
-          {p}
-        </p>
-      ))}
-      {section.list && (
-        <ul className="mt-4 space-y-2.5">
-          {section.list.map((li, i) => (
-            <li key={i} className="flex gap-3 text-base leading-relaxed text-foreground/85">
-              <span className="tech-label mt-1 shrink-0 text-muted-foreground">0{i + 1}</span>
-              <span>{li}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-      {section.table && (
-        <div className="sheet-frame mt-5 overflow-x-auto">
-          <table className="w-full min-w-[480px] text-left text-sm">
-            <thead>
-              <tr className="border-b border-border-strong">
-                {section.table.head.map((h) => (
-                  <th key={h} className="tech-label px-4 py-3 text-muted-foreground">
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {section.table.rows.map((row, i) => (
-                <tr key={i} className="border-b border-border last:border-0">
-                  {row.map((cell, j) => (
-                    <td key={j} className="px-4 py-3 align-top leading-relaxed">
-                      {cell}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-      {section.note && (
-        <p className="mt-5 border-l-2 border-primary bg-accent px-4 py-3 text-sm leading-relaxed text-accent-foreground">
-          {section.note}
-        </p>
-      )}
-      {section.links && (
-        <ul className="mt-4 space-y-2">
-          {section.links.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} className="text-primary underline underline-offset-4">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </section>
   );
 }

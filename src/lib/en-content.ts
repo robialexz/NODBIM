@@ -208,9 +208,9 @@ export const enDrafting = {
 export const enAbout = {
   h1: "BIM and CAD production support for engineering teams",
   description:
-    "NOD BIM is the brand of an installations engineer providing Revit MEP modelling and AutoCAD drafting for engineering teams, working to your standards with an NDA on request.",
+    "NOD BIM provides Revit MEP modelling and AutoCAD drafting for engineering teams, working to your standards with an NDA on request.",
   facts: [
-    ["Education", "Building services (installations) engineering degree"],
+    ["Education", "Building services engineering studies in progress"],
     ["Professional background", "MEP design and coordination"],
     ["Software", "Revit MEP · AutoCAD"],
     ["Disciplines", "HVAC · heating · electrical"],

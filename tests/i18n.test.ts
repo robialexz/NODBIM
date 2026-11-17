@@ -22,6 +22,29 @@ describe("limba paginii", () => {
     expect(alternatePath("/en/privacy", "ro")).toBe("/politica-de-confidentialitate");
   });
 
+  test("jurnalul și articolele traduse au perechi RO/EN complete", () => {
+    const pairs = [
+      ["/blog", "/en/blog"],
+      ["/blog/cat-costa-o-plansa-de-instalatii", "/en/blog/mep-drawing-pricing"],
+      ["/blog/ce-fisiere-trimiti-pentru-modelare-mep", "/en/blog/files-for-revit-mep-quotation"],
+      ["/blog/cum-verifici-un-model-revit-primit", "/en/blog/revit-mep-model-handover-checklist"],
+    ] as const;
+
+    for (const [ro, en] of pairs) {
+      expect(alternatePath(ro, "en")).toBe(en);
+      expect(alternatePath(`${en}/`, "ro")).toBe(ro);
+
+      const hreflang = hreflangLinks(ro);
+      expect(hreflang).toEqual(hreflangLinks(en));
+      expect(hreflang.map((link) => link.hrefLang)).toEqual(["ro", "en", "x-default"]);
+      expect(hreflang.map((link) => link.href)).toEqual([
+        `https://nodbim.com${ro}`,
+        `https://nodbim.com${en}`,
+        `https://nodbim.com${en}`,
+      ]);
+    }
+  });
+
   test("/en redirecționează către intrarea EN", () => {
     expect(redirectPathUrl("https://nodbim.com/en")).toBe(`https://nodbim.com${enHomePath}`);
     expect(redirectPathUrl("https://nodbim.com/en/?a=1")).toBe(

@@ -6,6 +6,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { CtaSection } from "@/components/site/CtaSection";
 import { canonicalUrl } from "@/lib/site-config";
 import { articles } from "@/lib/blog";
+import { hreflangLinks } from "@/lib/i18n";
 
 const title = "Ghiduri Revit MEP, AutoCAD și mentenanță · NOD BIM";
 const description =
@@ -26,7 +27,7 @@ export const Route = createFileRoute("/blog/")({
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: [{ rel: "canonical", href: url }, ...hreflangLinks("/blog")],
   }),
   component: BlogIndex,
 });

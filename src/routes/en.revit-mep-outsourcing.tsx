@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
@@ -116,7 +116,7 @@ function RevitMepOutsourcing() {
                 ))}
               </dl>
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                Reply with scope, timeline and cost within 1–2 working days.
+                I usually reply with scope, timeline and cost within 1–2 working days.
               </p>
             </div>
           </div>
@@ -232,13 +232,13 @@ function RevitMepOutsourcing() {
           <div className="mx-auto grid max-w-[1200px] gap-10 px-5 py-16 md:px-8 md:py-20 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
               <p className="tech-label text-accent">Who you work with</p>
-              <h2 className="mt-5 text-3xl md:text-4xl">One engineer, from estimate to issue</h2>
+              <h2 className="mt-5 text-3xl md:text-4xl">One specialist, from estimate to issue</h2>
             </Reveal>
             <Reveal delay={80} className="lg:col-span-7">
               <p className="text-base leading-relaxed text-graphite-foreground/85">
-                NOD BIM is the brand of an installations engineer with a building services degree
-                and a professional background in MEP design and coordination. The person who
-                prepares your estimate is the person who does the work — no account managers in
+                NOD BIM is the brand of a Revit and AutoCAD specialist with professional experience
+                in MEP design and coordination and building services studies in progress. The person
+                who prepares your estimate is the person who does the work — no account managers in
                 between.
               </p>
               <p className="mt-4 text-base leading-relaxed text-graphite-foreground/85">
@@ -251,6 +251,47 @@ function RevitMepOutsourcing() {
               </p>
             </Reveal>
           </div>
+        </section>
+
+        <section className="mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-20">
+          <p className="tech-label text-primary">Plan your next drawing package</p>
+          <h2 className="mt-4 text-3xl md:text-4xl">Before you request a quote</h2>
+          <p className="mt-5 max-w-2xl leading-relaxed text-muted-foreground">
+            For engineering offices and construction teams with an approved design: clarify the
+            source files, model status and drawing scope before agreeing a delivery date.
+          </p>
+          <ul className="mt-7 divide-y divide-border border-y border-border-strong">
+            <li>
+              <a
+                href="/en/blog/mep-drawing-pricing"
+                className="block py-4 font-medium text-primary underline underline-offset-4"
+              >
+                MEP drawing prices and what belongs in the quote
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/blog/files-for-revit-mep-quotation"
+                className="block py-4 font-medium text-primary underline underline-offset-4"
+              >
+                Files to send for a Revit MEP quotation
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/blog/revit-mep-model-handover-checklist"
+                className="block py-4 font-medium text-primary underline underline-offset-4"
+              >
+                Revit MEP model handover checklist
+              </a>
+            </li>
+          </ul>
+          <Link
+            to="/en/blog"
+            className="mt-6 inline-flex min-h-11 items-center text-primary underline underline-offset-4"
+          >
+            All project guides →
+          </Link>
         </section>
 
         <EnFaq faq={faq} title="Questions before you send files" />

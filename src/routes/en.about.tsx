@@ -11,7 +11,7 @@ import { hreflangLinks } from "@/lib/i18n";
 
 const path = "/en/about";
 const url = canonicalUrl(path);
-const title = "About NOD BIM · Revit MEP and CAD Support from an Installations Engineer";
+const title = "About NOD BIM · Revit MEP and CAD Production Support";
 const { h1, description, facts: profile, howIWork } = enAbout;
 
 export const Route = createFileRoute("/en/about")({
@@ -49,8 +49,8 @@ function About() {
               </h1>
               <p className="mt-7 max-w-2xl text-base leading-relaxed text-foreground/80 md:text-lg">
                 NOD BIM provides Revit MEP modelling and AutoCAD drafting, delivered directly by an
-                installations engineer. The person who prepares your estimate is the person who
-                works on your files.
+                Revit and AutoCAD specialist. The person who prepares your estimate is the person
+                who works on your files.
               </p>
             </div>
           </div>
@@ -59,11 +59,11 @@ function About() {
         <section className="mx-auto max-w-[1200px] px-5 py-12 md:px-8 md:py-16">
           <div className="grid gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
-              <h2 className="text-3xl md:text-4xl">The engineer behind the brand</h2>
+              <h2 className="text-3xl md:text-4xl">The specialist behind the brand</h2>
               <p className="mt-5 text-base leading-relaxed text-foreground/85">
-                I studied building services engineering and work professionally in MEP design and
-                coordination, where precise documentation and coordination between disciplines are
-                requirements, not extras.
+                I am studying building services engineering and work professionally in MEP design
+                and coordination, where precise documentation and coordination between disciplines
+                are requirements, not extras.
               </p>
               <p className="mt-4 text-base leading-relaxed text-foreground/85">
                 Projects from employment belong to the employer and its clients and are not

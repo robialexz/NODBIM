@@ -98,6 +98,7 @@ const copy = {
     links: [
       { label: "Revit MEP", href: enHomePath },
       { label: "AutoCAD", href: "/en/autocad-drafting" },
+      { label: "Guides", href: "/en/blog" },
       { label: "About", href: "/en/about" },
     ],
     cta: "Get a quote",
