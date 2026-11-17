@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ServicePage } from "@/components/site/ServicePage";
 import { canonicalUrl } from "@/lib/site-config";
 import { hreflangLinks } from "@/lib/i18n";
@@ -130,6 +130,37 @@ export const Route = createFileRoute("/revit-mep")({
       related={["/hvac", "/instalatii-termice", "/instalatii-electrice"]}
       note="Modelarea și desenarea se realizează pe baza temei și a informațiilor tehnice furnizate. Documentațiile care necesită verificare, autorizare sau semnătură de specialitate trebuie validate de profesioniști autorizați."
     >
+      <section aria-labelledby="pregatire-model-heading" className="mb-10">
+        <h2 id="pregatire-model-heading" className="text-2xl md:text-3xl">
+          Pregătește modelul și cererea de ofertă
+        </h2>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-foreground/80">
+          Clarifică fișierele de intrare, starea modelului și livrabilele înainte de începerea
+          colaborării. Aceste ghiduri te ajută să trimiți un brief care poate fi estimat.
+        </p>
+        <ul className="mt-5 grid gap-4 md:grid-cols-3">
+          {(
+            [
+              ["ce-fisiere-trimiti-pentru-modelare-mep", "Ce fișiere trimiți pentru modelare MEP"],
+              ["cum-verifici-un-model-revit-primit", "Cum verifici un model Revit primit"],
+              [
+                "revit-mep-model-planse-pdf-dwg-livrabile",
+                "Ce primești: model RVT, planșe DWG și PDF",
+              ],
+            ] as const
+          ).map(([slug, label]) => (
+            <li key={slug}>
+              <Link
+                to="/blog/$slug"
+                params={{ slug }}
+                className="block h-full border border-border-strong p-5 text-sm underline underline-offset-4 transition-colors hover:text-primary"
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
       <aside
         aria-labelledby="olx-revit-heading"
         className="grid gap-6 border border-border-strong bg-background p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8"

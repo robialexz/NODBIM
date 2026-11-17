@@ -78,6 +78,7 @@ const copy = {
     ] as ServiceCategory[],
     links: [
       { label: "Exemple", href: "/portofoliu" },
+      { label: "Ghiduri", href: "/blog" },
       { label: "Prețuri", href: "/#preturi" },
       { label: "Cursuri Revit", href: "/cursuri-revit" },
       { label: "Despre", href: "/despre" },

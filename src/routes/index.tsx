@@ -81,6 +81,24 @@ const examples: {
   },
 ];
 
+const projectGuides = [
+  {
+    title: "Cât costă cu adevărat o planșă de instalații? Anatomia unui preț",
+    description: "Ce influențează oferta și ce intră în pregătirea unei planșe complete.",
+    slug: "cat-costa-o-plansa-de-instalatii",
+  },
+  {
+    title: "Ce fișiere să trimiți pentru modelare MEP — ghid pentru arhitecți și beneficiari",
+    description: "Lista de verificare pentru RVT, DWG, PDF și schițe înainte de estimare.",
+    slug: "ce-fisiere-trimiti-pentru-modelare-mep",
+  },
+  {
+    title: "Cum verifici un model Revit primit de la altcineva — checklist de preluare",
+    description: "Puncte de control înainte să preiei un model și să stabilești termenul.",
+    slug: "cum-verifici-un-model-revit-primit",
+  },
+] as const;
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -392,6 +410,43 @@ function Home() {
                 </figure>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* GHIDURI PENTRU COLABORARE */}
+        <section className={`${wrap} ${sectionPad}`}>
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-start lg:gap-16">
+            <div className="min-w-0">
+              <p className="tech-label text-primary">Ghiduri Revit MEP</p>
+              <h2 className={`${h2} mt-3`}>Clarifică fișierele, verificările și oferta</h2>
+              <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
+                Vezi ce pregătești pentru modelare, ce verifici la preluarea unui model și cum se
+                construiește oferta pentru o planșă de instalații.
+              </p>
+              <p className="mt-4">
+                <Link to="/revit-mep" className={`inline-flex min-h-11 items-center ${textLink}`}>
+                  Vezi livrabilele și condițiile modelării →
+                </Link>
+              </p>
+            </div>
+            <ul className="border-y border-border-strong">
+              {projectGuides.map((guide) => (
+                <li key={guide.slug} className="border-b border-border last:border-b-0">
+                  <Link
+                    to="/blog/$slug"
+                    params={{ slug: guide.slug }}
+                    className="group grid gap-2 px-4 py-5 hover:bg-sheet"
+                  >
+                    <span className="font-display text-xl font-semibold [font-stretch:88%] group-hover:text-primary">
+                      {guide.title}
+                    </span>
+                    <span className="text-sm leading-relaxed text-muted-foreground">
+                      {guide.description}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 

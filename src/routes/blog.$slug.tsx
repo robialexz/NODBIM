@@ -5,9 +5,50 @@ import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
 import { CtaSection } from "@/components/site/CtaSection";
 import { canonicalUrl, site } from "@/lib/site-config";
-import { getArticle, type ArticleSection } from "@/lib/blog";
+import { articles, getArticle, type Article, type ArticleSection } from "@/lib/blog";
 
 const organizationId = `${canonicalUrl("/")}#org`;
+const broadRelatedTags = new Set([
+  "revit mep",
+  "autocad",
+  "bim",
+  "hvac",
+  "dwg",
+  "pdf",
+  "documentație",
+  "documentație tehnică",
+]);
+const articleTagFrequency = articles.reduce((counts, article) => {
+  for (const tag of article.tags) {
+    const normalizedTag = tag.toLowerCase();
+    counts.set(normalizedTag, (counts.get(normalizedTag) ?? 0) + 1);
+  }
+  return counts;
+}, new Map<string, number>());
+
+function getRelatedArticles(article: Article): Article[] {
+  const topicTags = article.tags
+    .map((tag) => tag.toLowerCase())
+    .filter((tag) => !broadRelatedTags.has(tag) && (articleTagFrequency.get(tag) ?? 0) <= 3);
+  const topicTagSet = new Set(topicTags);
+
+  return articles
+    .filter((candidate) => candidate.slug !== article.slug)
+    .map((candidate) => ({
+      article: candidate,
+      overlap: candidate.tags.filter((tag) => topicTagSet.has(tag.toLowerCase())).length,
+    }))
+    .filter(({ overlap }) => overlap > 0)
+    .sort(
+      (left, right) =>
+        right.overlap - left.overlap ||
+        (right.article.updatedAt ?? right.article.date).localeCompare(
+          left.article.updatedAt ?? left.article.date,
+        ),
+    )
+    .slice(0, 3)
+    .map(({ article: relatedArticle }) => relatedArticle);
+}
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -41,7 +82,7 @@ export const Route = createFileRoute("/blog/$slug")({
             headline: article.title,
             description: article.description,
             datePublished: article.date,
-            dateModified: article.updatedAt ?? article.date,
+            ...(article.updatedAt ? { dateModified: article.updatedAt } : {}),
             author: {
               "@type": "Organization",
               "@id": organizationId,
@@ -86,6 +127,7 @@ function ArticleNotFound() {
 }
 
 const fmtDate = new Intl.DateTimeFormat("ro-RO", {
+  timeZone: "UTC",
   day: "numeric",
   month: "long",
   year: "numeric",
@@ -93,6 +135,7 @@ const fmtDate = new Intl.DateTimeFormat("ro-RO", {
 
 function ArticlePage() {
   const { article } = Route.useLoaderData();
+  const relatedArticles = getRelatedArticles(article);
 
   return (
     <div className="min-h-screen bg-background">
@@ -109,7 +152,7 @@ function ArticlePage() {
             <h1 className="display-xl mt-6 text-3xl md:text-5xl">{article.title}</h1>
             <div className="mt-6 flex flex-wrap items-center gap-4 border-b border-border-strong pb-6">
               <time dateTime={article.date} className="tech-label text-muted-foreground">
-                {fmtDate.format(new Date(article.date))}
+                Publicat: {fmtDate.format(new Date(article.date))}
               </time>
               <Link
                 to="/despre"
@@ -141,6 +184,36 @@ function ArticlePage() {
             ))}
           </div>
         </article>
+
+        {relatedArticles.length > 0 && (
+          <section
+            aria-labelledby="related-articles-heading"
+            className="mx-auto max-w-[760px] px-5 pb-12 md:px-8 md:pb-16"
+          >
+            <h2 id="related-articles-heading" className="text-2xl md:text-3xl">
+              Citește și
+            </h2>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {relatedArticles.map((relatedArticle) => (
+                <article key={relatedArticle.slug}>
+                  <Link
+                    to="/blog/$slug"
+                    params={{ slug: relatedArticle.slug }}
+                    className="sheet-frame block h-full p-5 transition-colors hover:border-primary"
+                  >
+                    <span className="tech-label text-muted-foreground">
+                      {relatedArticle.readingTime} min de citit
+                    </span>
+                    <h3 className="mt-3 text-xl leading-tight">{relatedArticle.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {relatedArticle.description}
+                    </p>
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
 
         <CtaSection
           title="Ai o lucrare care cere acest nivel de detaliu?"

@@ -32,6 +32,7 @@ export const Route = createFileRoute("/blog/")({
 });
 
 const fmtDate = new Intl.DateTimeFormat("ro-RO", {
+  timeZone: "UTC",
   day: "numeric",
   month: "long",
   year: "numeric",

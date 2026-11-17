@@ -29,6 +29,973 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "revit-mep-cote-conducte-nivel-offset-panta",
+    title: "Conducte Revit MEP: clarifică nivelul, offset-ul și panta înainte de planșe",
+    metaTitle: "Cote conducte Revit MEP: nivel, offset și pantă",
+    description:
+      "Ce trebuie confirmat despre nivel, offset și pantă când soliciți modelarea conductelor în Revit MEP, înainte ca traseele să ajungă în planșe.",
+    date: "2026-11-16",
+    readingTime: 4,
+    tags: ["Revit MEP", "Conducte", "Cote", "Modelare HVAC", "Planșe tehnice"],
+    sections: [
+      {
+        paragraphs: [
+          "Un traseu de conducte poate părea corect în plan și totuși să ridice întrebări în secțiune: la ce nivel este modelat, față de ce reper se măsoară elevația și în ce direcție trebuie să coboare conducta? Sunt date diferite. Dacă nu sunt stabilite înainte de modelare, două persoane pot produce geometrii coerente în Revit, dar la cote diferite.",
+          "Autodesk documentează separat nivelul de referință și elevația conductei. Câmpul Level specifică nivelul de referință în vederi 3D, secțiuni și elevații; Middle Elevation indică elevația verticală față de nivelul curent. În timpul desenării unei conducte verticale, aplicarea unui offset nou poate crea segmentul vertical dintre elevația inițială și cea nouă.",
+        ],
+        links: [
+          {
+            label: "Autodesk: setările barei de opțiuni pentru conducte",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-MEPEng/files/GUID-7341C32F-F84D-436E-89BC-B4C475D42322.htm",
+          },
+          {
+            label: "Autodesk: desenarea conductelor verticale",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-MEPEng/files/GUID-5AAC229E-7FB7-45B4-A408-08B5877E5A0E.htm",
+          },
+        ],
+      },
+      {
+        heading: "Nivelul de referință nu înlocuiește cota cerută de proiect",
+        paragraphs: [
+          "Înainte de preluare, stabilește nivelul de referință folosit în model și felul în care cotele furnizate se raportează la el. Confirmă și convenția proiectului: ce valoare trebuie introdusă în model și unde se verifică în planșă sau în secțiune.",
+          "Nu deduce nivelul dintr-o vedere în plan și nu copia offset-ul unui tronson asemănător fără confirmare. Dacă planul indică traseul orizontal, dar nu oferă cote, cere clarificarea proiectantului responsabil înainte să fixezi elevațiile.",
+        ],
+        list: [
+          "nivelul de referință și reperul de cotare folosit;",
+          "cotele de început și de capăt, dacă sunt definite;",
+          "offset-ul cerut pentru tronsoanele relevante;",
+          "punctele de urcare, coborâre și racordare;",
+          "vederea sau secțiunea în care se verifică fiecare zonă;",
+          "cine confirmă o cotă lipsă sau contradictorie.",
+        ],
+      },
+      {
+        heading: "Offset-ul poate crea o tranziție verticală",
+        paragraphs: [
+          "Documentația Revit arată că, la desenarea unei conducte în plan, schimbarea offset-ului poate crea automat un segment vertical de la valoarea inițială la cea nouă. Asta descrie comportamentul instrumentului; nu confirmă dacă tranziția respectă soluția tehnică a proiectului.",
+          "Nu trata o linie vizibilă în plan drept dovadă că traseul este complet. Verifică zona într-o secțiune sau vedere 3D și compară geometria cu punctele de racordare și cotele aprobate. Dacă un echipament sau fitting are conectori suprapuși, Revit poate cere selectarea conectorului potrivit; alegerea trebuie să urmeze soluția furnizată, nu o presupunere vizuală.",
+        ],
+      },
+      {
+        heading: "Panta are un capăt de referință",
+        paragraphs: [
+          "Revit permite aplicarea pantei din comenzile de desenare, prin controalele unui segment sau cu Slope Editor. Documentația Autodesk precizează că punctul de pornire devine capătul de referință pentru panta aplicată. Când schimbi panta cu aceste controale, capătul de referință își păstrează elevația. Pentru pante mari, Autodesk recomandă desenarea în secțiune sau elevație.",
+          "În brief, notează capătul de la care se măsoară panta și cota care trebuie păstrată. Dacă traseul se conectează la o conductă existentă, clarifică dacă racordarea trebuie să respecte panta curentă sau să se conecteze direct. Revit oferă opțiuni pentru ambele comportamente, iar alegerea modifică geometria traseului.",
+        ],
+        links: [
+          {
+            label: "Autodesk: desenarea conductelor cu pantă",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-MEPEng/files/GUID-23F109EE-7230-4CB5-B0DC-C03AF2FF1A49.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică traseul în plan, secțiune și 3D",
+        paragraphs: [
+          "Pentru conducte HVAC sau termice, urmărește aceleași puncte în fiecare vedere:",
+          "Clarifică și dacă modelul conține conducte finale sau placeholder pipes. Autodesk le descrie ca geometrie cu o singură linie, folosită pentru poziția aproximativă a unui traseu ori pentru o etapă în care sistemul nu este încă dimensionat; ele nu au fittings. Dacă livrabilul cere un model detaliat, stabilește dacă placeholder-ele trebuie înlocuite și ce nivel de completare se așteaptă.",
+        ],
+        list: [
+          "în plan, traseul și punctele de racordare corespund planului de referință;",
+          "în secțiune sau elevație, nivelul și offset-ul corespund cotelor aprobate;",
+          "în 3D, urcările, coborârile și segmentele în pantă sunt vizibile și se conectează la componentele indicate;",
+          "după o modificare de pantă, capătul de referință și cota lui rămân cele convenite;",
+          "după o modificare de offset, segmentul vertical rezultat este intenționat, nu doar moștenit dintr-o setare.",
+        ],
+        links: [
+          {
+            label: "Autodesk: instrumentele Pipe și conductele placeholder",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-MEPEng/files/GUID-EEB121ED-6C1F-4728-A615-B3AF36DD6A61.htm",
+          },
+        ],
+      },
+      {
+        heading: "Ce poate fi externalizat și ce rămâne la proiectant",
+        paragraphs: [
+          "Un prestator Revit MEP poate transpune în model și planșe nivelurile, offset-urile, pantele și racordurile deja furnizate sau aprobate. Pentru o ofertă clară, trimite versiunea RVT, vederea de referință, nivelurile folosite, cotele aprobate, punctele de conectare, traseele de verificat și formatul de predare.",
+          "Modelarea nu stabilește singură cotele de proiect și nu înlocuiește proiectarea, calculele sau aprobarea tehnică. Dacă două planuri dau cote incompatibile sau lipsește cota unui racord, cere o decizie documentată proiectantului responsabil înainte de a continua zona respectivă.",
+          "Pentru sprijin de modelare și documentație pe baza soluției tehnice aprobate, vezi serviciul Revit MEP și ghidurile conexe despre verificarea sistemelor și intrările pentru dimensionarea conductelor.",
+        ],
+        links: [
+          { label: "Serviciul Revit MEP", href: "https://nodbim.com/revit-mep" },
+          {
+            label: "Verificarea sistemelor de tubulatură Revit MEP",
+            href: "https://nodbim.com/blog/verificare-sisteme-tubulatura-revit-mep",
+          },
+          {
+            label: "Date de confirmat înainte de dimensionarea conductelor",
+            href: "https://nodbim.com/blog/dimensionare-conducte-revit-mep-ipoteze-verificare",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "simboluri-etichete-revit-mep-scara-planse",
+    title: "Simbolurile și etichetele Revit MEP se citesc corect la scara planșei?",
+    metaTitle: "Etichete Revit MEP la scara planșei: ce verifici",
+    description:
+      "Vezi ce trebuie confirmat despre scara vederii, nivelul de detaliu și etichetele Revit MEP înainte de predarea planșelor.",
+    date: "2026-11-17",
+    readingTime: 4,
+    tags: ["Revit MEP", "Etichete", "Simboluri", "Planșe tehnice"],
+    sections: [
+      {
+        paragraphs: [
+          "O planșă poate conține traseele și echipamentele corecte, dar să fie greu de citit după export: etichete suprapuse, simboluri prea dense sau o vedere care arată alt nivel de detaliu decât se așteaptă biroul. Înainte să ceri modelarea ori pregătirea planșelor, merită să stabilești scara fiecărei vederi și standardul grafic pe care trebuie să îl urmeze.",
+          "În Revit, o etichetă este o adnotare atașată unui element și poate afișa valori ale parametrilor acelui element. Simbolurile și etichetele au rol grafic în documentație; ele nu înlocuiesc geometria sau soluția tehnică furnizată de proiectant.",
+        ],
+      },
+      {
+        heading: "Scara vederii și nivelul de detaliu controlează lucruri diferite",
+        paragraphs: [
+          "Scara stabilește cum apare vederea pe planșă. Nivelul de detaliu — coarse, medium sau fine — controlează ce geometrie de familie este vizibilă în acea vedere. De aceea, schimbarea scării nu trebuie tratată ca soluție automată pentru simboluri care se suprapun sau pentru echipamente care apar prea schematic.",
+          "Adnotările Revit sunt dimensionate în raport cu scara de tipărire, astfel încât să păstreze dimensiunea pe foaie. Dacă o etichetă sau un simbol nu se așază bine în plan, verifică vederea și compoziția planșei, nu doar dimensiunea modelului.",
+        ],
+      },
+      {
+        heading: "Checklist înainte de exportul PDF",
+        list: [
+          "Confirmă scara cerută pentru fiecare plan sau secțiune și dimensiunea foii pe care va fi așezată vederea.",
+          "Verifică nivelul de detaliu al vederii și modul în care familiile relevante își schimbă geometria la coarse, medium sau fine.",
+          "Confirmă că etichetele folosesc familiile și stilurile cerute de birou și că textul lor afișează parametrii conveniți.",
+          "Compară planșa cu un exemplu aprobat: denumiri, simboluri, unități, organizarea vederilor și spațiul disponibil pentru note.",
+          "Deschide PDF-ul la dimensiunea de tipărire planificată și verifică lizibilitatea, suprapunerile și marginile înainte de predare.",
+        ],
+      },
+      {
+        heading: "Ce să incluzi în cererea de lucru",
+        paragraphs: [
+          "Pentru o estimare clară, transmite versiunea fișierului RVT, lista planșelor și scara fiecărei vederi, standardul de etichetare și un PDF de referință aprobat. Include familiile de taguri sau template-ul biroului dacă trebuie respectate. Specifică separat livrabilele cerute — model RVT, PDF și, dacă este necesar, export DWG — și reviziile așteptate.",
+          "NOD BIM poate prelua modelarea și pregătirea planșelor Revit MEP pe baza soluției și a informațiilor tehnice aprobate de proiectant. Scopul, disponibilitatea și prețul se confirmă după evaluarea fișierelor și a livrabilelor. Vezi [serviciul de modelare Revit MEP](/revit-mep).",
+        ],
+      },
+      {
+        heading: "Surse tehnice",
+        links: [
+          {
+            label: "Autodesk Revit Help — scara și nivelul de detaliu ale vederii",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-8BEBCEF0-CE2C-4635-8C7C-9D03503C0B79.htm",
+          },
+          {
+            label: "Autodesk Revit Help — etichetele și valorile parametrilor afișate",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-DocumentPresent/files/GUID-0BF5C1C2-445E-43E6-9680-40C2818A8BAF.htm",
+          },
+          {
+            label:
+              "Autodesk Revit Help — redimensionarea textului adnotărilor pentru scara de tipărire",
+            href: "https://help.autodesk.com/cloudhelp/2024/ENU/Revit-GetStarted/files/GUID-E1664999-4EEB-4526-9096-1B92646218FD.htm",
+          },
+          {
+            label: "Autodesk Revit Help — stilurile pentru text, cote, etichete și simboluri",
+            href: "https://help.autodesk.com/view/RVT/2027/ENU/?guid=GUID-35D18439-3E77-42A5-8459-E72FFCC6CD4C",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "dimensionare-conducte-revit-mep-ipoteze-verificare",
+    title: "„Revit a ales diametrul” nu înseamnă că instalația e verificată",
+    metaTitle: "Dimensionarea conductelor în Revit: ce trebuie verificat",
+    description:
+      "Calculatorul Revit propune conducte după criteriile introduse. Află ce trebuie confirmat de proiectant înainte ca diametrele să ajungă în model și în planșe.",
+    date: "2026-11-14",
+    readingTime: 7,
+    tags: ["Revit MEP", "Instalații termice", "Dimensionarea conductelor", "Documentație tehnică"],
+    sections: [
+      {
+        paragraphs: [
+          "Dacă un click în Revit actualizează diametrul unei conducte, e ușor să citești rezultatul ca pe o decizie tehnică deja verificată. Dar calculatorul nu a ales în gol: lucrează cu debitul, proprietățile fluidului, criteriile de frecare și viteză, limitele și catalogul disponibile în proiect. Cine a ales aceste valori?",
+          "Revit 2027.2 a adăugat un calculator MEP pentru dimensionarea conductelor. Utilitatea lui este reală: filtrează dimensiuni care respectă criteriile configurate. Diferența importantă pentru o predare este că o listă de dimensiuni candidate nu transferă către modelator responsabilitatea proiectantului pentru date, metoda și acceptarea soluției.",
+        ],
+        links: [
+          {
+            label: "Noutățile din Revit 2027: calculatorul pentru conducte",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-WhatsNew/files/GUID-C81929D7-02CB-4BF7-A637-9B98EC9EB38B.htm",
+          },
+          {
+            label: "Documentația Autodesk: folosirea MEP Sizing Calculator",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-MEPEng/files/GUID-89D54FC4-7B1A-459F-98D1-1C6B0E4E40BB.htm",
+          },
+        ],
+      },
+      {
+        heading: "Ce face calculatorul și ce îi furnizează proiectul",
+        paragraphs: [
+          "În calculatorul de conducte, debitul volumetric poate veni din conducta selectată sau poate fi introdus de utilizator. Dimensionarea se poate raporta la frecare, viteză sau la ambele, cu o toleranță configurabilă. Rugozitatea, densitatea și vâscozitatea pot fi preluate din proprietățile conductei și ale fluidului sau pot fi definite de utilizator.",
+          "Revit afișează dimensiunile care satisfac criteriile setate. Pentru conducte, lista de opțiuni provine din Mechanical Settings și catalogul de piese de fabricație. Utilizatorul selectează o dimensiune și o aplică segmentului. Rezultatul depinde, așadar, atât de criterii, cât și de ce conducte și proprietăți sunt configurate în proiect.",
+        ],
+        table: {
+          head: ["Intrare", "Ce trebuie confirmat", "Întrebarea pentru responsabilul tehnic"],
+          rows: [
+            [
+              "Debit volumetric",
+              "Sursa valorii: sistemul modelat sau o valoare furnizată separat",
+              "Este debitul de proiect aprobat pentru acest tronson?",
+            ],
+            [
+              "Viteză și frecare",
+              "Criteriul folosit, toleranța și dacă se aplică unul sau ambele",
+              "Ce limite acceptă proiectul și pe ce bază?",
+            ],
+            [
+              "Fluid",
+              "Valorile de densitate și vâscozitate folosite în calcul",
+              "Ce fluid și ce condiții de lucru sunt aprobate?",
+            ],
+            [
+              "Rugozitate",
+              "Proprietatea conductei sau valoarea definită de utilizator",
+              "Materialul și tipul conductei din catalog corespund soluției?",
+            ],
+            [
+              "Catalog de dimensiuni",
+              "Segmentele, materialele, tipurile și dimensiunile permise",
+              "Catalogul este cel cerut pentru proiect și furnizare?",
+            ],
+            [
+              "Limite geometrice",
+              "Diametrul interior minim și maxim permis",
+              "Există limite de spațiu sau de sistem care restrâng alegerea?",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Un catalog greșit poate produce un rezultat coerent, dar nepotrivit",
+        paragraphs: [
+          "Segmentele de conductă au material, Schedule/Type, rugozitate și un interval de dimensiuni. În setări, dimensiunile pot apărea în liste, pot participa la dimensionare sau pot avea ambele utilizări. Dacă proiectul folosește un catalog care nu reflectă materialul ori tipul convenit, calculatorul va filtra în continuare dimensiunile disponibile — doar că lista nu va reprezenta automat specificația acceptată.",
+          "De aceea, verifică catalogul înainte să interpretezi primul diametru afișat drept alegerea finală. Confirmă dacă dimensiunile permise, diametrul interior și caracteristicile segmentului corespund proiectului. O listă calculată corect în raport cu setările existente nu repară o configurare neverificată.",
+        ],
+        links: [
+          {
+            label: "Autodesk: segmentele și dimensiunile conductelor",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-MEPEng/files/GUID-DE0E0267-30AF-4551-B42B-FFCDC4EFD08F.htm",
+          },
+        ],
+      },
+      {
+        heading: "O listă de diametre nu este același lucru cu pierderea de presiune a buclei",
+        paragraphs: [
+          "Dimensionarea după criterii și calculul pierderii de presiune sunt lucruri legate, dar nu identice. Documentația Revit descrie pierderile din conducte pe baza geometriei și rugozității, a densității fluidului și a vâscozității dinamice. Pentru acestea, Revit folosește ecuația Darcy–Weisbach și oferă metodele Haaland sau Colebrook pentru factorul de frecare.",
+          "Într-o rețea hidronică închisă, Revit poate agrega debitul și pierderea de presiune la pompă pentru a calcula pierderea pe traseul critic al buclei. Documentația descrie o astfel de rețea ca având o pompă sau un circulator, consumatori și segmente pe tur și retur. Rezultatul depinde de geometria și proprietățile reprezentate în model și de configurarea rețelei.",
+          "Prin urmare, nu accepta doar o captură cu diametrul propus. Cere criteriul, datele folosite și rezultatul de verificare pe circuitul relevant, dacă acestea fac parte din scopul proiectului.",
+        ],
+        links: [
+          {
+            label: "Autodesk: calculul pierderii de presiune",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-MEPEng/files/GUID-B3A3BB94-5223-4318-8DB4-E1CDE4EFD08F.htm",
+          },
+        ],
+      },
+      {
+        heading: "Ce aprobă proiectantul înainte ca dimensiunile să intre în planșe",
+        paragraphs: [
+          "La începutul lucrului, responsabilul disciplinei trebuie să confirme datele care justifică dimensionarea. Dacă lipsește debitul de proiect, regimul de temperatură sau proprietatea fluidului, modelatorul nu ar trebui să deducă aceste valori dintr-o captură sau dintr-un tronson asemănător.",
+        ],
+        list: [
+          "debitul și sursa lui pentru fiecare tronson sau sistem;",
+          "fluidul și valorile de densitate și vâscozitate aplicabile;",
+          "criteriile și limitele acceptate pentru viteză și frecare;",
+          "materialul, rugozitatea, tipul și catalogul de dimensiuni;",
+          "geometria circuitului, echipamentele, fitingurile și accesoriile care intră în verificare;",
+          "cine aprobă dimensiunile finale și ce rezultat păstrează în dosarul proiectului.",
+        ],
+        note: "Aceste confirmări țin de proiectantul responsabil. Documentația Revit face vizibile valorile și rezultatele introduse; nu validează automat că ipotezele sunt cele aprobate pentru proiect.",
+      },
+      {
+        heading: "Testează un circuit reprezentativ înainte de a extinde regula",
+        paragraphs: [
+          "Pentru un proiect care urmează să fie documentat în Revit, alege împreună cu proiectantul o buclă reprezentativă și verifică rezultatul înainte de aplicarea unei reguli în întregul model. Compară dimensiunile propuse cu criteriile de proiect, catalogul permis și configurația circuitului. Dacă rezultatul se schimbă după corectarea datelor, documentează ce ipoteză a fost actualizată și cine a confirmat-o.",
+          "Această verificare-pilot stabilește ce înseamnă «gata de predare»: dimensiuni aprobate, conducte modelate în catalogul corect, circuite conectate după soluția furnizată și planșe care arată informația cerută. Nu confunda aspectul curat al modelului cu aprobarea tehnică a dimensionării.",
+        ],
+      },
+      {
+        heading: "Ce poți externaliza și ce rămâne la inginer",
+        paragraphs: [
+          "Un prestator BIM poate modela și documenta soluția de încălzire primită: poate aplica dimensiunile aprobate, organiza sistemele și vederile, completa tag-uri sau programe și pregăti fișierele convenite. Pentru asta are nevoie de criteriile și datele confirmate, nu de instrucțiunea ambiguă «dimensionează tu instalația».",
+          "NOD BIM oferă modelare și documentație Revit MEP pentru soluții HVAC, termice și electrice furnizate de proiectant. Dimensionarea, calculele inginerești, verificarea soluției și semnătura rămân la specialiștii responsabili. Pentru o ofertă, transmite modelul sau planurile de referință, catalogul și standardele biroului, dimensiunile aprobate, circuitele incluse și livrabilele cerute.",
+        ],
+        list: [
+          "modelul RVT și versiunea Revit;",
+          "schema sau planul de referință și circuitul reprezentativ;",
+          "criteriile, debitele și dimensiunile deja aprobate;",
+          "catalogul de segmente, tipurile și materialele cerute;",
+          "template-ul, familiile, tag-urile și convențiile de planșă;",
+          "numărul de vederi și planșe, formatele RVT/DWG/PDF și criteriul de acceptare.",
+        ],
+        links: [
+          {
+            label: "Serviciul de modelare și documentație Revit MEP",
+            href: "https://nodbim.com/revit-mep",
+          },
+          {
+            label: "Verificarea sistemelor de tubulatură conectate în Revit MEP",
+            href: "https://nodbim.com/blog/verificare-sisteme-tubulatura-revit-mep",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "etichete-revit-mep-parametri-model-planse",
+    title: "Etichete Revit MEP: ce parametri trebuie confirmați înainte de planșe",
+    metaTitle: "Etichete Revit MEP: verifică parametrii și tag-urile",
+    description:
+      "Etichetele Revit citesc parametri ai elementelor. Află ce tag-uri, familii, valori și verificări să incluzi când soliciți documentație MEP.",
+    date: "2026-11-13",
+    readingTime: 6,
+    tags: ["Revit MEP", "Etichete Revit", "Parametri BIM", "Planșe tehnice"],
+    sections: [
+      {
+        paragraphs: [
+          "Pe o planșă MEP, o etichetă pare uneori doar text lângă un echipament sau un traseu. În Revit, însă, un tag poate afișa valori din parametrii elementului la care este atașat. Dacă primești un model și ceri completarea planșelor, trebuie să știi ce valori provin din element, ce valori sunt introduse manual și ce convenție grafică trebuie folosită.",
+          "Clarificarea aceasta evită o neînțelegere de livrabil: o notă scrisă manual, un tag care citește un parametru și un program de echipamente pot arăta informații asemănătoare, dar nu au aceeași legătură cu modelul. Stabilește ce trebuie să fie consecvent și verificabil în RVT și în planșele emise.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2027 Help: About Tag Labels",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-DocumentPresent/files/GUID-C524A9F5-B014-4917-AC1A-96EF56E224D5.htm",
+          },
+        ],
+      },
+      {
+        heading: "Un tag afișează un parametru al elementului",
+        paragraphs: [
+          "Familia de tag conține etichete configurate să citească unul sau mai mulți parametri ai categoriei pentru care a fost creată. De exemplu, un tag poate arăta numele tipului, un marcaj sau o valoare introdusă în câmpul Comments, dacă parametrul respectiv este disponibil și familia îl folosește. Revit actualizează automat unele valori; altele depind de datele completate de utilizator.",
+          "De aceea, un text vizibil nu confirmă singur că informația este conectată la model. Când o valoare trebuie să urmărească elementul, cere tag-ul potrivit și confirmă parametrul pe care îl citește. Când este o instrucțiune generală sau o excepție punctuală, precizează dacă se va folosi o notă separată și cine o aprobă.",
+        ],
+        table: {
+          head: ["Informația cerută", "Ce confirmi în model", "Ce verifici pe planșă"],
+          rows: [
+            [
+              "Identificatorul elementului",
+              "Numele parametrului și formatul convenit",
+              "Valoarea afișată pentru elementul etichetat",
+            ],
+            [
+              "Tipul de echipament",
+              "Tipul/familia și parametrul folosit de tag",
+              "Dacă descrierea corespunde convenției proiectului",
+            ],
+            [
+              "Notă sau excepție",
+              "Dacă este parametru sau text de adnotare separat",
+              "Cine furnizează și validează formularea",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Numele câmpului și familia tag-ului contează",
+        paragraphs: [
+          "Un tag trebuie să corespundă categoriei elementului și parametrului dorit. În funcție de template, unele familii sunt deja încărcate; pentru altele trebuie adăugată familia potrivită în proiect. Dacă biroul folosește un tag propriu, transmite fișierul sau indică o foaie acceptată ca referință, nu doar o captură mică a simbolului.",
+          "Când există un parametru cu nume similar în mai multe locuri, nu alege după denumire fără confirmare. Cere proprietarul valorii, dacă ea se aplică instanței sau tipului de familie și sursa corectă. Dacă parametrul nu există în categoria sau familia folosită, aceasta devine o clarificare de configurare, nu un motiv să inventezi o valoare în tag.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2027 Help: Tags",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-DocumentPresent/files/GUID-0BF5C1C2-445E-43E6-9680-40C2818A8BAF.htm",
+          },
+        ],
+      },
+      {
+        heading: "Folosește o vedere pilot înainte de aplicarea în set",
+        paragraphs: [
+          "Înainte să ceri etichetarea tuturor vederilor, selectează o planșă reprezentativă și confirmă câteva elemente: un caz obișnuit, unul cu valoare lipsă și unul care folosește o excepție. Verifică dacă tag-ul se atașează categoriei potrivite și afișează câmpurile aprobate. Aprobarea acestei mostre fixează convenția pentru restul lucrării.",
+          "Dacă lipsește un tag, furnizează familia necesară sau confirmă ce versiune din biblioteca proiectului se folosește. Dacă valoarea este goală, păstreaz-o ca întrebare pentru responsabilul care furnizează datele; nu completa dintr-o imagine sau dintr-o presupunere.",
+        ],
+        list: [
+          "categoria elementului și familia Revit folosită;",
+          "familia de tag sau o planșă de referință aprobată;",
+          "parametrul citit de fiecare etichetă și formatarea cerută;",
+          "valorile furnizate și persoana care le confirmă;",
+          "vederea pilot, inclusiv nivelul și disciplina;",
+          "excepțiile, notele și regulile pentru valori lipsă.",
+        ],
+      },
+      {
+        heading: "Tag All Not Tagged ajută la acoperire, nu validează datele",
+        paragraphs: [
+          "Revit poate aplica tag-uri elementelor netag-uite dintr-o vedere într-o singură operație. Poți limita selecția la elementele selectate, la obiectele vizibile în vederea curentă ori poți include elemente din fișiere legate. Familiile dorite trebuie încărcate în proiect; dacă vizibilitatea categoriei sau un view template o împiedică, Revit afișează un mesaj legat de această setare.",
+          "Comanda reduce pașii repetați, dar nu verifică dacă parametrii sunt corecți, dacă toate elementele cerute sunt vizibile în vedere sau dacă tag-ul este lizibil după plasare. După aplicare, verifică valorile și zonele aglomerate, apoi compară planșa cu lista de livrare și cu instrucțiunea aprobată.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: Tag All Not Tagged",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-13EA386B-E613-4126-B634-67BEC622177E.htm",
+          },
+        ],
+      },
+      {
+        heading: "Confirmă aspectul și poziția tag-ului",
+        paragraphs: [
+          "Conținutul corect poate deveni greu de citit dacă eticheta se suprapune cu alt text sau ascunde geometria. Stabilește orientarea, folosirea unei linii indicatoare și dacă aceasta se atașează elementului ori este repoziționată liber, conform standardului biroului. Acestea sunt setări grafice ale instanței de tag și trebuie verificate pe foaia pilot la scara de predare.",
+          "Pentru lucru în serie, aprobă un exemplu cu situațiile obișnuite și aglomerate înainte ca regula să fie extinsă. Specifică în observații dacă se corectează doar poziția adnotării sau se schimbă și informația citită din model; cele două modificări au scop diferit.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: Tag Instance Properties",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-AB361E4D-B3DE-4CC2-A658-88DACCA978EC.htm",
+          },
+        ],
+      },
+      {
+        heading: "Ce să incluzi în cererea de ofertă",
+        paragraphs: [
+          "O cerere suficient de clară îi permite prestatorului să estimeze configurarea și verificarea, nu doar numărul de planșe. Atașează fișierul sursă sau un extras reprezentativ și separă valorile deja aprobate de cele care așteaptă confirmare.",
+        ],
+        list: [
+          "modelul Revit, versiunea și template-ul care trebuie păstrat;",
+          "familiile/echipamentele incluse și categoriile care trebuie etichetate;",
+          "familia de tag, biblioteca sau exemplul grafic al biroului;",
+          "parametrii ceruți, formatele valorilor și sursa lor;",
+          "vederile și planșele incluse, nivelurile și zonele de lucru;",
+          "cazurile cu date lipsă, excepțiile și persoana care răspunde la clarificări;",
+          "formatele de predare și criteriul de acceptare al planșei pilot.",
+        ],
+        links: [
+          {
+            label: "Familii Revit MEP pentru echipamente: parametri și conectori",
+            href: "https://nodbim.com/blog/familii-revit-mep-conectori-echipamente",
+          },
+        ],
+      },
+      {
+        heading: "Documentarea nu stabilește date tehnice neaprobate",
+        paragraphs: [
+          "NOD BIM poate evalua modelarea și documentarea Revit MEP pe baza soluției și a informațiilor furnizate de proiectant. Etichetarea organizează și prezintă datele acceptate; nu confirmă debitul, dimensionarea, performanța sau alegerea echipamentului. Valorile tehnice necompletate ori contradictorii rămân întrebări pentru responsabilul proiectului.",
+          "Pentru evaluarea serviciului, trimite modelul, tag-urile de referință, lista parametrilor și planșa pilot așteptată. Proiectarea instalației, calculele, verificarea inginerească și semnătura rămân la specialiștii responsabili.",
+        ],
+        links: [
+          {
+            label: "Serviciul NOD BIM de modelare și documentație Revit MEP",
+            href: "https://nodbim.com/revit-mep",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "model-ifc-revit-mep-referinta-inainte-de-modelare",
+    title: "Model IFC într-un proiect Revit MEP: ce verifici înainte să-l folosești ca referință",
+    metaTitle: "Model IFC în Revit MEP: verificări înainte de modelare",
+    description:
+      "Dacă primești un IFC pentru un proiect Revit MEP, clarifică dacă îl legi ca referință, cum se potrivesc coordonatele și ce se întâmplă la actualizare.",
+    date: "2026-11-12",
+    readingTime: 7,
+    tags: ["Revit MEP", "IFC", "Model legat", "Predare tehnică"],
+    sections: [
+      {
+        paragraphs: [
+          "Un fișier IFC poate fi folosit în Revit în două moduri diferite: îl deschizi pentru a crea un model nou pornind de la datele IFC sau îl legi într-un proiect Revit existent ca referință. Alegerea schimbă fluxul de lucru. La deschiderea/importul IFC, modificările ulterioare ale fișierului original nu se reflectă în modelul creat; la legare, modelul Revit poate fi actualizat din sursa IFC.",
+          "Pentru o cerere de modelare sau documentare MEP, precizează mai întâi ce rol are IFC-ul: referință geometrică, suport pentru coordonare sau sursă din care trebuie redactate elemente Revit editabile. Un link IFC oferă o referință în proiect; nu înseamnă că elementele lui devin automat componente native Revit MEP. Această distincție trebuie stabilită în scopul livrării, nu dedusă după ce începe modelarea.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: Using IFC Files",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-C61C2E42-0561-48C9-8459-3EAC10EC8E16.htm",
+          },
+        ],
+      },
+      {
+        heading: "Alege între referință și model nou",
+        table: {
+          head: ["Flux", "Ce obții", "Ce trebuie confirmat"],
+          rows: [
+            [
+              "Link IFC într-un proiect Revit existent",
+              "O referință IFC vizibilă în modelul gazdă; sursa poate fi reîncărcată când se actualizează.",
+              "Modelul gazdă, scopul referinței și cine va aproba elementele MEP modelate separat.",
+            ],
+            [
+              "Deschiderea/importul IFC",
+              "Un model Revit nou pornit din datele IFC; schimbările ulterioare ale sursei nu sunt preluate automat.",
+              "Dacă este într-adevăr cerut un model nou și ce date/editabilitate trebuie să conțină.",
+            ],
+          ],
+        },
+        paragraphs: [
+          "Documentația Autodesk descrie linkul IFC ca referință pentru continuarea lucrului într-un alt model. Elementele linkului sunt read-only în proiectul gazdă. Poți folosi anumite referințe geometrice pentru dimensionare, snap sau aliniere, însă acest lucru nu transformă linkul într-un set de elemente MEP editabile.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: About Linking to IFC Files",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-BAA2ED9C-5107-4F21-ABE1-1ACF609AEEE3.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică template-ul, clasele IFC și datele disponibile",
+        paragraphs: [
+          "Înainte de a lega fișierul, verifică opțiunile IFC: template-ul Revit folosit, maparea claselor IFC la categorii Revit și geometria de care ai nevoie pentru scopul efectiv. Dacă nu este ales un template implicit pentru IFC, Revit folosește primul template din lista File Locations din Options. Acest detaliu poate influența configurația modelului intermediar și faza atribuită elementelor IFC.",
+          "Nu presupune că un obiect vizibil conține toate proprietățile ori geometria cerută de următorul pas. Cere fișierul IFC original, un extras al setărilor de export dacă este disponibil și confirmarea asupra elementelor care trebuie doar consultate față de cele care trebuie modelate separat în Revit.",
+        ],
+        list: [
+          "template-ul IFC și vederea de pornire folosite la legare;",
+          "maparea claselor IFC la categoriile Revit, dacă este configurată;",
+          "elementele și proprietățile IFC necesare pentru referință;",
+          "faza atribuită elementelor IFC și Phase/Phase Filter ale vederilor MEP;",
+          "fișierul și versiunea IFC care constituie sursa de referință.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: Link an IFC File",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-DE8B322A-A507-4E03-93EC-AA21F354E43B.htm",
+          },
+          {
+            label: "Autodesk Revit 2026 Help: About Linking to IFC Files",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-BAA2ED9C-5107-4F21-ABE1-1ACF609AEEE3.htm",
+          },
+        ],
+      },
+      {
+        heading: "Confirmă poziționarea înainte de planșe",
+        paragraphs: [
+          "La Link IFC, Revit oferă opțiuni de poziționare. Autodesk indică Auto - Origin to Origin în majoritatea cazurilor; dacă modelul gazdă folosește coordonate partajate, documentația indică Auto - By Shared Coordinates. Aplică regula stabilită pentru proiect și verifică rezultatul într-o vedere de control înainte de a documenta instalațiile.",
+          "O suprapunere vizuală aparent bună nu stabilește singură originea sau coordonatele proiectului. Dacă IFC-ul și modelul gazdă nu se aliniază conform referinței agreate, consemnează diferența și cere instrucțiunea responsabilului BIM/proiectantului; nu muta linkul ca să maschezi o problemă de coordonare.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: Link an IFC File — Positioning",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-DE8B322A-A507-4E03-93EC-AA21F354E43B.htm",
+          },
+        ],
+      },
+      {
+        heading: "Stabilește cum se actualizează referința",
+        paragraphs: [
+          "La actualizarea unui link IFC, Revit compară timestampul și dimensiunea fișierului; când detectează o sursă modificată, folosește GUID-urile IFC pentru a potrivi entitățile, apoi poate adăuga, actualiza sau elimina elemente. În practică, o revizie nouă nu este doar un fișier cu același nume: stabilește cine o transmite, când se reîncarcă și ce model gazdă trebuie verificat după reload.",
+          "Dacă geometria IFC se schimbă, referințele deja stabilite în Revit — de exemplu dimensiuni sau aliniamente — pot necesita verificare. Autodesk mai avertizează să nu modifici direct modelul Revit intermediar creat din IFC, deoarece actualizarea ulterioară din sursa IFC poate să nu mai funcționeze corect.",
+        ],
+        list: [
+          "nume, dată și revizie pentru IFC-ul folosit la modelare;",
+          "cine notifică și furnizează revizia următoare;",
+          "vederile, planșele și referințele care trebuie reverificate după reload;",
+          "regula de arhivare a IFC-urilor precedente și a modelului gazdă;",
+          "persoana care decide dacă o schimbare geometrică modifică soluția MEP.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: About Linking to IFC Files — Updating the IFC File",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-BAA2ED9C-5107-4F21-ABE1-1ACF609AEEE3.htm",
+          },
+        ],
+      },
+      {
+        heading: "Ce să incluzi într-o cerere de ofertă",
+        paragraphs: ["Pentru ca modelarea și planșele să poată fi evaluate, transmite:"],
+        list: [
+          "fișierul IFC și data/revizia lui;",
+          "modelul Revit gazdă și versiunea Revit, dacă există;",
+          "scopul IFC-ului: referință, coordonare sau sursă pentru lucru Revit separat;",
+          "convenția de coordonate și o vedere/reper pentru control;",
+          "disciplinele, zonele, nivelurile, vederile și planșele solicitate;",
+          "template-ul, maparea de clase și faza/vederea de pornire, dacă sunt impuse;",
+          "revizia de soluție aprobată și persoana care răspunde la întrebări tehnice;",
+          "formatele de predare cerute: RVT, planșe PDF sau DWG.",
+        ],
+      },
+      {
+        heading: "Modelarea MEP rămâne separată de soluția de proiectare",
+        paragraphs: [
+          "NOD BIM poate evalua modelarea și documentarea Revit MEP pe baza fișierelor de referință și a informațiilor aprobate pentru proiect. Linkarea IFC-ului nu stabilește traseele, dimensiunile sau echipamentele instalației și nu confirmă compatibilitatea elementelor cu soluția tehnică. Dacă un element lipsește, este neclar sau diferă între revizii, păstrează-l ca întrebare pentru proiectantul responsabil.",
+          "La cerere, include modelul IFC, modelul gazdă, convenția de coordonate și lista livrabilelor. Calculele, alegerea soluției, verificarea inginerească și semnătura rămân la specialiștii responsabili.",
+        ],
+        links: [
+          {
+            label: "Serviciul NOD BIM de modelare și documentație Revit MEP",
+            href: "https://nodbim.com/revit-mep",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "faze-modele-revit-legate-mapare-planse-mep",
+    title: "Faze în modele Revit legate: ce verifici înaintea planșelor MEP",
+    metaTitle: "Maparea fazelor Revit legate înaintea planșelor MEP",
+    description:
+      "Când modelul MEP și legătura Revit folosesc faze diferite, verifică maparea, Phase și Phase Filter înainte să pregătești vederile și planșele.",
+    date: "2026-11-11",
+    readingTime: 6,
+    tags: ["Revit MEP", "Faze Revit", "Modele legate", "Documentație tehnică"],
+    sections: [
+      {
+        paragraphs: [
+          "Într-un proiect de renovare, modelul MEP poate folosi o listă de faze diferită de modelul Revit arhitectural legat. Chiar dacă ambele fișiere au vederi denumite „existent”, „demolare” sau „nou”, denumirile nu confirmă singure că fiecare fază dintr-un model corespunde etapei dorite în celălalt.",
+          "În Revit, fazele legate se pot mapa inițial după numele lor. Dacă organizarea diferă între gazdă și link, maparea trebuie verificată și, unde este cazul, configurată manual. Înainte de modelare sau documentare, biroul care furnizează soluția trebuie să confirme ce faze corespund și ce trebuie să arate fiecare vedere. Maparea fazelor este separată de poziționarea geometrică a linkului: o suprapunere corectă în plan nu confirmă și reprezentarea corectă a etapelor.",
+        ],
+      },
+      {
+        heading: "Gazda și linkul pot numi diferit aceeași etapă",
+        paragraphs: [
+          "Modelul în care lucrezi este gazda; arhitectura, structura sau altă disciplină poate fi un model Revit legat. Autodesk precizează că fazele din gazdă se mapează inițial după numele fazelor din modelul legat. Când numele sau structura etapelor diferă, poți defini manual corespondența în proprietățile linkului.",
+          "De exemplu, gazda MEP poate folosi denumiri interne precum „Faza 1” și „Faza 2”, iar arhitectura poate avea alte nume pentru etapele proiectului. Compară lista fiecărui model cu fazele aprobate și confirmă echivalențele înainte să pregătești vederile. Autodesk cere păstrarea ordinii cronologice în mapare.",
+        ],
+        table: {
+          head: ["În gazda MEP", "În modelul legat", "Confirmare necesară"],
+          rows: [
+            ["Numele fazei", "Faza corespondentă", "Descriu aceeași etapă aprobată?"],
+            ["Faza următoare", "Faza următoare", "Ordinea este cronologică?"],
+            [
+              "Fază fără corespondent clar",
+              "Nu se deduce automat",
+              "Cine stabilește tratarea în vederi?",
+            ],
+          ],
+        },
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: About Phases and Linked Models",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-82A23FCD-DC5B-4BD5-A2D2-87ACFC36C91B.htm",
+          },
+        ],
+      },
+      {
+        heading: "Maparea linkului nu stabilește ce se demolează",
+        paragraphs: [
+          "Fiecare element Revit are proprietăți Phase Created și Phase Demolished. Faza vederii și aceste proprietăți determină statutul elementului în acea vedere: nou, existent, demolat sau temporar. Phase Filter controlează apoi modul în care aceste statute sunt afișate.",
+          "Maparea fazelor între gazdă și link stabilește corespondența dintre etapele celor două fișiere. Nu este o decizie de proiectare și nu confirmă că un traseu, echipament sau element arhitectural trebuie păstrat ori eliminat. Aceste informații trebuie să vină din documentația și instrucțiunile aprobate.",
+          "Autodesk mai precizează că, dacă marchezi un element ca demolat într-o vedere, el este marcat astfel în toate vederile care folosesc aceeași fază. Înainte de această modificare, verifică faza activă și confirmă că acțiunea este intenționată.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: About Phase Properties",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-602AB1FE-6C10-4A80-BD74-76ED77D4B601.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică separat faza vederii și filtrul ei",
+        paragraphs: [
+          "Fiecare vedere Revit are proprietățile Phase și Phase Filter. Phase indică etapa la care se referă vederea; Phase Filter controlează ce statute de elemente se afișează. Poți copia o vedere pentru altă fază, dar copia are propriile proprietăți, care trebuie verificate înainte de emitere.",
+          "În Visibility/Graphics, setările linkului pot folosi vederea gazdă. Pentru o afișare personalizată, Autodesk indică opțiunea By Host View la setarea Phase a linkului. Verifică rezultatul în fiecare vedere relevantă; nu presupune că toate vederile folosesc aceeași setare.",
+        ],
+        list: [
+          "faza setată pentru vedere;",
+          "filtrul de fază și statutele pe care le afișează;",
+          "maparea fazei din link către faza gazdei;",
+          "setarea de afișare a linkului în vederea gazdă;",
+          "denumirea vederii, astfel încât etapa să fie identificabilă în Browser și pe planșă.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: Map Phases Between Linked Models",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-97E3F329-B78A-4854-841D-CDE2EAA1FD73.htm",
+          },
+          {
+            label: "Autodesk Revit 2026 Help: About Phase Filters",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-DB104358-4D5A-494E-ACAE-BB8B4E72E572.htm",
+          },
+        ],
+      },
+      {
+        heading: "Flux scurt înainte de documentare",
+        list: [
+          "Confirmă lista și ordinea fazelor stabilite de echipa de proiect; nu crea etape noi pentru a corecta o neconcordanță de afișare.",
+          "Compară gazda MEP cu modelul legat și notează denumirile exacte și etapele fără corespondent evident.",
+          "Cere aprobarea mapării și configurează manual corespondența numai pe baza echivalenței confirmate.",
+          "Controlează Phase și Phase Filter pentru fiecare vedere care ajunge pe planșă.",
+          "Verifică o vedere reprezentativă și planșa, conform convenției proiectului și setării cerute pentru link.",
+          "Păstrează ca întrebare orice element sau etapă pentru care încă lipsește o decizie aprobată.",
+        ],
+        paragraphs: [
+          "Revit 2026 permite și folosirea parametrilor Phase Created și Phase Demolished în filtre de vedere pentru control grafic mai flexibil, inclusiv pentru afișarea unor faze viitoare. Această opțiune nu înlocuiește maparea fazelor linkului și nici convenția de proiect.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: View Filter Enhancements",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-WhatsNew/files/GUID-0602B9A7-BE60-408B-B422-51BD1B6F008A.htm",
+          },
+        ],
+      },
+      {
+        heading: "Ce să transmiți pentru o cerere de modelare Revit MEP",
+        paragraphs: ["Pentru ca scopul și livrabilele să fie clare, pregătește:"],
+        list: [
+          "fișierul gazdă MEP și linkurile Revit relevante, cu versiunile și reviziile folosite;",
+          "lista fazelor din fiecare model și ordinea aprobată;",
+          "corespondența dintre fazele gazdei și cele ale linkurilor, dacă diferă;",
+          "vederile și planșele care trebuie documentate pentru fiecare etapă;",
+          "filtrele și convențiile grafice cerute pentru existent, nou și demolat;",
+          "etapele sau elementele pentru care încă lipsește o decizie;",
+          "persoana care aprobă întrebările de proiectare și schimbările de fază.",
+        ],
+      },
+      {
+        heading: "Modelare din faze și soluții aprobate",
+        paragraphs: [
+          "NOD BIM poate evalua modelarea și documentarea Revit MEP pe baza modelelor, fazelor și instrucțiunilor confirmate de biroul de proiectare. Munca de modelare nu stabilește ce instalații se păstrează, se mută sau se demolează. Soluția tehnică, calculele, validarea inginerească și semnătura rămân la specialiștii responsabili.",
+          "Pentru evaluare, pregătește fișierul gazdă, linkurile relevante, tabelul de mapare aprobat și lista vederilor sau planșelor dorite. Dacă problema ține de poziția linkului, verifică separat originea și coordonatele: fazele și coordonatele răspund la întrebări diferite.",
+        ],
+        links: [
+          {
+            label: "Serviciul de modelare și documentație Revit MEP",
+            href: "https://nodbim.com/revit-mep",
+          },
+          {
+            label: "Ghid NOD BIM despre coordonatele linkurilor Revit MEP",
+            href: "https://nodbim.com/blog/coordonate-linkuri-revit-mep-externalizare",
+          },
+          {
+            label: "Date necesare pentru modelarea instalațiilor existente",
+            href: "https://nodbim.com/blog/instalatii-existente-revit-mep-date-limite",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "etaje-tip-revit-mep-modelare-repetitiva",
+    title: "Etaje tip în Revit MEP: ce clarifici înainte de modelarea repetitivă",
+    metaTitle: "Etaje tip în Revit MEP: clarificări înainte de modelare",
+    description:
+      "Pentru clădiri cu niveluri similare, stabilește ce se repetă, ce diferă pe fiecare nivel și cine confirmă excepțiile înainte să ceri modelarea Revit MEP.",
+    date: "2026-11-10",
+    readingTime: 6,
+    tags: ["Revit MEP", "Modelare Revit", "Etaj tip", "Documentație tehnică"],
+    sections: [
+      {
+        paragraphs: [
+          "Într-o clădire cu mai multe etaje, planurile de arhitectură pot părea identice. Asta nu confirmă însă că instalațiile se repetă integral: un nivel poate avea altă destinație, alte echipamente, o străpungere diferită sau o ramificație care nu apare pe etajul vecin. Înainte să externalizezi modelarea Revit MEP, separă nivelurile standard de excepții și arată din ce revizie de proiect se lucrează.",
+          "Clarificarea nu este doar despre metoda de copiere din Revit. Este despre a nu transforma o presupunere de repetitivitate într-o modificare tehnică pe care modelatorul ar decide-o în locul proiectantului.",
+        ],
+      },
+      {
+        heading: "Definește etajul tip pe disciplină și pe revizie",
+        paragraphs: [
+          "Folosește termenul „etaj tip” doar pentru nivelurile pe care proiectantul le-a identificat ca repetabile. Un plan arhitectural asemănător nu este suficient pentru a deduce că traseele, echipamentele sau datele tehnice sunt identice.",
+          "În brief, consemnează nivelurile incluse în fiecare tip, cotele lor, revizia planului sau a modelului de referință, soluția MEP aprobată pentru zona repetată, nivelurile cu abateri și documentul care descrie abaterea. Notează și cine răspunde la întrebările despre soluția tehnică.",
+          "Dacă soluția diferă între HVAC, termice și electrice, listează tipurile de etaj separat pentru fiecare disciplină. O matrice simplă evită formulări ca „se repetă peste tot”, care nu arată nici unde începe excepția, nici pe ce informație se bazează.",
+          "Completează matricea cu nivelurile și documentele proiectului. Tabelul este un instrument de clarificare, nu o soluție tehnică.",
+        ],
+        table: {
+          head: ["Grup de niveluri", "Referință", "Diferențe confirmate", "Cine confirmă"],
+          rows: [
+            [
+              "Niveluri standard",
+              "Model/planșă și revizie",
+              "Niciuna sau lista exactă",
+              "Proiectantul disciplinei",
+            ],
+            [
+              "Parter / zone publice",
+              "Referință separată",
+              "Echipamente, înălțimi sau trasee proprii",
+              "Proiectantul disciplinei",
+            ],
+            [
+              "Ultimul nivel / tehnic",
+              "Referință separată",
+              "Racorduri, echipamente sau trasee proprii",
+              "Proiectantul disciplinei",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Ce face Revit Groups și ce nu confirmă",
+        paragraphs: [
+          "Autodesk descrie grupurile Revit ca o metodă de a plasa repetat un ansamblu de elemente; etajele repetate sunt un exemplu de utilizare. Între instanțele aceluiași grup există asociere: modificarea unui element din grup se poate propaga la celelalte instanțe.",
+          "Revit distinge grupurile de model, care pot conține elemente de model, de grupurile de detalii, care conțin elemente specifice unei vederi. Grupurile sunt o posibilitate de organizare, nu o regulă pentru toate modelele MEP. Alegerea depinde de structura fișierului, elementele care se repetă și diferențele aprobate. Nu promite reutilizarea integrală înainte de a vedea modelul și lista excepțiilor.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2027 Help: Groups of Elements",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-Model/files/GUID-52612B0F-43AA-47AF-A76C-BB0E3DD24E34.htm",
+          },
+        ],
+      },
+      {
+        heading: "O diferență locală poate afecta toate instanțele",
+        paragraphs: [
+          "Adăugarea sau eliminarea unui element dintr-un grup influențează toate instanțele acelui grup. De aceea, o diferență locală nu trebuie introdusă ca și cum ar fi o modificare generală. Confirmă dacă nivelul rămâne în tipul standard, folosește un tip diferit sau se tratează separat înainte să actualizezi grupul.",
+          "Dacă o observație se aplică doar unui nivel, înregistrează nivelul, documentul de referință și confirmarea proiectantului. Astfel, schimbarea nu se extinde din greșeală la restul etajelor.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit 2026 Help: Add or Remove Elements in a Group",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Model/files/GUID-69AACF6E-4130-4499-8160-25DE412D2C97.htm",
+          },
+        ],
+      },
+      {
+        heading: "Repetiția grafică nu validează fiecare nivel",
+        list: [
+          "poziția și înălțimea elementelor față de nivelul de referință;",
+          "legătura cu echipamentele și traseele aprobate pentru nivel;",
+          "planul și secțiunea cerute pentru zonele diferite;",
+          "etichetele, codurile și notele care identifică nivelul;",
+          "corespondența dintre planșa emisă, revizie și nivel.",
+        ],
+        paragraphs: [
+          "Chiar dacă geometria se repetă, stabilește ce se controlează la predare. Alege niveluri reprezentative și verifică separat nivelurile cu abateri; faptul că vederile provin dintr-un grup nu confirmă că toate sunt corecte.",
+          "Aceste verificări privesc consistența modelului și a planșelor cu datele furnizate. Ele nu înlocuiesc calculul, alegerea soluției sau verificarea inginerească a instalației.",
+        ],
+      },
+      {
+        heading: "Exemplu ipotetic: șase niveluri, trei categorii",
+        paragraphs: [
+          "Imaginează-ți, doar ca exemplu de organizare, o clădire cu parter, patru etaje de birouri și un etaj tehnic. Proiectantul confirmă că etajele 1–4 au aceeași bază de modelare; parterul și etajul tehnic au planuri distincte. Etajele de birouri folosesc două revizii arhitecturale diferite.",
+          "Un brief bun nu spune doar „copiază etajul 1 la toate”. El atașează referința aprobată, numește nivelurile care pot fi modelate pe baza aceleiași configurații și marchează nivelurile care așteaptă o decizie. Dacă apar diferențe noi, ele se clarifică înainte să fie introduse peste tot.",
+        ],
+      },
+      {
+        heading: "Checklist pentru cererea de modelare",
+        paragraphs: [
+          "Înainte să ceri o ofertă, pregătește:",
+          "Pentru scop, livrabile și revizii, stabilește pachetul în ofertă înainte de începere. Ghidul despre formatele RVT, planșe, PDF și DWG completează această listă.",
+        ],
+        list: [
+          "modelul sau planurile sursă și revizia lor;",
+          "lista nivelurilor, cu denumiri și cote;",
+          "gruparea nivelurilor considerate standard, pe fiecare disciplină;",
+          "planurile, notele sau instrucțiunile aprobate pentru excepții;",
+          "persoana care validează întrebările de proiectare;",
+          "numărul de niveluri, planșe și zone cu diferențe;",
+          "formatul Revit și conținutul cerut la predare.",
+        ],
+        links: [
+          {
+            label: "Ghid NOD BIM: definirea livrabilelor RVT, planșe, PDF și DWG",
+            href: "https://nodbim.com/blog/revit-mep-model-planse-pdf-dwg-livrabile",
+          },
+        ],
+      },
+      {
+        heading: "Modelare din soluția aprobată",
+        paragraphs: [
+          "NOD BIM poate evalua modelarea și documentarea Revit MEP pe baza fișierelor și a soluției tehnice furnizate de proiectant. Numărul de niveluri nu este suficient pentru estimare dacă nu se știe care se repetă și ce excepții sunt aprobate. Proiectarea, calculele, verificarea inginerească și semnătura rămân la specialistul responsabil.",
+          "Pentru evaluare, pregătește versiunea sursei, lista nivelurilor standard și excepțiilor, disciplinele incluse și rezultatul solicitat.",
+        ],
+        links: [
+          {
+            label: "Serviciul NOD BIM de modelare și documentație Revit MEP",
+            href: "https://nodbim.com/revit-mep",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "revit-mep-model-planse-pdf-dwg-livrabile",
+    title: "Model Revit MEP, planșe sau PDF/DWG? Definește livrabilele înainte de ofertă",
+    metaTitle: "Model Revit MEP sau planșe? Definește livrabilele",
+    description:
+      "Delimitează un pachet Revit MEP: model RVT, planșe, PDF și DWG. Vezi ce să precizezi despre foi, setări de export, standarde și revizii.",
+    date: "2026-11-09",
+    readingTime: 7,
+    tags: ["Revit MEP", "Livrabile BIM", "Documentație tehnică", "PDF", "DWG"],
+    sections: [
+      {
+        paragraphs: [
+          "Când soliciți ajutor pentru modelare Revit MEP, expresia „model final” poate însemna lucruri diferite: un fișier RVT pentru coordonare, planșe organizate în Revit sau fișiere PDF și DWG pentru transmitere. Dacă aceste rezultate nu sunt separate în cerere, oferta poate acoperi alt pachet decât cel necesar echipei tale.",
+          "Definește mai întâi ce trebuie să poată face următorul utilizator cu fișierele. Apoi precizează disciplinele, planșele și formatele. Această delimitare reduce clarificările de la final și face revizuirea mai concretă.",
+        ],
+        links: [
+          {
+            label: "Serviciul NOD BIM de modelare Revit MEP",
+            href: "https://nodbim.com/revit-mep",
+          },
+        ],
+      },
+      {
+        heading: "Trei rezultate care nu sunt interschimbabile",
+        table: {
+          head: ["Pachet", "Potrivit când", "Precizează în cerere"],
+          rows: [
+            [
+              "Model RVT",
+              "Echipa continuă lucrul sau coordonează instalațiile în Revit.",
+              "Versiunea și modelul de pornire, disciplinele, zonele și elementele incluse.",
+            ],
+            [
+              "Model și planșe",
+              "Ai nevoie de vederi și foi organizate în proiectul Revit.",
+              "Lista foilor, vederile, scările, indicatorul, legendele și tabelele necesare.",
+            ],
+            [
+              "Export PDF/DWG",
+              "Destinatarul trebuie să revizuiască ori să folosească planșele în alte aplicații.",
+              "Foile sau vederile de exportat, numele fișierelor, setările și standardul DWG.",
+            ],
+          ],
+        },
+        paragraphs: [
+          "Un pachet poate include toate trei, dar nu presupune că exportul PDF sau DWG este automat inclus doar pentru că primești un model RVT. Notează explicit formatele și scopul lor. Dacă echipa va continua modelarea, fișierul RVT editabil poate fi important; dacă are nevoie doar de documente pentru o etapă de revizuire, lista de planșe și PDF-ul pot fi criteriul principal.",
+        ],
+      },
+      {
+        heading: "Planșa este un livrabil, nu doar o pagină exportată",
+        paragraphs: [
+          "În Revit, o foaie poate conține mai multe vederi, iar vederea este plasată ca viewport. Autodesk precizează că o vedere poate fi plasată pe o singură foaie; pentru a o folosi pe mai multe foi, se creează vederi duplicate. Legendele și tabelele pot apărea pe mai multe foi.",
+          "De aceea, un număr de planșe nu descrie întotdeauna volumul. O cerere clară identifică numerele și titlurile planșelor, disciplinele, nivelurile sau zonele, scările și tipurile de vederi. Precizează și dacă sunt necesare secțiuni, detalii, legende ori tabele.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit Help: Add Views to a Sheet",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-D3E7FDC3-57AB-4497-AB87-D195476254C2.htm",
+          },
+        ],
+      },
+      {
+        heading: "Stabilește separat cum livrezi PDF-ul",
+        paragraphs: [
+          "Exportul PDF din Revit poate include una sau mai multe vederi ori planșe. Poți selecta un set salvat, configura denumirea fișierelor și reuni selecțiile într-un singur PDF. În cererea de ofertă, scrie dacă vrei câte un PDF pe planșă sau un singur document cu întregul set și convenția de numire dorită.",
+          "Dacă ai deja o regulă internă de publicare, oferă un exemplu de nume de fișier și indică planșele care intră în set. Un export verificabil începe cu lista exactă de planșe, nu cu formularea generală „PDF final”.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit Help: Export a PDF File",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-773AD069-024B-425E-8B9A-05D5246BDD16.htm",
+          },
+        ],
+      },
+      {
+        heading: "Pentru DWG, conveniți setarea și compatibilitatea",
+        paragraphs: [
+          "Exportul DWG/DXF din Revit permite selectarea unei singure vederi sau planșe ori a unui set de vederi și planșe. Înainte de lucru, precizează versiunea AutoCAD dorită și dacă biroul folosește o configurare de export proprie.",
+          "Setările pot controla maparea straturilor, tipurile de linie, modele de umplere, fonturi, culori, unități și coordonate. Dacă DWG-ul va intra într-un flux existent, trimite fișierul de configurare sau un exemplu acceptat de echipă. Cere și să se precizeze dacă linkurile Revit/DWG trebuie exportate ca referințe externe ori integrate în rezultatul desenului.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit Help: Export to DWG or DXF",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-DocumentPresent/files/GUID-42C75024-4D71-4831-8910-2747168624A3.htm",
+          },
+        ],
+      },
+      {
+        heading: "Checklist pentru o cerere de ofertă",
+        list: [
+          "Scopul pachetului: coordonare în RVT, set de planșe sau transmitere PDF/DWG.",
+          "Disciplina și limita lucrării: HVAC, termice sau electrice; niveluri, zone și sisteme incluse.",
+          "Fișierele de pornire și tema tehnică aprobată pe care se bazează modelarea.",
+          "Lista planșelor și vederilor, cu numere, titluri și scări, dacă sunt deja stabilite.",
+          "Template-ul, indicatorul, familiile și convențiile biroului care trebuie păstrate.",
+          "Formatele de predare, versiunea DWG, setarea de export și regula de numire.",
+          "Rundele de observații incluse și persoana care confirmă soluția tehnică.",
+        ],
+        paragraphs: [
+          "O metodă practică este să validezi întâi o planșă reprezentativă: verifici organizarea, adnotările, exportul și convenția de numire, apoi confirmi că aceeași regulă se aplică restului setului. Notează de la început ce înseamnă acceptarea: fișierele așteptate, setul de planșe, formatele și observațiile care trebuie rezolvate.",
+        ],
+      },
+      {
+        heading: "Delimitează documentarea de proiectare",
+        paragraphs: [
+          "Modelarea și planșele pot fi produse pe baza temei și a informațiilor tehnice furnizate. Calculele, alegerea soluției, verificarea inginerească și semnătura de specialitate trebuie să rămână la proiectantul autorizat. Dacă proiectul are informații incomplete sau conflicte între fișiere, marchează-le ca întrebări de clarificat înainte de emitere, nu ca decizii implicite ale desenatorului.",
+        ],
+        links: [
+          {
+            label: "Vezi serviciile și livrabilele Revit MEP NOD BIM",
+            href: "https://nodbim.com/revit-mep",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "autocad-2027-1-pdfimport-pdfattach-probleme",
     title:
       "PDFIMPORT se blochează în AutoCAD? Ce rezolvă update-ul 2027.1 și când trebuie redesenat DWG-ul",
