@@ -272,21 +272,25 @@ export function QuoteForm() {
       });
       submittedRef.current = true;
       submissionIdRef.current = undefined;
-      if (result.saved && !quoteSuccessEventSentRef.current) {
+      const acceptedEmailFallback =
+        !result.saved && !result.duplicate && result.id === `email:${submissionId}`;
+      const acceptedLead = result.saved || acceptedEmailFallback;
+      if (acceptedLead && !quoteSuccessEventSentRef.current) {
         quoteSuccessEventSentRef.current = true;
-        trackConversion(
-          "lead_form_success",
-          {
-            form_name: "quote_contact",
-            lead_type: "project_quote",
-            value: 1,
-            currency: "RON",
-          },
-          { dedupeKey: submissionId },
-        );
+        const conversionParams = {
+          form_name: "quote_contact",
+          lead_type: isTraining ? "course_inquiry" : "project_quote",
+          value: 1,
+          currency: "RON",
+        };
+        if (isTraining) {
+          track("course_form_success", conversionParams);
+        } else {
+          trackConversion("lead_form_success", conversionParams, { dedupeKey: submissionId });
+        }
+        track("quote_submit", { project_type: tip });
       }
       setSent(true);
-      track("quote_submit", { project_type: tip });
     } catch (error) {
       // Tokenul rămâne neschimbat: un retry al aceleiași trimiteri este
       // idempotent pe server (nu creează un al doilea rând).

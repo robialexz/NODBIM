@@ -16,6 +16,7 @@ export type ConversionEvent =
   | "pricing_cta_click"
   | "quote_form_success"
   | "lead_form_success"
+  | "course_form_success"
   | "phone_click"
   | "email_click"
   | "affiliate_click";

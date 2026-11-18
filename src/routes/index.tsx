@@ -205,26 +205,14 @@ function Home() {
                 RVT, DWG și PDF, cu scopul, termenul și prețul stabilite în scris.
               </p>
 
-              {(phoneHref || hasWhatsapp) && (
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <PhoneLink source="hero" className="btn btn-primary">
-                    {`Sună: ${phoneDisplay}`}
-                  </PhoneLink>
-                  {hasWhatsapp && (
-                    <a
-                      href={waHref}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      onClick={() => {
-                        trackConversion("whatsapp_click", { source: "hero" });
-                      }}
-                      className="btn"
-                    >
-                      Scrie pe WhatsApp
-                    </a>
-                  )}
-                </div>
-              )}
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#estimare" className="btn btn-primary">
+                  Cere ofertă pentru o zonă
+                </a>
+                <Link to="/revit-mep" hash="pilot" className="btn">
+                  Vezi o mostră de predare
+                </Link>
+              </div>
               <p className="mt-6 text-base">
                 <Link to="/revit-mep" className={textLink}>
                   Vezi livrabilele și condițiile colaborării →
@@ -232,7 +220,7 @@ function Home() {
               </p>
               <p className="mt-4 text-sm">
                 <a href="#preturi" className={`inline-flex min-h-11 items-center ${textLink}`}>
-                  {phoneHref || hasWhatsapp ? "sau calculează" : "Calculează"} un preț orientativ
+                  Calculează un preț orientativ
                 </a>
               </p>
 

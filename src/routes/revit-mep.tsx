@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ServicePage } from "@/components/site/ServicePage";
+import { RevitPilot } from "@/components/site/RevitPilot";
 import { canonicalUrl } from "@/lib/site-config";
 import { hreflangLinks } from "@/lib/i18n";
 import hero3d from "@/assets/hero-3d.webp";
@@ -134,7 +135,8 @@ export const Route = createFileRoute("/revit-mep")({
       related={["/hvac", "/instalatii-termice", "/instalatii-electrice"]}
       note="Modelarea și desenarea se realizează pe baza temei și a informațiilor tehnice furnizate. Documentațiile care necesită verificare, autorizare sau semnătură de specialitate trebuie validate de profesioniști autorizați."
     >
-      <section aria-labelledby="pregatire-model-heading" className="mb-10">
+      <RevitPilot />
+      <section aria-labelledby="pregatire-model-heading" className="my-10">
         <h2 id="pregatire-model-heading" className="text-2xl md:text-3xl">
           Pregătește modelul și cererea de ofertă
         </h2>

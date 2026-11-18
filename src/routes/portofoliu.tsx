@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Header } from "@/components/site/Header";
@@ -135,6 +135,11 @@ function Portofoliu() {
                 eliminat, cartușele decupate și imaginea puternic estompată. Celelalte exemple sunt
                 demonstrații sintetice create pentru scenarii fictive. Mostrele au scop de
                 prezentare și nu pot fi folosite pentru execuție.
+              </p>
+              <p className="mt-4">
+                <Link to="/revit-mep" hash="pilot" className="btn btn-primary">
+                  Vezi mostra HVAC cu plan și secțiune
+                </Link>
               </p>
             </div>
           </div>
