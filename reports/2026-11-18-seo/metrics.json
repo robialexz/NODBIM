@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-18",
+  "status": "partial_access_blocked",
+  "baseline": {
+    "source": "task-provided historical baseline",
+    "observed_on": "2026-11-17",
+    "google_report_updated_on": "2026-11-13",
+    "indexed": 2,
+    "not_indexed": 57,
+    "crawled_not_indexed": 30,
+    "discovered_not_indexed": 24,
+    "redirects": 3,
+    "sitemap_discovered": 65,
+    "sitemap_last_read": "2026-11-17",
+    "sitemap_status": "Success"
+  },
+  "current": {
+    "google_report_updated_on": null,
+    "indexed": null,
+    "not_indexed": null,
+    "sitemap_last_read": null,
+    "sitemap_discovered": null,
+    "public_sitemap_urls": 69,
+    "priority_http_statuses": {
+      "/revit-mep": 200,
+      "/autocad-dwg": 200,
+      "/pdf-in-dwg": 200,
+      "/cursuri-revit": 200,
+      "/en/revit-mep-outsourcing": 200
+    },
+    "priority_self_canonicals": true,
+    "priority_noindex_observed": false,
+    "robots_status": 200,
+    "sitemap_status": 200
+  },
+  "limitations": [
+    "Connected browser tool unavailable: Unknown tool(browser.js)",
+    "Local checkout and prior SEO reports unavailable; prior report paths 404 in main",
+    "Default urllib client got 403 while curl GET got 200; not proof of Googlebot block"
+  ],
+  "site_changes": [],
+  "indexing_requests": [],
+  "monitoring_paused": true,
+  "next_action": "Restore authorized connected browser/Search Console access, retrieve previous local reports, compare actual Google data and resume existing check."
+}
