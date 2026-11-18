@@ -40,6 +40,8 @@ import { Route as EnAutocadDraftingRouteImport } from './routes/en.autocad-draft
 import { Route as EnCookiesRouteImport } from './routes/en.cookies'
 import { Route as EnPrivacyRouteImport } from './routes/en.privacy'
 import { Route as EnRevitMepOutsourcingRouteImport } from './routes/en.revit-mep-outsourcing'
+import { Route as EnBlogIndexRouteImport } from './routes/en.blog.index'
+import { Route as EnBlogSlugRouteImport } from './routes/en.blog.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -198,6 +200,16 @@ const EnRevitMepOutsourcingRoute = EnRevitMepOutsourcingRouteImport.update({
   path: '/en/revit-mep-outsourcing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnBlogIndexRoute = EnBlogIndexRouteImport.update({
+  id: '/en/blog/',
+  path: '/en/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnBlogSlugRoute = EnBlogSlugRouteImport.update({
+  id: '/en/blog/$slug',
+  path: '/en/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -231,6 +243,8 @@ export interface FileRoutesByFullPath {
   '/en/privacy': typeof EnPrivacyRoute
   '/en/revit-mep-outsourcing': typeof EnRevitMepOutsourcingRoute
   '/blog/': typeof BlogIndexRoute
+  '/en/blog/$slug': typeof EnBlogSlugRoute
+  '/en/blog/': typeof EnBlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -264,6 +278,8 @@ export interface FileRoutesByTo {
   '/en/privacy': typeof EnPrivacyRoute
   '/en/revit-mep-outsourcing': typeof EnRevitMepOutsourcingRoute
   '/blog': typeof BlogIndexRoute
+  '/en/blog/$slug': typeof EnBlogSlugRoute
+  '/en/blog': typeof EnBlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -298,6 +314,8 @@ export interface FileRoutesById {
   '/en/privacy': typeof EnPrivacyRoute
   '/en/revit-mep-outsourcing': typeof EnRevitMepOutsourcingRoute
   '/blog/': typeof BlogIndexRoute
+  '/en/blog/$slug': typeof EnBlogSlugRoute
+  '/en/blog/': typeof EnBlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -333,6 +351,8 @@ export interface FileRouteTypes {
     | '/en/privacy'
     | '/en/revit-mep-outsourcing'
     | '/blog/'
+    | '/en/blog/$slug'
+    | '/en/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -366,6 +386,8 @@ export interface FileRouteTypes {
     | '/en/privacy'
     | '/en/revit-mep-outsourcing'
     | '/blog'
+    | '/en/blog/$slug'
+    | '/en/blog'
   id:
     | '__root__'
     | '/'
@@ -399,6 +421,8 @@ export interface FileRouteTypes {
     | '/en/privacy'
     | '/en/revit-mep-outsourcing'
     | '/blog/'
+    | '/en/blog/$slug'
+    | '/en/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -433,6 +457,8 @@ export interface RootRouteChildren {
   EnPrivacyRoute: typeof EnPrivacyRoute
   EnRevitMepOutsourcingRoute: typeof EnRevitMepOutsourcingRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  EnBlogSlugRoute: typeof EnBlogSlugRoute
+  EnBlogIndexRoute: typeof EnBlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -654,6 +680,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnRevitMepOutsourcingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/blog/': {
+      id: '/en/blog/'
+      path: '/en/blog'
+      fullPath: '/en/blog/'
+      preLoaderRoute: typeof EnBlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/blog/$slug': {
+      id: '/en/blog/$slug'
+      path: '/en/blog/$slug'
+      fullPath: '/en/blog/$slug'
+      preLoaderRoute: typeof EnBlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -690,6 +730,8 @@ const rootRouteChildren: RootRouteChildren = {
   EnPrivacyRoute: EnPrivacyRoute,
   EnRevitMepOutsourcingRoute: EnRevitMepOutsourcingRoute,
   BlogIndexRoute: BlogIndexRoute,
+  EnBlogSlugRoute: EnBlogSlugRoute,
+  EnBlogIndexRoute: EnBlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
