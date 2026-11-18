@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { RevitPilot } from "@/components/site/RevitPilot";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
@@ -99,7 +100,7 @@ function RevitMepOutsourcing() {
                   href="#estimate"
                   className="tech-label border border-foreground bg-foreground px-6 py-4 text-background transition-colors hover:border-primary hover:bg-primary"
                 >
-                  Request a project estimate
+                  Request a quote for one area
                 </a>
                 {mailHref && (
                   <a
@@ -138,6 +139,10 @@ function RevitMepOutsourcing() {
               </p>
             </div>
           </div>
+        </section>
+
+        <section aria-label="Project pilot" className="mx-auto max-w-[1200px] px-5 py-10 md:px-8">
+          <RevitPilot lang="en" />
         </section>
 
         <section className="mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-24">
