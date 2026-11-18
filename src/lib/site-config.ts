@@ -11,13 +11,15 @@ function normalizeSiteUrl(value: string): string {
 }
 
 const configuredSiteUrl = normalizeSiteUrl(envValue("VITE_SITE_URL"));
+const configuredPublicEmail = envValue("VITE_PUBLIC_EMAIL");
 
 export const site = {
   businessName: "NOD BIM",
   tagline: "DESENARE TEHNICĂ · AUTOCAD · REVIT MEP",
   whatsappNumber: envValue("VITE_WHATSAPP_NUMBER"),
   phone: envValue("VITE_PHONE_NUMBER"),
-  email: envValue("VITE_PUBLIC_EMAIL"),
+  // Căsuța office a fost suspendată. Publicăm doar o adresă de contact activă.
+  email: configuredPublicEmail.toLowerCase() === "office@nodbim.com" ? "" : configuredPublicEmail,
   /** Domeniul canonical de producție; preview-urile îl pot suprascrie prin VITE_SITE_URL. */
   siteUrl: configuredSiteUrl || "https://nodbim.com",
   /** ex: "G-XXXXXXXXXX". Gol => analytics dezactivat. */

@@ -111,6 +111,10 @@ export const Route = createFileRoute("/revit-mep")({
           "Planurile de arhitectură (DWG sau PDF), tema tehnică și, dacă există, modelul RVT sau planșele începute. Util este și numărul de planșe și termenul dorit.",
         ],
         [
+          "Ce înseamnă tariful de la 200 EUR pe planșă?",
+          "Este tariful de pornire pentru o planșă completă de instalații. De exemplu, o planșă de ventilare pentru un nivel poate include trasee, echipamente, cote și legendă, realizate după soluția tehnică transmisă. Oferta confirmă separat volumul de modelare, numărul de vederi și revizii și livrabilele RVT, DWG sau PDF.",
+        ],
+        [
           "Pot primi fișierul RVT la final?",
           "Da, atunci când livrarea fișierului editabil este stabilită în scopul lucrării.",
         ],
