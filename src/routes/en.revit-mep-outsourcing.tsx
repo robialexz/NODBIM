@@ -6,7 +6,13 @@ import { EnEstimate, EnFaq } from "@/components/site/EnSections";
 import { enOutsourcing } from "@/lib/en-content";
 import { enFaqSchema, enMailHref } from "@/lib/en-page";
 import { Reveal } from "@/components/site/Reveal";
-import { brandSchema, canonicalUrl } from "@/lib/site-config";
+import {
+  brandSchema,
+  canonicalUrl,
+  defaultWhatsappMessage,
+  quoteContextForPath,
+  whatsappLink,
+} from "@/lib/site-config";
 import { hreflangLinks } from "@/lib/i18n";
 import { trackConversion } from "@/lib/analytics";
 import hero3d from "@/assets/hero-3d.webp";
@@ -64,6 +70,7 @@ export const Route = createFileRoute("/en/revit-mep-outsourcing")({
 
 function RevitMepOutsourcing() {
   const mailHref = enMailHref("Revit MEP project enquiry");
+  const waHref = whatsappLink(quoteContextForPath(path)?.whatsappMessage ?? defaultWhatsappMessage);
 
   return (
     <div className="min-h-screen bg-background">
@@ -101,6 +108,17 @@ function RevitMepOutsourcing() {
                     className="tech-label border border-foreground px-6 py-4 transition-colors hover:bg-foreground hover:text-background"
                   >
                     Email your project files
+                  </a>
+                )}
+                {!mailHref && waHref && (
+                  <a
+                    href={waHref}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    onClick={() => trackConversion("whatsapp_click", { source: "en_hero" })}
+                    className="tech-label border border-foreground px-6 py-4 transition-colors hover:bg-foreground hover:text-background"
+                  >
+                    Discuss your project on WhatsApp
                   </a>
                 )}
               </div>

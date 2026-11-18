@@ -138,9 +138,19 @@ const fmtDate = new Intl.DateTimeFormat("ro-RO", {
   year: "numeric",
 });
 
+const mepOfferByArticle: Record<string, string> = {
+  "template-revit-mep-bun":
+    "Ai deja un template de birou? Putem produce modelul și planșele Revit MEP folosind vederile, familiile și convențiile tale.",
+  "cat-costa-modelarea-bim-pe-tip-de-cladire":
+    "Pentru o ofertă de modelare Revit MEP, trimite disciplinele, starea modelului și planșele de livrat. Primești scopul, termenul și prețul înainte de începere.",
+  "clash-detection-ce-este":
+    "Ai observații de coordonare aprobate? Putem actualiza traseele și planșele Revit MEP pe baza indicațiilor echipei tale.",
+};
+
 function ArticlePage() {
   const { article } = Route.useLoaderData();
   const relatedArticles = getRelatedArticles(article);
+  const mepOffer = mepOfferByArticle[article.slug];
 
   return (
     <div className="min-h-screen bg-background">
@@ -184,6 +194,17 @@ function ArticlePage() {
           </div>
 
           <ArticleSections sections={article.sections} />
+          {mepOffer && (
+            <aside className="mt-8 border-l-2 border-primary pl-4">
+              <p className="text-sm leading-relaxed text-foreground/80">{mepOffer}</p>
+              <Link
+                to="/revit-mep"
+                className="mt-2 inline-flex min-h-11 items-center font-medium underline underline-offset-4 hover:text-primary"
+              >
+                Vezi serviciul de modelare Revit MEP
+              </Link>
+            </aside>
+          )}
         </article>
 
         {relatedArticles.length > 0 && (

@@ -210,34 +210,27 @@ export function ServicePage({
                 ))}
               </ul>
             )}
-            {(phoneHref || hasWhatsapp) && (
-              <div className="mt-7 flex flex-wrap gap-3">
-                <PhoneLink source={label} className="btn btn-primary">
-                  {`Sună: ${phoneDisplay}`}
-                </PhoneLink>
-                {hasWhatsapp && (
-                  <a
-                    href={waHref}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    onClick={() => {
-                      trackConversion("whatsapp_click", { source: label });
-                    }}
-                    className="btn"
-                  >
-                    Scrie pe WhatsApp
-                  </a>
-                )}
-              </div>
-            )}
-            <p className="mt-4 text-sm">
-              <a
-                href="#estimare"
-                className="inline-flex min-h-11 items-center font-medium underline decoration-border-strong underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
-              >
-                {phoneHref || hasWhatsapp ? "sau trimite" : "Trimite"} detaliile în formular
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href="#estimare" className="btn btn-primary">
+                Cere ofertă
               </a>
-            </p>
+              {hasWhatsapp && (
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  onClick={() => {
+                    trackConversion("whatsapp_click", { source: label });
+                  }}
+                  className="btn"
+                >
+                  Scrie pe WhatsApp
+                </a>
+              )}
+              <PhoneLink source={label} className="btn">
+                {`Sună: ${phoneDisplay}`}
+              </PhoneLink>
+            </div>
             {lead && (
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">{lead}</p>
             )}

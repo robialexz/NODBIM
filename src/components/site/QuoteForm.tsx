@@ -45,13 +45,14 @@ const copy = {
     phone: "Telefon / WhatsApp (opțional, pentru răspuns mai rapid)",
     company: "Companie / birou (opțional)",
     type: "Tip proiect",
-    available: "Fișiere disponibile",
+    available: "Fișiere disponibile (opțional)",
     sheets: "Nr. aproximativ de planșe",
     sheetsHint: "ex: 5",
     deadline: "Termen",
     deadlineHint: "ex: 20 august",
     details: "Descrierea lucrării *",
-    detailsHint: "Ex.: plan apartament cu 2 camere, scanat; îl vreau în DWG, la scară.",
+    detailsHint:
+      "Ex.: clădire de birouri, HVAC, planuri DWG și soluție aprobată. Am nevoie de un model Revit și 5 planșe. Lucrăm în Revit 2026.",
     sending: "Se trimite…",
     submit: "Trimite cererea",
     after:
@@ -99,7 +100,7 @@ const copy = {
     phone: "Phone, with country code (optional)",
     company: "Company / engineering office (optional)",
     type: "Scope",
-    available: "Available files",
+    available: "Available files (optional)",
     sheets: "Approx. number of drawings",
     sheetsHint: "e.g. 12",
     deadline: "Target date",
@@ -165,7 +166,7 @@ export function QuoteForm() {
     t.types[0] ??
     "";
   const [files, setFiles] = useState<string[]>(
-    context?.isTraining ? [trainingFiles[0] ?? "De la zero (fără fișiere)"] : ["PDF"],
+    context?.isTraining ? [trainingFiles[0] ?? "De la zero (fără fișiere)"] : [],
   );
   const [planse, setPlanse] = useState("");
   const [termen, setTermen] = useState("");
