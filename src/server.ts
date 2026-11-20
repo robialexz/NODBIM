@@ -27,9 +27,9 @@ const contentSecurityPolicy = [
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net",
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self' data:",
-  "img-src 'self' data: blob: https://www.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.googletagmanager.com https://pagead2.googlesyndication.com https://google.com https://www.google.ro",
+  "img-src 'self' data: blob: https://ad.doubleclick.net https://www.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.googletagmanager.com https://pagead2.googlesyndication.com https://google.com https://www.google.ro",
   "frame-src 'self' https://www.googletagmanager.com",
-  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://region1.google-analytics.com https://googleads.g.doubleclick.net https://www.google.com https://www.googleadservices.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://ad.doubleclick.net https://google.com https://www.google.ro",
+  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://region1.google-analytics.com https://region1.analytics.google.com https://stats.g.doubleclick.net https://googleads.g.doubleclick.net https://www.google.com https://www.googleadservices.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://ad.doubleclick.net https://google.com https://www.google.ro",
 ].join("; ");
 
 function withSecurityHeaders(response: Response, request: Request): Response {
