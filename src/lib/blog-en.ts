@@ -5,6 +5,150 @@ export type EnglishArticle = Article & { sourceSlug: string };
 
 export const englishArticles: EnglishArticle[] = [
   {
+    slug: "hvac-service-access-clearances",
+    sourceSlug: "clash-detection-ce-este",
+    title: "A clash-free Revit HVAC model can still be impossible to service",
+    metaTitle: "HVAC service access in Revit MEP",
+    description:
+      "How to brief an HVAC coordination review for filter removal, valve access and equipment replacement. Includes inputs and deliverables to request.",
+    date: "2026-11-20",
+    readingTime: 5,
+    tags: ["Revit MEP", "HVAC", "Coordination"],
+    sections: [
+      {
+        paragraphs: [
+          "A duct can clear the structure and still leave too little room to pull an air handling unit filter out. A clean hard-clash report only describes the geometry and rules tested. Service access deserves its own review before the drawing package is issued.",
+        ],
+      },
+      {
+        heading: "Check the task the technician has to perform",
+        table: {
+          head: ["Service task", "What to show in the review"],
+          rows: [
+            [
+              "Pull out a filter",
+              "Mark the service face and removal direction in plan. Use a section to show the full extraction space and the ceiling access opening.",
+            ],
+            [
+              "Operate or replace a valve actuator",
+              "Check access from the hatch, room for hands and tools, and the path needed to remove the actuator.",
+            ],
+            [
+              "Remove the largest replaceable part",
+              "Trace the component through doors, turns and openings. Record any approved lifting or disassembly assumptions.",
+            ],
+          ],
+        },
+        paragraphs: [
+          "Use the selected manufacturer's documents and the project team's agreed criteria. If the equipment is provisional, flag the clearance for confirmation before the team closes the issue.",
+        ],
+      },
+      {
+        heading: "What to send for a review",
+        list: [
+          "The current approved HVAC design, relevant architectural and structural backgrounds, and the Revit model or linked models for the area.",
+          "Equipment schedules and submittals showing the service side, access criteria and dimensions supplied by the manufacturer.",
+          "Ceiling hatches, doors, removal routes and site constraints, plus the outputs you need for review.",
+        ],
+        links: [
+          {
+            label: "Files to send for a Revit MEP quotation",
+            href: "/en/blog/files-for-revit-mep-quotation",
+          },
+        ],
+      },
+      {
+        heading: "What to ask for in the drawing package",
+        paragraphs: [
+          "Start with one plant room or ceiling zone. Ask for tagged equipment, plans and sections at flagged locations, and an issue list stating whether each access path is clear, obstructed or awaiting information. Include the source of the access criteria and name who will resolve open decisions.",
+          "Revit Interference Check finds intersections between model elements. Navisworks Manage can also run a clearance test using a specified distance. Both workflows depend on the selected geometry and criteria. The project team approves the maintenance requirements and engineering decisions.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit Interference Check",
+            href: "https://help.autodesk.com/cloudhelp/2025/ENU/Revit-Collaborate/files/GUID-890A9FE0-EFF4-4CFB-9E81-B0DE1A132BEC.htm",
+          },
+          {
+            label: "Autodesk Navisworks clash test options",
+            href: "https://help.autodesk.com/cloudhelp/2023/ENU/Navisworks-Clash-Detective/files/GUID-B13377D4-8AFA-4E95-8435-C6DC4DF26AF4.htm",
+          },
+          {
+            label: "See the HVAC drawing sample and request a quote for one area",
+            href: "/en/revit-mep-outsourcing",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "revit-hvac-view-filters",
+    sourceSlug: "culori-sisteme-hvac-filtre-revit-mep",
+    title: "Revit MEP view filters for HVAC systems",
+    metaTitle: "Revit HVAC view filters and system colours",
+    description:
+      "Specify reliable HVAC colour rules in Revit and review a pilot drawing before issuing a full set of MEP sheets.",
+    date: "2026-11-20",
+    readingTime: 4,
+    tags: ["Revit MEP", "HVAC", "Drawing quality"],
+    sections: [
+      {
+        paragraphs: [
+          "A model can look consistent on screen while the issued PDF misidentifies a duct system. When you brief a Revit drawing package, define how each colour is assigned and check what the reader sees on the exported sheet.",
+        ],
+      },
+      {
+        heading: "Specify the rule behind each colour",
+        table: {
+          head: ["What to agree", "Example"],
+          rows: [
+            [
+              "Category",
+              "Ducts, duct fittings and flexible ducts that need the same system graphics.",
+            ],
+            [
+              "Parameter and value",
+              "Use the system parameter available for the selected categories and the exact agreed value for supply or extract air.",
+            ],
+            [
+              "Override and output",
+              "Agree the line colour, pattern or weight in the view template and check that the issued drawing legend matches.",
+            ],
+            [
+              "Exceptions",
+              "Decide how unmatched elements, linked models and existing systems should appear in the deliverable.",
+            ],
+          ],
+        },
+        paragraphs: [
+          "In a rule-based filter, the categories and parameter values drive the override. Verify the parameter on actual model elements before applying the rule to multiple views. If several filters match, review their order and confirm the visible result in a pilot view.",
+        ],
+      },
+      {
+        heading: "Approve one sheet before rolling out the template",
+        list: [
+          "Send the RVT model, any client template, the intended output format and a marked-up example or colour legend.",
+          "Check a straight duct, fitting and flexible connection for each relevant system. Include an unmatched element so the reviewer can see the agreed exception style.",
+          "Export the sheet at the issue scale. Check the legend and print legibility, including a greyscale output if the project requires one.",
+          "Record the approved template and any exceptions in the handover. Verify system assignments and connectivity separately from the view graphics.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit view filters",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-DocumentPresent/files/GUID-145815E2-5699-40FE-A358-FFC739DB7C46.htm",
+          },
+          {
+            label: "Revit MEP model handover checklist",
+            href: "/en/blog/revit-mep-model-handover-checklist",
+          },
+          {
+            label: "Request a Revit MEP drawing estimate",
+            href: "/en/revit-mep-outsourcing#estimate",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "mep-drawing-pricing",
     sourceSlug: "cat-costa-o-plansa-de-instalatii",
     title: "How much does a complete MEP drawing sheet cost?",
@@ -135,6 +279,10 @@ export const englishArticles: EnglishArticle[] = [
             label: "Check an inherited Revit MEP model",
             href: "/en/blog/revit-mep-model-handover-checklist",
           },
+          {
+            label: "How scope and revisions affect drawing prices",
+            href: "/en/blog/mep-drawing-pricing",
+          },
           { label: "Browse English guides", href: "/en/blog" },
         ],
       },
@@ -192,6 +340,10 @@ export const englishArticles: EnglishArticle[] = [
           {
             label: "Prepare files for a Revit MEP quote",
             href: "/en/blog/files-for-revit-mep-quotation",
+          },
+          {
+            label: "How scope and revisions affect drawing prices",
+            href: "/en/blog/mep-drawing-pricing",
           },
           { label: "Browse English guides", href: "/en/blog" },
         ],

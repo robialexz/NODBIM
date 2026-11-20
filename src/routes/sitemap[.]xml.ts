@@ -29,7 +29,7 @@ const entries: SitemapEntry[] = [
   { path: "/pdf-in-dwg", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.7" },
   {
     path: "/en/revit-mep-outsourcing",
-    lastmod: "2026-11-18",
+    lastmod: "2026-11-20",
     changefreq: "monthly",
     priority: "0.9",
   },
@@ -38,8 +38,8 @@ const entries: SitemapEntry[] = [
   { path: "/portofoliu", lastmod: "2026-11-18", changefreq: "monthly", priority: "0.8" },
   { path: "/magazin", lastmod: "2026-10-08", changefreq: "weekly", priority: "0.7" },
   { path: "/recomandari", lastmod: "2026-10-18", changefreq: "weekly", priority: "0.6" },
-  { path: "/blog", lastmod: "2026-11-17", changefreq: "weekly", priority: "0.8" },
-  { path: "/en/blog", lastmod: "2026-11-17", changefreq: "weekly", priority: "0.8" },
+  { path: "/blog", lastmod: "2026-11-20", changefreq: "weekly", priority: "0.8" },
+  { path: "/en/blog", lastmod: "2026-11-20", changefreq: "weekly", priority: "0.8" },
   ...articles.map((a) => ({
     path: `/blog/${a.slug}`,
     lastmod: a.updatedAt ?? a.date,
@@ -48,7 +48,7 @@ const entries: SitemapEntry[] = [
   })),
   ...englishArticles.map((article) => ({
     path: `/en/blog/${article.slug}`,
-    lastmod: "2026-11-17",
+    lastmod: article.updatedAt ?? article.date,
     changefreq: "monthly" as const,
     priority: "0.6",
   })),

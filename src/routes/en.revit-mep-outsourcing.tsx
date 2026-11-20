@@ -308,6 +308,22 @@ function RevitMepOutsourcing() {
                 Revit MEP model handover checklist
               </a>
             </li>
+            <li>
+              <a
+                href="/en/blog/hvac-service-access-clearances"
+                className="block py-4 font-medium text-primary underline underline-offset-4"
+              >
+                Check HVAC service access before signing off a model
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/blog/revit-hvac-view-filters"
+                className="block py-4 font-medium text-primary underline underline-offset-4"
+              >
+                Specify HVAC view filters for a drawing package
+              </a>
+            </li>
           </ul>
           <Link
             to="/en/blog"
