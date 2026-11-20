@@ -89,9 +89,7 @@ function isOldSchema(error: LeadErrorLike | null): boolean {
   return (
     error?.code === "42703" ||
     error?.code === "23502" ||
-    (error?.code === "PGRST204" &&
-      error.message?.includes("Could not find the 'company' column of 'leads' in schema cache") ===
-        true)
+    (error?.code === "PGRST204" && error.message?.includes("'company' column of 'leads'") === true)
   );
 }
 

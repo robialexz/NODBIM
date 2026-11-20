@@ -42,7 +42,7 @@ function createMemorySupabase(
                   data: null,
                   error: {
                     code: "PGRST204",
-                    message: "Could not find the 'company' column of 'leads' in schema cache",
+                    message: "Could not find the 'company' column of 'leads' in the schema cache",
                   },
                 }),
               }),
