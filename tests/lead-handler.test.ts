@@ -12,11 +12,16 @@ import type { LeadInput } from "../src/lib/lead-schema";
 
 /**
  * Store in-memory care emulează semantica PostgREST pentru fluxul de lead:
- * coduri de eroare reale (23505 unic violation, 42703 coloană lipsă),
+ * coduri de eroare reale (23505 unic violation, 42703/PGRST204 coloană lipsă),
  * constrângere de unicitate pe submission_id, select cu .eq/.single.
  */
 function createMemorySupabase(
-  options: { withoutNewColumns?: boolean; phoneNotNull?: boolean } = {},
+  options: {
+    withoutNewColumns?: boolean;
+    phoneNotNull?: boolean;
+    missingCompany?: boolean;
+    failLegacyInsert?: boolean;
+  } = {},
 ) {
   const rows: Record<string, unknown>[] = [];
   const bySubmissionId = new Map<string, Record<string, unknown>>();
@@ -30,6 +35,19 @@ function createMemorySupabase(
       if (table !== "leads") throw new Error(`unexpected table ${table}`);
       return {
         insert: (payload) => {
+          if (options.missingCompany && "company" in payload) {
+            return {
+              select: () => ({
+                single: async () => ({
+                  data: null,
+                  error: {
+                    code: "PGRST204",
+                    message: "Could not find the 'company' column of 'leads' in the schema cache",
+                  },
+                }),
+              }),
+            };
+          }
           if (
             options.withoutNewColumns &&
             ("submission_id" in payload || "notification_status" in payload || "company" in payload)
@@ -39,6 +57,16 @@ function createMemorySupabase(
                 single: async () => ({
                   data: null,
                   error: { code: "42703", message: 'column "notification_status" does not exist' },
+                }),
+              }),
+            };
+          }
+          if (options.failLegacyInsert && !("submission_id" in payload)) {
+            return {
+              select: () => ({
+                single: async () => ({
+                  data: null,
+                  error: { code: "PGRST500", message: "legacy insert unavailable" },
                 }),
               }),
             };
@@ -417,6 +445,23 @@ describe("handleSubmitLead — notificare și retry", () => {
     expect(store.count()).toBe(1);
     expect(attempts).toBe(1);
   });
+
+  test("migrare neaplicată + insert legacy eșuat => trimite emailul de fallback", async () => {
+    const store = createMemorySupabase({ withoutNewColumns: true, failLegacyInsert: true });
+    const sentLeads: string[] = [];
+    const deps = makeDeps(store, async (lead) => {
+      sentLeads.push(lead.id);
+      return "sent";
+    });
+    const input = baseLead({ submission_id: "22222222-2222-4222-8222-222222222222" });
+
+    const result = await handleSubmitLead(input, deps);
+
+    expect(result.id).toBe(`email:${input.submission_id}`);
+    expect(result.saved).toBe(false);
+    expect(store.count()).toBe(0);
+    expect(sentLeads).toEqual([input.submission_id]);
+  });
 });
 
 describe("handleSubmitLead — telefon opțional și companie", () => {
@@ -433,6 +478,21 @@ describe("handleSubmitLead — telefon opțional și companie", () => {
 
   test("schema veche (phone NOT NULL, fără coloana company) => salvează degradat, fără pierderi", async () => {
     const store = createMemorySupabase({ withoutNewColumns: true, phoneNotNull: true });
+    const input = baseLead({ phone: undefined, company: "Instal Design GmbH" });
+
+    const result = await handleSubmitLead(input, makeDeps(store));
+
+    expect(result.saved).toBe(true);
+    expect(store.count()).toBe(1);
+    expect(store.rows[0]?.["phone"]).toBe("");
+    expect(store.rows[0]?.["company"]).toBeUndefined();
+    expect(store.rows[0]?.["description"]).toBe(
+      "Companie: Instal Design GmbH\nModelare HVAC pentru un birou",
+    );
+  });
+
+  test("PGRST204 pentru company în schema cache => salvează compania în descriere și telefonul gol", async () => {
+    const store = createMemorySupabase({ missingCompany: true, phoneNotNull: true });
     const input = baseLead({ phone: undefined, company: "Instal Design GmbH" });
 
     const result = await handleSubmitLead(input, makeDeps(store));
