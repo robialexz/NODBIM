@@ -14,6 +14,7 @@ const copy = {
       "După predare, poți rezerva capacitate pentru următoarea etapă sau pentru un volum lunar.",
     quote: "Cere ofertă pentru o zonă",
     sample: "Descarcă mostra HVAC (PDF)",
+    checklist: "Descarcă lista de verificare a planșelor (CSV)",
     alt: "Planul schematic al camerei tehnice HVAC din mostra NOD BIM",
     caption: "Exemplu schematic de predare cu plan, secțiune și verificări. Pentru prezentare.",
   },
@@ -27,6 +28,7 @@ const copy = {
     repeat: "After handover, you can reserve capacity for the next stage or a monthly workload.",
     quote: "Request a quote for one area",
     sample: "Download the HVAC sample (PDF)",
+    checklist: "Download the sheet issue checklist (CSV)",
     alt: "Illustrative HVAC plant room plan from the NOD BIM sample",
     caption: "Illustrative handover with a plan, section and checks. For demonstration only.",
   },
@@ -54,6 +56,13 @@ export function RevitPilot({ lang = "ro" }: { lang?: "ro" | "en" }) {
           </a>
           <a href={sampleUrl} download className="btn">
             <FileDown aria-hidden="true" className="size-4" /> {t.sample}
+          </a>
+          <a
+            href={`/resurse/revit-mep-sheet-issue-checklist-${lang}.csv`}
+            download
+            className="btn max-w-full whitespace-normal"
+          >
+            <FileDown aria-hidden="true" className="size-4" /> {t.checklist}
           </a>
         </div>
       </div>
