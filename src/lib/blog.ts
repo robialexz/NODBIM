@@ -29,6 +29,260 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "culori-sisteme-hvac-filtre-revit-mep",
+    title: "Culorile sistemelor HVAC în Revit MEP: cum ceri filtrele de vedere",
+    metaTitle: "Filtre de vedere pentru sisteme HVAC în Revit MEP",
+    description:
+      "Află cum separi grafic sistemele HVAC în planșele Revit MEP prin filtre de vedere și ce standard trebuie aprobat înainte de predare.",
+    date: "2026-11-20",
+    readingTime: 5,
+    tags: ["Revit MEP", "HVAC", "Filtre de vedere", "Planșe tehnice"],
+    sections: [
+      {
+        paragraphs: [
+          "Pe o planșă HVAC, echipa poate cere culori diferite pentru introducere, retur și evacuare. Înainte să colorezi traseele, stabilește după ce informație din model se face separarea. O culoare aplicată manual poate arăta corect într-o singură vedere, dar nu îți spune dacă elementele au fost selectate după tipul de sistem sau doar după poziția lor.",
+          "În Revit, filtrele de vedere pot identifica elemente după categorie și valori de parametri, apoi pot modifica vizibilitatea sau reprezentarea grafică. Pentru tubulatură, proprietățile includ System Type și System Name. Acestea oferă reguli verificabile pentru afișare, dacă valorile din model respectă convenția proiectului.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit: filtre de vedere",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-DocumentPresent/files/GUID-145815E2-5699-40FE-A358-FFC739DB7C46.htm",
+          },
+          {
+            label: "Autodesk Revit: proprietățile instanței de tubulatură",
+            href: "https://help.autodesk.com/cloudhelp/2023/ENU/Revit-MEPEng/files/GUID-523E2F33-81ED-4CAF-9E93-63C3F417C6C1.htm",
+          },
+        ],
+      },
+      {
+        heading: "Alege o regulă care corespunde legendei",
+        paragraphs: [
+          "Dacă vrei să distingi funcția sistemului, System Type poate fi criteriul filtrului: de exemplu, Supply Air, Return Air sau Exhaust Air. Dacă standardul proiectului cere separarea unor sisteme individuale, System Name poate fi relevant. Confirmă în model valorile reale și legenda aprobată; nu inventa denumiri sau culori pentru a completa golurile din date.",
+          "Filtrele bazate pe reguli folosesc o categorie și parametri, operatori și valori. Parametrii disponibili depind de categoriile selectate; când alegi mai multe categorii, interfața poate limita regulile la parametrii comuni. Verifică separat fitting-urile și accesoriile înainte să presupui că aceeași regulă va colora întregul traseu.",
+        ],
+        table: {
+          head: ["Element verificat", "Regulă de afișare posibilă", "Ce trebuie aprobat"],
+          rows: [
+            [
+              "Tubulatură",
+              "System Type = valoarea din convenția proiectului",
+              "Culoarea și stilul de linie din legendă",
+            ],
+            [
+              "Fitinguri",
+              "Aceeași regulă numai dacă parametrul este disponibil",
+              "Dacă păstrează stilul tubulaturii",
+            ],
+            [
+              "Accesorii HVAC",
+              "Categorie și valoare confirmate în model",
+              "Dacă apar în plan și în legendă",
+            ],
+          ],
+        },
+        links: [
+          {
+            label: "Autodesk Revit: crearea unui filtru bazat pe reguli",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-DocumentPresent/files/GUID-B451C74B-9214-4974-9A49-2B46A9F6D822.htm",
+          },
+        ],
+        note: "Tabelul este un exemplu de discuție pentru documentare, nu un standard de culori. Folosește legenda și valorile aprobate în proiect.",
+      },
+      {
+        heading: "Aplică filtrele în vederile potrivite",
+        paragraphs: [
+          "Adaugă filtrul din Visibility/Graphics, fila Filters, și stabilește suprascrierile cerute pentru liniile proiectate sau tăiate, modelul de suprafață ori halftone. Un filtru adăugat astfel afectează vederea curentă. Pentru un set de vederi, folosește View Template-ul convenit și verifică dacă acesta controlează setările de vizibilitate și grafica.",
+          "Dacă mai multe filtre se aplică acelorași elemente, ordinea lor contează: Revit acordă prioritate filtrului aflat mai sus în listă. Controlează ordinea și orice alte suprascrieri înainte să investighezi o culoare care nu corespunde. Păstrează o vedere pilot pentru test, apoi aplică regula în restul setului după confirmare.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit: aplicarea unui filtru și prioritatea filtrelor",
+            href: "https://help.autodesk.com/cloudhelp/2025/ENU/Revit-DocumentPresent/files/GUID-FA7B0AD9-4F0F-4405-9DF7-35D30D7CBE7B.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică o planșă înainte de a multiplica regula",
+        paragraphs: [
+          "Alege o planșă reprezentativă și compară modelul cu legenda: fiecare tip de sistem trebuie să fie lizibil, traseele suprapuse nu trebuie să devină imposibil de urmărit, iar etichetele și fundalul arhitectural trebuie să rămână clare. Verifică aceeași vedere în PDF-ul exportat și la formatul de hârtie cerut; afișarea din Revit nu confirmă singură lizibilitatea la predare.",
+          "Dacă sistemele nu au valorile așteptate, oprește aplicarea în masă și cere corectarea sau confirmarea modelului. Un filtru schimbă reprezentarea elementelor care corespund regulii; nu corectează conectivitatea, clasificarea ori soluția HVAC.",
+        ],
+      },
+      {
+        heading: "Ce să trimiți pentru o ofertă de documentare HVAC",
+        paragraphs: [
+          "Pentru evaluarea unei intervenții pe vederi sau planșe existente, trimite fișierul RVT și versiunea Revit, lista vederilor și foilor, legenda aprobată, valorile de System Type/Name care trebuie diferențiate și un PDF de referință. Include și View Template-ul sau regulile de proiect relevante, precum și persoana care aprobă culorile și conținutul tehnic.",
+          "NOD BIM poate pregăti modelarea și documentația Revit MEP pentru soluții HVAC, termice și electrice furnizate sau aprobate de proiectant. Alegerea soluției, verificarea inginerească și semnătura rămân la specialiștii responsabili. Pentru scope și livrabile, vezi serviciul Revit MEP sau trimite fișierele pentru evaluare.",
+        ],
+        list: [
+          "RVT-ul, versiunea Revit și modelul de referință folosit.",
+          "Lista categoriilor, tipurilor de sistem și vederilor incluse.",
+          "Legenda grafică și regulile de culoare/linie aprobate.",
+          "PDF-ul de referință și criteriul de acceptare pentru planșa pilot.",
+          "Numele responsabilului care confirmă regulile și emiterea finală.",
+        ],
+        links: [
+          { label: "Modelare și documentație Revit MEP", href: "/revit-mep" },
+          { label: "Trimite datele proiectului pentru evaluare", href: "/contact" },
+          {
+            label: "Verifică sistemele de tubulatură înainte de predare",
+            href: "https://nodbim.com/blog/verificare-sisteme-tubulatura-revit-mep",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "grosimi-linii-autocad-pdf-ctb-stb",
+    title: "PDF-ul AutoCAD are linii prea groase sau toate la fel? Verifică CTB și STB",
+    metaTitle: "Grosimi linii AutoCAD în PDF: verifică CTB și STB",
+    description:
+      "Vezi cum influențează tabelele CTB și STB, setările de plotare și previzualizarea grosimile liniilor din PDF-ul exportat din AutoCAD.",
+    date: "2026-11-18",
+    readingTime: 5,
+    tags: ["AutoCAD", "PDF", "DWG", "CTB", "STB", "Plotare", "Grosimi linii"],
+    sections: [
+      {
+        paragraphs: [
+          "Un traseu de instalații, conturul clădirii și fundalul arhitectural pot ajunge în PDF cu o greutate vizuală neașteptată: liniile par aproape identice, unele se îngroașă sau detaliile fine devin greu de citit. Aspectul din ecranul AutoCAD nu confirmă singur cum va fi trasată planșa. Înainte să modifici obiectele, verifică layoutul și setările folosite la plotare.",
+          "În AutoCAD, grosimea rezultată poate depinde de proprietățile obiectelor și straturilor, de tabelul de stiluri de plotare alocat layoutului și de opțiunile de ieșire. Fără DWG-ul folosit, tabelul CTB sau STB și PDF-ul de referință, o pagină exportată nu arată care dintre aceste setări a produs diferența.",
+        ],
+      },
+      {
+        heading: "CTB și STB stabilesc stiluri de plotare în moduri diferite",
+        paragraphs: [
+          "O tabelă CTB este dependentă de culoare: stilul de plotare, inclusiv grosimea configurată, este ales în funcție de culoarea obiectului. Obiectele de aceeași culoare folosesc aceeași intrare CTB. O tabelă STB folosește stiluri numite, care pot fi atribuite obiectelor sau straturilor; două obiecte de aceeași culoare pot avea stiluri de plotare diferite.",
+          "De aceea, nu deduce tabelul corect doar din culorile vizibile într-un DWG. Cere autorului tabelul folosit și verifică ce CTB sau STB este alocat layoutului care trebuie predat. Un tabel cu același nume, dar conținut diferit, poate produce alt rezultat.",
+        ],
+        links: [
+          {
+            label: "Autodesk: cum funcționează tabelele CTB și STB",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-2FD01085-DDD8-49D2-A910-E63EA45A7FED.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică setările layoutului înainte de a schimba grosimile",
+        paragraphs: [
+          "În Page Setup sau în dialogul Plot, verifică numele tabelului atribuit layoutului și opțiunea Plot with Plot Styles. Autodesk precizează că, atunci când aceasta este activată, desenul se trasează cu stilurile de plotare și cu grosimile de linie; dacă este dezactivată, se folosesc proprietățile atribuite obiectelor, fără suprascrierile din stiluri.",
+          "Controlează și Plot Object Lineweights dacă planșa se bazează pe grosimi atribuite direct obiectelor sau straturilor. Setarea Scale Lineweights modifică felul în care grosimile sunt raportate la scara de plotare; nu o activa sau dezactiva fără să știi convenția planșei. Aceste opțiuni sunt distincte de ceea ce vezi în Model Space.",
+        ],
+        links: [
+          {
+            label: "Autodesk: opțiunile care afectează obiectele plotate",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENG/AutoCAD-Core/files/GUID-5C44F977-EE00-44EE-A4E1-5A3AC10886A6.htm",
+          },
+          {
+            label: "Autodesk: dialogul Plot, stiluri și grosimi de linie",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-264D3513-0D22-4461-82D6-14F391BC5CDE.htm",
+          },
+        ],
+      },
+      {
+        heading: "Folosește previzualizarea ca verificare, nu ca ghicire",
+        paragraphs: [
+          "Alege layoutul și formatul de hârtie convenite, verifică tabela lui de plotare și deschide Preview. Compară fundalul, traseul principal, traseele secundare, simbolurile și textele cu un PDF de referință acceptat. Apoi exportă un singur PDF de probă și verifică pagina la formatul original; o mărire pe ecran poate ascunde diferențe de grosime sau lizibilitate.",
+          "Dacă rezultatul nu corespunde, notează ce element diferă și în ce layout. Schimbă o singură setare confirmată odată și repetă proba. Nu edita în masă proprietățile layerelor sau CTB-ul înainte să confirmi dacă regula vine din standardul biroului, din fișierul primit ori din configurația locală de plotare.",
+        ],
+        links: [
+          {
+            label: "Autodesk: Preview și setările dialogului Plot",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/AutoCAD-Core/files/GUID-264D3513-0D22-4461-82D6-14F391BC5CDE.htm",
+          },
+        ],
+      },
+      {
+        heading: "Ce fișiere și cerințe să trimiți pentru reproducerea planșei",
+        paragraphs: [
+          "Pentru o corectură sau pregătirea unui PDF din DWG, transmite intrările care determină rezultatul, nu numai o captură de ecran:",
+        ],
+        list: [
+          "DWG-ul și revizia exactă folosită pentru plotare, plus numele layoutului vizat;",
+          "fișierul CTB sau STB asociat și, dacă folosești un plotter configurat separat, PC3-ul relevant;",
+          "PDF-ul de referință acceptat și formatul de hârtie pe care trebuie verificat;",
+          "elementele care trebuie să iasă mai discret sau mai accentuat și orice cerință de culoare ori screening;",
+          "scara solicitată și dacă PDF-ul trebuie tipărit la dimensiunea originală sau este destinat doar consultării pe ecran;",
+          "persoana care aprobă convenția grafică și conținutul tehnic al planșei.",
+        ],
+        note: "Grosimile și contrastul se aleg după convenția de proiect și cerința de predare. Nu există o singură valoare potrivită pentru toate planșele.",
+      },
+      {
+        heading: "Unde se termină corectura CAD și începe decizia de proiectare",
+        paragraphs: [
+          "Un desenator poate pregăti layoutul, seta plotarea și reproduce convențiile furnizate pentru planșele DWG/PDF. Soluția tehnică, sensul unei linii contradictorii și aprobarea conținutului rămân la proiectantul responsabil. Dacă DWG-ul nu conține o regulă clară și nu există un PDF aprobat, cere confirmarea înainte să alegi singur ce traseu sau notă trebuie să primească prioritate.",
+          "Pentru verificări și corecturi AutoCAD ori pregătirea unui PDF din fișierele primite, vezi serviciul de documentație AutoCAD. Ghidul despre scara viewporturilor explică separat controlul scării la predarea DWG și PDF.",
+        ],
+        links: [
+          { label: "Corecturi AutoCAD și PDF în DWG", href: "/autocad-dwg" },
+          {
+            label: "Scara viewporturilor AutoCAD la predarea DWG și PDF",
+            href: "https://nodbim.com/blog/scara-viewporturilor-autocad-dwg-pdf",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "izolatia-tubulaturii-hvac-revit-mep",
+    title: "Cum ceri modelarea izolației tubulaturii HVAC în Revit MEP",
+    metaTitle: "Modelarea izolației tubulaturii HVAC în Revit MEP",
+    description:
+      "Ce dimensiune cotezi, cum tratezi coturile și ce verifici în secțiune când comanzi modelarea izolației de tubulatură HVAC în Revit MEP.",
+    date: "2026-11-19",
+    readingTime: 3,
+    tags: ["Revit MEP", "HVAC", "Tubulatură", "Izolație"],
+    sections: [
+      {
+        paragraphs: [
+          "Un canal de ventilație trece pe sub o grindă. Planul indică 500 × 300 mm, iar specificația cere izolație exterioară. Cât loc mai rămâne până la grindă? Pentru a răspunde, trebuie să știi ce reprezintă cei 300 mm și de la ce suprafață s-a măsurat distanța. Aceleași două întrebări merită puse când ceri o ofertă pentru modelul Revit.",
+        ],
+      },
+      {
+        heading: "Ce strat vrei să poți măsura în model?",
+        paragraphs: [
+          "Izolația exterioară ocupă spațiu în jurul tubulaturii. Căptușeala, numită Duct Lining în Revit, se aplică la interior. Revit le tratează ca elemente distincte, asociate tubulaturii. Când proiectul le prevede pe amândouă, indică pentru fiecare tipul, grosimea și porțiunea de traseu unde se aplică.",
+          "În Revit poți alege tipul și grosimea izolației și o poți aplica pe segmente drepte, coturi și tubulatură flexibilă. Dacă ai nevoie și de căptușeală interioară, precizeaz-o separat: ea este o cerință diferită de izolația exterioară. Spune dacă vrei nota în planșă, elementele inspectabile în RVT sau ambele livrabile.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit: aplicarea izolației și a căptușelii pe tubulatură",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-MEPEng/files/GUID-4F20DFB4-613C-4D5E-B51E-F57718223FBD.htm",
+          },
+          {
+            label: "Autodesk Revit API: izolație și căptușeală asociate conductelor și tubulaturii",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-API/files/Revit_API_Developers_Guide/Discipline_Specific_Functionality/MEP_Engineering/MEP_Element_Creation/Revit_API_Revit_API_Developers_Guide_Discipline_Specific_Functionality_MEP_Engineering_MEP_Element_Creation_Create_Pipes_and_Ducts_html.html",
+          },
+        ],
+      },
+      {
+        heading: "Cum se schimbă distanța până la grindă",
+        paragraphs: [
+          "Într-un exemplu simplificat, un tronson drept măsoară la exteriorul tablei 500 × 300 mm. Dacă specificația indică un strat exterior uniform de 25 mm pe fiecare față, conturul izolat măsoară 550 × 350 mm. Dacă între tablă și grindă sunt 40 mm, deasupra izolației rămân 15 mm.",
+          "Aceste valori ilustrează cum se citesc cotele. Pentru proiectul tău, compară distanța rezultată cu spațiul liber cerut în acea zonă. Dacă în secțiune intră o flanșă sau o susținere, cere să fie identificat punctul cel mai apropiat de grindă și precizează dacă piesa intră în modelarea comandată.",
+        ],
+      },
+      {
+        heading: "Ce trimiți pentru o ofertă comparabilă",
+        list: [
+          "Planul sau modelul de bază și extrasul din specificație, fiecare cu revizia folosită.",
+          "Sistemele și limitele de aplicare, inclusiv unde se schimbă grosimea și ce coturi ori reducții intră în lucrare.",
+          "Convenția de cotare a biroului și o secțiune de referință în zona care trebuie verificată.",
+          "Livrabilele așteptate. Dacă dorești și suprafețe de izolație în m², precizează dacă piesele trebuie raportate separat de tronsoanele drepte.",
+        ],
+      },
+      {
+        heading: "Cum formulezi cererea și verifici predarea",
+        paragraphs: [
+          "„La etajul 1, pentru sistemul V-01, modelează izolația exterioară din specificația revizia 3 pe tronsoanele și coturile marcate. Predă modelul RVT și o secțiune PDF sub grinda G4, cu distanța dintre fața izolației și grindă. Semnalează porțiunile pentru care lipsește grosimea.”",
+          "La primire, urmărește același tronson și cotul vecin în RVT, compară grosimea cu specificația și citește distanța în PDF. Dacă există o diferență, indică nivelul, sistemul și piesa în observația de corectură. Poți trimite planul marcat și specificația prin pagina de modelare Revit MEP.",
+        ],
+        links: [
+          { label: "Solicită o ofertă pentru modelare și planșe Revit MEP", href: "/revit-mep" },
+        ],
+      },
+    ],
+  },
+  {
     slug: "revit-mep-cote-conducte-nivel-offset-panta",
     title: "Conducte Revit MEP: clarifică nivelul, offset-ul și panta înainte de planșe",
     metaTitle: "Cote conducte Revit MEP: nivel, offset și pantă",

@@ -10,7 +10,7 @@ import { englishArticles } from "@/lib/blog-en";
 const path = "/en/blog";
 const title = "Revit MEP and Project Handover Guides · NOD BIM";
 const description =
-  "Practical guides for estimating Revit MEP drawing work, preparing quotation files and reviewing project handovers.";
+  "Practical Revit MEP guides for drawing estimates, HVAC coordination, model review and project handover.";
 const url = canonicalUrl(path);
 
 export const Route = createFileRoute("/en/blog/")({
@@ -51,8 +51,8 @@ function EnglishBlogIndex() {
               Practical guides for Revit MEP and project handover
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/80">
-              Checklists for scoping a quote, preparing project files and reviewing a model before
-              work continues.
+              Checklists for preparing a quote, reviewing HVAC coordination and handing over a Revit
+              model.
             </p>
           </div>
         </section>

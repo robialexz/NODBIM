@@ -1,6 +1,14 @@
 export const blogTranslations = [
   { ro: "/blog", en: "/en/blog" },
   {
+    ro: "/blog/clash-detection-ce-este",
+    en: "/en/blog/hvac-service-access-clearances",
+  },
+  {
+    ro: "/blog/culori-sisteme-hvac-filtre-revit-mep",
+    en: "/en/blog/revit-hvac-view-filters",
+  },
+  {
     ro: "/blog/cat-costa-o-plansa-de-instalatii",
     en: "/en/blog/mep-drawing-pricing",
   },
