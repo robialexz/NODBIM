@@ -81,11 +81,18 @@ function isUniqueViolation(error: LeadErrorLike | null): boolean {
 }
 
 /**
- * Baza are încă schema veche: lipsește o coloană nouă (42703) sau `phone`
- * este încă NOT NULL (23502). Vezi supabase/pending-migrations/.
+ * Baza are încă schema veche: lipsește o coloană nouă (42703), PostgREST nu
+ * găsește coloana `company` în schema cache (PGRST204) sau `phone` este încă
+ * NOT NULL (23502). Vezi supabase/migrations/20260928_lead_phone_optional_company.sql.
  */
 function isOldSchema(error: LeadErrorLike | null): boolean {
-  return error?.code === "42703" || error?.code === "23502";
+  return (
+    error?.code === "42703" ||
+    error?.code === "23502" ||
+    (error?.code === "PGRST204" &&
+      error.message?.includes("Could not find the 'company' column of 'leads' in schema cache") ===
+        true)
+  );
 }
 
 /**
@@ -289,7 +296,7 @@ export async function handleSubmitLead(data: LeadInput, deps: LeadDeps): Promise
   // Fallback: migrările nu sunt aplicate (schema veche) — salvăm fără
   // câmpurile noi, degradat dar funcțional.
   if (isOldSchema(inserted.failed)) {
-    const legacyInsert = await insertLead(deps.supabase, legacyPayload(payload, data));
+    const legacyInsert = await tryInsertLead(deps, data, legacyPayload(payload, data));
 
     if ("row" in legacyInsert) {
       // Fără coloană de status: notificăm fără a putea înregistra rezultatul.
@@ -297,8 +304,17 @@ export async function handleSubmitLead(data: LeadInput, deps: LeadDeps): Promise
       return { id: legacyInsert.row.id, duplicate: false, saved: true };
     }
 
-    console.error("[leads] Insert legacy eșuat:", JSON.stringify(legacyInsert));
-    throw new Error(SAFE_USER_ERROR);
+    if ("uniqueViolation" in legacyInsert) {
+      console.error("[leads] Conflict la insertul legacy:", JSON.stringify(legacyInsert));
+      throw new Error(SAFE_USER_ERROR);
+    }
+
+    if (!("emailFallback" in legacyInsert)) {
+      console.error("[leads] Insert legacy eșuat:", JSON.stringify(legacyInsert));
+      await insertWithEmailFallback(deps, data);
+    }
+
+    return { id: `email:${data.submission_id}`, duplicate: false, saved: false };
   }
 
   console.error("[leads] Insert eșuat (Supabase indisponibil?):", JSON.stringify(inserted));
