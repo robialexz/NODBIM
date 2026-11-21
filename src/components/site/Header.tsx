@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Phone } from "lucide-react";
-import { enHomePath, localeForPath } from "@/lib/i18n";
+import { alternatePath, enHomePath, hasLanguagePair, localeForPath, type Locale } from "@/lib/i18n";
 import { site } from "@/lib/site-config";
 import { PhoneLink } from "@/components/site/PhoneLink";
 
@@ -89,6 +89,9 @@ const copy = {
     menu: "Meniu",
     mainNav: "Navigație principală",
     mobileNav: "Navigație mobilă",
+    language: "Limbă",
+    closestPage: "Deschide cea mai apropiată pagină disponibilă în această limbă.",
+    fallbackNotice: "Pagină în română · cea mai apropiată disponibilă.",
   },
   en: {
     home: enHomePath,
@@ -107,6 +110,9 @@ const copy = {
     menu: "Menu",
     mainNav: "Main navigation",
     mobileNav: "Mobile navigation",
+    language: "Language",
+    closestPage: "Opens the closest page available in this language.",
+    fallbackNotice: "English page · closest available match.",
   },
 };
 
@@ -130,11 +136,71 @@ function NavLink({ href, label, onClick }: { href: string; label: string; onClic
   );
 }
 
+function LanguageSwitcher({
+  pathname,
+  searchStr,
+  locale,
+  className,
+}: {
+  pathname: string;
+  searchStr: string;
+  locale: Locale;
+  className: string;
+}) {
+  const t = copy[locale];
+  const hasTranslation = hasLanguagePair(pathname);
+  const showFallbackNotice = new URLSearchParams(searchStr).get("langFallback") === "1";
+  const languages: { locale: Locale; label: string }[] = [
+    { locale: "ro", label: "Română" },
+    { locale: "en", label: "English" },
+  ];
+
+  return (
+    <div className={`flex flex-col gap-1 ${className}`}>
+      <nav aria-label={t.language} className="inline-flex items-center gap-1">
+        {languages.map(({ locale: target, label }) => {
+          const isCurrent = target === locale;
+          const isFallback = !isCurrent && !hasTranslation;
+          const href = alternatePath(pathname, target);
+          const title = isFallback ? t.closestPage : label;
+
+          return (
+            <a
+              key={target}
+              href={isFallback ? `${href}?langFallback=1` : href}
+              aria-current={isCurrent ? "page" : undefined}
+              aria-label={isFallback ? `${label} — ${t.closestPage}` : label}
+              title={title}
+              className={`inline-flex min-h-11 min-w-11 items-center justify-center border px-2 text-sm font-semibold tracking-wide transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
+                isCurrent
+                  ? "border-primary text-primary"
+                  : "border-border text-foreground hover:border-primary hover:text-primary"
+              }`}
+            >
+              {target.toUpperCase()}
+            </a>
+          );
+        })}
+      </nav>
+      {showFallbackNotice && (
+        <p
+          role="status"
+          className="max-w-xs text-right text-[0.7rem] leading-tight text-muted-foreground"
+        >
+          {t.fallbackNotice}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export function Header({ ctaHref }: { ctaHref?: string }) {
-  const { pathname, hash } = useRouterState({ select: (st) => st.location });
+  const { pathname, hash, searchStr } = useRouterState({ select: (st) => st.location });
   const locale = localeForPath(pathname);
   const t = copy[locale];
-  const cta = ctaHref ?? t.ctaHref;
+  const defaultCta =
+    pathname === "/en/autocad-drafting" ? "/en/autocad-drafting#estimate" : t.ctaHref;
+  const cta = ctaHref ?? defaultCta;
   const [servicesOpen, setServicesOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const servicesRef = useRef<HTMLDetailsElement>(null);
@@ -199,7 +265,7 @@ export function Header({ ctaHref }: { ctaHref?: string }) {
           </a>
 
           <nav
-            className="ml-auto hidden items-center gap-7 text-[0.95rem] lg:flex"
+            className="ml-auto hidden items-center gap-7 text-[0.95rem] xl:flex"
             aria-label={t.mainNav}
           >
             {t.serviceCategories.length >= 3 &&
@@ -330,17 +396,23 @@ export function Header({ ctaHref }: { ctaHref?: string }) {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-5 lg:flex">
+          <div className="hidden items-center gap-5 xl:flex">
             <PhoneLink
               source="header"
               className="whitespace-nowrap font-mono text-sm font-medium text-muted-foreground hover:text-primary"
+            />
+            <LanguageSwitcher
+              pathname={pathname}
+              searchStr={searchStr}
+              locale={locale}
+              className="items-center"
             />
             <a href={cta} className="btn btn-primary">
               {t.cta}
             </a>
           </div>
 
-          <div className="ml-auto flex items-center gap-2 lg:hidden">
+          <div className="ml-auto flex items-center gap-2 xl:hidden">
             <PhoneLink
               source="header_mobile"
               className="inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 whitespace-nowrap border border-foreground px-3 text-sm font-medium"
@@ -361,11 +433,20 @@ export function Header({ ctaHref }: { ctaHref?: string }) {
           </div>
         </div>
 
+        <div className="flex justify-end px-5 pb-1 xl:hidden">
+          <LanguageSwitcher
+            pathname={pathname}
+            searchStr={searchStr}
+            locale={locale}
+            className="items-end"
+          />
+        </div>
+
         <nav
           id="meniu-mobil"
           hidden={!menuOpen}
           aria-label={t.mobileNav}
-          className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-border bg-background px-5 pb-5 lg:hidden"
+          className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-border bg-background px-5 pb-5 xl:hidden"
         >
           <ul>
             {t.serviceCategories.map((cat) => (

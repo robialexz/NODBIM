@@ -16,6 +16,7 @@ import {
 } from "@/lib/site-config";
 import { hreflangLinks } from "@/lib/i18n";
 import { trackConversion } from "@/lib/analytics";
+import { offerSchema, rateLabelEn } from "@/lib/pricing";
 import hero3d from "@/assets/hero-3d.webp";
 import projSheet from "@/assets/proj-sheet.webp";
 
@@ -61,6 +62,7 @@ export const Route = createFileRoute("/en/revit-mep-outsourcing")({
             "BIM production support",
             "MEP drawings and documentation",
           ],
+          offers: [offerSchema("instalatii", "en")],
         }),
       },
       { type: "application/ld+json", children: JSON.stringify(enFaqSchema(faq)) },
@@ -91,6 +93,16 @@ function RevitMepOutsourcing() {
                 design-build teams. You keep the engineering design; I model it and produce the
                 drawings in your template, to your standards.
               </p>
+              <div className="mt-5 max-w-2xl border-l-2 border-primary pl-4">
+                <p className="tech-label text-muted-foreground">Indicative starting rate</p>
+                <p className="mt-1 font-display text-xl font-semibold">
+                  {rateLabelEn("instalatii")}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  For one complete MEP drawing sheet. The written quote confirms model scope,
+                  deliverables and included revisions.
+                </p>
+              </div>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                 HVAC, heating and electrical. Remote collaboration in English, with an NDA available
                 before you share files.

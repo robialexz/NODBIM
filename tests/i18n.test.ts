@@ -1,6 +1,12 @@
 import { describe, expect, test } from "bun:test";
 
-import { alternatePath, enHomePath, hreflangLinks, localeForPath } from "../src/lib/i18n";
+import {
+  alternatePath,
+  enHomePath,
+  hasLanguagePair,
+  hreflangLinks,
+  localeForPath,
+} from "../src/lib/i18n";
 import { redirectPathUrl } from "../src/server";
 
 describe("limba paginii", () => {
@@ -11,7 +17,7 @@ describe("limba paginii", () => {
     expect(localeForPath("/english")).toBe("ro");
   });
 
-  test("comutatorul duce la pagina echivalentă sau la intrarea în limbă", () => {
+  test("comutatorul duce la pagina echivalentă sau la cea mai apropiată pagină disponibilă", () => {
     expect(alternatePath("/revit-mep", "en")).toBe("/en/revit-mep-outsourcing");
     expect(alternatePath("/en/revit-mep-outsourcing/", "ro")).toBe("/revit-mep");
     expect(alternatePath("/hvac", "en")).toBe("/en/revit-mep-outsourcing");
@@ -20,6 +26,15 @@ describe("limba paginii", () => {
     expect(alternatePath("/autocad-dwg", "en")).toBe("/en/autocad-drafting");
     expect(alternatePath("/en/about", "ro")).toBe("/despre");
     expect(alternatePath("/en/privacy", "ro")).toBe("/politica-de-confidentialitate");
+    expect(alternatePath("/pdf-in-dwg", "en")).toBe("/en/autocad-drafting");
+    expect(alternatePath("/cursuri-revit", "en")).toBe("/en/blog");
+    expect(alternatePath("/recomandari", "en")).toBe("/en/about");
+    expect(alternatePath("/blog/no-en-translation", "en")).toBe("/en/blog");
+    expect(alternatePath("/en/blog/no-ro-translation", "ro")).toBe("/blog");
+    expect(alternatePath("/en/not-translated", "ro")).toBe("/");
+    expect(hasLanguagePair("/en/about")).toBe(true);
+    expect(hasLanguagePair("/cursuri-revit")).toBe(false);
+    expect(hreflangLinks("/pdf-in-dwg")).toEqual([]);
   });
 
   test("jurnalul și articolele traduse au perechi RO/EN complete", () => {

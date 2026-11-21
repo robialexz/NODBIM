@@ -17,7 +17,7 @@ import {
   phoneDisplay,
 } from "@/lib/site-config";
 import { process, faq } from "@/lib/home-content";
-import { jobRates, offerSchema } from "@/lib/pricing";
+import { offerSchema, rateLabel } from "@/lib/pricing";
 import { trackConversion } from "@/lib/analytics";
 
 import demoPlan from "@/assets/demo-plan.svg";
@@ -227,7 +227,7 @@ function Home() {
               <ul className="mt-6 flex flex-col gap-x-3 gap-y-1.5 border-t border-border pt-5 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:[&>li+li]:before:mr-3 sm:[&>li+li]:before:content-['·']">
                 {[
                   "Preț în scris înainte să încep",
-                  "planșe complete de la 200 EUR",
+                  rateLabel("instalatii"),
                   "ofertă de regulă în 1–2 zile lucrătoare",
                 ].map((fact) => (
                   <li key={fact} className="max-sm:first-letter:uppercase">
@@ -278,7 +278,7 @@ function Home() {
                 scară, cu layere ordonate.
               </p>
               <span className="mt-2 font-medium transition-colors group-hover:text-primary">
-                {`Redesenare de la ${jobRates.redesenare.min} lei / ${jobRates.redesenare.unit} →`}
+                {`Redesenare: ${rateLabel("redesenare")} →`}
               </span>
             </Link>
             <Link
@@ -354,10 +354,10 @@ function Home() {
         <section id="preturi" className={`${wrap} ${sectionPad}`}>
           <h2 className={h2}>Află cam cât costă înainte să suni</h2>
           <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-            Două alegeri și ai o cifră de pornire.
+            Alege numărul de planșe complete pentru un total orientativ.
           </p>
           <div className="mt-8 md:mt-12">
-            <PriceEstimator defaultType="instalatii" />
+            <PriceEstimator defaultType="instalatii" jobTypes={["instalatii"]} />
           </div>
         </section>
 

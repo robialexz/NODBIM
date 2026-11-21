@@ -171,7 +171,7 @@ export function ServicePage({
     description: intro,
     provider: { "@id": `${canonicalUrl("/")}#org` },
     areaServed: { "@type": "Country", name: "România" },
-    ...(offers ? { offers: offers.map(offerSchema) } : {}),
+    ...(offers ? { offers: offers.map((type) => offerSchema(type)) } : {}),
     ...(deliverables.length
       ? { serviceOutput: deliverables.map((d) => ({ "@type": "Thing", name: d })) }
       : {}),
@@ -248,7 +248,7 @@ export function ServicePage({
             <div className="mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-20">
               <h2 className="text-3xl md:text-4xl">Află cam cât costă înainte să suni</h2>
               <div className="mt-8">
-                <PriceEstimator defaultType={firstOffer} />
+                <PriceEstimator defaultType={firstOffer} jobTypes={offers} />
               </div>
             </div>
           </section>
