@@ -21,6 +21,21 @@ const pagePairs: { ro: string; en: string }[] = [
 /** Intrarea în site-ul EN până există /en/. */
 export const enHomePath = "/en/revit-mep-outsourcing";
 
+const closestEnglishPages = new Map<string, string>([
+  ["/hvac", enHomePath],
+  ["/instalatii-electrice", enHomePath],
+  ["/instalatii-termice", enHomePath],
+  ["/modelare-revit", enHomePath],
+  ["/contact", enHomePath],
+  ["/portofoliu", enHomePath],
+  ["/pdf-in-dwg", "/en/autocad-drafting"],
+  ["/cursuri-revit", "/en/blog"],
+  ["/magazin", "/en/blog"],
+  ["/recomandari", "/en/about"],
+  ["/informatii-legale", "/en/privacy"],
+  ["/termeni-si-conditii", "/en/privacy"],
+]);
+
 export function localeForPath(pathname: string): Locale {
   return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "ro";
 }
@@ -29,13 +44,26 @@ function clean(pathname: string): string {
   return pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
 }
 
-/** Pagina echivalentă în limba cerută; fără pereche, prima pagină a acelei limbi. */
+/** Whether this route has a real, reciprocal translation pair. */
+export function hasLanguagePair(pathname: string): boolean {
+  const path = clean(pathname);
+  return pagePairs.some((pair) => pair.ro === path || pair.en === path);
+}
+
+/** Equivalent route when translated; otherwise the closest relevant route in the requested language. */
 export function alternatePath(pathname: string, target: Locale): string {
   const path = clean(pathname);
   const pair = pagePairs.find((p) => p.ro === path || p.en === path);
   if (pair) return pair[target];
   if (localeForPath(path) === target) return path;
-  return target === "en" ? enHomePath : "/";
+
+  if (target === "en") {
+    if (path.startsWith("/blog/")) return "/en/blog";
+    return closestEnglishPages.get(path) ?? enHomePath;
+  }
+
+  if (path.startsWith("/en/blog/")) return "/blog";
+  return "/";
 }
 
 /**

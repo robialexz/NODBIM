@@ -10,6 +10,9 @@ export const jobRates: Record<
     max: number | null;
     currency: "RON" | "EUR";
     unit: string;
+    enLabel: string;
+    enUnit: string;
+    quantityLabel: string;
     note: string;
   }
 > = {
@@ -19,7 +22,10 @@ export const jobRates: Record<
     currency: "RON",
     min: 350,
     max: 800,
-    unit: "plan",
+    unit: "plan redesenat",
+    enLabel: "Redrawing a plan or PDF into DWG",
+    enUnit: "redrawn plan",
+    quantityLabel: "Câte planuri redesenezi?",
     note: "Depinde de complexitate și de cât de lizibil este originalul.",
   },
   corectare: {
@@ -28,7 +34,10 @@ export const jobRates: Record<
     currency: "RON",
     min: 250,
     max: null,
-    unit: "planșă",
+    unit: "planșă corectată",
+    enLabel: "Updating or correcting an existing drawing sheet",
+    enUnit: "corrected sheet",
+    quantityLabel: "Câte planșe corectezi?",
     note: "Preț de pornire pe planșă, în funcție de volumul observațiilor.",
   },
   instalatii: {
@@ -37,7 +46,10 @@ export const jobRates: Record<
     currency: "EUR",
     min: 200,
     max: null,
-    unit: "planșă",
+    unit: "planșă completă",
+    enLabel: "Complete MEP drawing sheet (HVAC, heating and electrical)",
+    enUnit: "complete MEP drawing sheet",
+    quantityLabel: "Câte planșe complete de instalații?",
     note: "Modelare și documentare din soluția tehnică aprobată. Volumul modelului și reviziile incluse se stabilesc în ofertă.",
   },
 };
@@ -69,16 +81,23 @@ export function formatLei(value: number): string {
 
 export function estimateLabel(type: JobType, sheets: number): string {
   const { min, max } = estimate(type, sheets);
-  const currency = jobRates[type].currency === "RON" ? "lei" : "EUR";
+  const currency = jobRates[type].currency;
   return max === null
     ? `de la ${formatLei(min)} ${currency}`
     : `${formatLei(min)} – ${formatLei(max)} ${currency}`;
 }
 
-/** Tariful pe unitate: „350–800 lei / plan”, „de la 250 lei / planșă”. */
+/** Tariful pe unitate, cu moneda și unitatea de lucru explicite. */
 export function rateLabel(type: JobType, separator = " / "): string {
   const { min, max, unit, currency } = jobRates[type];
-  return `${max === null ? `de la ${min}` : `${min}–${max}`} ${currency === "RON" ? "lei" : "EUR"}${separator}${unit}`;
+  return `${max === null ? `de la ${min}` : `${min}–${max}`} ${currency}${separator}${unit}`;
+}
+
+/** English tariff label for localized pages; amounts always come from the approved rate table. */
+export function rateLabelEn(type: JobType): string {
+  const { min, max, enUnit, currency } = jobRates[type];
+  const amount = max === null ? `From ${min}` : `${min}–${max}`;
+  return `${amount} ${currency} per ${enUnit}`;
 }
 
 /** „1 planșă”, „3 planșe”, „20 de planșe”. */
@@ -87,23 +106,39 @@ export function sheetsLabel(sheets: number): string {
   return `${n} ${n === 1 ? "planșă" : n < 20 ? "planșe" : "de planșe"}`;
 }
 
+/** Accessible quantity text that matches the selected work type. */
+export function quantityValueLabel(type: JobType, sheets: number): string {
+  const n = clampSheets(sheets);
+  const unit = {
+    redesenare: n === 1 ? "plan redesenat" : "planuri redesenate",
+    corectare: n === 1 ? "planșă corectată" : "planșe corectate",
+    instalatii: n === 1 ? "planșă completă" : "planșe complete",
+  }[type];
+  return `${n}${n === 20 ? " de" : ""} ${unit}`;
+}
+
 export function estimateWhatsappMessage(type: JobType, sheets: number): string {
-  return `Salut! Am găsit NOD BIM pe site. Am ${sheetsLabel(sheets)} ${jobRates[type].waName}. Pot trimite fișierele pentru o ofertă?`;
+  const n = clampSheets(sheets);
+  const quantity =
+    type === "redesenare"
+      ? `${n}${n === 20 ? " de" : ""} ${n === 1 ? "plan" : "planuri"}`
+      : sheetsLabel(n);
+  return `Salut! Am găsit NOD BIM pe site. Am ${quantity} ${jobRates[type].waName}. Pot trimite fișierele pentru o ofertă?`;
 }
 
 /** Nod Offer pentru datele structurate; maxPrice apare doar când există. */
-export function offerSchema(type: JobType) {
-  const { label, min, max, unit, currency } = jobRates[type];
+export function offerSchema(type: JobType, language: "ro" | "en" = "ro") {
+  const { label, enLabel, min, max, unit, enUnit, currency } = jobRates[type];
   return {
     "@type": "Offer",
-    name: label,
+    name: language === "en" ? enLabel : label,
     priceCurrency: currency,
     priceSpecification: {
       "@type": "UnitPriceSpecification",
       priceCurrency: currency,
       minPrice: min,
       ...(max === null ? {} : { maxPrice: max }),
-      unitText: unit,
+      unitText: language === "en" ? enUnit : unit,
     },
   };
 }
