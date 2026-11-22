@@ -131,7 +131,14 @@ export function Footer() {
                 <ul className="mt-4 space-y-2.5 text-sm">
                   {t.site.map((l) => (
                     <li key={l.href}>
-                      <a href={l.href} className="hover:underline">
+                      <a
+                        href={
+                          pathname === "/en/autocad-drafting" && l.href === `${enHomePath}#estimate`
+                            ? "/en/autocad-drafting#estimate"
+                            : l.href
+                        }
+                        className="hover:underline"
+                      >
                         {l.label}
                       </a>
                     </li>
