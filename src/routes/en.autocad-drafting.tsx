@@ -72,7 +72,7 @@ function AutocadDrafting() {
                 markups are incorporated without tying up your engineers.
               </p>
               <div className="mt-5 max-w-2xl border-l-2 border-primary pl-4">
-                <p className="tech-label text-muted-foreground">Indicative rates · RON</p>
+                <p className="tech-label text-muted-foreground">Indicative rates · EUR</p>
                 <dl className="mt-2 grid gap-3 text-sm">
                   <div>
                     <dt className="font-medium">PDF or scan redrawn into editable DWG</dt>
@@ -132,7 +132,7 @@ function AutocadDrafting() {
 
         <section id="pricing" className="border-y border-border-strong bg-sheet">
           <div className="mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-20">
-            <p className="tech-label text-primary">Indicative price calculator · RON</p>
+            <p className="tech-label text-primary">Indicative price calculator · EUR</p>
             <h2 className="mt-4 max-w-3xl text-3xl md:text-4xl">
               Estimate redrawing and drawing corrections
             </h2>

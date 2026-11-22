@@ -35,3 +35,8 @@
 ## Commercial email exclusion
 
 - Never send NOD BIM or freelance emails to TEMA Energy, its employees or representatives, or anyone known to work directly with TEMA Energy (including contractors, partners, suppliers, or clients). If a recipient's connection is unclear, hold the email and verify before sending. This restriction applies to every outreach workflow and reflects the owner's separate day-job conflict.
+
+## International pricing — owner decision, 22 November 2026
+
+- International/English drawing services start at **200 EUR per drawing sheet**. This applies to EN Revit MEP and AutoCAD drawing/redrawing/correction offers, including calculators, visible rates, English articles and structured offers. Do not reuse the Romanian CAD rates on EN pages or convert RON amounts into EUR.
+- Keep Romanian-market rates separate. Existing RO prices remain in their approved currencies. Read `docs/pricing-policy.md` before changing either market. No invented maximum, discount or tax treatment.
