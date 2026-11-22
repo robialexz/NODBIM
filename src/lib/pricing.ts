@@ -1,5 +1,6 @@
 /** Singura sursă a prețurilor afișate pe site; moneda este explicită pentru fiecare serviciu. */
 export type JobType = "redesenare" | "corectare" | "instalatii";
+export type PricingLocale = "ro" | "en";
 
 export const jobRates: Record<
   JobType,
@@ -13,7 +14,10 @@ export const jobRates: Record<
     enLabel: string;
     enUnit: string;
     quantityLabel: string;
+    enQuantityLabel: string;
     note: string;
+    enNote: string;
+    enWaName: string;
   }
 > = {
   redesenare: {
@@ -26,7 +30,10 @@ export const jobRates: Record<
     enLabel: "Redrawing a plan or PDF into DWG",
     enUnit: "redrawn plan",
     quantityLabel: "Câte planuri redesenezi?",
+    enQuantityLabel: "How many plans should be redrawn?",
     note: "Depinde de complexitate și de cât de lizibil este originalul.",
+    enNote: "Price depends on drawing complexity and the clarity of the source file.",
+    enWaName: "to redraw from a PDF or scan",
   },
   corectare: {
     label: "Modificare sau corectare planșă existentă",
@@ -38,7 +45,10 @@ export const jobRates: Record<
     enLabel: "Updating or correcting an existing drawing sheet",
     enUnit: "corrected sheet",
     quantityLabel: "Câte planșe corectezi?",
+    enQuantityLabel: "How many existing drawing sheets need corrections?",
     note: "Preț de pornire pe planșă, în funcție de volumul observațiilor.",
+    enNote: "Starting price per sheet; final cost depends on the number and extent of markups.",
+    enWaName: "to update or correct",
   },
   instalatii: {
     label: "Planșă completă de instalații (HVAC, termice, electrice)",
@@ -50,7 +60,11 @@ export const jobRates: Record<
     enLabel: "Complete MEP drawing sheet (HVAC, heating and electrical)",
     enUnit: "complete MEP drawing sheet",
     quantityLabel: "Câte planșe complete de instalații?",
+    enQuantityLabel: "How many complete MEP drawing sheets?",
     note: "Modelare și documentare din soluția tehnică aprobată. Volumul modelului și reviziile incluse se stabilesc în ofertă.",
+    enNote:
+      "Modelling and documentation follow the approved technical design. Model scope and included revisions are confirmed in the quote.",
+    enWaName: "to prepare",
   },
 };
 
@@ -74,17 +88,26 @@ export function estimate(
   return { sheets: n, min: min * n, max: max === null ? null : max * n };
 }
 
-/** Separator de mii cu regex, nu toLocaleString: server și browser dau același text. */
+/** Separator de mii românesc, păstrând același text între server și browser. */
 export function formatLei(value: number): string {
   return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-export function estimateLabel(type: JobType, sheets: number): string {
+/** English grouping uses commas, deterministically across server and browser. */
+function formatEnglishNumber(value: number): string {
+  return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+export function estimateLabel(type: JobType, sheets: number, locale: PricingLocale = "ro"): string {
   const { min, max } = estimate(type, sheets);
-  const currency = jobRates[type].currency;
+  const { currency } = jobRates[type];
+  const format = locale === "en" ? formatEnglishNumber : formatLei;
+  const from = locale === "en" ? "From" : "de la";
   return max === null
-    ? `de la ${formatLei(min)} ${currency}`
-    : `${formatLei(min)} – ${formatLei(max)} ${currency}`;
+    ? `${from} ${format(min)} ${currency}`
+    : locale === "en"
+      ? `${format(min)}–${format(max)} ${currency}`
+      : `${format(min)} – ${format(max)} ${currency}`;
 }
 
 /** Tariful pe unitate, cu moneda și unitatea de lucru explicite. */
@@ -106,9 +129,22 @@ export function sheetsLabel(sheets: number): string {
   return `${n} ${n === 1 ? "planșă" : n < 20 ? "planșe" : "de planșe"}`;
 }
 
-/** Accessible quantity text that matches the selected work type. */
-export function quantityValueLabel(type: JobType, sheets: number): string {
+/** Accessible quantity text that matches the selected service and language. */
+export function quantityValueLabel(
+  type: JobType,
+  sheets: number,
+  locale: PricingLocale = "ro",
+): string {
   const n = clampSheets(sheets);
+  if (locale === "en") {
+    const unit = {
+      redesenare: n === 1 ? "redrawn plan" : "redrawn plans",
+      corectare: n === 1 ? "corrected sheet" : "corrected sheets",
+      instalatii: n === 1 ? "complete MEP drawing sheet" : "complete MEP drawing sheets",
+    }[type];
+    return `${n} ${unit}`;
+  }
+
   const unit = {
     redesenare: n === 1 ? "plan redesenat" : "planuri redesenate",
     corectare: n === 1 ? "planșă corectată" : "planșe corectate",
@@ -117,8 +153,21 @@ export function quantityValueLabel(type: JobType, sheets: number): string {
   return `${n}${n === 20 ? " de" : ""} ${unit}`;
 }
 
-export function estimateWhatsappMessage(type: JobType, sheets: number): string {
+export function estimateWhatsappMessage(
+  type: JobType,
+  sheets: number,
+  locale: PricingLocale = "ro",
+): string {
   const n = clampSheets(sheets);
+  if (locale === "en") {
+    const quantity = {
+      redesenare: `${n} ${n === 1 ? "plan" : "plans"}`,
+      corectare: `${n} ${n === 1 ? "existing drawing sheet" : "existing drawing sheets"}`,
+      instalatii: `${n} ${n === 1 ? "complete MEP drawing sheet" : "complete MEP drawing sheets"}`,
+    }[type];
+    return `Hello, I found NOD BIM online. I need ${quantity} ${jobRates[type].enWaName}. Could I send the files for a written quote before work starts?`;
+  }
+
   const quantity =
     type === "redesenare"
       ? `${n}${n === 20 ? " de" : ""} ${n === 1 ? "plan" : "planuri"}`

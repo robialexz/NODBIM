@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { RevitPilot } from "@/components/site/RevitPilot";
+import { PriceEstimator } from "@/components/site/PriceEstimator";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
@@ -114,6 +115,12 @@ function RevitMepOutsourcing() {
                 >
                   Request a quote for one area
                 </a>
+                <a
+                  href="#pricing"
+                  className="tech-label border border-foreground px-6 py-4 transition-colors hover:bg-foreground hover:text-background"
+                >
+                  Calculate a starting estimate
+                </a>
                 {mailHref && (
                   <a
                     href={mailHref}
@@ -155,6 +162,27 @@ function RevitMepOutsourcing() {
 
         <section aria-label="Project pilot" className="mx-auto max-w-[1200px] px-5 py-10 md:px-8">
           <RevitPilot lang="en" />
+        </section>
+
+        <section id="pricing" className="border-y border-border-strong bg-sheet">
+          <div className="mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-20">
+            <p className="tech-label text-primary">Indicative estimate · EUR</p>
+            <h2 className="mt-4 max-w-3xl text-3xl md:text-4xl">
+              Estimate a complete MEP drawing package
+            </h2>
+            <p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">
+              Set the number of complete drawing sheets. The model scope, deliverables and included
+              revisions are confirmed in a written quote before work starts.
+            </p>
+            <div className="mt-8">
+              <PriceEstimator
+                defaultType="instalatii"
+                jobTypes={["instalatii"]}
+                locale="en"
+                quoteHref="#estimate"
+              />
+            </div>
+          </div>
         </section>
 
         <section className="mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-24">
