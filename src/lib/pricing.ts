@@ -1,31 +1,30 @@
-/** Singura sursă a prețurilor afișate pe site; moneda este explicită pentru fiecare serviciu. */
+/** Rate cards by customer market; English pages use the approved international EUR rates. */
 export type JobType = "redesenare" | "corectare" | "instalatii";
 export type PricingLocale = "ro" | "en";
 
-export const jobRates: Record<
-  JobType,
-  {
-    label: string;
-    waName: string;
-    min: number;
-    max: number | null;
-    currency: "RON" | "EUR";
-    unit: string;
-    enLabel: string;
-    enUnit: string;
-    quantityLabel: string;
-    enQuantityLabel: string;
-    note: string;
-    enNote: string;
-    enWaName: string;
-  }
-> = {
+type MarketRate = {
+  min: number;
+  max: number | null;
+  currency: "RON" | "EUR";
+};
+
+type JobDetails = {
+  label: string;
+  waName: string;
+  unit: string;
+  enLabel: string;
+  enUnit: string;
+  quantityLabel: string;
+  enQuantityLabel: string;
+  note: string;
+  enNote: string;
+  enWaName: string;
+};
+
+const jobDetails: Record<JobType, JobDetails> = {
   redesenare: {
     label: "Redesenare plan sau PDF în DWG",
     waName: "de redesenat (PDF în DWG)",
-    currency: "RON",
-    min: 350,
-    max: 800,
     unit: "plan redesenat",
     enLabel: "Redrawing a plan or PDF into DWG",
     enUnit: "redrawn plan",
@@ -38,9 +37,6 @@ export const jobRates: Record<
   corectare: {
     label: "Modificare sau corectare planșă existentă",
     waName: "de modificat sau corectat",
-    currency: "RON",
-    min: 250,
-    max: null,
     unit: "planșă corectată",
     enLabel: "Updating or correcting an existing drawing sheet",
     enUnit: "corrected sheet",
@@ -53,9 +49,6 @@ export const jobRates: Record<
   instalatii: {
     label: "Planșă completă de instalații (HVAC, termice, electrice)",
     waName: "de instalații, de desenat",
-    currency: "EUR",
-    min: 200,
-    max: null,
     unit: "planșă completă",
     enLabel: "Complete MEP drawing sheet (HVAC, heating and electrical)",
     enUnit: "complete MEP drawing sheet",
@@ -68,10 +61,33 @@ export const jobRates: Record<
   },
 };
 
+/** One approved rate source per market. A null max means a starting rate without a published cap. */
+const marketRates: Record<PricingLocale, Record<JobType, MarketRate>> = {
+  ro: {
+    redesenare: { min: 350, max: 800, currency: "RON" },
+    corectare: { min: 250, max: null, currency: "RON" },
+    instalatii: { min: 200, max: null, currency: "EUR" },
+  },
+  en: {
+    redesenare: { min: 200, max: null, currency: "EUR" },
+    corectare: { min: 200, max: null, currency: "EUR" },
+    instalatii: { min: 200, max: null, currency: "EUR" },
+  },
+};
+
+type JobRate = JobDetails & MarketRate;
+
+/** Romanian-compatible rate fields are retained for existing Romanian page consumers. */
+export const jobRates: Record<JobType, JobRate> = {
+  redesenare: { ...jobDetails.redesenare, ...marketRates.ro.redesenare },
+  corectare: { ...jobDetails.corectare, ...marketRates.ro.corectare },
+  instalatii: { ...jobDetails.instalatii, ...marketRates.ro.instalatii },
+};
+
 export const packagePrice = {
   sheets: 5,
-  min: jobRates.instalatii.min * 5,
-  currency: jobRates.instalatii.currency,
+  min: marketRates.ro.instalatii.min * 5,
+  currency: marketRates.ro.instalatii.currency,
 };
 
 /** Numărul de planșe adus la un întreg între 1 și 20 (NaN devine 1). */
@@ -82,9 +98,10 @@ function clampSheets(sheets: number): number {
 export function estimate(
   type: JobType,
   sheets: number,
+  locale: PricingLocale = "ro",
 ): { sheets: number; min: number; max: number | null } {
   const n = clampSheets(sheets);
-  const { min, max } = jobRates[type];
+  const { min, max } = marketRates[locale][type];
   return { sheets: n, min: min * n, max: max === null ? null : max * n };
 }
 
@@ -99,8 +116,8 @@ function formatEnglishNumber(value: number): string {
 }
 
 export function estimateLabel(type: JobType, sheets: number, locale: PricingLocale = "ro"): string {
-  const { min, max } = estimate(type, sheets);
-  const { currency } = jobRates[type];
+  const { min, max } = estimate(type, sheets, locale);
+  const { currency } = marketRates[locale][type];
   const format = locale === "en" ? formatEnglishNumber : formatLei;
   const from = locale === "en" ? "From" : "de la";
   return max === null
@@ -110,17 +127,17 @@ export function estimateLabel(type: JobType, sheets: number, locale: PricingLoca
       : `${format(min)} – ${format(max)} ${currency}`;
 }
 
-/** Tariful pe unitate, cu moneda și unitatea de lucru explicite. */
+/** Tariful pe unitate pentru paginile românești, cu separator personalizabil. */
 export function rateLabel(type: JobType, separator = " / "): string {
   const { min, max, unit, currency } = jobRates[type];
   return `${max === null ? `de la ${min}` : `${min}–${max}`} ${currency}${separator}${unit}`;
 }
 
-/** English tariff label for localized pages; amounts always come from the approved rate table. */
+/** English per-unit tariff for the international market. */
 export function rateLabelEn(type: JobType): string {
-  const { min, max, enUnit, currency } = jobRates[type];
+  const { min, max, currency } = marketRates.en[type];
   const amount = max === null ? `From ${min}` : `${min}–${max}`;
-  return `${amount} ${currency} per ${enUnit}`;
+  return `${amount} ${currency} per ${jobDetails[type].enUnit}`;
 }
 
 /** „1 planșă”, „3 planșe”, „20 de planșe”. */
@@ -159,34 +176,36 @@ export function estimateWhatsappMessage(
   locale: PricingLocale = "ro",
 ): string {
   const n = clampSheets(sheets);
+  const indicativeEstimate = estimateLabel(type, n, locale);
   if (locale === "en") {
     const quantity = {
       redesenare: `${n} ${n === 1 ? "plan" : "plans"}`,
       corectare: `${n} ${n === 1 ? "existing drawing sheet" : "existing drawing sheets"}`,
       instalatii: `${n} ${n === 1 ? "complete MEP drawing sheet" : "complete MEP drawing sheets"}`,
     }[type];
-    return `Hello, I found NOD BIM online. I need ${quantity} ${jobRates[type].enWaName}. Could I send the files for a written quote before work starts?`;
+    return `Hello, I found NOD BIM online. I need ${quantity} ${jobDetails[type].enWaName}. Indicative estimate: ${indicativeEstimate}. Could I send the files for a written quote before work starts?`;
   }
 
   const quantity =
     type === "redesenare"
       ? `${n}${n === 20 ? " de" : ""} ${n === 1 ? "plan" : "planuri"}`
       : sheetsLabel(n);
-  return `Salut! Am găsit NOD BIM pe site. Am ${quantity} ${jobRates[type].waName}. Pot trimite fișierele pentru o ofertă?`;
+  return `Salut! Am găsit NOD BIM pe site. Am ${quantity} ${jobRates[type].waName}. Preț orientativ: ${indicativeEstimate}. Pot trimite fișierele pentru o ofertă?`;
 }
 
 /** Nod Offer pentru datele structurate; maxPrice apare doar când există. */
 export function offerSchema(type: JobType, language: "ro" | "en" = "ro") {
-  const { label, enLabel, min, max, unit, enUnit, currency } = jobRates[type];
+  const rate = marketRates[language][type];
+  const { label, enLabel, unit, enUnit } = jobDetails[type];
   return {
     "@type": "Offer",
     name: language === "en" ? enLabel : label,
-    priceCurrency: currency,
+    priceCurrency: rate.currency,
     priceSpecification: {
       "@type": "UnitPriceSpecification",
-      priceCurrency: currency,
-      minPrice: min,
-      ...(max === null ? {} : { maxPrice: max }),
+      priceCurrency: rate.currency,
+      minPrice: rate.min,
+      ...(rate.max === null ? {} : { maxPrice: rate.max }),
       unitText: language === "en" ? enUnit : unit,
     },
   };

@@ -64,10 +64,35 @@ test("estimateLabel", () => {
 });
 
 test("English estimate labels use English grouping and approved currencies", () => {
-  expect(estimateLabel("redesenare", 1, "en")).toBe("350–800 RON");
-  expect(estimateLabel("redesenare", 20, "en")).toBe("7,000–16,000 RON");
-  expect(estimateLabel("corectare", 3, "en")).toBe("From 750 RON");
+  expect(estimateLabel("redesenare", 1, "en")).toBe("From 200 EUR");
+  expect(estimateLabel("redesenare", 20, "en")).toBe("From 4,000 EUR");
+  expect(estimateLabel("corectare", 3, "en")).toBe("From 600 EUR");
   expect(estimateLabel("instalatii", 5, "en")).toBe("From 1,000 EUR");
+});
+
+test("market rates stay independent across 1, 5, and 20 sheets", () => {
+  for (const sheets of [1, 5, 20]) {
+    expect(estimate("redesenare", sheets, "en")).toEqual({
+      sheets,
+      min: 200 * sheets,
+      max: null,
+    });
+    expect(estimate("corectare", sheets, "en")).toEqual({
+      sheets,
+      min: 200 * sheets,
+      max: null,
+    });
+    expect(estimate("redesenare", sheets, "ro")).toEqual({
+      sheets,
+      min: 350 * sheets,
+      max: 800 * sheets,
+    });
+    expect(estimate("corectare", sheets, "ro")).toEqual({
+      sheets,
+      min: 250 * sheets,
+      max: null,
+    });
+  }
 });
 
 test("sheetsLabel și formatLei", () => {
@@ -111,6 +136,9 @@ test("English WhatsApp messages stay localized and include a written quote step"
   );
   expect(estimateWhatsappMessage("instalatii", 1, "en")).toContain(
     "written quote before work starts",
+  );
+  expect(estimateWhatsappMessage("redesenare", 5, "en")).toContain(
+    "Indicative estimate: From 1,000 EUR",
   );
   expect(estimateWhatsappMessage("instalatii", 1, "en")).not.toMatch(/[ăâîșț]/i);
 });
@@ -163,22 +191,23 @@ test("English Revit pricing stays in EUR and names the complete-sheet unit", () 
   });
 });
 
-test("English AutoCAD structured rates stay in RON", () => {
+test("English AutoCAD structured rates use the international EUR market", () => {
   expect(offerSchema("redesenare", "en")).toMatchObject({
     name: "Redrawing a plan or PDF into DWG",
-    priceCurrency: "RON",
+    priceCurrency: "EUR",
     priceSpecification: {
-      priceCurrency: "RON",
-      minPrice: 350,
-      maxPrice: 800,
+      priceCurrency: "EUR",
+      minPrice: 200,
       unitText: "redrawn plan",
     },
   });
+  expect(offerSchema("redesenare", "en")).not.toHaveProperty("priceSpecification.maxPrice");
   expect(offerSchema("corectare", "en")).toMatchObject({
-    priceCurrency: "RON",
+    priceCurrency: "EUR",
     priceSpecification: {
-      minPrice: 250,
+      minPrice: 200,
       unitText: "corrected sheet",
     },
   });
+  expect(offerSchema("corectare", "en")).not.toHaveProperty("priceSpecification.maxPrice");
 });
