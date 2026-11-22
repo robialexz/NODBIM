@@ -5,24 +5,34 @@ import {
   estimateWhatsappMessage,
   jobRates,
   packagePrice,
+  quantityValueLabel,
   rateLabel,
-  sheetsLabel,
   type JobType,
 } from "@/lib/pricing";
 import { trackConversion } from "@/lib/analytics";
 import { PhoneLink } from "./PhoneLink";
 
-const jobTypes: JobType[] = ["redesenare", "corectare", "instalatii"];
+const allJobTypes: JobType[] = ["redesenare", "corectare", "instalatii"];
 
 /**
  * Estimator de preț orientativ. Prețul implicit este randat pe server;
  * fără JavaScript rămân vizibile tarifele și prețul pentru o planșă.
  */
-export function PriceEstimator({ defaultType = "redesenare" }: { defaultType?: JobType }) {
+export function PriceEstimator({
+  defaultType = "redesenare",
+  jobTypes = allJobTypes,
+}: {
+  defaultType?: JobType;
+  jobTypes?: readonly JobType[];
+}) {
   const id = useId();
   const [type, setType] = useState<JobType>(defaultType);
+  const availableJobTypes = jobTypes.length > 0 ? jobTypes : [defaultType];
+  const selectedType = availableJobTypes.includes(type)
+    ? type
+    : (availableJobTypes[0] ?? defaultType);
   const [sheets, setSheets] = useState(1);
-  const waHref = whatsappLink(estimateWhatsappMessage(type, sheets));
+  const waHref = whatsappLink(estimateWhatsappMessage(selectedType, sheets));
 
   return (
     <div>
@@ -34,8 +44,10 @@ export function PriceEstimator({ defaultType = "redesenare" }: { defaultType?: J
       >
         <div className="grid min-w-0 gap-8 p-5 md:p-9">
           <fieldset className="grid min-w-0 gap-2.5">
-            <legend className="mb-3 font-medium">Ce fel de lucrare ai?</legend>
-            {jobTypes.map((t) => (
+            <legend className="mb-3 font-medium">
+              {availableJobTypes.length === 1 ? "Serviciu tarifat" : "Ce fel de lucrare ai?"}
+            </legend>
+            {availableJobTypes.map((t) => (
               <label
                 key={t}
                 className="grid cursor-pointer grid-cols-[auto_1fr] items-baseline gap-x-3 gap-y-1 rounded-sm border border-border bg-sheet px-3.5 py-3 transition-colors has-[:checked]:border-primary has-[:checked]:shadow-[inset_0_0_0_1px_var(--primary)] has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary min-[480px]:grid-cols-[auto_1fr_auto]"
@@ -44,12 +56,12 @@ export function PriceEstimator({ defaultType = "redesenare" }: { defaultType?: J
                   type="radio"
                   name={`${id}-tip`}
                   value={t}
-                  checked={type === t}
+                  checked={selectedType === t}
                   onChange={() => setType(t)}
                   className="translate-y-px accent-primary outline-none"
                 />
                 <span className="min-w-0">{jobRates[t].label}</span>
-                <span className="col-start-2 whitespace-nowrap font-mono text-[0.8rem] text-muted-foreground min-[480px]:col-start-3">
+                <span className="col-start-2 font-mono text-sm text-muted-foreground min-[480px]:col-start-3">
                   {rateLabel(t)}
                 </span>
               </label>
@@ -59,7 +71,7 @@ export function PriceEstimator({ defaultType = "redesenare" }: { defaultType?: J
           <div>
             <div className="flex items-baseline justify-between gap-4">
               <label htmlFor={`${id}-nr`} className="font-medium">
-                Câte planuri sau planșe?
+                {jobRates[selectedType].quantityLabel}
               </label>
               <span className="font-display text-2xl font-semibold tabular-nums" aria-hidden="true">
                 {sheets}
@@ -72,7 +84,7 @@ export function PriceEstimator({ defaultType = "redesenare" }: { defaultType?: J
               max={20}
               value={sheets}
               onChange={(e) => setSheets(Number(e.target.value))}
-              aria-valuetext={sheetsLabel(sheets)}
+              aria-valuetext={quantityValueLabel(selectedType, sheets)}
               className="mt-1 min-h-11 w-full accent-primary"
             />
             <div
@@ -93,10 +105,10 @@ export function PriceEstimator({ defaultType = "redesenare" }: { defaultType?: J
             htmlFor={`${id}-nr`}
             className="whitespace-nowrap font-display text-[clamp(1.75rem,7vw,3rem)] font-semibold leading-none tabular-nums [font-stretch:85%]"
           >
-            {estimateLabel(type, sheets)}
+            {estimateLabel(selectedType, sheets)}
           </output>
           <p className="max-w-sm text-sm leading-relaxed text-graphite-foreground/70">
-            {jobRates[type].note} Prețul final îl primești în scris, după ce văd fișierele.
+            {jobRates[selectedType].note} Prețul final îl primești în scris, după ce văd fișierele.
           </p>
           {hasWhatsapp && (
             <a
@@ -104,7 +116,7 @@ export function PriceEstimator({ defaultType = "redesenare" }: { defaultType?: J
               target="_blank"
               rel="noreferrer noopener"
               onClick={() => {
-                trackConversion("whatsapp_click", { source: "estimator", job_type: type });
+                trackConversion("whatsapp_click", { source: "estimator", job_type: selectedType });
               }}
               className="btn mt-2 border-graphite-foreground bg-graphite-foreground text-graphite hover:border-primary hover:bg-primary hover:text-primary-foreground"
             >
@@ -132,20 +144,20 @@ export function PriceEstimator({ defaultType = "redesenare" }: { defaultType?: J
       </form>
 
       <dl className="mt-6 grid gap-x-10 text-sm sm:grid-cols-2">
-        {jobTypes.map((t) => (
+        {availableJobTypes.map((t) => (
           <div key={t} className="flex justify-between gap-4 border-b border-border py-3">
             <dt>{jobRates[t].label}</dt>
-            <dd className="whitespace-nowrap font-mono text-[0.8rem] text-muted-foreground">
-              {rateLabel(t)}
-            </dd>
+            <dd className="text-right font-mono text-sm text-muted-foreground">{rateLabel(t)}</dd>
           </div>
         ))}
-        <div className="flex justify-between gap-4 border-b border-border py-3">
-          <dt>{`Pachet ${packagePrice.sheets} planșe complete de instalații`}</dt>
-          <dd className="whitespace-nowrap font-mono text-[0.8rem] text-muted-foreground">
-            {estimateLabel("instalatii", packagePrice.sheets)}
-          </dd>
-        </div>
+        {availableJobTypes.includes("instalatii") && (
+          <div className="flex justify-between gap-4 border-b border-border py-3">
+            <dt>{`${packagePrice.sheets} planșe complete de instalații`}</dt>
+            <dd className="text-right font-mono text-sm text-muted-foreground">
+              {estimateLabel("instalatii", packagePrice.sheets)}
+            </dd>
+          </div>
+        )}
       </dl>
     </div>
   );

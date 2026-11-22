@@ -8,14 +8,31 @@ import {
   jobRates,
   offerSchema,
   packagePrice,
+  quantityValueLabel,
   rateLabel,
+  rateLabelEn,
   sheetsLabel,
 } from "../src/lib/pricing";
 
 test("tarifele din specificație", () => {
-  expect(jobRates.redesenare).toMatchObject({ min: 350, max: 800, unit: "plan" });
-  expect(jobRates.corectare).toMatchObject({ min: 250, max: null });
-  expect(jobRates.instalatii).toMatchObject({ min: 200, max: null, currency: "EUR" });
+  expect(jobRates.redesenare).toMatchObject({
+    min: 350,
+    max: 800,
+    currency: "RON",
+    unit: "plan redesenat",
+  });
+  expect(jobRates.corectare).toMatchObject({
+    min: 250,
+    max: null,
+    currency: "RON",
+    unit: "planșă corectată",
+  });
+  expect(jobRates.instalatii).toMatchObject({
+    min: 200,
+    max: null,
+    currency: "EUR",
+    unit: "planșă completă",
+  });
   expect(packagePrice).toEqual({ sheets: 5, min: 1000, currency: "EUR" });
 });
 
@@ -40,9 +57,10 @@ describe("estimate", () => {
 });
 
 test("estimateLabel", () => {
-  expect(estimateLabel("redesenare", 1)).toBe("350 – 800 lei");
-  expect(estimateLabel("redesenare", 20)).toBe("7.000 – 16.000 lei");
-  expect(estimateLabel("corectare", 1)).toBe("de la 250 lei");
+  expect(estimateLabel("redesenare", 1)).toBe("350 – 800 RON");
+  expect(estimateLabel("redesenare", 20)).toBe("7.000 – 16.000 RON");
+  expect(estimateLabel("corectare", 1)).toBe("de la 250 RON");
+  expect(estimateLabel("instalatii", 1)).toBe("de la 200 EUR");
 });
 
 test("sheetsLabel și formatLei", () => {
@@ -55,10 +73,16 @@ test("sheetsLabel și formatLei", () => {
   expect(formatLei(packagePrice.min)).toBe("1.000");
 });
 
+test("quantityValueLabel uses the selected service unit", () => {
+  expect(quantityValueLabel("redesenare", 1)).toBe("1 plan redesenat");
+  expect(quantityValueLabel("corectare", 3)).toBe("3 planșe corectate");
+  expect(quantityValueLabel("instalatii", 20)).toBe("20 de planșe complete");
+});
+
 test("mesajul WhatsApp: acord și formulare", () => {
-  expect(estimateWhatsappMessage("redesenare", 1)).toContain("1 planșă de redesenat");
-  expect(estimateWhatsappMessage("redesenare", 4)).toContain("4 planșe de redesenat");
-  expect(estimateWhatsappMessage("redesenare", 20)).toContain("20 de planșe");
+  expect(estimateWhatsappMessage("redesenare", 1)).toContain("1 plan de redesenat");
+  expect(estimateWhatsappMessage("redesenare", 4)).toContain("4 planuri de redesenat");
+  expect(estimateWhatsappMessage("redesenare", 20)).toContain("20 de planuri de redesenat");
   expect(estimateWhatsappMessage("instalatii", 3)).not.toContain("pentru planșe");
   expect(estimateWhatsappMessage("corectare", 2)).toContain("pe site");
 });
@@ -73,23 +97,40 @@ test("offerSchema", () => {
       priceCurrency: "RON",
       minPrice: 350,
       maxPrice: 800,
-      unitText: "plan",
+      unitText: "plan redesenat",
     },
   });
   expect(offerSchema("corectare")).not.toHaveProperty("priceSpecification.maxPrice");
 });
 
 test("rateLabel: interval, preț de pornire și separator", () => {
-  expect(rateLabel("redesenare")).toBe("350–800 lei / plan");
-  expect(rateLabel("redesenare", " pe ")).toBe("350–800 lei pe plan");
-  expect(rateLabel("corectare", "/")).toBe("de la 250 lei/planșă");
+  expect(rateLabel("redesenare")).toBe("350–800 RON / plan redesenat");
+  expect(rateLabel("redesenare", " pe ")).toBe("350–800 RON pe plan redesenat");
+  expect(rateLabel("corectare", "/")).toBe("de la 250 RON/planșă corectată");
+  expect(rateLabel("instalatii")).toBe("de la 200 EUR / planșă completă");
 });
 
 test("planșele complete păstrează pragul în euro în estimator și schema Google", () => {
-  expect(rateLabel("instalatii")).toBe("de la 200 EUR / planșă");
   expect(estimateLabel("instalatii", 5)).toBe("de la 1.000 EUR");
   expect(offerSchema("instalatii")).toMatchObject({
     priceCurrency: "EUR",
-    priceSpecification: { priceCurrency: "EUR", minPrice: 200 },
+    priceSpecification: {
+      priceCurrency: "EUR",
+      minPrice: 200,
+      unitText: "planșă completă",
+    },
+  });
+});
+
+test("English Revit pricing stays in EUR and names the complete-sheet unit", () => {
+  expect(rateLabelEn("instalatii")).toBe("From 200 EUR per complete MEP drawing sheet");
+  expect(offerSchema("instalatii", "en")).toMatchObject({
+    name: "Complete MEP drawing sheet (HVAC, heating and electrical)",
+    priceCurrency: "EUR",
+    priceSpecification: {
+      priceCurrency: "EUR",
+      minPrice: 200,
+      unitText: "complete MEP drawing sheet",
+    },
   });
 });

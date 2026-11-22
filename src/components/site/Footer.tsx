@@ -11,7 +11,7 @@ import {
   hasEmail,
   phoneHref,
 } from "@/lib/site-config";
-import { alternatePath, enHomePath, useLocale } from "@/lib/i18n";
+import { alternatePath, enHomePath, hasLanguagePair, useLocale } from "@/lib/i18n";
 import { PhoneLink } from "@/components/site/PhoneLink";
 import { trackConversion } from "@/lib/analytics";
 
@@ -94,6 +94,8 @@ export function Footer() {
   const t = copy[useLocale()];
   const pathname = useRouterState({ select: (st) => st.location.pathname });
   const message = quoteContextForPath(pathname)?.whatsappMessage ?? t.whatsapp;
+  const languagePath = alternatePath(pathname, t.language.lang);
+  const languageHref = hasLanguagePair(pathname) ? languagePath : `${languagePath}?langFallback=1`;
   return (
     <footer className="border-t border-border-strong bg-graphite pb-[calc(3.5rem+env(safe-area-inset-bottom))] text-graphite-foreground lg:pb-0">
       <div className="mx-auto max-w-[1200px] px-5 py-14 md:px-8 md:py-20">
@@ -129,14 +131,21 @@ export function Footer() {
                 <ul className="mt-4 space-y-2.5 text-sm">
                   {t.site.map((l) => (
                     <li key={l.href}>
-                      <a href={l.href} className="hover:underline">
+                      <a
+                        href={
+                          pathname === "/en/autocad-drafting" && l.href === `${enHomePath}#estimate`
+                            ? "/en/autocad-drafting#estimate"
+                            : l.href
+                        }
+                        className="hover:underline"
+                      >
                         {l.label}
                       </a>
                     </li>
                   ))}
                   <li>
                     <a
-                      href={alternatePath(pathname, t.language.lang)}
+                      href={languageHref}
                       hrefLang={t.language.lang}
                       lang={t.language.lang}
                       className="hover:underline"

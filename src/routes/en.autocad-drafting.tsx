@@ -7,6 +7,7 @@ import { EnEstimate, EnFaq } from "@/components/site/EnSections";
 import { enDrafting } from "@/lib/en-content";
 import { enFaqSchema, enMailHref } from "@/lib/en-page";
 import { brandSchema, canonicalUrl } from "@/lib/site-config";
+import { offerSchema, rateLabelEn } from "@/lib/pricing";
 import { hreflangLinks } from "@/lib/i18n";
 import projDwg from "@/assets/proj-dwg.webp";
 
@@ -41,6 +42,7 @@ export const Route = createFileRoute("/en/autocad-drafting")({
           availableLanguage: ["en", "ro"],
           brand: brandSchema,
           serviceType: ["CAD drafting", "PDF to DWG redrafting", "Drawing cleanup"],
+          offers: [offerSchema("redesenare", "en"), offerSchema("corectare", "en")],
         }),
       },
       { type: "application/ld+json", children: JSON.stringify(enFaqSchema(faq)) },
@@ -68,6 +70,28 @@ function AutocadDrafting() {
                 Legacy PDFs become editable DWG, third-party files follow your CAD standard, and
                 markups are incorporated without tying up your engineers.
               </p>
+              <div className="mt-5 max-w-2xl border-l-2 border-primary pl-4">
+                <p className="tech-label text-muted-foreground">Indicative rates · RON</p>
+                <dl className="mt-2 grid gap-3 text-sm">
+                  <div>
+                    <dt className="font-medium">PDF or scan redrawn into editable DWG</dt>
+                    <dd className="mt-0.5 font-display text-lg font-semibold">
+                      {rateLabelEn("redesenare")}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-medium">Corrections to an existing drawing sheet</dt>
+                    <dd className="mt-0.5 font-display text-lg font-semibold">
+                      {rateLabelEn("corectare")}
+                    </dd>
+                  </div>
+                </dl>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Redrawing depends on source clarity and drawing complexity; correction pricing
+                  depends on the volume of markups. Scope and final price are confirmed before work
+                  starts.
+                </p>
+              </div>
               <div className="mt-9 flex flex-wrap gap-3">
                 <a
                   href="#estimate"
