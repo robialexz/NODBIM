@@ -3,7 +3,8 @@ import { useServerFn } from "@tanstack/react-start";
 import { useLocation } from "@tanstack/react-router";
 import { hasWhatsapp, quoteContextForPath, whatsappLink } from "@/lib/site-config";
 import { getAttribution } from "@/lib/attribution";
-import { track, trackOnce, trackConversion } from "@/lib/analytics";
+import { track, trackConversion } from "@/lib/analytics";
+import { readConsent } from "@/lib/consent";
 import { submitLead } from "@/lib/leads.functions";
 import { useLocale } from "@/lib/i18n";
 
@@ -128,7 +129,8 @@ type Errors = Partial<Record<"name" | "phone" | "email" | "details" | "form", st
 
 export function QuoteForm() {
   const t = copy[useLocale()];
-  const context = quoteContextForPath(useLocation().pathname);
+  const pathname = useLocation().pathname;
+  const context = quoteContextForPath(pathname);
   const [selectedType, setTip] = useState<string>();
   const isTraining = Boolean(context?.isTraining) || selectedType === "Cursuri Revit și Dynamo";
   const trainingTypes = [
@@ -175,6 +177,7 @@ export function QuoteForm() {
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
   const submittedRef = useRef(false);
+  const quoteStartEventSentRef = useRef(false);
   const quoteSuccessEventSentRef = useRef(false);
   const successRef = useRef<HTMLDivElement>(null);
 
@@ -197,7 +200,10 @@ export function QuoteForm() {
 
   /** Orice editare după o încercare eșuată = anchetă nouă, token nou. */
   const changed = () => {
-    trackOnce("quote_start");
+    if (!quoteStartEventSentRef.current && readConsent() === "all") {
+      quoteStartEventSentRef.current = true;
+      track("quote_start", { form_name: "quote_contact", source_path: pathname });
+    }
     if (attemptedRef.current && !submittedRef.current) {
       submissionIdRef.current = undefined;
     }
@@ -279,6 +285,7 @@ export function QuoteForm() {
         const conversionParams = {
           form_name: "quote_contact",
           lead_type: isTraining ? "course_inquiry" : "project_quote",
+          source_path: pathname,
           value: 1,
           currency: "RON",
         };
@@ -287,7 +294,7 @@ export function QuoteForm() {
         } else {
           trackConversion("lead_form_success", conversionParams, { dedupeKey: submissionId });
         }
-        track("quote_submit", { project_type: tip });
+        track("quote_submit", { project_type: tip, source_path: pathname });
       }
       setSent(true);
     } catch (error) {

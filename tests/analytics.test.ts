@@ -1,6 +1,12 @@
 import { describe, expect, test } from "bun:test";
 
-import { buildAdsConversionPayload, track, trackConversion } from "../src/lib/analytics";
+import {
+  buildAdsConversionPayload,
+  buildArticleInternalLinkParams,
+  track,
+  trackArticleInternalLinkClick,
+  trackConversion,
+} from "../src/lib/analytics";
 import { clearConsent, writeConsent } from "../src/lib/consent";
 import { site } from "../src/lib/site-config";
 
@@ -140,6 +146,75 @@ describe("Google Ads conversion payload", () => {
       ]);
     } finally {
       mutableSite.gaMeasurementId = savedGa;
+      clearConsent();
+      globalThis.window = savedWindow;
+      globalThis.localStorage = savedStorage;
+    }
+  });
+});
+
+describe("article internal-link tracking", () => {
+  test("keeps only same-origin paths and editorial labels", () => {
+    expect(
+      buildArticleInternalLinkParams(
+        "/en/revit-mep-outsourcing?email=private@example.com#estimate",
+        "/en/blog/files-for-revit-mep-quotation?source=newsletter",
+        "https://nodbim.com",
+        "Request a project estimate",
+        "What to send for a quote",
+      ),
+    ).toEqual({
+      source_path: "/en/blog/files-for-revit-mep-quotation",
+      target_path: "/en/revit-mep-outsourcing",
+      link_label: "Request a project estimate",
+      section_heading: "What to send for a quote",
+    });
+    expect(
+      buildArticleInternalLinkParams(
+        "https://competitor.example/resource",
+        "/en/blog/guide",
+        "https://nodbim.com",
+      ),
+    ).toBeNull();
+    expect(
+      buildArticleInternalLinkParams(
+        "/en/revit-mep-outsourcing",
+        "https://competitor.example/blog/guide",
+        "https://nodbim.com",
+      ),
+    ).toBeNull();
+  });
+
+  test("emits the event only with analytics consent", () => {
+    const savedWindow = globalThis.window;
+    const savedStorage = globalThis.localStorage;
+    const store = new Map<string, string>();
+    const dataLayer: unknown[] = [];
+
+    // @ts-expect-error polyfill minimal pentru test
+    globalThis.localStorage = {
+      getItem: (key: string) => store.get(key) ?? null,
+      setItem: (key: string, value: string) => void store.set(key, value),
+      removeItem: (key: string) => void store.delete(key),
+    };
+    // @ts-expect-error simulăm window
+    globalThis.window = { dataLayer, location: { origin: "https://nodbim.com" } };
+
+    try {
+      trackArticleInternalLinkClick("/en/revit-mep-outsourcing", "/en/blog/guide", "Service");
+      expect(dataLayer).toHaveLength(0);
+
+      writeConsent("all");
+      trackArticleInternalLinkClick("/en/revit-mep-outsourcing", "/en/blog/guide", "Service");
+      expect(dataLayer).toEqual([
+        {
+          event: "article_internal_link_click",
+          source_path: "/en/blog/guide",
+          target_path: "/en/revit-mep-outsourcing",
+          link_label: "Service",
+        },
+      ]);
+    } finally {
       clearConsent();
       globalThis.window = savedWindow;
       globalThis.localStorage = savedStorage;
