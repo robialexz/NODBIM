@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useLocation } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { ArticleSections } from "@/components/site/ArticleSections";
 import { Footer } from "@/components/site/Footer";
@@ -7,6 +7,7 @@ import { MobileCta } from "@/components/site/MobileCta";
 import { canonicalUrl, site } from "@/lib/site-config";
 import { hreflangLinks } from "@/lib/i18n";
 import { getEnglishArticle } from "@/lib/blog-en";
+import { trackArticleInternalLinkClick } from "@/lib/analytics";
 
 const organizationId = `${canonicalUrl("/")}#org`;
 
@@ -98,6 +99,7 @@ function EnglishArticleNotFound() {
 
 function EnglishArticlePage() {
   const { article } = Route.useLoaderData();
+  const pathname = useLocation().pathname;
 
   return (
     <div className="min-h-screen bg-background">
@@ -150,6 +152,14 @@ function EnglishArticlePage() {
             <Link
               to="/en/revit-mep-outsourcing"
               hash="estimate"
+              onClick={() =>
+                trackArticleInternalLinkClick(
+                  "/en/revit-mep-outsourcing#estimate",
+                  pathname,
+                  "Request an estimate",
+                  "Article call to action",
+                )
+              }
               className="tech-label mt-8 inline-block border border-primary bg-primary px-6 py-4 text-primary-foreground transition-opacity hover:opacity-90"
             >
               Request an estimate

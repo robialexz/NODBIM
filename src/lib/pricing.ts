@@ -26,12 +26,13 @@ const jobDetails: Record<JobType, JobDetails> = {
     label: "Redesenare plan sau PDF în DWG",
     waName: "de redesenat (PDF în DWG)",
     unit: "plan redesenat",
-    enLabel: "Redrawing a plan or PDF into DWG",
-    enUnit: "redrawn plan",
+    enLabel: "Redrawing a PDF or scan into DWG drawing sheets",
+    enUnit: "drawing sheet",
     quantityLabel: "Câte planuri redesenezi?",
-    enQuantityLabel: "How many plans should be redrawn?",
+    enQuantityLabel: "How many drawing sheets should be redrawn?",
     note: "Depinde de complexitate și de cât de lizibil este originalul.",
-    enNote: "Price depends on drawing complexity and the clarity of the source file.",
+    enNote:
+      "Starting price per drawing sheet; final cost depends on drawing complexity and source clarity.",
     enWaName: "to redraw from a PDF or scan",
   },
   corectare: {
@@ -155,7 +156,7 @@ export function quantityValueLabel(
   const n = clampSheets(sheets);
   if (locale === "en") {
     const unit = {
-      redesenare: n === 1 ? "redrawn plan" : "redrawn plans",
+      redesenare: n === 1 ? "redrawn drawing sheet" : "redrawn drawing sheets",
       corectare: n === 1 ? "corrected sheet" : "corrected sheets",
       instalatii: n === 1 ? "complete MEP drawing sheet" : "complete MEP drawing sheets",
     }[type];
@@ -179,7 +180,7 @@ export function estimateWhatsappMessage(
   const indicativeEstimate = estimateLabel(type, n, locale);
   if (locale === "en") {
     const quantity = {
-      redesenare: `${n} ${n === 1 ? "plan" : "plans"}`,
+      redesenare: `${n} ${n === 1 ? "drawing sheet" : "drawing sheets"}`,
       corectare: `${n} ${n === 1 ? "existing drawing sheet" : "existing drawing sheets"}`,
       instalatii: `${n} ${n === 1 ? "complete MEP drawing sheet" : "complete MEP drawing sheets"}`,
     }[type];

@@ -19,7 +19,8 @@ export type ConversionEvent =
   | "course_form_success"
   | "phone_click"
   | "email_click"
-  | "affiliate_click";
+  | "affiliate_click"
+  | "article_internal_link_click";
 
 declare global {
   interface Window {
@@ -123,11 +124,49 @@ export function trackConversion(
   }
 }
 
-/** Evenimente care trebuie să apară o singură dată per sesiune de pagină. */
-export function trackOnce(
-  event: ConversionEvent,
-  params: Record<string, string | number | undefined> = {},
-  dedupeKey?: string,
+/** Return path-only context for an internal article link, without query or fragment data. */
+export function buildArticleInternalLinkParams(
+  href: string,
+  sourcePath: string,
+  origin: string,
+  label?: string,
+  sectionHeading?: string,
+): Record<string, string> | null {
+  try {
+    const siteOrigin = new URL(origin).origin;
+    const source = new URL(sourcePath, siteOrigin);
+    if (source.origin !== siteOrigin) return null;
+    const target = new URL(href, source);
+    if (target.origin !== siteOrigin) return null;
+
+    const params: Record<string, string> = {
+      source_path: source.pathname,
+      target_path: target.pathname,
+    };
+    const safeLabel = label?.trim().slice(0, 100);
+    const safeHeading = sectionHeading?.trim().slice(0, 100);
+    if (safeLabel) params["link_label"] = safeLabel;
+    if (safeHeading) params["section_heading"] = safeHeading;
+    return params;
+  } catch {
+    return null;
+  }
+}
+
+/** Measure internal article navigation only after the visitor grants analytics consent. */
+export function trackArticleInternalLinkClick(
+  href: string,
+  sourcePath: string,
+  label?: string,
+  sectionHeading?: string,
 ): void {
-  track(event, params, { once: true, ...(dedupeKey ? { dedupeKey } : {}) });
+  if (typeof window === "undefined") return;
+  const params = buildArticleInternalLinkParams(
+    href,
+    sourcePath,
+    window.location.origin,
+    label,
+    sectionHeading,
+  );
+  if (params) track("article_internal_link_click", params);
 }

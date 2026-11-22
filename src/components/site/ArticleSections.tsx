@@ -1,6 +1,10 @@
 import type { ArticleSection } from "@/lib/blog";
+import { useLocation } from "@tanstack/react-router";
+import { trackArticleInternalLinkClick } from "@/lib/analytics";
 
 export function ArticleSections({ sections }: { sections: ArticleSection[] }) {
+  const pathname = useLocation().pathname;
+
   return (
     <div className="mt-8 space-y-8">
       {sections.map((section, sectionIndex) => (
@@ -61,7 +65,18 @@ export function ArticleSections({ sections }: { sections: ArticleSection[] }) {
             <ul className="mt-4 space-y-2">
               {section.links.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-primary underline underline-offset-4">
+                  <a
+                    href={link.href}
+                    className="text-primary underline underline-offset-4"
+                    onClick={() =>
+                      trackArticleInternalLinkClick(
+                        link.href,
+                        pathname,
+                        link.label,
+                        section.heading,
+                      )
+                    }
+                  >
                     {link.label}
                   </a>
                 </li>

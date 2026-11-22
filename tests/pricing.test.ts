@@ -112,7 +112,7 @@ test("quantityValueLabel uses the selected service unit", () => {
 });
 
 test("English accessible quantity labels use the selected unit and clamp", () => {
-  expect(quantityValueLabel("redesenare", 0, "en")).toBe("1 redrawn plan");
+  expect(quantityValueLabel("redesenare", 0, "en")).toBe("1 redrawn drawing sheet");
   expect(quantityValueLabel("instalatii", 21, "en")).toBe("20 complete MEP drawing sheets");
 });
 
@@ -126,7 +126,7 @@ test("mesajul WhatsApp: acord și formulare", () => {
 
 test("English WhatsApp messages stay localized and include a written quote step", () => {
   expect(estimateWhatsappMessage("redesenare", 3, "en")).toContain(
-    "3 plans to redraw from a PDF or scan",
+    "3 drawing sheets to redraw from a PDF or scan",
   );
   expect(estimateWhatsappMessage("corectare", 2, "en")).toContain(
     "2 existing drawing sheets to update or correct",
@@ -192,13 +192,18 @@ test("English Revit pricing stays in EUR and names the complete-sheet unit", () 
 });
 
 test("English AutoCAD structured rates use the international EUR market", () => {
+  expect(rateLabelEn("redesenare")).toBe("From 200 EUR per drawing sheet");
+  expect(quantityValueLabel("redesenare", 2, "en")).toBe("2 redrawn drawing sheets");
+  expect(estimateWhatsappMessage("redesenare", 1, "en")).toContain(
+    "1 drawing sheet to redraw from a PDF or scan. Indicative estimate: From 200 EUR",
+  );
   expect(offerSchema("redesenare", "en")).toMatchObject({
-    name: "Redrawing a plan or PDF into DWG",
+    name: "Redrawing a PDF or scan into DWG drawing sheets",
     priceCurrency: "EUR",
     priceSpecification: {
       priceCurrency: "EUR",
       minPrice: 200,
-      unitText: "redrawn plan",
+      unitText: "drawing sheet",
     },
   });
   expect(offerSchema("redesenare", "en")).not.toHaveProperty("priceSpecification.maxPrice");
