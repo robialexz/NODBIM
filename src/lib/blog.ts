@@ -35,6 +35,7 @@ export const articles: Article[] = [
     description:
       "Află cum separi grafic sistemele HVAC în planșele Revit MEP prin filtre de vedere și ce standard trebuie aprobat înainte de predare.",
     date: "2026-11-20",
+    updatedAt: "2026-11-22",
     readingTime: 5,
     tags: ["Revit MEP", "HVAC", "Filtre de vedere", "Planșe tehnice"],
     sections: [
@@ -98,6 +99,43 @@ export const articles: Article[] = [
           {
             label: "Autodesk Revit: aplicarea unui filtru și prioritatea filtrelor",
             href: "https://help.autodesk.com/cloudhelp/2025/ENU/Revit-DocumentPresent/files/GUID-FA7B0AD9-4F0F-4405-9DF7-35D30D7CBE7B.htm",
+          },
+        ],
+      },
+      {
+        heading: "Verifică setările modelelor legate",
+        paragraphs: [
+          "Pentru un model RVT legat, verifică setarea Display Settings din fila Revit Links. Aceasta determină dacă filtrele și suprascrierile din vederea gazdă se folosesc și pentru elementele din modelul legat. Modul ales schimbă ce reguli de afișare sunt aplicate; nu presupune că un element legat lipsește din legendă din cauza unei valori System Type sau System Name înainte să verifici setarea linkului.",
+          "Înainte să schimbi o regulă de parametri, inspectează setarea Revit Links pentru fiecare model relevant. Într-o vedere pilot, verifică o tubulatură, un fiting și un element neasignat în modelul gazdă și în linkurile incluse, apoi exportă PDF-ul la formatul de emitere și compară-l cu legenda aprobată.",
+        ],
+        table: {
+          head: ["Setare Revit Links", "Cum se aplică filtrarea", "Ce verifici în vederea pilot"],
+          rows: [
+            [
+              "By Host View",
+              "Filtrele și setările grafice ale vederii gazdă se aplică elementelor din modelul gazdă, din modelul legat și din modelele imbricate.",
+              "Verifică fiecare link și include un element legat și unul imbricat în comparația cu legenda.",
+            ],
+            [
+              "By Linked View",
+              "Filtrele vederii gazdă se aplică numai modelului gazdă; modelul legat și cele imbricate folosesc vederea selectată din modelul legat.",
+              "Confirmă vederea legată selectată și verifică reprezentarea elementelor ei în planșa gazdă.",
+            ],
+            [
+              "Custom",
+              "Poți alege dacă modelul legat folosește filtrele vederii gazdă sau ale vederii legate; setările pentru linkurile imbricate se controlează separat.",
+              "Notează sursa filtrelor și verifică separat fiecare link imbricat relevant.",
+            ],
+          ],
+        },
+        links: [
+          {
+            label: "Autodesk Revit: afișează modelul legat după vederea gazdă",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-A39798E1-7567-40EC-9D52-77CDF1B0EA43.htm",
+          },
+          {
+            label: "Autodesk Revit: filtre de vedere pentru modele legate",
+            href: "https://help.autodesk.com/cloudhelp/2023/ENU/Revit-Collaborate/files/GUID-8D67E40C-633D-4DD6-B854-6D045EE2616E.htm",
           },
         ],
       },

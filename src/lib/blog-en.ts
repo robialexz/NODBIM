@@ -1,5 +1,5 @@
 import type { Article } from "./blog";
-import { jobRates, packagePrice } from "./pricing";
+import { estimateLabel, packagePrice, rateLabelEn } from "./pricing";
 
 export type EnglishArticle = Article & { sourceSlug: string };
 
@@ -88,6 +88,7 @@ export const englishArticles: EnglishArticle[] = [
     description:
       "Specify reliable HVAC colour rules in Revit and review a pilot drawing before issuing a full set of MEP sheets.",
     date: "2026-11-20",
+    updatedAt: "2026-11-22",
     readingTime: 4,
     tags: ["Revit MEP", "HVAC", "Drawing quality"],
     sections: [
@@ -124,6 +125,47 @@ export const englishArticles: EnglishArticle[] = [
         ],
       },
       {
+        heading: "Check linked-model display settings",
+        paragraphs: [
+          "For an RVT link, check Display Settings on the Revit Links tab. The selected mode determines whether filters and graphic overrides from the host view also control linked elements. A colour difference in a linked element does not by itself show that its System Type or System Name value is wrong; check the link display mode before changing the filter rule.",
+          "Before changing a parameter rule, inspect the Revit Links setting for each relevant model. In one pilot view, check a duct, a fitting and an unmatched element in the host and included links, then export the sheet at issue scale and compare it with the approved legend.",
+        ],
+        table: {
+          head: [
+            "Revit Links setting",
+            "How filtering is applied",
+            "What to verify in the pilot view",
+          ],
+          rows: [
+            [
+              "By Host View",
+              "The host view's filters and visibility/graphics settings apply to elements in the host model, the linked model and nested models.",
+              "Check each link and include linked and nested elements when comparing the result with the legend.",
+            ],
+            [
+              "By Linked View",
+              "Host-view filters apply to the host model only; the linked model and nested models display according to the selected linked view.",
+              "Confirm which linked view is selected and check how its elements appear in the host sheet.",
+            ],
+            [
+              "Custom",
+              "You can choose whether a linked model uses filters from the host view or linked view; nested links have separate display settings.",
+              "Record the filter source and check each relevant nested link separately.",
+            ],
+          ],
+        },
+        links: [
+          {
+            label: "Autodesk Revit: display a linked model by host view",
+            href: "https://help.autodesk.com/cloudhelp/2026/ENU/Revit-Collaborate/files/GUID-A39798E1-7567-40EC-9D52-77CDF1B0EA43.htm",
+          },
+          {
+            label: "Autodesk Revit: view filters for linked models",
+            href: "https://help.autodesk.com/cloudhelp/2023/ENU/Revit-Collaborate/files/GUID-8D67E40C-633D-4DD6-B854-6D045EE2616E.htm",
+          },
+        ],
+      },
+      {
         heading: "Approve one sheet before rolling out the template",
         list: [
           "Send the RVT model, any client template, the intended output format and a marked-up example or colour legend.",
@@ -153,7 +195,7 @@ export const englishArticles: EnglishArticle[] = [
     sourceSlug: "cat-costa-o-plansa-de-instalatii",
     title: "How much does a complete MEP drawing sheet cost?",
     metaTitle: "MEP drawing sheet pricing",
-    description: `A complete installation drawing sheet starts at ${jobRates.instalatii.min} ${jobRates.instalatii.currency}. See how file condition, scope and handover requirements shape a written quote.`,
+    description: `${rateLabelEn("instalatii")}. See how file condition, scope and handover requirements shape a written quote.`,
     date: "2026-11-17",
     readingTime: 5,
     tags: ["Pricing", "Revit MEP", "Project scope"],
@@ -161,7 +203,7 @@ export const englishArticles: EnglishArticle[] = [
       {
         paragraphs: [
           "A drawing count alone does not define the work. A useful quote states the discipline, what each sheet must show, the required level of detail, the files to be delivered and the revision rounds included.",
-          `At NOD BIM, the current minimum for one complete installation drawing sheet is ${jobRates.instalatii.min} ${jobRates.instalatii.currency}. At the same starting rate, ${packagePrice.sheets} complete sheets total ${packagePrice.min} ${packagePrice.currency}. This is a minimum, not a fixed quote for every package.`,
+          `NOD BIM lists ${rateLabelEn("instalatii")}. At the same starting rate, ${packagePrice.sheets} complete sheets total ${estimateLabel("instalatii", packagePrice.sheets, "en")}. These amounts are minimums, not fixed quotes for every package.`,
         ],
       },
       {
