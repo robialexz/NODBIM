@@ -5,8 +5,8 @@
 - Priority selected: English Revit MEP production support for HVAC/MEP contractors and engineering consultancies with short workload peaks.
 - First implementation: consent-gated measurement of article-to-service navigation, estimate-form starts and confirmed submissions. This makes the existing commercial path measurable without inventing demand or duplicating already adequate service and guide content.
 - Code checks passed after the final source edits: `npm run typecheck`, `npm run lint`, `npm run deadcode`, and `bun test` (156 passed, 0 failed, 849 assertions).
-- At time of this report, publication and production verification are still pending. Source baseline: canonical GitHub `robialexz/NODBIM` main `c2424174ff2276184b9f61576d7f6a33e478935b`; the active local checkout contains unrelated uncommitted work and was not used or modified.
-- Google baseline was read directly from the authenticated Google account. No Supermetrics, paid connector, new outreach, form submission, listing purchase or new public post was made.
+- [PR #15](https://github.com/robialexz/NODBIM/pull/15) was merged to canonical GitHub `robialexz/NODBIM` main without rewriting history. Code commit: `d2940f6770b9846e73dd332f0d72d867829fd566`; merge commit: `db40cae44ae96f1d61f6fac2fd669ebdbd81a2ca`. Cloudflare production showed Worker version `4300d491` (build `0f11bb4f-157e-4dd9-a273-5cfa5ab2273a`), Ready at 100% traffic, sourced from that merge. The active local checkout contains unrelated uncommitted work and was not used or modified.
+- Google baseline was read directly from the authenticated account, without Supermetrics or a paid connector. No new outreach, form submission or paid listing was made. Existing official LinkedIn and Facebook company-page posts were verified with their permalinks and distinct UTM content tags; no duplicate post was published.
 
 ## Team and acceptance
 
@@ -64,7 +64,7 @@ Direct GA4 property report read on 22 Nov 2026; period **25 Oct–21 Nov** (28 c
 - A raw country-by-date export suggests 7/28 days at or above 3 active users and 5/28 at or above 4 when summing country rows. This is preliminary because a cross-border user can appear in multiple country rows on one date, and internal QA/bot exclusions were not reconciled. Do not treat it as an audited target count.
 - Zero tracked key events or reported revenue is not evidence that zero leads or payments occurred; the operational lead and payment sources were not read for this report.
 
-## Implementation awaiting publication
+## Implementation in the live release
 
 Files changed on the isolated release snapshot:
 
@@ -77,7 +77,7 @@ Files changed on the isolated release snapshot:
 
 In GA4 Admin, three event-scoped custom definitions were saved and verified on 22 Nov: `Source path` (`source_path`), `Target path` (`target_path`) and `Link label` (`link_label`). There were no prior custom definitions. No custom dimension exposes visitor-entered form text.
 
-These events cannot appear until a release is live, a visitor grants analytics consent, and GA4 processes the event. A first event check should use the Realtime/DebugView path without sending a test lead. Any test activity must be tagged and excluded from marketing figures. Form success should be checked against an accepted request, notification and saved lead, not a button click.
+The release is live. A post-release Realtime snapshot showed only standard events (page_view 5, user_engagement 4, first_visit 1 and session_start 1); neither new `article_internal_link_click` nor `quote_start` appeared in the displayed list. The snapshot may include QA visits and is too small to establish delivery or failure. No controlled consented click or form submission was made, and no lead success is claimed. Check after a real consented interaction or a DebugView test that can be excluded from marketing reports. Form success still requires an accepted request, saved record and notification; a button click is not sufficient.
 
 ## Editorial and distribution backlog
 
@@ -90,7 +90,7 @@ The supplied [Borja Fat post](https://x.com/borjafat/status/2122336732079161572)
 | AUGI Resource Directory | Autodesk/Revit directory and free Basic membership are visible; exact current listing eligibility/fields and link handling still need verification. | Confirm category, eligibility, listing rules and link treatment before creating a profile. | Growth owner; no submission made. |
 | HPAC Engineering | Current mechanical-services contributor guidance found. | Query first with non-promotional technical idea and a reproducible result. | Editorial owner; no outreach made. |
 | Synthetic Revit fixture | Proposed rights-clean host-and-linked-MEP view/export test; no client or employer data. | Agree a small test matrix and retain expected/observed results and Autodesk references before production. | Technical owner; not yet created. |
-| LinkedIn/Facebook | Current official-page publication state was not verified as part of this implementation. | Check the official NODBIM pages for duplicate posts, then publish one useful result with separate UTMs and record the actual permalinks. | Distribution owner; no new post in this execution. |
+| LinkedIn/Facebook | Existing public NODBIM LinkedIn and NOD BIM Facebook posts about the HVAC view-filter pilot sheet were verified; no duplicate was published. LinkedIn share: [7530335064472223745](https://www.linkedin.com/feed/update/urn:li:share:7530335064472223745/?actorCompanyId=145297818), EN target: [guide](https://nodbim.com/en/blog/revit-hvac-view-filters?utm_source=linkedin&utm_medium=organic_social&utm_campaign=revit_hvac_filters_20261122&utm_content=pilot_sheet_en). Facebook post ID 122120954127514949, permalink token `pfbid02sTHXFXP1YJpeBf6yLttkgMbvs4NPJcukh9XezGd9UF1c4xTptxWAmZLNDZo9UxuGl`, RO target: [guide](https://nodbim.com/blog/culori-sisteme-hvac-filtre-revit-mep?utm_source=facebook&utm_medium=organic_social&utm_campaign=revit_hvac_filters_20261122&utm_content=pilot_sheet_ro); both use campaign `revit_hvac_filters_20261122`. Facebook showed 0 views/engagement/link clicks in the selected date-range view at capture. | Keep the distinct EN/RO UTMs and review referral sessions after processing; do not duplicate the posts. |
 
 Other verified prospects: Consulting-Specifying Engineer (rights agreement needs review before any commitment), BIMsmith (guest instructions date to 2018; reconfirm), PBC Today (paid profile price is “enquire”), and Clutch (free tier lacks a site link; paid tier not justified solely for a backlink). No paid listing or broad rights agreement was accepted. No outreach was sent during this session, and TEMA Energy and known affiliates remain excluded.
 
@@ -113,12 +113,13 @@ The repeatable query set is prepared below. The actual first run in ChatGPT, Per
 
 | Item | Current status | Owner / next step |
 | --- | --- | --- |
-| Source comparison | GitHub main `c2424174ff2276184b9f61576d7f6a33e478935b` was confirmed before this change. | Recheck main before creating the release branch; preserve remote movement and existing local changes. |
-| Required checks | Passed after final source edits: typecheck, lint, deadcode and 156 tests / 849 assertions. | Rerun only if a source change is made before release. |
+| Source comparison | Canonical GitHub main was `c2424174ff2276184b9f61576d7f6a33e478935b` when implementation began; PR #15 merged to main as `db40cae44ae96f1d61f6fac2fd669ebdbd81a2ca`. The active local checkout had unrelated uncommitted changes and was not modified. | PR #15 preserves existing history; no force push or rebase was used. |
+| Required checks | Passed after final source edits: typecheck, lint, deadcode and 156 tests / 849 assertions. | No source changed after those checks; the follow-up PR changes documentation only. |
 | Technical public QA | EN Revit MEP pricing matched policy. EN AutoCAD redrawing unit divergence found and corrected across visible and structured pricing. Independent code/privacy review passed with no confirmed blockers; native anchor dispatch is a measurement caveat to verify after release. | Preserve the caveat and verify actual event receipt. |
-| Publication | Not yet done in this report. | PR/merge through GitHub without rewriting history; Cloudflare main deployment is the established route. |
-| Production route and mobile | Not yet rechecked against the new release. | Verify service page, the article CTA, language-equivalent route and mobile layout after Cloudflare serves the new commit. |
-| Google recrawl/indexing | EN service was crawled but not indexed on 22 Nov. | Check sitemap freshness 23 Nov; review recrawl/index verdict on 28 Nov. A successful crawl is not indexation. |
-| Measurement review | GA4 source/target/link-label dimensions are ready; events not yet emitted by the new code. | Verify an accepted-consent article click and form-start event only after release; compare again 27 Nov with small-sample caveats. |
-| 30-day review | Not due yet. | Repeat the same AI query set and review organic, referral, consented path events, qualified requests and confirmed payments separately. |
+| Publication | [PR #15](https://github.com/robialexz/NODBIM/pull/15) merged normally. Code commit `d2940f6770b9846e73dd332f0d72d867829fd566`; main merge commit `db40cae44ae96f1d61f6fac2fd669ebdbd81a2ca`. Cloudflare Worker version `4300d491`, build `0f11bb4f-157e-4dd9-a273-5cfa5ab2273a`, reported Ready at 100% traffic from the merge commit. | No source changes since the successful local checks; keep this release as the baseline for post-deploy observation. |
+| Production route and mobile | EN Revit service and visible quote form were verified on production. The HVAC-filter EN article CTA points to `/en/revit-mep-outsourcing#estimate`; the service page has the quote anchor and RO language equivalent. EN Revit was checked at 320 × 812 CSS px; reviewed hero and estimator wrap without horizontal overflow. EN AutoCAD page, calculator, quantity label and WhatsApp preview show `From 200 EUR per drawing sheet`. No form was submitted, so no new request, notification or success event was verified. | Preserve this route. If a later form test is needed, mark and exclude it from marketing data. |
+| Google recrawl/indexing | Latest direct GSC URL inspection in this run remained “Crawled — currently not indexed” after the 22 Nov smartphone crawl; the post-deploy index verdict has not been refreshed. | Check sitemap freshness 23 Nov and review the URL verdict around 28 Nov. A successful crawl is not indexation; do not repeat the request immediately after the fresh crawl. |
+| Measurement review | GA4 custom dimensions `source_path`, `target_path`, `link_label` are saved. The post-release Realtime list did not show `article_internal_link_click` or `quote_start`; this was an uncontrolled short snapshot, not a delivery test. | Check after a real consented interaction or an excludable DebugView test; do not submit a false lead. Reassess 27 Nov with small-sample caveats. |
+| 7-day review | First release and official distribution were verified on 22 Nov; current GA4 Realtime snapshot is too small to evaluate event delivery or reach. | On 29 Nov, compare the first complete week of source, referral, organic and path data; retain sample-size and consent caveats. |
+| 30-day review | Due 22 Dec for the SEO/AI visibility experiment; distinct from the paying-client cohort that began 20 Nov. | Repeat the same AI prompt set and compare organic, referral, consented path events, qualified requests and first confirmed payments separately. Keep the client-cohort checkpoint on 20 Dec. |
 
