@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCta } from "@/components/site/MobileCta";
 import { Reveal } from "@/components/site/Reveal";
+import { PriceEstimator } from "@/components/site/PriceEstimator";
 import { EnEstimate, EnFaq } from "@/components/site/EnSections";
 import { enDrafting } from "@/lib/en-content";
 import { enFaqSchema, enMailHref } from "@/lib/en-page";
@@ -100,6 +101,12 @@ function AutocadDrafting() {
                   Send your drawings for an estimate
                 </a>
                 <a
+                  href="#pricing"
+                  className="tech-label border border-foreground px-6 py-4 transition-colors hover:bg-foreground hover:text-background"
+                >
+                  Calculate an indicative price
+                </a>
+                <a
                   href="/en/revit-mep-outsourcing"
                   className="tech-label border border-foreground px-6 py-4 transition-colors hover:bg-foreground hover:text-background"
                 >
@@ -119,6 +126,27 @@ function AutocadDrafting() {
               <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
                 I usually reply with scope, timeline and cost within 1–2 working days.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="pricing" className="border-y border-border-strong bg-sheet">
+          <div className="mx-auto max-w-[1200px] px-5 py-16 md:px-8 md:py-20">
+            <p className="tech-label text-primary">Indicative price calculator · RON</p>
+            <h2 className="mt-4 max-w-3xl text-3xl md:text-4xl">
+              Estimate redrawing and drawing corrections
+            </h2>
+            <p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">
+              Choose a service and quantity to see the indicative amount. The written quote confirms
+              the project scope and final price before work starts.
+            </p>
+            <div className="mt-8">
+              <PriceEstimator
+                defaultType="redesenare"
+                jobTypes={["redesenare", "corectare"]}
+                locale="en"
+                quoteHref="#estimate"
+              />
             </div>
           </div>
         </section>

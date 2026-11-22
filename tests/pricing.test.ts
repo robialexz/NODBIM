@@ -63,6 +63,13 @@ test("estimateLabel", () => {
   expect(estimateLabel("instalatii", 1)).toBe("de la 200 EUR");
 });
 
+test("English estimate labels use English grouping and approved currencies", () => {
+  expect(estimateLabel("redesenare", 1, "en")).toBe("350–800 RON");
+  expect(estimateLabel("redesenare", 20, "en")).toBe("7,000–16,000 RON");
+  expect(estimateLabel("corectare", 3, "en")).toBe("From 750 RON");
+  expect(estimateLabel("instalatii", 5, "en")).toBe("From 1,000 EUR");
+});
+
 test("sheetsLabel și formatLei", () => {
   expect([1, 3, 20, 99].map(sheetsLabel)).toEqual([
     "1 planșă",
@@ -79,12 +86,33 @@ test("quantityValueLabel uses the selected service unit", () => {
   expect(quantityValueLabel("instalatii", 20)).toBe("20 de planșe complete");
 });
 
+test("English accessible quantity labels use the selected unit and clamp", () => {
+  expect(quantityValueLabel("redesenare", 0, "en")).toBe("1 redrawn plan");
+  expect(quantityValueLabel("instalatii", 21, "en")).toBe("20 complete MEP drawing sheets");
+});
+
 test("mesajul WhatsApp: acord și formulare", () => {
   expect(estimateWhatsappMessage("redesenare", 1)).toContain("1 plan de redesenat");
   expect(estimateWhatsappMessage("redesenare", 4)).toContain("4 planuri de redesenat");
   expect(estimateWhatsappMessage("redesenare", 20)).toContain("20 de planuri de redesenat");
   expect(estimateWhatsappMessage("instalatii", 3)).not.toContain("pentru planșe");
   expect(estimateWhatsappMessage("corectare", 2)).toContain("pe site");
+});
+
+test("English WhatsApp messages stay localized and include a written quote step", () => {
+  expect(estimateWhatsappMessage("redesenare", 3, "en")).toContain(
+    "3 plans to redraw from a PDF or scan",
+  );
+  expect(estimateWhatsappMessage("corectare", 2, "en")).toContain(
+    "2 existing drawing sheets to update or correct",
+  );
+  expect(estimateWhatsappMessage("instalatii", 1, "en")).toContain(
+    "1 complete MEP drawing sheet to prepare",
+  );
+  expect(estimateWhatsappMessage("instalatii", 1, "en")).toContain(
+    "written quote before work starts",
+  );
+  expect(estimateWhatsappMessage("instalatii", 1, "en")).not.toMatch(/[ăâîșț]/i);
 });
 
 test("offerSchema", () => {
@@ -131,6 +159,26 @@ test("English Revit pricing stays in EUR and names the complete-sheet unit", () 
       priceCurrency: "EUR",
       minPrice: 200,
       unitText: "complete MEP drawing sheet",
+    },
+  });
+});
+
+test("English AutoCAD structured rates stay in RON", () => {
+  expect(offerSchema("redesenare", "en")).toMatchObject({
+    name: "Redrawing a plan or PDF into DWG",
+    priceCurrency: "RON",
+    priceSpecification: {
+      priceCurrency: "RON",
+      minPrice: 350,
+      maxPrice: 800,
+      unitText: "redrawn plan",
+    },
+  });
+  expect(offerSchema("corectare", "en")).toMatchObject({
+    priceCurrency: "RON",
+    priceSpecification: {
+      minPrice: 250,
+      unitText: "corrected sheet",
     },
   });
 });
