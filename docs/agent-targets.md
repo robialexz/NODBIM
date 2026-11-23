@@ -1,5 +1,20 @@
 # NOD BIM — current agent objectives
 
+## Latest checkpoint — visual redesign, 23 November 2026
+
+**Priority and change.** Redesign the existing service journey for international Revit MEP outsourcing while preserving indexable URLs and the Romanian route. The homepage now uses a navy/paper technical visual system, puts the existing synthetic HVAC proof near the primary quote path, and keeps AutoCAD as a visible secondary service. Shared Romanian service heroes and the English Revit MEP hero use the same visual hierarchy. The approved English price remains 200 EUR per complete sheet; Romanian rates still come from the approved pricing policy.
+
+**Evidence and limits.** Reused existing public illustrations and the synthetic HVAC sample; no client, employer or NDA material was added. The captions keep illustrative assets distinct from client work. No new market proof, client testimonial, traffic, ranking, indexation, AI citation or conversion claim was created. The prior 23 Nov production audit passed 19/19 checks across 74 sitemap URLs. Search Console and GA4 were not reread for this release; carry forward the dated 22 Nov baseline below.
+
+**Implementation and verification.** Source commit `7bf9b5930debf29655cdf3b15a61af0197cd6377` on `codex/nodbim-full-redesign`, based on `d3f7cca6b4f5a7d2cdffe21be1be0ec44b809ba4`. Typecheck, lint, deadcode, production build, `git diff --check`, and 156 tests / 849 assertions passed. Fresh compiled SSR checks returned 200 for sampled home, RO/EN service and article pages with one H1, expected canonicals/hreflang, resolved internal fragments, quote fields and matching offer schema; robots and sitemap also returned 200. Independent GPT-6.2 Sol Medium review accepted after correcting hero caption contrast, form/input contrast and the mobile menu scroll bound. Exact 320/375/390 CSS-pixel layout remains unverified: Playwright could not launch in the sandbox, though the reviewer opened the local build and inspected its accessibility tree. The local build lacked phone/WhatsApp configuration, so the fixed contact bar was not exercised. No form was submitted.
+
+**Release.** Normal GitHub PR and Cloudflare publication are pending. Do not treat local build or SSR verification as deployment, recrawl, or indexation.
+
+**Team configuration.** Orchestrator/implementation: GPT-6 Luna Work Mode (reasoning setting not exposed). Design direction, SEO/implementation guardrails, and separate final review: GPT-6.2 Sol Medium. The design reviewer chose the technical navy/paper direction; the SEO reviewer checked route/schema/form/indexing invariants; the independent final reviewer accepted the final source and build after the documented fixes.
+
+**Next review.** Owner: orchestrator. After publication verify the served commit and public URL/form/language/anchor paths. Complete exact mobile viewport QA when browser control is available. Recheck Search Console after crawl and GA4 after a complete period, keeping design, indexation, AI citations, qualified requests, offers and paid orders as separate outcomes. Review the first seven-day release window on 30 Nov.
+
+
 ## Latest checkpoint — 23 November 2026
 
 **Priority and change.** Keep English Revit MEP overflow support first for HVAC/MEP contractors and engineering consultancies. This release improves the proof-first homepage path and three existing buyer guides instead of adding duplicate pages: pricing/scope, files needed for a quote, and model handover checks. The Romanian homepage now shows the synthetic HVAC sample directly after the hero, prioritizes Revit MEP, and explains that the estimate form accepts a brief but no attachments. The approved international starting price remains 200 EUR per complete drawing sheet.
