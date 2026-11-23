@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<title>Revit MEP model handover</title>
+<desc>Four production checks to record before agreeing the next scope.</desc>
+<style>
+  .label { font: 600 15px Arial,sans-serif; letter-spacing: 1.5px; fill: #2453a6; }
+  .headline { font: 700 38px Arial,sans-serif; fill: #222a32; }
+  .sub { font: 400 18px Arial,sans-serif; fill: #555f6b; }
+  .step { font: 700 14px Arial,sans-serif; letter-spacing: 1.2px; fill: #2453a6; }
+  .title { font: 700 21px Arial,sans-serif; fill: #222a32; }
+  .body { font: 400 17px Arial,sans-serif; fill: #3d4650; }
+  .footer { font: 400 15px Arial,sans-serif; fill: #555f6b; }
+</style>
+<rect width="1200" height="760" fill="#f3f2ed"/>
+<text x="52" y="54" class="label">NOD BIM / REVIT MEP</text>
+<text x="52" y="112" class="headline">Revit MEP model handover</text>
+<text x="52" y="151" class="sub">Four production checks to record before agreeing the next scope.</text>
+<g>
+  <rect x="52" y="230" width="250" height="374" rx="4" fill="#fffefa" stroke="#c8ccd2" stroke-width="2"/>
+  <rect x="52" y="230" width="250" height="8" fill="#2453a6"/>
+  <text x="74" y="278" class="step">01 / FILE</text>
+  <text x="74" y="302" class="title">Open the copy</text><text x="74" y="331" class="title">in agreed version</text>
+  <line x1="74" y1="368" x2="280" y2="368" stroke="#d5d8dc" stroke-width="2"/>
+  <text x="74" y="388" class="body">Use the agreed Revit</text><text x="74" y="415" class="body">version. Record warnings</text><text x="74" y="442" class="body">or missing references.</text>
+</g><g>
+  <rect x="342" y="230" width="250" height="374" rx="4" fill="#fffefa" stroke="#c8ccd2" stroke-width="2"/>
+  <rect x="342" y="230" width="250" height="8" fill="#2453a6"/>
+  <text x="364" y="278" class="step">02 / REFERENCES</text>
+  <text x="364" y="302" class="title">Check backgrounds</text><text x="364" y="331" class="title">and linked models</text>
+  <line x1="364" y1="368" x2="570" y2="368" stroke="#d5d8dc" stroke-width="2"/>
+  <text x="364" y="388" class="body">Check levels and</text><text x="364" y="415" class="body">coordinates against</text><text x="364" y="442" class="body">project references.</text>
+</g><g>
+  <rect x="632" y="230" width="250" height="374" rx="4" fill="#fffefa" stroke="#c8ccd2" stroke-width="2"/>
+  <rect x="632" y="230" width="250" height="8" fill="#2453a6"/>
+  <text x="654" y="278" class="step">03 / MODEL</text>
+  <text x="654" y="302" class="title">Compare structure</text><text x="654" y="331" class="title">with agreed scope</text>
+  <line x1="654" y1="368" x2="860" y2="368" stroke="#d5d8dc" stroke-width="2"/>
+  <text x="654" y="388" class="body">Review views and sheets,</text><text x="654" y="415" class="body">systems, tags and tables</text><text x="654" y="442" class="body">for the next issue.</text>
+</g><g>
+  <rect x="922" y="230" width="250" height="374" rx="4" fill="#fffefa" stroke="#c8ccd2" stroke-width="2"/>
+  <rect x="922" y="230" width="250" height="8" fill="#2453a6"/>
+  <text x="944" y="278" class="step">04 / ISSUE</text>
+  <text x="944" y="302" class="title">Log open questions</text><text x="944" y="331" class="title">before continuing</text>
+  <line x1="944" y1="368" x2="1150" y2="368" stroke="#d5d8dc" stroke-width="2"/>
+  <text x="944" y="388" class="body">Compare sheets &amp; PDF</text><text x="944" y="415" class="body">against approved design.</text><text x="944" y="442" class="body">Flag design questions</text><text x="944" y="469" class="body">for the engineer.</text>
+</g>
+<rect x="52" y="640" width="1120" height="76" rx="3" fill="#e8edf6"/>
+<text x="76" y="674" class="label">SCOPE</text>
+<text x="174" y="674" class="footer">This guide organises a review; it does not certify design or technical compliance.</text>
+</svg>

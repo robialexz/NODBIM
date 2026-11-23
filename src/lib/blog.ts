@@ -14,6 +14,16 @@ export type ArticleSection = {
   note?: string;
 };
 
+export type ArticleImage = {
+  src: string;
+  socialSrc?: string;
+  alt: string;
+  caption: string;
+  fullSizeLabel?: string;
+  width: number;
+  height: number;
+};
+
 export type Article = {
   slug: string;
   title: string;
@@ -24,6 +34,7 @@ export type Article = {
   updatedAt?: string;
   readingTime: number;
   tags: string[];
+  image?: ArticleImage;
   sections: ArticleSection[];
 };
 
@@ -4822,13 +4833,22 @@ export const articles: Article[] = [
     metaTitle: "Cât costă cu adevărat o planșă de instalații",
     description: `Ce include o planșă de instalații și cum se stabilește oferta. La NOD BIM, o planșă completă pornește ${estimateLabel("instalatii", 1)}.`,
     date: "2026-08-21",
-    updatedAt: "2026-11-02",
+    updatedAt: "2026-11-23",
+    image: {
+      src: "/resurse/nodbim-hvac-sample-preview.webp",
+      socialSrc: "/resurse/nodbim-hvac-sample-preview.png",
+      alt: "Mostră demonstrativă NOD BIM cu plan HVAC, tabel de echipamente și legendă",
+      caption:
+        "Mostră PDF sintetică pentru prezentarea livrabilelor. Nu este proiect de client și nu se folosește la execuție.",
+      width: 960,
+      height: 679,
+    },
     readingTime: 8,
     tags: ["Prețuri", "Revit MEP", "Proces"],
     sections: [
       {
         paragraphs: [
-          "Cea mai frecventă întrebare pe care o primesc nu este „poți să faci X?”, ci „de ce costă atât?”. E o întrebare corectă, pentru că piața de modelare și desenare tehnică nu afișează aproape niciodată prețuri. Acest articol descompune costul unei planșe de instalații pe etape reale de lucru, cu ore și factori concreți — ca să știi exact pentru ce plătești.",
+          "Un tarif de pornire oferă un reper, dar nu definește singur livrabilul. Oferta trebuie să precizeze disciplinele, conținutul planșelor, formatele și reviziile incluse. Ghidul folosește tariful public NOD BIM și explică ce informații influențează scope-ul, fără să pretindă că există un cost universal.",
         ],
       },
       {
@@ -4840,7 +4860,7 @@ export const articles: Article[] = [
           "Preluare și verificare fișiere (DWG/PDF/RVT): se verifică scara, unitățile, layerele, ce lipsește și ce trebuie refăcut de la zero.",
           "Pregătirea bazei de lucru: curățarea fișierelor primite, organizarea layere-lor, template-ul cu indicator, stiluri de linii, legende.",
           "Modelarea / desenarea propriu-zisă a instalațiilor: trasee, echipamente, adnotări, cote.",
-          "Verificare și coordonare: suprapunerea disciplinelor, coliziuni, verificarea logicii traseelor.",
+          "Verificarea documentației față de scope-ul și instrucțiunile primite; soluția și calculele sunt confirmate de proiectantul responsabil.",
           "Predare: export în formatele cerute, verificarea printului, organizarea livrabilelor.",
         ],
       },
@@ -4851,15 +4871,15 @@ export const articles: Article[] = [
           rows: [
             [
               "Starea fișierelor primite",
-              "Un PDF scanat strâmb poate dubla timpul față de un RVT curat — totul se redesenază de la zero",
+              "Un PDF scanat poate necesita trasare manuală. Un PDF vectorial poate păstra geometrie reutilizabilă, dar scara și conținutul se verifică înainte de folosire.",
             ],
             [
               "Numărul de discipline",
-              "HVAC + termice + electrice pe același plan înseamnă coordonare triplă, nu doar desen triplu",
+              "Mai multe discipline adaugă scope și verificări distincte; efortul depinde de conținutul planșelor și coordonarea cerută.",
             ],
             [
               "Nivelul de detaliu (LOD)",
-              "O schemă de principiu se face în ore; un model 3D coordonat cu sheet-uri și liste, în zile",
+              "Compară livrabilele cerute: schemă, model, vederi, planșe și tabele pot necesita pași diferiți de producție.",
             ],
             [
               "Numărul de planșe identice",
@@ -4867,7 +4887,7 @@ export const articles: Article[] = [
             ],
             [
               "Termenul",
-              "Urgența = ore suplimentare. Un termen normal costă mai puțin decât „pe mâine dimineață”",
+              "Termenul și disponibilitatea se confirmă în ofertă; un termen scurt se discută înainte de acceptarea scope-ului.",
             ],
             [
               "Reviziile",
@@ -4879,7 +4899,7 @@ export const articles: Article[] = [
       {
         heading: "De ce diferențe mari între oferte pentru aceeași lucrare",
         paragraphs: [
-          "Ofertele pot avea prețuri diferite pentru că includ livrabile, verificări și revizii diferite. O planșă „desenată” fără verificare, fără organizarea fișierelor și fără responsabilitate pentru predare costă altceva decât un livrabil care poate intra direct în documentație.",
+          "Ofertele pot diferi prin scope, formate, verificări de producție și revizii incluse. Cere ca oferta să precizeze aceste elemente și cine aprobă conținutul tehnic înainte de emitere.",
           "Regula mea simplă: dacă o ofertă nu îți spune ce primești (formate, număr de planșe, revizii incluse, termen), cere-i să o facă. Un preț fără scopul lucrării nu înseamnă nimic.",
         ],
         note: `La NOD BIM, o planșă completă de instalații pornește ${estimateLabel("instalatii", 1)}. Corecturile pe o planșă existentă sunt un serviciu separat. Volumul modelului și reviziile incluse se confirmă în ofertă.`,
@@ -4887,9 +4907,16 @@ export const articles: Article[] = [
       {
         heading: "Concluzia practică",
         paragraphs: [
-          "Costul real al unei planșe este suma dintre starea fișierelor tale, complexitatea instalațiilor și standardul de predare. Poți reduce costul fără să reduci calitatea: trimite fișiere curate, cere explicit ce include livrabilul și stabilește termenul realist. Restul e muncă de inginerie — și aia merită plătită corect.",
+          "Prețul final se stabilește după verificarea fișierelor, disciplinelor, planșelor și standardului de predare. Trimite un brief și cere ca scope-ul, termenul și formatele să apară în ofertă.",
         ],
-        links: [{ label: "Modelare Revit MEP și planșe de instalații", href: "/revit-mep" }],
+        links: [
+          { label: "Modelare Revit MEP și planșe de instalații", href: "/revit-mep" },
+          { label: "Descarcă mostra HVAC PDF", href: "/resurse/nodbim-hvac-plant-room-sample.pdf" },
+          {
+            label: "Vezi checklistul de predare a planșelor",
+            href: "/resurse/revit-mep-sheet-issue-checklist-ro.csv",
+          },
+        ],
       },
     ],
   },
@@ -4984,45 +5011,73 @@ export const articles: Article[] = [
     description:
       "Checklist de preluare pentru un fișier RVT primit de la altcineva: ce verifici înainte de a promite termene și semnele unui model prost construit.",
     date: "2026-08-21",
+    updatedAt: "2026-11-23",
+    image: {
+      src: "/resurse/revit-mep-handover-checklist-ro.png",
+      alt: "Checklist vizual în patru pași pentru verificarea unui model Revit MEP la preluare",
+      fullSizeLabel: "Deschide checklistul la dimensiune completă",
+      caption:
+        "Ghid vizual de verificare. Nu reprezintă rezultatele unei verificări de proiect real.",
+      width: 1200,
+      height: 760,
+    },
     readingTime: 9,
     tags: ["Revit MEP", "Control calitate", "Preluare proiect"],
     sections: [
       {
         paragraphs: [
-          "Preluarea unui model Revit început de altcineva este una dintre cele mai riscante lucrări din modelare: primești un fișier care arată bine în 3D, dar în interior poate fi construit în zece feluri diferite, cu familii explodate, filtre duplicate și parametri inventați. Timpul de curățare poate depăși timpul de modelare. Acest checklist este exact ordinea în care verific eu un model primit, înainte de a estima orice termen.",
+          "La preluarea unui model Revit, verifică dacă fișierul, referințele, convențiile și livrabilele cerute sunt disponibile înainte de a stabili continuarea. Aspectul unei vederi 3D nu confirmă singur că modelul respectă standardul proiectului. Notează ce este prezent, ce lipsește și ce trebuie clarificat.",
         ],
       },
       {
         heading: "Pasul 1 — Integritatea fișierului",
         list: [
-          "Deschide modelul fără a încărca link-uri: dacă lipsește arhitectura, ceri link-urile înainte de orice.",
-          "Verifică dimensiunea fișierului față de conținut: un model de 300 MB pentru o casă ascunde de obicei importuri CAD grele sau familii explode.",
-          "Rulează un audit de fișier (Revit → Audit) la deschidere — semnalează corupții care altfel apar exact înainte de predare.",
+          "Deschide o copie în versiunea Revit agreată și notează avertismentele, incompatibilitățile sau referințele care lipsesc.",
+          "Verifică modelele legate, căile de acces, nivelurile, coordonatele și orientarea față de referințele agreate.",
+          "Nu folosi dimensiunea fișierului ca prag de calitate. Înregistrează numai dacă mărimea ori timpul de deschidere afectează concret fluxul de lucru.",
+          "Dacă protocolul proiectului cere Audit, rulează-l pe copia de verificare și consemnează ce a raportat, fără să suprascrii originalul.",
         ],
       },
       {
         heading: "Pasul 2 — Structura modelului",
         list: [
-          "Browser-ul de proiect: există o logică de organizare a vederilor și sheet-urilor, sau totul e aruncat la rădăcină?",
-          "Familiile: câte sunt „Familii locale” vs. încărcate din bibliotecă? O mulțime de familii locale înseamnă muncă nereutilizabilă.",
-          "Parametrii partajați: există un fișier de parametri partajați predat odată cu modelul? Fără el, orice program (schedules) care îi folosește devine fragil.",
-          "Fazele: modelul are faze setate corect sau totul e „Fază nouă” cu excepții manuale?",
+          "Verifică structura Browser-ului de proiect, vederile, planșele și reviziile necesare pentru următoarea emitere.",
+          "Compară familiile, parametrii partajați și tabelele cu ce cere scope-ul și template-ul biroului.",
+          "Notează fazele și convențiile care afectează vederile sau tabelele incluse în livrare.",
+          "Înregistrează diferențele față de standardul primit; nu le trata ca defecte până când responsabilul proiectului nu confirmă cerința.",
         ],
       },
       {
         heading: "Pasul 3 — Calitatea modelării MEP",
         list: [
-          "Sistemele sunt reale (conectate logic) sau traseele sunt doar geometrie fără sistem? Fără sisteme, nu ai liste, nu ai filtre, nu ai control.",
-          "Pantele la canalizare: sunt modelate ca pante reale sau „desenate aproximativ” cu texte puse manual?",
-          "Cotele și etichetele: citesc valori reale din elemente sau sunt text static? Textul static minte la prima modificare.",
-          "Coliziunile existente: rulează o verificare de interferențe înainte de a promite că „doar continui” — moștenești fiecare conflict.",
+          "Verifică asignarea elementelor la sistemele cerute și notează elementele neconectate sau cu informații lipsă.",
+          "Compară cote, pante, echipamente, etichete și tabele cu soluția aprobată și scope-ul convenit.",
+          "Consultă coordonarea și problemele deschise consemnate de echipă; nu lua decizii de proiectare prin presupunere.",
+          "Deschide PDF-ul de referință și verifică dacă planșele, legendele și notele corespund versiunii modelului primite.",
         ],
       },
       {
         heading: "Pasul 4 — Ce spui clientului înainte de a începe",
         paragraphs: [
-          "Dacă modelul pică jumătate din verificări, varianta corectă profesional este să spui asta deschis: „Fișierul primit necesită X ore de curățare înainte de continuare; costul este Y; alternativa este remodelarea porțiunilor problematice”. Promisiunea de a „continua orbește” este exact cum se nasc proiectele care se livrează târziu și prost.",
-          "Acest tip de preluare și reorganizare este o lucrare pe care o fac des — dacă ai un model moștenit, trimite-mi-l și îți spun exact ce am găsit și cât costă să-l aduc în stare de lucru.",
+          "Consemnează fiecare constatare cu referința la vedere, planșă sau element și separă problemele observate de deciziile de proiectare rămase deschise. Propune continuarea numai după ce echipa confirmă responsabilul, livrabilele, termenul și reviziile; orice scope suplimentar se cotează separat.",
+          "Pentru o estimare inițială, trimite versiunea Revit, scopul următoarei livrări, lista referințelor disponibile și planșele cerute. Revizuirea de producție nu certifică proiectarea, calculele sau conformitatea.",
+        ],
+      },
+      {
+        heading: "Checklist de predare",
+        paragraphs: [
+          "Checklistul de planșe NOD BIM poate fi folosit pentru a consemna statusul, responsabilul și termenul fiecărui punct. Este un instrument de organizare a verificării, nu o certificare a soluției tehnice.",
+        ],
+        links: [
+          {
+            label: "Descarcă checklistul de verificare a planșelor (CSV)",
+            href: "/resurse/revit-mep-sheet-issue-checklist-ro.csv",
+          },
+          { label: "Vezi serviciul de modelare Revit MEP", href: "/revit-mep" },
+          {
+            label: "Pregătește fișierele pentru ofertare",
+            href: "/blog/ce-fisiere-trimiti-pentru-modelare-mep",
+          },
         ],
       },
     ],
@@ -5101,12 +5156,22 @@ export const articles: Article[] = [
     description:
       "Ce se poate face din fiecare format (DWG, PDF, RVT, schițe), ce lipsește cel mai des și cum trimiți tema ca estimarea să fie corectă din prima.",
     date: "2026-08-21",
+    updatedAt: "2026-11-23",
+    image: {
+      src: "/resurse/nodbim-hvac-sample-preview.webp",
+      socialSrc: "/resurse/nodbim-hvac-sample-preview.png",
+      alt: "Previzualizare a unui PDF vectorial demonstrativ cu plan HVAC, tabel de echipamente și legendă",
+      caption:
+        "Exemplu sintetic de PDF pentru revizuirea conținutului și a formatului. Nu este proiect de client și nu se folosește la execuție.",
+      width: 960,
+      height: 679,
+    },
     readingTime: 7,
     tags: ["Proces", "Ghid", "Fișiere"],
     sections: [
       {
         paragraphs: [
-          "Jumătate din timpul unei estimări se pierde pe fișiere incomplete. Acest ghid este exact ce cer eu de la un client nou — îl poți folosi ca listă de verificare înainte de a trimite orice cerere de modelare sau planșe de instalații.",
+          "Pentru o ofertă utilă, descrie lucrarea și trimite fișierele pe care le ai. Dacă lipsesc date, diferențiem ce poate fi estimat acum de întrebările care trebuie clarificate înainte de începere.",
         ],
       },
       {
@@ -5126,8 +5191,8 @@ export const articles: Article[] = [
             ],
             [
               "PDF",
-              "Planuri doar pentru referință/redesenare",
-              "Fără date vectoriale utilizabile direct — totul se redesenază",
+              "PDF-ul vectorial poate păstra linii; o scanare este imagine raster",
+              "Verifică scara, unitățile și dacă vectorii pot fi reutilizați; uneori este necesară trasarea",
             ],
             [
               "Schițe / imagini",
@@ -5141,7 +5206,7 @@ export const articles: Article[] = [
         heading: "Cele mai frecvente lipsuri (și de ce contează)",
         list: [
           "Arhitectura lipsește: fără planurile de arhitectură, instalațiile se modelează „în gol” — și se refac la prima suprapunere.",
-          "Tema nu spune disciplinele: „vreau instalații” poate însemna 2 sau 6 specialități — diferența de preț e de ordinul 3-5x.",
+          "Tema nu precizează disciplinele sau zonele: cereți confirmarea lor înainte de a fixa scope-ul și livrabilele.",
           "Fără informații despre echipamente: centrală, ventilație, tablouri — dacă nu există, se lucrează cu ipoteze care se plătesc la revizii.",
           "Fără termen și scop: planșe pentru autorizație vs. planșe pentru execuție sunt lucrări diferite.",
         ],
@@ -5150,7 +5215,25 @@ export const articles: Article[] = [
         heading: "Lista completă de trimitere",
         paragraphs: [
           "Ca regulă, o cerere completă conține: (1) planurile de arhitectură în DWG sau PDF, la scară, cu toate nivelurile; (2) tema proiectului — ce discipline, ce echipamente, ce norme; (3) fișierele existente în orice format, chiar și vechi — mai bine prea multe decât prea puține; (4) termenul dorit; (5) scopul livrabilelor (autorizație, execuție, predare către alt proiectant).",
-          "Cu aceste cinci lucruri, o estimare corectă durează o zi, nu o săptămână de întrebări. Și da — trimite fișierele direct pe WhatsApp sau prin formularul de estimare; dimensiunea nu e o problemă.",
+          "Un brief scurt este suficient pentru a începe cererea. Formularul înregistrează tipurile de fișiere disponibile, dar nu încarcă atașamente. După discuția inițială, fișierele pot fi partajate prin canalul agreat. Dacă proiectul este confidențial, stabilește acordul înainte de transfer.",
+        ],
+      },
+      {
+        links: [
+          { label: "Vezi serviciul de modelare Revit MEP", href: "/revit-mep" },
+          {
+            label: "Descarcă mostra PDF pentru camera tehnică HVAC",
+            href: "/resurse/nodbim-hvac-plant-room-sample.pdf",
+          },
+          {
+            label: "Descarcă checklistul de predare a planșelor",
+            href: "/resurse/revit-mep-sheet-issue-checklist-ro.csv",
+          },
+          { label: "Deschide formularul de ofertare", href: "/contact#estimare" },
+          {
+            label: "Verifică un model Revit primit",
+            href: "/blog/cum-verifici-un-model-revit-primit",
+          },
         ],
       },
     ],

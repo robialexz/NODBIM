@@ -160,7 +160,7 @@ function homeMarkdown(): string {
   return [
     `# ${site.businessName}`,
     ``,
-    `> Modelare Revit MEP și planșe de instalații pentru birouri de proiectare, pe baza soluției tehnice aprobate și a standardelor biroului. Livrare RVT, DWG și PDF. Separat: redesenare AutoCAD și PDF în DWG. Prețul se comunică în scris înainte de start.`,
+    `> Modelare Revit MEP și planșe de instalații pentru birouri de proiectare și contractori HVAC, pe baza soluției aprobate și a standardelor echipei. Livrare RVT, DWG și PDF. Planșe complete de la 200 EUR; oferta finală se comunică în scris.`,
     ``,
     `## Servicii`,
     ``,
@@ -171,6 +171,16 @@ function homeMarkdown(): string {
     `- [Instalații termice](${base()}/instalatii-termice): conducte, radiatoare, centrale, distribuitoare`,
     `- [Instalații electrice](${base()}/instalatii-electrice): iluminat, prize, circuite, trasee, tablouri`,
     `- [Corectare & completare](${base()}/modelare-revit): preluare RVT/DWG existent, implementarea observațiilor`,
+    ``,
+    `## Mostră HVAC și verificarea predării`,
+    ``,
+    `Mostra PDF NOD BIM conține un plan de cameră tehnică, o secțiune, un tabel de echipamente, o legendă și note de proiect. Este sintetică, fără date de client și nu se folosește la execuție.`,
+    ``,
+    `![Previzualizare demonstrativă a planului HVAC, tabelului de echipamente și legendei](${base()}/resurse/nodbim-hvac-sample-preview.webp)`,
+    ``,
+    `- [Descarcă mostra PDF](${base()}/resurse/nodbim-hvac-plant-room-sample.pdf)`,
+    `- [Descarcă checklistul de predare a planșelor](${base()}/resurse/revit-mep-sheet-issue-checklist-ro.csv)`,
+    `- [Vezi scope-ul pilotului Revit MEP](${base()}/revit-mep#pilot)`,
     ``,
     `## Prețuri orientative`,
     ``,
@@ -507,9 +517,20 @@ function renderArticleMarkdown(article: Article, locale: Locale): string {
     ``,
     `> ${article.description}`,
     ``,
-    `*${article.date} · ${article.readingTime} min ${isEnglish ? "read" : "de citit"} · ${article.tags.join(", ")}*`,
+    `*${isEnglish ? "Published" : "Publicat"} ${article.date}${article.updatedAt && article.updatedAt !== article.date ? ` · ${isEnglish ? "updated" : "actualizat"} ${article.updatedAt}` : ""} · ${article.readingTime} min ${isEnglish ? "read" : "de citit"} · ${article.tags.join(", ")}*`,
     ``,
   ];
+  if (article.image) {
+    parts.push(
+      `![${article.image.alt}](${base()}${article.image.src})`,
+      ``,
+      `> ${article.image.caption}`,
+      ...(article.image.fullSizeLabel
+        ? [`[${article.image.fullSizeLabel}](${base()}${article.image.src})`, ``]
+        : []),
+      ``,
+    );
+  }
   for (const s of article.sections) {
     if (s.heading) parts.push(`## ${s.heading}`, ``);
     for (const p of s.paragraphs ?? []) parts.push(p, ``);
@@ -657,7 +678,7 @@ export function agentInstructionsTxt(): string {
     ``,
     `## How to call`,
     ``,
-    `- Estimate: https://nodbim.com/#estimare (form) — user sends DWG/PDF/RVT + scope + deadline`,
+    `- Estimate form: https://nodbim.com/#estimare — enter project scope, available file types and deadline. The form does not accept attachments; share files through the agreed channel after initial contact.`,
     `- Contact: https://nodbim.com/contact`,
     "- Revit courses and Dynamo automation: https://nodbim.com/cursuri-revit",
     `- ${markdownClaim}`,
@@ -686,7 +707,7 @@ export function agentDescriptorJson(): string {
           type: "estimate-request",
           url: `${site.siteUrl}/#estimare`,
           description:
-            "Submit a project estimate request (form). User sends DWG/PDF/RVT files, scope and deadline.",
+            "Submit a project estimate request with scope and deadline. The form records available file types but does not upload attachments; share project files through the agreed channel after initial contact.",
         },
         {
           type: "contact",

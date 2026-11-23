@@ -1,12 +1,47 @@
-import type { ArticleSection } from "@/lib/blog";
+import type { ArticleImage, ArticleSection } from "@/lib/blog";
 import { useLocation } from "@tanstack/react-router";
 import { trackArticleInternalLinkClick } from "@/lib/analytics";
 
-export function ArticleSections({ sections }: { sections: ArticleSection[] }) {
+export function ArticleSections({
+  sections,
+  image,
+}: {
+  sections: ArticleSection[];
+  image?: ArticleImage;
+}) {
   const pathname = useLocation().pathname;
 
   return (
     <div className="mt-8 space-y-8">
+      {image && (
+        <figure
+          data-ui="article-evidence"
+          className="overflow-hidden border border-border-strong bg-sheet"
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading="lazy"
+            decoding="async"
+            className="block h-auto w-full bg-white"
+          />
+          <figcaption className="flex flex-col gap-2 border-t border-border px-4 py-3 text-sm leading-relaxed text-muted-foreground md:flex-row md:items-center md:justify-between md:px-5">
+            <span>{image.caption}</span>
+            {image.fullSizeLabel && (
+              <a
+                href={image.src}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-11 shrink-0 items-center text-primary underline underline-offset-4"
+              >
+                {image.fullSizeLabel}
+              </a>
+            )}
+          </figcaption>
+        </figure>
+      )}
       {sections.map((section, sectionIndex) => (
         <section key={sectionIndex}>
           {section.heading && <h2 className="text-2xl md:text-3xl">{section.heading}</h2>}

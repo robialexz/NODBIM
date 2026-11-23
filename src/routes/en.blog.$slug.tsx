@@ -32,6 +32,20 @@ export const Route = createFileRoute("/en/blog/$slug")({
         { property: "og:type", content: "article" },
         { property: "og:locale", content: "en_GB" },
         { property: "og:url", content: url },
+        ...(article.image
+          ? [
+              {
+                property: "og:image",
+                content: canonicalUrl(article.image.socialSrc ?? article.image.src),
+              },
+              { property: "og:image:width", content: String(article.image.width) },
+              { property: "og:image:height", content: String(article.image.height) },
+              {
+                name: "twitter:image",
+                content: canonicalUrl(article.image.socialSrc ?? article.image.src),
+              },
+            ]
+          : []),
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: article.title },
         { name: "twitter:description", content: article.description },
@@ -47,6 +61,9 @@ export const Route = createFileRoute("/en/blog/$slug")({
             description: article.description,
             datePublished: article.date,
             ...(article.updatedAt ? { dateModified: article.updatedAt } : {}),
+            ...(article.image
+              ? { image: [canonicalUrl(article.image.socialSrc ?? article.image.src)] }
+              : {}),
             author: {
               "@type": "Organization",
               "@id": organizationId,
@@ -137,7 +154,10 @@ function EnglishArticlePage() {
               ))}
             </span>
           </div>
-          <ArticleSections sections={article.sections} />
+          <ArticleSections
+            sections={article.sections}
+            {...(article.image ? { image: article.image } : {})}
+          />
         </article>
 
         <section className="border-t border-border-strong bg-graphite text-graphite-foreground">
