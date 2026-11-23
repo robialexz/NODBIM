@@ -1,5 +1,25 @@
 # NOD BIM — current agent objectives
 
+## Latest checkpoint — 23 November 2026
+
+**Priority and change.** Keep English Revit MEP overflow support first for HVAC/MEP contractors and engineering consultancies. This release improves the proof-first homepage path and three existing buyer guides instead of adding duplicate pages: pricing/scope, files needed for a quote, and model handover checks. The Romanian homepage now shows the synthetic HVAC sample directly after the hero, prioritizes Revit MEP, and explains that the estimate form accepts a brief but no attachments. The approved international starting price remains 200 EUR per complete drawing sheet.
+
+**Original evidence.** Reused the public NOD BIM synthetic HVAC PDF preview; added Romanian and English handover-checklist illustrations with SVG sources and PNG derivatives. Captions state the synthetic/demo scope and that the sample is not for construction. No client, employer, or NDA material was used. The files guide links the sample and public CSV checklist. No unsupported market statistics or delivery guarantees were added.
+
+**Release.** PR [#17](https://github.com/robialexz/NODBIM/pull/17) was merged without rewriting history. Code commit `1326e6e842f656a734d435e9da5a774a51c9e26c`; merge commit on canonical `main` `a0d68bd291d09e5d72e6e5cd636b9eba006191fb`. Production checks on 23 Nov returned HTTP 200 for the homepage, RO/EN service pages, all six updated RO/EN guides, sitemap, agent endpoints, preview/checklist images and CSV. The public homepage title and proof section, article social/schema images, and 23 Nov sitemap dates were present. Wrangler could not read a deployment version because this session has no Cloudflare API token; the live public routes confirm the release content but do not establish a Worker version identifier.
+
+**Measurement and limits.** Search Console and GA4 were not reread on 23 Nov. Carry forward the dated 22 Nov baseline below; do not report a ranking, indexing, traffic or engagement increase. No index request, social post, AI-answer sampling, or form submission was made in this design/content change. Local checks passed: typecheck, lint, deadcode, production build, and 156 tests / 849 assertions. Independent GPT-6.2 Sol Medium design/content QA accepted the current source and assets. A rendered mobile-browser check of the redesigned homepage was not available in this session; do not claim mobile visual QA. Check the layout at 320, 375 and 390 CSS px when browser access is available.
+
+**Team configuration.** Orchestrator: GPT-6 Luna Work Mode; exact reasoning setting was not exposed. Independent design and content assignments plus final review used GPT-6.2 Sol Medium:
+
+| Owner | Objective and deliverable | Acceptance and evidence |
+| --- | --- | --- |
+| Homepage design reviewer | Keep the existing 3D hero, move HVAC proof directly after it, and clarify the service choices and estimate CTA | Accepted the proof-first sequence, primary Revit MEP card and corrected form handoff; mobile visual rendering remains pending. |
+| SEO/content reviewer | Audit high-intent RO/EN quote, price and handover guides for evidence, accuracy and commercial links | Accepted three guide updates, unique article figures, sample/checklist links, accurate form behavior, metadata and structured images. |
+| Independent final reviewer | Check the final source/assets separately from the author | Accepted with no remaining content or implementation blockers; directly verified all six article metadata handlers, Markdown outputs, sitemap date, localized links and EN checklist raster fit. |
+
+**Next review.** Owner: orchestrator/content reviewer. Recheck Search Console URL inspection and sitemap freshness around 28 Nov; do not repeatedly request indexing after a fresh crawl. Review GA4 source, country and article-to-service/form paths after processing, keeping tests and consent choices separate. Repeat the AI query set only when the three named interfaces are available and record the exact surface/date/URLs. Verify the mobile layout when a browser with viewport control is available. Review the 7-day content path on 30 Nov; keep organic visibility, AI citation, enquiries and paid orders as separate outcomes.
+
 ## Latest checkpoint — 22 November 2026
 
 **Priority.** English Revit MEP production support for HVAC/MEP contractors and engineering consultancies with workload peaks remains the first commercial path. A directional sample of 10 Revit outsourcing pages and 9 PDF/DWG conversion pages favors overflow capacity, urgent production, client templates, handover and responsibility boundaries. It does not establish query volume or paid demand. Existing guides and the service page already cover the main quote questions and offer a sample, checklist and pilot.
