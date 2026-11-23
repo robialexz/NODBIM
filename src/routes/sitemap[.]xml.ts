@@ -35,7 +35,7 @@ const entries: SitemapEntry[] = [
   },
   { path: "/en/autocad-drafting", lastmod: "2026-11-22", changefreq: "monthly", priority: "0.7" },
   { path: "/en/about", lastmod: "2026-11-17", changefreq: "monthly", priority: "0.6" },
-  { path: "/portofoliu", lastmod: "2026-11-18", changefreq: "monthly", priority: "0.8" },
+  { path: "/portofoliu", lastmod: "2026-11-23", changefreq: "monthly", priority: "0.8" },
   { path: "/magazin", lastmod: "2026-10-08", changefreq: "weekly", priority: "0.7" },
   { path: "/recomandari", lastmod: "2026-10-18", changefreq: "weekly", priority: "0.6" },
   { path: "/blog", lastmod: "2026-11-23", changefreq: "weekly", priority: "0.8" },

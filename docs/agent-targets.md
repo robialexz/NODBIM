@@ -1,5 +1,17 @@
 # NOD BIM — current agent objectives
 
+## Latest checkpoint — portfolio visuals and evidence, 23 November 2026
+
+**Baseline and choice.** Based on `main` at `2a37502ec43220b39d73cd2c3ac917a0c07a8520`, `/portofoliu` grouped two blurred real fragments and three synthetic SVGs together; the homepage still used older portfolio illustrations with less specific provenance. Keep the existing anonymized fragments, add original illustrative visuals, and move inspectable evidence (PDF and checklist) ahead of conceptual imagery. Search Console and GA4 were not reread; the dated 22 Nov baseline below remains the measurement reference.
+
+**Change.** Rebuilt `/portofoliu` into separate sections for the three-page HVAC PDF, two real anonymized fragments from the same plan set, two new AI-generated HVAC illustrations, and three synthetic vector diagrams. Replaced the three homepage portfolio visuals with the new illustrations and a synthetic coordination diagram. Captions, alt text, Markdown negotiation output and metadata disclose provenance; the lightbox uses a native modal dialog and section-local keyboard navigation. Kept the URL and canonical; updated its sitemap `lastmod` to 23 Nov. The PDF is unchanged (SHA-256 `576bf41bf1873f507616d590e8716f034972deace4761e220efa870786bcc1e1`). The two new WebP assets total 54,476 bytes.
+
+**Evidence and limits.** `npm run typecheck`, `npm run lint`, `npm run deadcode`, `bun test` (156 passed, 0 failed, 859 assertions), `npm run build` and `git diff --check` passed. Local SSR returned HTTP 200 for HTML and Markdown; HTML had one H1 and the correct canonical. The PDF, checklist, sitemap, all nine route images, and the `/revit-mep#pilot` path returned 200 locally. The independent GPT-6.2 Sol Medium reviewer accepted the source after accessibility, contrast and copy fixes. Exact 320/375/390 CSS-pixel rendering was not measured; no live production verification, index request, Search Console/GA4 reread, post, or form submission is claimed yet.
+
+**Team configuration.** Orchestrator/implementation: GPT-6 Luna Work Mode (reasoning setting not exposed). Art direction and provenance review: separate GPT-6.2 Sol Medium subagents. Independent final review: GPT-6.2 Sol Medium. The image renderer is the available image-generation tool; its model identity is not exposed as GPT-6.2 Sol. The rendered images are illustrations, not Revit exports or client proof.
+
+**Release state.** Local branch `codex/nodbim-portfolio-visuals`, based on `2a37502ec43220b39d73cd2c3ac917a0c07a8520`; normal GitHub publication and production verification are the next actions. Do not report improved rankings, indexing, visits, engagement, AI citations or enquiries from this design change.
+
 ## Latest checkpoint — visual redesign, 23 November 2026
 
 **Priority and change.** Redesign the existing service journey for international Revit MEP outsourcing while preserving indexable URLs and the Romanian route. The homepage now uses a navy/paper technical visual system, puts the existing synthetic HVAC proof near the primary quote path, and keeps AutoCAD as a visible secondary service. Shared Romanian service heroes and the English Revit MEP hero use the same visual hierarchy. The approved English price remains 200 EUR per complete sheet; Romanian rates still come from the approved pricing policy.
