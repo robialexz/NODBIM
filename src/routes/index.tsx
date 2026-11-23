@@ -23,11 +23,10 @@ import { trackConversion } from "@/lib/analytics";
 import demoPlan from "@/assets/demo-plan.svg";
 import demoPlanScan from "@/assets/demo-plan-scan.webp";
 import demoPlanScan640 from "@/assets/demo-plan-scan-640.webp";
-import projSectiune from "@/assets/proj-sectiune.webp";
-import projSectiune640 from "@/assets/proj-sectiune-640.webp";
-import projSheet from "@/assets/proj-sheet.webp";
-import projSheet640 from "@/assets/proj-sheet-640.webp";
 import hero3dProfessional from "@/assets/hero-3d-professional.webp";
+import portfolioAiHvacPlan from "@/assets/portfolio-ai-hvac-plan.webp";
+import portfolioAiHvacOffice from "@/assets/portfolio-ai-hvac-office.webp";
+import syntheticCoordination from "@/assets/synthetic-mep-coordination.svg";
 
 const title = "Modelare Revit MEP pentru birouri și contractori HVAC · NOD BIM";
 const description =
@@ -45,33 +44,35 @@ const examples: {
   width: number;
   height: number;
   caption: string;
+  provenance: string;
   fit: string;
 }[] = [
   {
-    src: projSectiune,
-    srcSet: `${projSectiune640} 640w, ${projSectiune} 1200w`,
-    alt: "Secțiune 3D printr-un model de instalații, cu tubulaturi, conducte și susțineri",
-    width: 1200,
-    height: 1408,
-    caption: "Secțiune din model BIM",
-    fit: "object-cover",
+    src: portfolioAiHvacPlan,
+    alt: "Ilustrație generată cu AI a unui plan HVAC fictiv, cu trasee colorate într-un birou văzut de sus.",
+    width: 1448,
+    height: 1086,
+    caption: "Plan HVAC într-un birou fictiv",
+    provenance: "Ilustrație generată cu AI · scenariu fictiv",
+    fit: "object-contain",
   },
   {
-    src: projSheet,
-    srcSet: `${projSheet640} 640w, ${projSheet} 1600w`,
-    alt: "Planșă cu mai multe vederi, secțiuni, legende și indicator",
-    width: 1600,
-    height: 1104,
-    caption: "Set de planșe cu indicator",
-    fit: "object-cover",
+    src: portfolioAiHvacOffice,
+    alt: "Ilustrație generată cu AI a traseelor HVAC într-un spațiu de birou fictiv amenajat.",
+    width: 1448,
+    height: 1086,
+    caption: "Trasee HVAC într-un spațiu de lucru fictiv",
+    provenance: "Ilustrație generată cu AI · scenariu fictiv",
+    fit: "object-contain",
   },
   {
-    src: demoPlan,
-    alt: "Plan de apartament cu două camere, cu cote, suprafețe și indicator",
-    width: 960,
-    height: 600,
-    caption: "Plan de apartament, cu cote",
-    fit: "bg-white object-contain",
+    src: syntheticCoordination,
+    alt: "Schemă axonometrică sintetică de coordonare a traseelor MEP într-o clădire fictivă.",
+    width: 1448,
+    height: 1086,
+    caption: "Coordonare MEP · schemă explicativă",
+    provenance: "Diagramă sintetică · scenariu fictiv",
+    fit: "object-contain",
   },
 ];
 
@@ -420,21 +421,26 @@ function Home() {
           </div>
         </section>
 
-        {/* EXEMPLE */}
+        {/* VIZUALURI DEMONSTRATIVE */}
         <section id="portofoliu" className="border-y border-border bg-sheet">
           <div className={`${wrap} ${sectionPad}`}>
             <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
-              <h2 className={h2}>Exemple de planșe și modele</h2>
+              <div>
+                <p className="tech-label text-primary">Demonstrații vizuale HVAC / MEP</p>
+                <h2 className={`${h2} mt-3`}>Idei tehnice, prezentate clar</h2>
+              </div>
               <Link to="/portofoliu" className={`inline-flex min-h-11 items-center ${textLink}`}>
-                Vezi toate exemplele
+                Vezi mostrele și PDF-ul
               </Link>
             </div>
+            <p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">
+              Ilustrațiile de mai jos sunt generate cu AI, iar schema MEP este sintetică. Nu sunt
+              capturi Revit, proiecte de client sau planșe pentru execuție. Mostra PDF și
+              fragmentele reale anonimizate sunt prezentate separat în portofoliu.
+            </p>
             <div className="mt-8 grid gap-7 md:mt-12 md:grid-cols-12 md:gap-6">
-              {examples.map((ex, index) => (
-                <figure
-                  key={ex.caption}
-                  className={`min-w-0 ${index === 0 ? "gallery-featured md:col-span-7 md:row-span-2" : "gallery-supporting md:col-span-5"}`}
-                >
+              {examples.map((ex) => (
+                <figure key={ex.caption} className="min-w-0 md:col-span-4">
                   <img
                     src={ex.src}
                     {...(ex.srcSet
@@ -453,9 +459,7 @@ function Home() {
                     <span className="font-display text-xl font-semibold [font-stretch:88%]">
                       {ex.caption}
                     </span>
-                    <span className="tech-label text-muted-foreground">
-                      Ilustrație de prezentare
-                    </span>
+                    <span className="tech-label text-muted-foreground">{ex.provenance}</span>
                   </figcaption>
                 </figure>
               ))}

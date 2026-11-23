@@ -40,13 +40,15 @@ describe("agent-content — negotiere markdown", () => {
     expect(descriptor.resources).toContain("https://nodbim.com/cursuri-revit");
   });
 
-  test("portofoliul distinge mostrele reale anonimizate de demonstrațiile sintetice", async () => {
+  test("portofoliul distinge fragmentele reale, mostra PDF și ilustrațiile sintetice", async () => {
     const response = markdownResponseForPath("/portofoliu");
     expect(response).not.toBeNull();
     const body = await response!.text();
     expect(body).toContain("același set de planuri reale");
     expect(body).toContain("Textul a fost eliminat");
-    expect(body).toContain("demonstrații sintetice create de la zero");
+    expect(body).toContain("ilustrații generate cu AI pentru scenarii HVAC fictive");
+    expect(body).toContain("Niciun model Autodesk Revit nu a fost creat, deschis sau validat");
+    expect(body).toContain("/resurse/nodbim-hvac-plant-room-sample.pdf");
     expect(body).not.toContain("Toate imaginile au fost create de la zero");
   });
 
