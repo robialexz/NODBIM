@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<title>Verificare la preluarea modelului</title>
+<desc>Patru pași de producție. Consemnează rezultatele înainte de estimare.</desc>
+<style>
+  .label { font: 600 15px Arial,sans-serif; letter-spacing: 1.5px; fill: #2453a6; }
+  .headline { font: 700 38px Arial,sans-serif; fill: #222a32; }
+  .sub { font: 400 18px Arial,sans-serif; fill: #555f6b; }
+  .step { font: 700 14px Arial,sans-serif; letter-spacing: 1.2px; fill: #2453a6; }
+  .title { font: 700 21px Arial,sans-serif; fill: #222a32; }
+  .body { font: 400 17px Arial,sans-serif; fill: #3d4650; }
+  .footer { font: 400 15px Arial,sans-serif; fill: #555f6b; }
+</style>
+<rect width="1200" height="760" fill="#f3f2ed"/>
+<text x="52" y="54" class="label">NOD BIM / REVIT MEP</text>
+<text x="52" y="112" class="headline">Verificare la preluarea modelului</text>
+<text x="52" y="151" class="sub">Patru pași de producție. Consemnează rezultatele înainte de estimare.</text>
+<g>
+  <rect x="52" y="230" width="250" height="374" rx="4" fill="#fffefa" stroke="#c8ccd2" stroke-width="2"/>
+  <rect x="52" y="230" width="250" height="8" fill="#2453a6"/>
+  <text x="74" y="278" class="step">01 / FIȘIER</text>
+  <text x="74" y="302" class="title">Deschide o copie</text><text x="74" y="331" class="title">în versiunea Revit</text>
+  <line x1="74" y1="368" x2="280" y2="368" stroke="#d5d8dc" stroke-width="2"/>
+  <text x="74" y="388" class="body">Notează avertismentele,</text><text x="74" y="415" class="body">incompatibilitățile și</text><text x="74" y="442" class="body">referințele lipsă.</text>
+</g><g>
+  <rect x="342" y="230" width="250" height="374" rx="4" fill="#fffefa" stroke="#c8ccd2" stroke-width="2"/>
+  <rect x="342" y="230" width="250" height="8" fill="#2453a6"/>
+  <text x="364" y="278" class="step">02 / REFERINȚE</text>
+  <text x="364" y="302" class="title">Verifică baza</text><text x="364" y="331" class="title">și modelele legate</text>
+  <line x1="364" y1="368" x2="570" y2="368" stroke="#d5d8dc" stroke-width="2"/>
+  <text x="364" y="388" class="body">Compară nivelurile,</text><text x="364" y="415" class="body">coordonatele și orientarea</text><text x="364" y="442" class="body">cu fișierele agreate.</text>
+</g><g>
+  <rect x="632" y="230" width="250" height="374" rx="4" fill="#fffefa" stroke="#c8ccd2" stroke-width="2"/>
+  <rect x="632" y="230" width="250" height="8" fill="#2453a6"/>
+  <text x="654" y="278" class="step">03 / MODEL</text>
+  <text x="654" y="302" class="title">Compară structura</text><text x="654" y="331" class="title">cu scope-ul primit</text>
+  <line x1="654" y1="368" x2="860" y2="368" stroke="#d5d8dc" stroke-width="2"/>
+  <text x="654" y="388" class="body">Vederi, planșe, sisteme,</text><text x="654" y="415" class="body">etichete și tabele cerute</text><text x="654" y="442" class="body">pentru următoarea livrare.</text>
+</g><g>
+  <rect x="922" y="230" width="250" height="374" rx="4" fill="#fffefa" stroke="#c8ccd2" stroke-width="2"/>
+  <rect x="922" y="230" width="250" height="8" fill="#2453a6"/>
+  <text x="944" y="278" class="step">04 / EMITERE</text>
+  <text x="944" y="302" class="title">Înregistrează</text><text x="944" y="331" class="title">ce trebuie clarificat</text>
+  <line x1="944" y1="368" x2="1150" y2="368" stroke="#d5d8dc" stroke-width="2"/>
+  <text x="944" y="388" class="body">Compară planșele și PDF-ul</text><text x="944" y="415" class="body">cu soluția aprobată. Lasă</text><text x="944" y="442" class="body">deciziile la proiectant.</text>
+</g>
+<rect x="52" y="640" width="1120" height="76" rx="3" fill="#e8edf6"/>
+<text x="76" y="674" class="label">LIMITĂ</text>
+<text x="174" y="674" class="footer">Acest grafic organizează verificarea; nu certifică proiectarea sau conformitatea tehnică.</text>
+</svg>

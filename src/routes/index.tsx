@@ -28,9 +28,9 @@ import projSectiune640 from "@/assets/proj-sectiune-640.webp";
 import projSheet from "@/assets/proj-sheet.webp";
 import projSheet640 from "@/assets/proj-sheet-640.webp";
 
-const title = "Modelare Revit MEP și planșe pentru birouri · NOD BIM";
+const title = "Modelare Revit MEP pentru birouri și contractori HVAC · NOD BIM";
 const description =
-  "Modelare Revit MEP și planșe HVAC, termice și electrice pe standardul biroului tău. Livrare RVT, DWG și PDF. Planșe complete de la 200 EUR.";
+  "Suport extern pentru vârfuri de lucru: modele și planșe Revit MEP pe standardul echipei. Livrare RVT, DWG și PDF. Planșe complete de la 200 EUR.";
 const url = canonicalUrl("/");
 const orgId = `${url}#org`;
 
@@ -209,9 +209,9 @@ function Home() {
                 <a href="#estimare" className="btn btn-primary">
                   Cere ofertă pentru o zonă
                 </a>
-                <Link to="/revit-mep" hash="pilot" className="btn">
-                  Vezi o mostră de predare
-                </Link>
+                <a href="#mostra-hvac" className="btn">
+                  Vezi mostra HVAC
+                </a>
               </div>
               <p className="mt-6 text-base">
                 <Link to="/revit-mep" className={textLink}>
@@ -264,23 +264,63 @@ function Home() {
           </div>
         </section>
 
+        {/* DOVADĂ HVAC */}
+        <section id="mostra-hvac" className="border-b border-border bg-sheet">
+          <div
+            className={`${wrap} ${sectionPad} grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16`}
+          >
+            <div className="min-w-0">
+              <p className="tech-label text-primary">Mostră PDF · HVAC · date sintetice</p>
+              <h2 className={`${h2} mt-4`}>Vezi cum arată o predare tehnică</h2>
+              <p className="mt-5 max-w-xl leading-relaxed text-muted-foreground">
+                Mostra conține planul unei camere tehnice, o secțiune, tabelul echipamentelor,
+                legendă și note de proiect. Este realizată pentru prezentare, fără date de client,
+                și nu se folosește la execuție.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="/resurse/nodbim-hvac-plant-room-sample.pdf"
+                  className="btn btn-primary"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Deschide mostra PDF
+                </a>
+                <Link to="/revit-mep" hash="pilot" className="btn">
+                  Vezi scope-ul pilotului
+                </Link>
+              </div>
+              <a
+                href="/resurse/revit-mep-sheet-issue-checklist-ro.csv"
+                className={`mt-4 inline-flex min-h-11 items-center ${textLink}`}
+              >
+                Descarcă checklistul de verificare a planșelor
+              </a>
+            </div>
+            <figure
+              data-ui="home-evidence"
+              className="min-w-0 overflow-hidden border border-border-strong bg-white"
+            >
+              <img
+                src="/resurse/nodbim-hvac-sample-preview.webp"
+                alt="Previzualizare a mostrei HVAC: plan, tabel de echipamente, legendă și notă de proiect"
+                width={960}
+                height={679}
+                loading="lazy"
+                decoding="async"
+                className="block h-auto w-full"
+              />
+              <figcaption className="border-t border-border px-4 py-3 text-sm text-muted-foreground">
+                Exemplu demonstrativ, cu date sintetice. Nu este proiect de client.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
         {/* DOUĂ INTRĂRI */}
         <section id="servicii" className={`${wrap} ${sectionPad}`}>
           <h2 className={h2}>Ai un plan de redesenat sau un proiect de modelat?</h2>
           <div className="mt-8 grid gap-px border border-border-strong bg-border-strong md:mt-12 md:grid-cols-2">
-            <Link
-              to="/autocad-dwg"
-              className="group grid content-start gap-4 bg-sheet p-6 transition-colors hover:bg-background md:p-10"
-            >
-              <h3 className="text-2xl md:text-[1.7rem]">Am un plan de redesenat</h3>
-              <p className="max-w-prose leading-relaxed text-muted-foreground">
-                Ai un PDF, o scanare sau o schiță de mână și îți trebuie fișier DWG editabil, la
-                scară, cu layere ordonate.
-              </p>
-              <span className="mt-2 font-medium transition-colors group-hover:text-primary">
-                {`Redesenare: ${rateLabel("redesenare")} →`}
-              </span>
-            </Link>
             <Link
               to="/revit-mep"
               className="group grid content-start gap-4 bg-sheet p-6 transition-colors hover:bg-background md:p-10"
@@ -292,6 +332,19 @@ function Home() {
               </p>
               <span className="mt-2 font-medium transition-colors group-hover:text-primary">
                 Vezi cum lucrez cu birourile →
+              </span>
+            </Link>
+            <Link
+              to="/autocad-dwg"
+              className="group grid content-start gap-4 bg-sheet p-6 transition-colors hover:bg-background md:p-10"
+            >
+              <h3 className="text-2xl md:text-[1.7rem]">Am un plan de redesenat</h3>
+              <p className="max-w-prose leading-relaxed text-muted-foreground">
+                Ai un PDF, o scanare sau o schiță de mână și îți trebuie fișier DWG editabil, la
+                scară, cu layere ordonate.
+              </p>
+              <span className="mt-2 font-medium transition-colors group-hover:text-primary">
+                {`Redesenare: ${rateLabel("redesenare")} →`}
               </span>
             </Link>
           </div>
@@ -520,10 +573,11 @@ function Home() {
         <section id="estimare" className="bg-graphite text-graphite-foreground">
           <div className={`${wrap} ${sectionPad} grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16`}>
             <div className="min-w-0">
-              <h2 className="display-xl text-4xl md:text-6xl">Ai un plan care trebuie desenat?</h2>
+              <h2 className="display-xl text-4xl md:text-6xl">Ai de predat planșe sau un model?</h2>
               <p className="mt-6 max-w-md leading-relaxed text-graphite-foreground/75">
-                Trimite-l acum și primești oferta de regulă în 1–2 zile lucrătoare. Fișierele rămân
-                confidențiale.
+                Trimite un brief scurt; nu trebuie să încarci fișiere aici. După ce clarificăm
+                scope-ul, le poți partaja prin canalul agreat. Primești oferta în scris, de regulă
+                în 1–2 zile lucrătoare.
               </p>
               {(phoneHref || hasWhatsapp) && (
                 <div className="mt-8 flex flex-wrap gap-3">

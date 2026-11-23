@@ -70,6 +70,20 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:type", content: "article" },
         { property: "og:locale", content: "ro_RO" },
         { property: "og:url", content: canonicalUrl(`/blog/${article.slug}`) },
+        ...(article.image
+          ? [
+              {
+                property: "og:image",
+                content: canonicalUrl(article.image.socialSrc ?? article.image.src),
+              },
+              { property: "og:image:width", content: String(article.image.width) },
+              { property: "og:image:height", content: String(article.image.height) },
+              {
+                name: "twitter:image",
+                content: canonicalUrl(article.image.socialSrc ?? article.image.src),
+              },
+            ]
+          : []),
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: article.title },
         { name: "twitter:description", content: article.description },
@@ -88,6 +102,9 @@ export const Route = createFileRoute("/blog/$slug")({
             description: article.description,
             datePublished: article.date,
             ...(article.updatedAt ? { dateModified: article.updatedAt } : {}),
+            ...(article.image
+              ? { image: [canonicalUrl(article.image.socialSrc ?? article.image.src)] }
+              : {}),
             author: {
               "@type": "Organization",
               "@id": organizationId,
@@ -193,7 +210,10 @@ function ArticlePage() {
             </div>
           </div>
 
-          <ArticleSections sections={article.sections} />
+          <ArticleSections
+            sections={article.sections}
+            {...(article.image ? { image: article.image } : {})}
+          />
           {mepOffer && (
             <aside className="mt-8 border-l-2 border-primary pl-4">
               <p className="text-sm leading-relaxed text-foreground/80">{mepOffer}</p>

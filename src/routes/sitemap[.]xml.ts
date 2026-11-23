@@ -18,7 +18,7 @@ interface SitemapEntry {
 const LAST_MODIFIED = "2026-10-07";
 
 const entries: SitemapEntry[] = [
-  { path: "/", lastmod: "2026-11-21", changefreq: "weekly", priority: "1.0" },
+  { path: "/", lastmod: "2026-11-23", changefreq: "weekly", priority: "1.0" },
   { path: "/revit-mep", lastmod: "2026-11-22", changefreq: "monthly", priority: "0.9" },
   { path: "/cursuri-revit", lastmod: "2026-10-26", changefreq: "monthly", priority: "0.8" },
   { path: "/modelare-revit", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.8" },
@@ -38,8 +38,8 @@ const entries: SitemapEntry[] = [
   { path: "/portofoliu", lastmod: "2026-11-18", changefreq: "monthly", priority: "0.8" },
   { path: "/magazin", lastmod: "2026-10-08", changefreq: "weekly", priority: "0.7" },
   { path: "/recomandari", lastmod: "2026-10-18", changefreq: "weekly", priority: "0.6" },
-  { path: "/blog", lastmod: "2026-11-20", changefreq: "weekly", priority: "0.8" },
-  { path: "/en/blog", lastmod: "2026-11-20", changefreq: "weekly", priority: "0.8" },
+  { path: "/blog", lastmod: "2026-11-23", changefreq: "weekly", priority: "0.8" },
+  { path: "/en/blog", lastmod: "2026-11-23", changefreq: "weekly", priority: "0.8" },
   ...articles.map((a) => ({
     path: `/blog/${a.slug}`,
     lastmod: a.updatedAt ?? a.date,

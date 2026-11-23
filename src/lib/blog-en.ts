@@ -197,6 +197,16 @@ export const englishArticles: EnglishArticle[] = [
     metaTitle: "MEP drawing sheet pricing",
     description: `${rateLabelEn("instalatii")}. See how file condition, scope and handover requirements shape a written quote.`,
     date: "2026-11-17",
+    updatedAt: "2026-11-23",
+    image: {
+      src: "/resurse/nodbim-hvac-sample-preview.webp",
+      socialSrc: "/resurse/nodbim-hvac-sample-preview.png",
+      alt: "NOD BIM demo preview showing an HVAC plant-room plan, equipment table and legend",
+      caption:
+        "Synthetic PDF sample used to show possible deliverable structure. It is not client work and is not for construction.",
+      width: 960,
+      height: 679,
+    },
     readingTime: 5,
     tags: ["Pricing", "Revit MEP", "Project scope"],
     sections: [
@@ -247,6 +257,7 @@ export const englishArticles: EnglishArticle[] = [
         ],
         links: [
           { label: "Request a Revit MEP estimate", href: "/en/revit-mep-outsourcing#estimate" },
+          { label: "View the HVAC sample PDF", href: "/resurse/nodbim-hvac-plant-room-sample.pdf" },
           { label: "Files to send for a quote", href: "/en/blog/files-for-revit-mep-quotation" },
           { label: "Browse English guides", href: "/en/blog" },
         ],
@@ -261,6 +272,16 @@ export const englishArticles: EnglishArticle[] = [
     description:
       "A practical checklist of the model, backgrounds, engineering inputs and project standards that help scope Revit MEP production clearly.",
     date: "2026-11-17",
+    updatedAt: "2026-11-23",
+    image: {
+      src: "/resurse/nodbim-hvac-sample-preview.webp",
+      socialSrc: "/resurse/nodbim-hvac-sample-preview.png",
+      alt: "NOD BIM demo preview showing an HVAC plant-room plan, equipment table and legend",
+      caption:
+        "Synthetic PDF sample used to show possible deliverable structure. It is not client work and is not for construction.",
+      width: 960,
+      height: 679,
+    },
     readingTime: 5,
     tags: ["Revit MEP", "Project files", "Quotations"],
     sections: [
@@ -287,8 +308,8 @@ export const englishArticles: EnglishArticle[] = [
             ],
             [
               "PDF drawings or scans",
-              "Reviewing issued drawings or using them as a reference where native files are unavailable.",
-              "Whether the PDF is vector or scanned, how scale can be confirmed and which information needs clarification.",
+              "Reviewing issued drawings; vector PDFs may retain linework while scans contain raster images.",
+              "Whether the PDF content is reusable, how scale can be confirmed and which information needs clarification.",
             ],
             [
               "Layouts, mark-ups and schematics",
@@ -310,9 +331,17 @@ export const englishArticles: EnglishArticle[] = [
       {
         heading: "Before you share the files",
         paragraphs: [
-          "If your team requires a confidentiality agreement, arrange it before sharing project files. The Revit MEP service can be scoped around your template, families and standards; the written estimate confirms the deliverables, timeline and price before work starts.",
+          "If your team requires a confidentiality agreement, arrange it before sharing project files. The Revit MEP service can be scoped around your template, families and standards; the written estimate confirms the deliverables, timeline and price before work starts. The enquiry form records which file types you have but does not accept attachments. Send a short brief first; after the initial discussion, share the files through the agreed channel.",
         ],
         links: [
+          {
+            label: "View the synthetic HVAC sample PDF",
+            href: "/resurse/nodbim-hvac-plant-room-sample.pdf",
+          },
+          {
+            label: "Download the drawing issue checklist (CSV)",
+            href: "/resurse/revit-mep-sheet-issue-checklist-en.csv",
+          },
           {
             label: "Revit MEP outsourcing for engineering teams",
             href: "/en/revit-mep-outsourcing",
@@ -338,6 +367,15 @@ export const englishArticles: EnglishArticle[] = [
     description:
       "Review file access, links, project structure and model information before agreeing how an inherited Revit MEP model will be continued.",
     date: "2026-11-17",
+    updatedAt: "2026-11-23",
+    image: {
+      src: "/resurse/revit-mep-handover-checklist-en.png",
+      fullSizeLabel: "Open the full-size checklist",
+      alt: "Four-step visual checklist for reviewing a Revit MEP model handover",
+      caption: "A review aid based on the guide, not the findings from a real project inspection.",
+      width: 1200,
+      height: 760,
+    },
     readingTime: 6,
     tags: ["Revit MEP", "Quality checks", "Handover"],
     sections: [
@@ -378,6 +416,10 @@ export const englishArticles: EnglishArticle[] = [
           "These are production and documentation checks. Engineering design, calculations, local approvals and sign-off remain with your responsible engineer.",
         ],
         links: [
+          {
+            label: "Download the drawing issue checklist (CSV)",
+            href: "/resurse/revit-mep-sheet-issue-checklist-en.csv",
+          },
           { label: "Revit MEP modelling and drawing support", href: "/en/revit-mep-outsourcing" },
           {
             label: "Prepare files for a Revit MEP quote",
