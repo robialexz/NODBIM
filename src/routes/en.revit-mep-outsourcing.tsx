@@ -19,6 +19,8 @@ import { hreflangLinks } from "@/lib/i18n";
 import { trackConversion } from "@/lib/analytics";
 import { offerSchema, rateLabelEn } from "@/lib/pricing";
 import hero3d from "@/assets/hero-3d.webp";
+import hero3d640 from "@/assets/hero-3d-640.webp";
+import hero3d960 from "@/assets/hero-3d-960.webp";
 import projSheet from "@/assets/proj-sheet.webp";
 
 const path = "/en/revit-mep-outsourcing";
@@ -80,52 +82,46 @@ function RevitMepOutsourcing() {
     <div className="min-h-screen bg-background">
       <Header />
       <main id="continut">
-        <section className="border-b border-border-strong">
-          <div className="mx-auto grid max-w-[1200px] gap-10 px-5 py-12 md:px-8 md:py-20 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <p className="tech-label text-primary">
+        <section className="blueprint-hero border-b border-border-strong">
+          <div className="mx-auto grid max-w-[1200px] gap-10 px-5 py-10 md:px-8 md:py-16 lg:grid-cols-12 lg:items-center">
+            <div className="blueprint-hero__copy lg:col-span-7">
+              <p className="tech-label text-[#a9c4f5]">
                 Revit MEP outsourcing · BIM production support
               </p>
-              <h1 className="display-xl mt-6 max-w-4xl text-[2.4rem] sm:text-[3.4rem] lg:text-[4.2rem]">
+              <h1 className="display-xl mt-5 max-w-4xl text-[2.4rem] text-graphite-foreground sm:text-[3.4rem] lg:text-[4.2rem]">
                 {h1}
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/80 md:text-lg">
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-graphite-foreground/85 md:text-lg">
                 Extra Revit MEP production capacity for MEP consultancies, engineering offices and
                 design-build teams. You keep the engineering design; I model it and produce the
                 drawings in your template, to your standards.
               </p>
-              <div className="mt-5 max-w-2xl border-l-2 border-primary pl-4">
-                <p className="tech-label text-muted-foreground">Indicative starting rate</p>
-                <p className="mt-1 font-display text-xl font-semibold">
+              <div className="mt-5 max-w-2xl border-l-2 border-[#8db0fb] pl-4">
+                <p className="tech-label text-[#b6c6db]">Indicative starting rate</p>
+                <p className="mt-1 font-display text-xl font-semibold text-graphite-foreground">
                   {rateLabelEn("instalatii")}
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-1 text-sm leading-relaxed text-[#b6c6db]">
                   For one complete MEP drawing sheet. The written quote confirms model scope,
                   deliverables and included revisions.
                 </p>
               </div>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#b6c6db]">
                 HVAC, heating and electrical. Remote collaboration in English, with an NDA available
                 before you share files.
               </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <a
-                  href="#estimate"
-                  className="tech-label border border-foreground bg-foreground px-6 py-4 text-background transition-colors hover:border-primary hover:bg-primary"
-                >
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#estimate" className="btn btn-primary">
                   Request a quote for one area
                 </a>
-                <a
-                  href="#pricing"
-                  className="tech-label border border-foreground px-6 py-4 transition-colors hover:bg-foreground hover:text-background"
-                >
+                <a href="#pricing" className="btn btn-on-dark">
                   Calculate a starting estimate
                 </a>
                 {mailHref && (
                   <a
                     href={mailHref}
                     onClick={() => trackConversion("email_click", { source: "en_hero" })}
-                    className="tech-label border border-foreground px-6 py-4 transition-colors hover:bg-foreground hover:text-background"
+                    className="btn btn-on-dark"
                   >
                     Email your project files
                   </a>
@@ -136,7 +132,7 @@ function RevitMepOutsourcing() {
                     target="_blank"
                     rel="noreferrer noopener"
                     onClick={() => trackConversion("whatsapp_click", { source: "en_hero" })}
-                    className="tech-label border border-foreground px-6 py-4 transition-colors hover:bg-foreground hover:text-background"
+                    className="btn btn-on-dark"
                   >
                     Discuss your project on WhatsApp
                   </a>
@@ -145,7 +141,24 @@ function RevitMepOutsourcing() {
             </div>
 
             <div className="lg:col-span-5">
-              <dl className="sheet-frame divide-y divide-border p-6 md:p-8">
+              <figure className="hero-visual">
+                <img
+                  src={hero3d}
+                  srcSet={`${hero3d640} 640w, ${hero3d960} 960w, ${hero3d} 1200w`}
+                  sizes="(min-width: 1200px) 446px, (min-width: 1024px) calc(42vw - 60px), calc(100vw - 40px)"
+                  alt="Illustrative Revit MEP model view with ductwork, pipework and equipment"
+                  width={1200}
+                  height={860}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span className="tech-label text-primary">Revit MEP model view</span>
+                  <span className="text-sm">Illustration · not a client deliverable</span>
+                </figcaption>
+              </figure>
+              <dl className="sheet-frame mt-4 divide-y divide-border p-5 text-foreground md:p-6">
                 {facts.map(([k, v]) => (
                   <div key={k} className="grid grid-cols-5 gap-4 py-3 first:pt-0 last:pb-0">
                     <dt className="tech-label col-span-2 text-muted-foreground">{k}</dt>
@@ -153,7 +166,7 @@ function RevitMepOutsourcing() {
                   </div>
                 ))}
               </dl>
-              <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-xs leading-relaxed text-[#b6c6db]">
                 I usually reply with scope, timeline and cost within 1–2 working days.
               </p>
             </div>
@@ -258,11 +271,6 @@ function RevitMepOutsourcing() {
             <Reveal delay={80} className="lg:col-span-6">
               <div className="grid gap-4">
                 {[
-                  {
-                    src: hero3d,
-                    alt: "Revit MEP model with ductwork, pipework and equipment",
-                    caption: "Revit MEP model",
-                  },
                   {
                     src: projSheet,
                     alt: "Revit sheet with plans, sections, legend and title block",

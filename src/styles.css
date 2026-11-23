@@ -105,18 +105,18 @@
 }
 
 /*
- * Sistem de design — studio tehnic / editorial arhitectural.
- * Fundal: hârtie arhitecturală (off-white), niciodată alb pur dominant.
+ * Sistem vizual NOD BIM — plansa tehnica, finisaj rece si contrast industrial.
+ * Albastrul cobalt ramane accentul primar; navy-ul formeaza suprafetele de focus.
  */
 
 @theme inline {
-  --radius-sm: 2px;
-  --radius-md: 2px;
-  --radius-lg: 3px;
-  --radius-xl: 4px;
-  --radius-2xl: 6px;
-  --radius-3xl: 8px;
-  --radius-4xl: 10px;
+  --radius-sm: 4px;
+  --radius-md: 5px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 10px;
+  --radius-3xl: 12px;
+  --radius-4xl: 16px;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-paper: var(--paper);
@@ -148,54 +148,57 @@
 }
 
 :root {
-  --radius: 2px;
-  --background: oklch(0.955 0.003 120);
-  --foreground: oklch(0.21 0.012 250);
-  --paper: oklch(0.955 0.003 120);
-  --sheet: oklch(0.984 0.003 100);
-  --card: oklch(0.984 0.003 100);
-  --card-foreground: oklch(0.21 0.012 250);
-  --popover: oklch(0.984 0.003 100);
-  --popover-foreground: oklch(0.21 0.012 250);
-  --primary: oklch(0.46 0.115 247);
-  --primary-foreground: oklch(0.985 0.002 250);
-  --secondary: oklch(0.925 0.004 120);
-  --secondary-foreground: oklch(0.26 0.012 250);
-  --muted: oklch(0.925 0.004 120);
-  --muted-foreground: oklch(0.48 0.008 250);
-  --accent: oklch(0.9 0.02 247);
-  --accent-foreground: oklch(0.28 0.05 247);
-  --mep: oklch(0.53 0.19 27);
-  --graphite: oklch(0.235 0.012 250);
-  --graphite-foreground: oklch(0.95 0.003 120);
-  --destructive: oklch(0.53 0.19 27);
-  --destructive-foreground: oklch(0.985 0.002 250);
-  --border: oklch(0.87 0.005 240);
-  --border-strong: oklch(0.72 0.008 240);
-  --input: oklch(0.62 0.008 240);
-  --ring: oklch(0.46 0.115 247);
+  --radius: 5px;
+  --background: #f4f7fb;
+  --foreground: #101d30;
+  --paper: #f4f7fb;
+  --sheet: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #101d30;
+  --popover: #ffffff;
+  --popover-foreground: #101d30;
+  --primary: #1552bd;
+  --primary-foreground: #f8fafc;
+  --secondary: #e8eef6;
+  --secondary-foreground: #182b46;
+  --muted: #e8eef6;
+  --muted-foreground: #536478;
+  --accent: #dce8f8;
+  --accent-foreground: #142a49;
+  --mep: #1552bd;
+  --graphite: #101d30;
+  --graphite-foreground: #f8fafc;
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+  --border: #d7e0eb;
+  --border-strong: #b6c4d5;
+  --input: #71859c;
+  --ring: #1552bd;
 }
 
 .dark {
-  --background: oklch(0.21 0.012 250);
-  --foreground: oklch(0.95 0.003 120);
-  --paper: oklch(0.21 0.012 250);
-  --sheet: oklch(0.26 0.012 250);
-  --card: oklch(0.26 0.012 250);
-  --card-foreground: oklch(0.95 0.003 120);
-  --popover: oklch(0.26 0.012 250);
-  --popover-foreground: oklch(0.95 0.003 120);
-  --primary: oklch(0.68 0.13 247);
-  --primary-foreground: oklch(0.18 0.012 250);
-  --secondary: oklch(0.3 0.012 250);
-  --secondary-foreground: oklch(0.95 0.003 120);
-  --muted: oklch(0.3 0.012 250);
-  --muted-foreground: oklch(0.72 0.008 250);
-  --accent: oklch(0.32 0.03 247);
-  --accent-foreground: oklch(0.92 0.02 247);
-  --border: oklch(1 0 0 / 12%);
-  --border-strong: oklch(1 0 0 / 24%);
-  --input: oklch(1 0 0 / 18%);
+  --background: #0c1727;
+  --foreground: #edf3fa;
+  --paper: #0c1727;
+  --sheet: #13243a;
+  --card: #13243a;
+  --card-foreground: #edf3fa;
+  --popover: #13243a;
+  --popover-foreground: #edf3fa;
+  --primary: #8db0fb;
+  --primary-foreground: #0b1829;
+  --secondary: #1d304a;
+  --secondary-foreground: #edf3fa;
+  --muted: #1d304a;
+  --muted-foreground: #aebdd0;
+  --accent: #253d5e;
+  --accent-foreground: #edf3fa;
+  --graphite: #081322;
+  --graphite-foreground: #f3f6fb;
+  --border: rgb(255 255 255 / 12%);
+  --border-strong: rgb(255 255 255 / 24%);
+  --input: rgb(255 255 255 / 28%);
+  --ring: #8db0fb;
 }
 
 @layer base {
@@ -209,6 +212,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
@@ -218,8 +222,8 @@
     font-family: var(--font-display);
     font-stretch: 88%;
     font-weight: 600;
-    letter-spacing: -0.015em;
-    line-height: 1.1;
+    letter-spacing: -0.025em;
+    line-height: 1.06;
     text-wrap: balance;
   }
 
@@ -261,8 +265,9 @@
   font-family: var(--font-display);
   font-stretch: 88%;
   font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.015em;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
 }
 
 @utility btn {
@@ -270,26 +275,32 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 2.75rem;
-  padding: 0.85rem 1.25rem;
+  min-height: 3rem;
+  padding: 0.9rem 1.25rem;
   font-family: var(--font-sans);
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
   white-space: nowrap;
   text-decoration: none;
   border: 1px solid var(--foreground);
-  border-radius: 2px;
+  border-radius: 5px;
   color: var(--foreground);
   cursor: pointer;
   transition:
     background 0.15s,
     color 0.15s,
-    border-color 0.15s;
+    border-color 0.15s,
+    transform 0.15s;
 
   &:hover {
     border-color: var(--primary);
     color: var(--primary);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.99);
   }
 }
 
@@ -299,9 +310,205 @@
   color: var(--primary-foreground);
 
   &:hover {
-    background: var(--foreground);
-    border-color: var(--foreground);
-    color: var(--background);
+    background: color-mix(in srgb, var(--primary), #0b1829 12%);
+    border-color: color-mix(in srgb, var(--primary), #0b1829 12%);
+    color: var(--primary-foreground);
+  }
+}
+
+.site-header {
+  background: color-mix(in srgb, var(--background) 94%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.site-header__inner {
+  min-height: 4.5rem;
+}
+
+.site-header__brand {
+  letter-spacing: -0.04em;
+}
+
+.mobile-nav {
+  max-height: calc(100dvh - 11rem - env(safe-area-inset-bottom));
+}
+
+.btn-on-dark {
+  border-color: rgb(248 250 252 / 48%);
+  color: var(--graphite-foreground);
+}
+
+.btn-on-dark:hover {
+  border-color: rgb(248 250 252 / 82%);
+  background: rgb(248 250 252 / 10%);
+  color: var(--graphite-foreground);
+}
+
+.site-header nav a,
+.site-header nav summary {
+  transition: color 160ms ease;
+}
+
+.site-footer {
+  background:
+    radial-gradient(circle at 85% 0%, rgb(21 82 189 / 18%), transparent 28rem),
+    var(--graphite);
+}
+
+.blueprint-hero {
+  color: var(--graphite-foreground);
+  background-color: var(--graphite);
+  background-image:
+    radial-gradient(circle at 76% 42%, rgb(21 82 189 / 26%), transparent 38%),
+    linear-gradient(rgb(218 231 250 / 6%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(218 231 250 / 6%) 1px, transparent 1px);
+  background-size:
+    auto,
+    36px 36px,
+    36px 36px;
+}
+
+.blueprint-hero__copy .text-muted-foreground {
+  color: #b6c6db;
+}
+
+.blueprint-hero__copy .tech-label {
+  color: #a9c4f5;
+}
+
+.blueprint-hero__copy :focus-visible {
+  outline-color: #f8fafc;
+}
+
+.hero-visual {
+  overflow: hidden;
+  border: 1px solid rgb(220 232 248 / 28%);
+  border-radius: 7px;
+  background: #f8fafc;
+  box-shadow: 0 24px 52px rgb(3 12 25 / 28%);
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  background: #f8fafc;
+}
+
+.hero-visual figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  border-top: 1px solid #d7e0eb;
+  padding: 0.75rem 1rem;
+  color: #536478;
+}
+
+.hero-visual figcaption .tech-label {
+  color: #1552bd;
+}
+
+.service-card {
+  min-height: 18rem;
+  align-content: start;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.service-card:hover {
+  transform: translateY(-2px);
+}
+
+.service-card--primary {
+  border-color: var(--graphite);
+  background: var(--graphite);
+  color: var(--graphite-foreground);
+}
+
+.service-card--primary .text-muted-foreground {
+  color: #b6c6db;
+}
+
+.service-card--secondary {
+  background: var(--sheet);
+}
+
+.service-card--secondary:hover {
+  border-color: var(--primary);
+  background: var(--accent);
+}
+
+.pricing-section {
+  background:
+    linear-gradient(130deg, rgb(220 232 248 / 58%), transparent 55%),
+    var(--paper);
+}
+
+.gallery-featured img {
+  max-height: 42rem;
+  object-fit: contain;
+}
+
+.gallery-supporting img {
+  max-height: 22rem;
+  object-fit: contain;
+}
+
+.process-step {
+  position: relative;
+  border-top: 2px solid var(--border-strong);
+}
+
+.process-step::before {
+  position: absolute;
+  top: -0.44rem;
+  left: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  background: var(--background);
+  content: "";
+}
+
+.journal-page h1 {
+  max-width: 18ch;
+}
+
+.journal-page figure[data-ui="article-evidence"] {
+  border-radius: 7px;
+}
+
+@media (max-width: 767px) {
+  .blueprint-hero {
+    background-size:
+      auto,
+      28px 28px,
+      28px 28px;
+  }
+
+  .service-card {
+    min-height: auto;
+  }
+
+  .process-step {
+    border-top: 0;
+    border-left: 2px solid var(--border-strong);
+    padding-left: 1.25rem;
+  }
+
+  .process-step::before {
+    top: 0.15rem;
+    left: -0.44rem;
   }
 }
 

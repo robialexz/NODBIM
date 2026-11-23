@@ -27,6 +27,7 @@ import projSectiune from "@/assets/proj-sectiune.webp";
 import projSectiune640 from "@/assets/proj-sectiune-640.webp";
 import projSheet from "@/assets/proj-sheet.webp";
 import projSheet640 from "@/assets/proj-sheet-640.webp";
+import hero3dProfessional from "@/assets/hero-3d-professional.webp";
 
 const title = "Modelare Revit MEP pentru birouri și contractori HVAC · NOD BIM";
 const description =
@@ -37,13 +38,6 @@ const orgId = `${url}#org`;
 /** Întrebările afișate pe pagină; aceleași intră în FAQPage. */
 const homeFaq = faq.slice(0, 6);
 
-const titleBlock = [
-  ["Planșă", "Instalații · ilustrație de prezentare"],
-  ["Scop", "Modelare + documentare"],
-  ["Standard", "Al biroului tău"],
-  ["Fișiere", "RVT · DWG · PDF"],
-] as const;
-
 const examples: {
   src: string;
   srcSet?: string;
@@ -53,14 +47,6 @@ const examples: {
   caption: string;
   fit: string;
 }[] = [
-  {
-    src: demoPlan,
-    alt: "Plan de apartament cu două camere, cu cote, suprafețe și indicator",
-    width: 960,
-    height: 600,
-    caption: "Plan de apartament, cu cote",
-    fit: "bg-white object-contain",
-  },
   {
     src: projSectiune,
     srcSet: `${projSectiune640} 640w, ${projSectiune} 1200w`,
@@ -78,6 +64,14 @@ const examples: {
     height: 1104,
     caption: "Set de planșe cu indicator",
     fit: "object-cover",
+  },
+  {
+    src: demoPlan,
+    alt: "Plan de apartament cu două camere, cu cote, suprafețe și indicator",
+    width: 960,
+    height: 600,
+    caption: "Plan de apartament, cu cote",
+    fit: "bg-white object-contain",
   },
 ];
 
@@ -113,7 +107,10 @@ export const Route = createFileRoute("/")({
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: [
+      { rel: "canonical", href: url },
+      { rel: "preload", as: "image", href: hero3dProfessional },
+    ],
     scripts: [
       {
         type: "application/ld+json",
@@ -187,19 +184,19 @@ function Home() {
       <Header />
       <main id="continut">
         {/* HERO */}
-        <section className="border-b border-border">
+        <section className="blueprint-hero border-b border-graphite-foreground/15">
           <div
-            className={`${wrap} grid items-center gap-10 py-12 md:py-16 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-20`}
+            className={`${wrap} grid items-center gap-10 py-12 md:py-16 lg:grid-cols-12 lg:gap-10 lg:py-20`}
           >
-            <div className="min-w-0">
+            <div className="blueprint-hero__copy min-w-0 lg:col-span-6">
               <p className="tech-label text-muted-foreground">
-                Revit MEP · Suport pentru birouri de proiectare
+                Revit MEP · Suport pentru birouri și contractori HVAC
               </p>
-              <h1 className="display-xl mt-5 text-[2.3rem] sm:text-5xl xl:text-[4rem]">
+              <h1 className="display-xl mt-5 max-w-[12ch] text-[2.6rem] text-graphite-foreground sm:text-6xl xl:text-[4.5rem]">
                 Ai proiectul. Preiau{" "}
-                <span className="text-primary">modelarea și planșele Revit MEP</span>.
+                <span className="text-[#8db0fb]">modelarea și planșele Revit MEP</span>.
               </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-graphite-foreground/80 md:text-lg">
                 Pentru birouri care au soluția tehnică, dar au nevoie de ajutor la livrare. Modelez
                 instalațiile HVAC, termice și electrice pe template-ul și standardele tale. Primești
                 RVT, DWG și PDF, cu scopul, termenul și prețul stabilite în scris.
@@ -209,56 +206,63 @@ function Home() {
                 <a href="#estimare" className="btn btn-primary">
                   Cere ofertă pentru o zonă
                 </a>
-                <a href="#mostra-hvac" className="btn">
+                <a href="#mostra-hvac" className="btn btn-on-dark">
                   Vezi mostra HVAC
                 </a>
               </div>
-              <p className="mt-6 text-base">
-                <Link to="/revit-mep" className={textLink}>
+              <p className="mt-4 text-base">
+                <Link
+                  to="/revit-mep"
+                  className="inline-flex min-h-11 items-center font-medium text-graphite-foreground underline decoration-graphite-foreground/40 underline-offset-4 transition-colors hover:text-[#b9cefb]"
+                >
                   Vezi livrabilele și condițiile colaborării →
                 </Link>
               </p>
-              <p className="mt-4 text-sm">
-                <a href="#preturi" className={`inline-flex min-h-11 items-center ${textLink}`}>
-                  Calculează un preț orientativ
-                </a>
-              </p>
 
-              <ul className="mt-6 flex flex-col gap-x-3 gap-y-1.5 border-t border-border pt-5 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:[&>li+li]:before:mr-3 sm:[&>li+li]:before:content-['·']">
-                {[
-                  "Preț în scris înainte să încep",
-                  rateLabel("instalatii"),
-                  "ofertă de regulă în 1–2 zile lucrătoare",
-                ].map((fact) => (
-                  <li key={fact} className="max-sm:first-letter:uppercase">
-                    {fact}
-                  </li>
-                ))}
+              <div className="mt-8 grid max-w-xl gap-4 border-t border-graphite-foreground/20 pt-5 sm:grid-cols-[1fr_auto] sm:items-end">
+                <div>
+                  <p className="tech-label text-graphite-foreground/65">Tarif de pornire</p>
+                  <p className="mt-1 font-display text-xl font-semibold text-graphite-foreground sm:text-2xl">
+                    {rateLabel("instalatii")}
+                  </p>
+                  <p className="mt-1 text-sm text-graphite-foreground/65">
+                    Oferta finală se stabilește în scris, după clarificarea scopului.
+                  </p>
+                </div>
+                <a
+                  href="#preturi"
+                  className="inline-flex min-h-11 items-center font-medium text-graphite-foreground underline decoration-graphite-foreground/40 underline-offset-4 hover:text-[#b9cefb]"
+                >
+                  Calculează orientativ
+                </a>
+              </div>
+
+              <ul className="mt-5 flex flex-col gap-x-3 gap-y-1.5 text-sm text-graphite-foreground/65 sm:flex-row sm:flex-wrap sm:[&>li+li]:before:mr-3 sm:[&>li+li]:before:content-['·']">
+                {["Preț în scris înainte să încep", "ofertă de regulă în 1–2 zile lucrătoare"].map(
+                  (fact) => (
+                    <li key={fact} className="max-sm:first-letter:uppercase">
+                      {fact}
+                    </li>
+                  ),
+                )}
               </ul>
             </div>
 
             {/* Ilustrație demonstrativă, fără proiecte de client. */}
-            <figure className="sheet-frame min-w-0 p-2.5 md:p-4">
+            <figure className="hero-visual min-w-0 lg:col-span-6">
               <img
-                src={projSheet}
-                srcSet={`${projSheet640} 640w, ${projSheet} 1600w`}
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                alt="Ilustrație demonstrativă: planșă de instalații cu vederi, secțiuni și indicator"
-                width={1600}
-                height={1104}
-                className="block h-auto w-full border border-foreground/50 bg-white"
+                src={hero3dProfessional}
+                alt="Ilustrație 3D demonstrativă a unei clădiri cu trasee HVAC și instalații vizibile. Nu este un proiect de client."
+                width={1536}
+                height={1024}
+                fetchPriority="high"
+                decoding="async"
               />
               <figcaption>
-                <dl className="mt-2.5 grid grid-cols-2 gap-px border border-foreground/50 bg-foreground/50 font-mono text-[0.8rem] leading-snug min-[480px]:grid-cols-[2fr_1fr_1fr_1fr]">
-                  {titleBlock.map(([k, v]) => (
-                    <div key={k} className="min-w-0 bg-sheet px-2.5 py-2">
-                      <dt className="text-[0.75rem] uppercase tracking-[0.06em] text-muted-foreground">
-                        {k}
-                      </dt>
-                      <dd className="break-words">{v}</dd>
-                    </div>
-                  ))}
-                </dl>
+                <span className="tech-label text-primary">Ilustrație MEP</span>
+                <span className="text-sm">
+                  Imagine de prezentare, nu proiect sau export de client.
+                </span>
               </figcaption>
             </figure>
           </div>
@@ -320,24 +324,23 @@ function Home() {
         {/* DOUĂ INTRĂRI */}
         <section id="servicii" className={`${wrap} ${sectionPad}`}>
           <h2 className={h2}>Ai un plan de redesenat sau un proiect de modelat?</h2>
-          <div className="mt-8 grid gap-px border border-border-strong bg-border-strong md:mt-12 md:grid-cols-2">
-            <Link
-              to="/revit-mep"
-              className="group grid content-start gap-4 bg-sheet p-6 transition-colors hover:bg-background md:p-10"
-            >
+          <div className="mt-8 grid gap-4 md:mt-12 md:grid-cols-[1.45fr_0.85fr]">
+            <Link to="/revit-mep" className="service-card service-card--primary group grid gap-4">
+              <p className="tech-label text-[#a9c4f5]">Capacitate Revit MEP</p>
               <h3 className="text-2xl md:text-[1.7rem]">Suntem birou de proiectare</h3>
               <p className="max-w-prose leading-relaxed text-muted-foreground">
                 Aveți soluția tehnică, dar nu și timp pentru modelare. Preiau modelarea și planșele,
                 pe șablonul (template-ul) și standardele biroului.
               </p>
-              <span className="mt-2 font-medium transition-colors group-hover:text-primary">
+              <span className="mt-auto inline-flex min-h-11 items-center font-medium text-[#b9cefb] underline decoration-[#b9cefb]/50 underline-offset-4">
                 Vezi cum lucrez cu birourile →
               </span>
             </Link>
             <Link
               to="/autocad-dwg"
-              className="group grid content-start gap-4 bg-sheet p-6 transition-colors hover:bg-background md:p-10"
+              className="service-card service-card--secondary group grid gap-4"
             >
+              <p className="tech-label text-primary">AutoCAD · PDF în DWG</p>
               <h3 className="text-2xl md:text-[1.7rem]">Am un plan de redesenat</h3>
               <p className="max-w-prose leading-relaxed text-muted-foreground">
                 Ai un PDF, o scanare sau o schiță de mână și îți trebuie fișier DWG editabil, la
@@ -404,13 +407,16 @@ function Home() {
         </section>
 
         {/* PREȚURI */}
-        <section id="preturi" className={`${wrap} ${sectionPad}`}>
-          <h2 className={h2}>Află cam cât costă înainte să suni</h2>
-          <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-            Alege numărul de planșe complete pentru un total orientativ.
-          </p>
-          <div className="mt-8 md:mt-12">
-            <PriceEstimator defaultType="instalatii" jobTypes={["instalatii"]} />
+        <section id="preturi" className="pricing-section border-y border-border">
+          <div className={`${wrap} ${sectionPad}`}>
+            <p className="tech-label text-primary">Tarif transparent</p>
+            <h2 className={`${h2} mt-3`}>Află cam cât costă înainte să suni</h2>
+            <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
+              Alege numărul de planșe complete pentru un total orientativ.
+            </p>
+            <div className="mt-8 md:mt-12">
+              <PriceEstimator defaultType="instalatii" jobTypes={["instalatii"]} />
+            </div>
           </div>
         </section>
 
@@ -423,9 +429,12 @@ function Home() {
                 Vezi toate exemplele
               </Link>
             </div>
-            <div className="mt-8 grid gap-8 md:mt-12 md:grid-cols-3 md:gap-6 lg:gap-8">
-              {examples.map((ex) => (
-                <figure key={ex.caption} className="min-w-0">
+            <div className="mt-8 grid gap-7 md:mt-12 md:grid-cols-12 md:gap-6">
+              {examples.map((ex, index) => (
+                <figure
+                  key={ex.caption}
+                  className={`min-w-0 ${index === 0 ? "gallery-featured md:col-span-7 md:row-span-2" : "gallery-supporting md:col-span-5"}`}
+                >
                   <img
                     src={ex.src}
                     {...(ex.srcSet
@@ -438,7 +447,7 @@ function Home() {
                     width={ex.width}
                     height={ex.height}
                     loading="lazy"
-                    className={`aspect-[4/3] w-full border border-border-strong ${ex.fit}`}
+                    className={`w-full border border-border-strong bg-white ${ex.fit}`}
                   />
                   <figcaption className="mt-3 grid gap-1">
                     <span className="font-display text-xl font-semibold [font-stretch:88%]">
@@ -494,9 +503,9 @@ function Home() {
         {/* PROCES */}
         <section className={`${wrap} ${sectionPad}`}>
           <h2 className={h2}>Patru pași, fără surprize la preț</h2>
-          <ol className="mt-8 grid gap-y-8 border-t border-foreground sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
+          <ol className="mt-8 grid gap-y-8 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
             {process.map((step, i) => (
-              <li key={step.title} className="pr-6 pt-5">
+              <li key={step.title} className="process-step pr-6 pt-5">
                 <span
                   className="font-display text-2xl font-semibold text-primary"
                   aria-hidden="true"
@@ -570,9 +579,9 @@ function Home() {
         </section>
 
         {/* APEL FINAL CU FORMULAR */}
-        <section id="estimare" className="bg-graphite text-graphite-foreground">
+        <section id="estimare" className="blueprint-hero text-graphite-foreground">
           <div className={`${wrap} ${sectionPad} grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16`}>
-            <div className="min-w-0">
+            <div className="blueprint-hero__copy min-w-0">
               <h2 className="display-xl text-4xl md:text-6xl">Ai de predat planșe sau un model?</h2>
               <p className="mt-6 max-w-md leading-relaxed text-graphite-foreground/75">
                 Trimite un brief scurt; nu trebuie să încarci fișiere aici. După ce clarificăm

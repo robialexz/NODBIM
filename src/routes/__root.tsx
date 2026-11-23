@@ -138,7 +138,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { name: "theme-color", content: "#f4f4f1" },
+      { name: "theme-color", content: "#f4f7fb" },
       { title: `${site.businessName} · Desenare tehnică în AutoCAD și Revit` },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "ro_RO" },
