@@ -2,7 +2,7 @@
 
 ## Status
 
-The redesign is implemented on branch `codex/nodbim-full-redesign`. Code commit: `7bf9b5930debf29655cdf3b15a61af0197cd6377`, based on canonical `main` at `d3f7cca6b4f5a7d2cdffe21be1be0ec44b809ba4`. Publication through the established GitHub `main` → Cloudflare path is pending.
+The redesign is implemented on branch `codex/nodbim-full-redesign`. Code commit: `7bf9b5930debf29655cdf3b15a61af0197cd6377`, based on canonical `main` at `d3f7cca6b4f5a7d2cdffe21be1be0ec44b809ba4`. Documentation commit: `14fadee8d450d15ce708817f9cd3f99620c21e3f`. Pull request [#19](https://github.com/robialexz/NODBIM/pull/19) is open; publication through the established GitHub `main` → Cloudflare path is pending.
 
 The redesign changes visual hierarchy and styling while keeping existing page URLs, search metadata, article content, pricing, form fields, schema, language pairs, and key anchors. It does not claim increased rankings, indexation, traffic, engagement, AI citations, or leads.
 
@@ -54,7 +54,7 @@ Build output included a Vite notice about tsconfig path resolution and a generic
 
 ## Publication and next review
 
-- Publish through the normal main-branch review and Cloudflare build/deploy. Verify the serving commit when the deployment metadata is available, then recheck `/`, `/revit-mep`, `/en/revit-mep-outsourcing`, robots, sitemap, form access, key anchors and language switching.
+- Merge PR [#19](https://github.com/robialexz/NODBIM/pull/19) through the normal main-branch path and verify the Cloudflare build/deploy. Record the merge/deployment commit, then recheck `/`, `/revit-mep`, `/en/revit-mep-outsourcing`, robots, sitemap, form access, key anchors and language switching.
 - Complete a rendered mobile pass at 320, 375 and 390 CSS px when a viewport-controlled browser is available. Include open menu, contact bar, cookie banner, image fit and form fields.
 - Do not resend index requests solely because the visual design changed. Check Search Console after the next crawl and record crawl/index states separately.
 - Revisit GA4 only after a complete reporting window; keep Organic Search, Organic Social, referral, direct and paid separate and exclude internal tests/consent-denied data.
