@@ -153,6 +153,7 @@ export function ServicePage({
     : "";
   const relatedItems = serviceLinks.filter((s) => related.includes(s.to));
   const firstOffer = offers?.[0];
+  const heroImage = images[0];
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -183,56 +184,85 @@ export function ServicePage({
       <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
       <Header ctaHref="#estimare" />
       <main id="continut">
-        <section className="border-b border-border-strong">
-          <div className="mx-auto max-w-[1200px] px-5 py-10 md:px-8 md:py-20">
-            <nav aria-label="Breadcrumb" className="tech-label text-muted-foreground">
-              <Link to="/" className="hover:text-primary">
-                Acasă
-              </Link>
-              <span className="px-2">/</span>
-              <span className="text-foreground">{label}</span>
-            </nav>
-            <h1 className="display-xl mt-5 max-w-4xl text-[2rem] sm:text-5xl lg:text-[3.6rem]">
-              {h1}
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-foreground/80 md:text-lg">
-              {intro}
-            </p>
-            {offers && (
-              <ul className="mt-5 grid max-w-2xl gap-1.5 border-l-2 border-primary pl-4 text-sm">
-                {offers.map((type) => (
-                  <li key={type}>
-                    {jobRates[type].label}:{" "}
-                    <strong className="whitespace-nowrap font-semibold">
-                      {rateLabel(type, " pe ")}
-                    </strong>
-                  </li>
-                ))}
-              </ul>
-            )}
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#estimare" className="btn btn-primary">
-                Cere ofertă
-              </a>
-              {hasWhatsapp && (
-                <a
-                  href={waHref}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  onClick={() => {
-                    trackConversion("whatsapp_click", { source: label });
-                  }}
-                  className="btn"
-                >
-                  Scrie pe WhatsApp
-                </a>
+        <section className="blueprint-hero border-b border-border-strong">
+          <div className="mx-auto grid max-w-[1200px] gap-10 px-5 py-10 md:px-8 md:py-16 lg:grid-cols-12 lg:items-center">
+            <div
+              className={
+                heroImage
+                  ? "blueprint-hero__copy lg:col-span-7"
+                  : "blueprint-hero__copy lg:col-span-10"
+              }
+            >
+              <nav aria-label="Breadcrumb" className="tech-label text-graphite-foreground/65">
+                <Link to="/" className="hover:text-white">
+                  Acasă
+                </Link>
+                <span className="px-2">/</span>
+                <span className="text-graphite-foreground">{label}</span>
+              </nav>
+              <p className="mt-6 tech-label">NOD BIM · producție tehnică</p>
+              <h1 className="display-xl mt-4 max-w-4xl text-[2rem] text-graphite-foreground sm:text-5xl lg:text-[3.6rem]">
+                {h1}
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-graphite-foreground/85 md:text-lg">
+                {intro}
+              </p>
+              {offers && (
+                <ul className="mt-5 grid max-w-2xl gap-1.5 border-l-2 border-[#8db0fb] pl-4 text-sm text-graphite-foreground/85">
+                  {offers.map((type) => (
+                    <li key={type}>
+                      {jobRates[type].label}:{" "}
+                      <strong className="whitespace-nowrap font-semibold text-graphite-foreground">
+                        {rateLabel(type, " pe ")}
+                      </strong>
+                    </li>
+                  ))}
+                </ul>
               )}
-              <PhoneLink source={label} className="btn">
-                {`Sună: ${phoneDisplay}`}
-              </PhoneLink>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href="#estimare" className="btn btn-primary">
+                  Cere ofertă
+                </a>
+                {hasWhatsapp && (
+                  <a
+                    href={waHref}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    onClick={() => {
+                      trackConversion("whatsapp_click", { source: label });
+                    }}
+                    className="btn btn-on-dark"
+                  >
+                    Scrie pe WhatsApp
+                  </a>
+                )}
+                <PhoneLink source={label} className="btn btn-on-dark">
+                  {`Sună: ${phoneDisplay}`}
+                </PhoneLink>
+              </div>
+              {lead && (
+                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-graphite-foreground/70">
+                  {lead}
+                </p>
+              )}
             </div>
-            {lead && (
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">{lead}</p>
+            {heroImage && (
+              <figure className="hero-visual min-w-0 lg:col-span-5">
+                <img
+                  src={heroImage.src}
+                  srcSet={heroImage.srcSet}
+                  sizes="(min-width: 1200px) 446px, (min-width: 1024px) calc(42vw - 60px), calc(100vw - 40px)"
+                  alt={heroImage.alt}
+                  width={1200}
+                  height={860}
+                  loading="eager"
+                  fetchPriority="high"
+                />
+                <figcaption>
+                  <span className="tech-label text-primary">{heroImage.caption}</span>
+                  <span className="text-sm">{heroImage.meta} · exemplu vizual</span>
+                </figcaption>
+              </figure>
             )}
           </div>
         </section>
@@ -286,7 +316,7 @@ export function ServicePage({
 
             <Reveal delay={80} className="lg:col-span-5">
               <div className="grid gap-4">
-                {images.map((img) => (
+                {images.slice(heroImage ? 1 : 0).map((img) => (
                   <figure key={img.src + img.caption} className="sheet-frame p-2 md:p-3">
                     <div className="flex items-center justify-between border-b border-border px-2 pb-2">
                       <span className="tech-label text-muted-foreground">{img.caption}</span>

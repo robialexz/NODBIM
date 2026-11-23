@@ -97,7 +97,7 @@ export function Footer() {
   const languagePath = alternatePath(pathname, t.language.lang);
   const languageHref = hasLanguagePair(pathname) ? languagePath : `${languagePath}?langFallback=1`;
   return (
-    <footer className="border-t border-border-strong bg-graphite pb-[calc(3.5rem+env(safe-area-inset-bottom))] text-graphite-foreground lg:pb-0">
+    <footer className="site-footer border-t border-border-strong bg-graphite pb-[calc(3.5rem+env(safe-area-inset-bottom))] text-graphite-foreground lg:pb-0">
       <div className="mx-auto max-w-[1200px] px-5 py-14 md:px-8 md:py-20">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">

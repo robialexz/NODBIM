@@ -172,7 +172,7 @@ function ArticlePage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main id="continut">
+      <main id="continut" className="journal-page">
         <article className="mx-auto max-w-[760px] px-5 py-12 md:px-8 md:py-16">
           <div>
             <Link

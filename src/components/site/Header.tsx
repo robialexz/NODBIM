@@ -254,11 +254,11 @@ export function Header({ ctaHref }: { ctaHref?: string }) {
       >
         {t.skip}
       </a>
-      <header className="sticky top-0 z-50 border-b border-border bg-background">
-        <div className="mx-auto flex max-w-[1200px] items-center gap-4 px-5 py-3 md:px-8">
+      <header className="site-header sticky top-0 z-50 border-b border-border">
+        <div className="site-header__inner mx-auto flex max-w-[1200px] items-center gap-4 px-5 py-3 md:px-8">
           <a
             href={t.home}
-            className="flex items-center gap-2.5 whitespace-nowrap font-display text-xl font-semibold tracking-tight"
+            className="site-header__brand flex items-center gap-2.5 whitespace-nowrap font-display text-xl font-semibold tracking-tight"
           >
             <img src="/favicon.svg" alt="" width={30} height={30} className="h-[30px] w-[30px]" />
             {site.businessName}
@@ -446,7 +446,7 @@ export function Header({ ctaHref }: { ctaHref?: string }) {
           id="meniu-mobil"
           hidden={!menuOpen}
           aria-label={t.mobileNav}
-          className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-border bg-background px-5 pb-5 xl:hidden"
+          className="mobile-nav absolute inset-x-0 top-full overflow-y-auto border-b border-border bg-background px-5 pb-5 xl:hidden"
         >
           <ul>
             {t.serviceCategories.map((cat) => (
