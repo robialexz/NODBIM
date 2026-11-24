@@ -38,6 +38,7 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as EnAboutRouteImport } from './routes/en.about'
 import { Route as EnAutocadDraftingRouteImport } from './routes/en.autocad-drafting'
 import { Route as EnCookiesRouteImport } from './routes/en.cookies'
+import { Route as EnPortfolioRouteImport } from './routes/en.portfolio'
 import { Route as EnPrivacyRouteImport } from './routes/en.privacy'
 import { Route as EnRevitMepOutsourcingRouteImport } from './routes/en.revit-mep-outsourcing'
 import { Route as EnBlogIndexRouteImport } from './routes/en.blog.index'
@@ -190,6 +191,11 @@ const EnCookiesRoute = EnCookiesRouteImport.update({
   path: '/en/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnPortfolioRoute = EnPortfolioRouteImport.update({
+  id: '/en/portfolio',
+  path: '/en/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnPrivacyRoute = EnPrivacyRouteImport.update({
   id: '/en/privacy',
   path: '/en/privacy',
@@ -240,6 +246,7 @@ export interface FileRoutesByFullPath {
   '/en/about': typeof EnAboutRoute
   '/en/autocad-drafting': typeof EnAutocadDraftingRoute
   '/en/cookies': typeof EnCookiesRoute
+  '/en/portfolio': typeof EnPortfolioRoute
   '/en/privacy': typeof EnPrivacyRoute
   '/en/revit-mep-outsourcing': typeof EnRevitMepOutsourcingRoute
   '/blog/': typeof BlogIndexRoute
@@ -275,6 +282,7 @@ export interface FileRoutesByTo {
   '/en/about': typeof EnAboutRoute
   '/en/autocad-drafting': typeof EnAutocadDraftingRoute
   '/en/cookies': typeof EnCookiesRoute
+  '/en/portfolio': typeof EnPortfolioRoute
   '/en/privacy': typeof EnPrivacyRoute
   '/en/revit-mep-outsourcing': typeof EnRevitMepOutsourcingRoute
   '/blog': typeof BlogIndexRoute
@@ -311,6 +319,7 @@ export interface FileRoutesById {
   '/en/about': typeof EnAboutRoute
   '/en/autocad-drafting': typeof EnAutocadDraftingRoute
   '/en/cookies': typeof EnCookiesRoute
+  '/en/portfolio': typeof EnPortfolioRoute
   '/en/privacy': typeof EnPrivacyRoute
   '/en/revit-mep-outsourcing': typeof EnRevitMepOutsourcingRoute
   '/blog/': typeof BlogIndexRoute
@@ -348,6 +357,7 @@ export interface FileRouteTypes {
     | '/en/about'
     | '/en/autocad-drafting'
     | '/en/cookies'
+    | '/en/portfolio'
     | '/en/privacy'
     | '/en/revit-mep-outsourcing'
     | '/blog/'
@@ -383,6 +393,7 @@ export interface FileRouteTypes {
     | '/en/about'
     | '/en/autocad-drafting'
     | '/en/cookies'
+    | '/en/portfolio'
     | '/en/privacy'
     | '/en/revit-mep-outsourcing'
     | '/blog'
@@ -418,6 +429,7 @@ export interface FileRouteTypes {
     | '/en/about'
     | '/en/autocad-drafting'
     | '/en/cookies'
+    | '/en/portfolio'
     | '/en/privacy'
     | '/en/revit-mep-outsourcing'
     | '/blog/'
@@ -454,6 +466,7 @@ export interface RootRouteChildren {
   EnAboutRoute: typeof EnAboutRoute
   EnAutocadDraftingRoute: typeof EnAutocadDraftingRoute
   EnCookiesRoute: typeof EnCookiesRoute
+  EnPortfolioRoute: typeof EnPortfolioRoute
   EnPrivacyRoute: typeof EnPrivacyRoute
   EnRevitMepOutsourcingRoute: typeof EnRevitMepOutsourcingRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -666,6 +679,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnCookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/portfolio': {
+      id: '/en/portfolio'
+      path: '/en/portfolio'
+      fullPath: '/en/portfolio'
+      preLoaderRoute: typeof EnPortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/privacy': {
       id: '/en/privacy'
       path: '/en/privacy'
@@ -727,6 +747,7 @@ const rootRouteChildren: RootRouteChildren = {
   EnAboutRoute: EnAboutRoute,
   EnAutocadDraftingRoute: EnAutocadDraftingRoute,
   EnCookiesRoute: EnCookiesRoute,
+  EnPortfolioRoute: EnPortfolioRoute,
   EnPrivacyRoute: EnPrivacyRoute,
   EnRevitMepOutsourcingRoute: EnRevitMepOutsourcingRoute,
   BlogIndexRoute: BlogIndexRoute,

@@ -272,7 +272,7 @@ export const englishArticles: EnglishArticle[] = [
     description:
       "A practical checklist of the model, backgrounds, engineering inputs and project standards that help scope Revit MEP production clearly.",
     date: "2026-11-17",
-    updatedAt: "2026-11-23",
+    updatedAt: "2026-11-24",
     image: {
       src: "/resurse/nodbim-hvac-sample-preview.webp",
       socialSrc: "/resurse/nodbim-hvac-sample-preview.png",
@@ -343,8 +343,16 @@ export const englishArticles: EnglishArticle[] = [
             href: "/resurse/revit-mep-sheet-issue-checklist-en.csv",
           },
           {
+            label: "Inspect the public work samples and their evidence limits",
+            href: "/en/portfolio",
+          },
+          {
             label: "Revit MEP outsourcing for engineering teams",
             href: "/en/revit-mep-outsourcing",
+          },
+          {
+            label: "Request a written Revit MEP quote",
+            href: "/en/revit-mep-outsourcing#estimate",
           },
           {
             label: "Check an inherited Revit MEP model",

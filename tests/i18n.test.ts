@@ -25,6 +25,8 @@ describe("limba paginii", () => {
     expect(alternatePath("/politica-cookies", "en")).toBe("/en/cookies");
     expect(alternatePath("/autocad-dwg", "en")).toBe("/en/autocad-drafting");
     expect(alternatePath("/en/about", "ro")).toBe("/despre");
+    expect(alternatePath("/portofoliu", "en")).toBe("/en/portfolio");
+    expect(alternatePath("/en/portfolio", "ro")).toBe("/portofoliu");
     expect(alternatePath("/en/privacy", "ro")).toBe("/politica-de-confidentialitate");
     expect(alternatePath("/pdf-in-dwg", "en")).toBe("/en/autocad-drafting");
     expect(alternatePath("/cursuri-revit", "en")).toBe("/en/blog");
@@ -33,6 +35,8 @@ describe("limba paginii", () => {
     expect(alternatePath("/en/blog/no-ro-translation", "ro")).toBe("/blog");
     expect(alternatePath("/en/not-translated", "ro")).toBe("/");
     expect(hasLanguagePair("/en/about")).toBe(true);
+    expect(hasLanguagePair("/portofoliu")).toBe(true);
+    expect(hasLanguagePair("/en/portfolio")).toBe(true);
     expect(hasLanguagePair("/cursuri-revit")).toBe(false);
     expect(hreflangLinks("/pdf-in-dwg")).toEqual([]);
   });
@@ -76,5 +80,6 @@ describe("limba paginii", () => {
     expect(ro[0]?.href).toBe("https://nodbim.com/revit-mep");
     expect(ro[1]?.href).toBe("https://nodbim.com/en/revit-mep-outsourcing");
     expect(hreflangLinks("/hvac")).toEqual([]);
+    expect(hreflangLinks("/portofoliu")).toEqual(hreflangLinks("/en/portfolio"));
   });
 });

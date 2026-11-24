@@ -12,6 +12,7 @@ export type Locale = "ro" | "en";
 const pagePairs: { ro: string; en: string }[] = [
   { ro: "/revit-mep", en: "/en/revit-mep-outsourcing" },
   { ro: "/autocad-dwg", en: "/en/autocad-drafting" },
+  { ro: "/portofoliu", en: "/en/portfolio" },
   { ro: "/despre", en: "/en/about" },
   { ro: "/politica-de-confidentialitate", en: "/en/privacy" },
   { ro: "/politica-cookies", en: "/en/cookies" },
@@ -27,7 +28,6 @@ const closestEnglishPages = new Map<string, string>([
   ["/instalatii-termice", enHomePath],
   ["/modelare-revit", enHomePath],
   ["/contact", enHomePath],
-  ["/portofoliu", enHomePath],
   ["/pdf-in-dwg", "/en/autocad-drafting"],
   ["/cursuri-revit", "/en/blog"],
   ["/magazin", "/en/blog"],
