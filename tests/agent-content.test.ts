@@ -18,6 +18,7 @@ describe("agent-content — negotiere markdown", () => {
     expect(isKnownPath("/recomandari")).toBe(true);
     expect(isKnownPath("/despre")).toBe(true);
     expect(isKnownPath("/en/about")).toBe(true);
+    expect(isKnownPath("/en/portfolio")).toBe(true);
     expect(isKnownPath("/en/privacy")).toBe(true);
     expect(isKnownPath("/pdf-in-dwg")).toBe(true);
     expect(isKnownPath("/cursuri-revit")).toBe(true);
@@ -52,6 +53,19 @@ describe("agent-content — negotiere markdown", () => {
     expect(body).not.toContain("Toate imaginile au fost create de la zero");
   });
 
+  test("portofoliul EN oferă Markdown cu mostre, limite și traseu de ofertă", async () => {
+    const response = markdownResponseForPath("/en/portfolio");
+    expect(response?.status).toBe(200);
+    expect(response?.headers.get("content-type")).toBe("text/markdown; charset=utf-8");
+    const body = response ? await response.text() : "";
+    expect(body).toContain("same real drawing set");
+    expect(body).toContain("No Autodesk Revit model was created or validated");
+    expect(body).toContain("/resurse/revit-mep-sheet-issue-checklist-en.csv");
+    expect(body).toContain("/en/revit-mep-outsourcing#estimate");
+    expect(body).toContain("200 EUR per drawing sheet");
+    expect(body).not.toContain("Mostră HVAC");
+  });
+
   test("slug-urile de articol din blog sunt recunoscute", () => {
     expect(isKnownPath(`/blog/${articles[0]!.slug}`)).toBe(true);
     expect(isKnownPath("/blog/inexistent")).toBe(false);
@@ -83,6 +97,10 @@ describe("agent-content — negotiere markdown", () => {
     expect(article).toContain("min read");
     expect(article).not.toContain("Înapoi la jurnal");
     expect(article).not.toContain("min de citit");
+
+    const quoteGuide = articleMarkdown("files-for-revit-mep-quotation", "en");
+    expect(quoteGuide).toContain("/en/portfolio");
+    expect(quoteGuide).toContain("/en/revit-mep-outsourcing#estimate");
   });
 
   test("un articol EN necunoscut este 404 și nu este considerat o rută cunoscută", async () => {

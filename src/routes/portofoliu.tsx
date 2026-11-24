@@ -7,6 +7,7 @@ import { MobileCta } from "@/components/site/MobileCta";
 import { Reveal } from "@/components/site/Reveal";
 import { CtaSection } from "@/components/site/CtaSection";
 import { canonicalUrl } from "@/lib/site-config";
+import { hreflangLinks } from "@/lib/i18n";
 import realSampleOne from "@/assets/real-anonymized-01.jpg";
 import realSampleTwo from "@/assets/real-anonymized-02.jpg";
 import portfolioAiHvacPlan from "@/assets/portfolio-ai-hvac-plan.webp";
@@ -34,7 +35,7 @@ export const Route = createFileRoute("/portofoliu")({
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: [{ rel: "canonical", href: url }, ...hreflangLinks("/portofoliu")],
   }),
   component: Portofoliu,
 });

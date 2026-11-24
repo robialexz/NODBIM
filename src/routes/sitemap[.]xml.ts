@@ -6,7 +6,7 @@ import { englishArticles } from "@/lib/blog-en";
 
 interface SitemapEntry {
   path: string;
-  lastmod: string;
+  lastmod?: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   priority?: string;
 }
@@ -35,6 +35,7 @@ const entries: SitemapEntry[] = [
   },
   { path: "/en/autocad-drafting", lastmod: "2026-11-22", changefreq: "monthly", priority: "0.7" },
   { path: "/en/about", lastmod: "2026-11-17", changefreq: "monthly", priority: "0.6" },
+  { path: "/en/portfolio", lastmod: "2026-11-24", changefreq: "monthly", priority: "0.7" },
   { path: "/portofoliu", lastmod: "2026-11-23", changefreq: "monthly", priority: "0.8" },
   { path: "/magazin", lastmod: "2026-10-08", changefreq: "weekly", priority: "0.7" },
   { path: "/recomandari", lastmod: "2026-10-18", changefreq: "weekly", priority: "0.6" },
@@ -52,9 +53,18 @@ const entries: SitemapEntry[] = [
     changefreq: "monthly" as const,
     priority: "0.6",
   })),
-  { path: "/despre", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.6" },
+  { path: "/despre", lastmod: "2026-11-22", changefreq: "monthly", priority: "0.6" },
   { path: "/contact", lastmod: LAST_MODIFIED, changefreq: "monthly", priority: "0.8" },
   { path: "/informatii-legale", lastmod: LAST_MODIFIED, changefreq: "yearly", priority: "0.3" },
+  {
+    path: "/politica-de-confidentialitate",
+    changefreq: "yearly",
+    priority: "0.2",
+  },
+  { path: "/politica-cookies", changefreq: "yearly", priority: "0.2" },
+  { path: "/termeni-si-conditii", changefreq: "yearly", priority: "0.2" },
+  { path: "/en/privacy", changefreq: "yearly", priority: "0.2" },
+  { path: "/en/cookies", changefreq: "yearly", priority: "0.2" },
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({
@@ -68,7 +78,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           [
             `  <url>`,
             `    <loc>${base}${e.path}</loc>`,
-            `    <lastmod>${e.lastmod}</lastmod>`,
+            e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>` : null,
             e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,

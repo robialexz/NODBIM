@@ -27,6 +27,7 @@ const staticPaths = new Set([
   "/cursuri-revit",
   "/recomandari",
   "/portofoliu",
+  "/en/portfolio",
   "/blog",
   "/en/blog",
   "/revit-mep",
@@ -77,6 +78,7 @@ export function markdownResponseForPath(pathname: string): Response | null {
   if (clean === "/cursuri-revit") return simpleMdResponse(trainingMarkdown());
   if (clean === "/recomandari") return simpleMdResponse(recommendationsMarkdown());
   if (clean === "/portofoliu") return simpleMdResponse(portfolioMarkdown());
+  if (clean === "/en/portfolio") return simpleMdResponse(englishPortfolioMarkdown());
   if (clean === "/blog") return simpleMdResponse(blogIndexMarkdown());
   if (clean === "/en/blog") return simpleMdResponse(englishBlogIndexMarkdown());
   if (clean === enHomePath) return simpleMdResponse(enOutsourcingMarkdown());
@@ -396,6 +398,35 @@ function portfolioMarkdown(): string {
   ].join("\n");
 }
 
+function englishPortfolioMarkdown(): string {
+  return [
+    `# Revit MEP work samples and handover evidence — ${site.businessName}`,
+    ``,
+    `> Inspect a synthetic HVAC sample PDF, a public sheet-issue checklist, two anonymised fragments from one real drawing set, and clearly labelled fictional illustrations.`,
+    ``,
+    `## HVAC sample PDF`,
+    ``,
+    `The three-page PDF contains an HVAC plan, a section and a QA sheet using synthetic data. No Autodesk Revit model was created or validated for this sample. It is not client work or a construction document.`,
+    ``,
+    `- [Open the sample PDF](${base()}/resurse/nodbim-hvac-plant-room-sample.pdf)`,
+    `- [Download the sheet-issue checklist (CSV)](${base()}/resurse/revit-mep-sheet-issue-checklist-en.csv)`,
+    `- [Review Revit MEP outsourcing scope and rates](${base()}/en/revit-mep-outsourcing)`,
+    `- [Request a written quote](${base()}/en/revit-mep-outsourcing#estimate)`,
+    `- [Files needed for a Revit MEP quote](${base()}/en/blog/files-for-revit-mep-quotation)`,
+    ``,
+    `## Anonymised drawing fragments`,
+    ``,
+    `The two blurred images are fragments from the same real drawing set, not separate projects or clients. Text was removed and title blocks cropped before publication. One fragment concerns thermal services and the other ventilation.`,
+    ``,
+    `## Fictional illustrations and diagrams`,
+    ``,
+    `AI-generated illustrations and synthetic vector diagrams show fictional HVAC and MEP scenarios. They are not Revit screenshots, client deliverables, verified coordination results or engineering sign-off.`,
+    ``,
+    `See the [Revit MEP service page](${base()}/en/revit-mep-outsourcing) for scope and starting rates. The approved international price starts at 200 EUR per drawing sheet; the written quote confirms the final scope and price.`,
+    ``,
+  ].join("\n");
+}
+
 /** Paginile de serviciu RO: rezumatul serviciului din home-content. */
 function serviceMarkdown(service: (typeof services)[number]): string {
   return [
@@ -641,6 +672,7 @@ export function llmsTxt(): string {
     `## Exemple de planșe și modele`,
     ``,
     `- [Exemple](${base()}/portofoliu): exemple de modelare și documentație`,
+    `- [English work samples](${base()}/en/portfolio): inspectable PDF, checklist and clearly labelled examples`,
     ``,
     `## Magazin`,
     ``,
@@ -681,6 +713,7 @@ export function agentInstructionsTxt(): string {
     `- Estimates for such work (price, deadline) — point the user to the form and contact page`,
     `- MEP knowledge: plan pricing, LOD, Revit vs AutoCAD workflows, clash detection (see journal)`,
     `- English Revit MEP guides: https://nodbim.com/en/blog`,
+    `- English work samples and handover evidence: https://nodbim.com/en/portfolio`,
     `- BIM resources, RVT/DWG audits, Revit office kits, Dynamo/pyRevit automation packs and MEP training models (see shop)`,
     `- Live Revit courses from beginner level, Revit MEP training for HVAC/heating workflows, and Dynamo automation (see /cursuri-revit)`,
     ``,

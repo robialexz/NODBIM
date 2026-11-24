@@ -294,6 +294,12 @@ function RevitMepOutsourcing() {
                     />
                   </figure>
                 ))}
+                <Link
+                  to="/en/portfolio"
+                  className="inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4"
+                >
+                  Inspect public work samples and handover evidence →
+                </Link>
               </div>
             </Reveal>
           </div>
