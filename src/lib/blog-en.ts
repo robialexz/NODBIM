@@ -5,6 +5,76 @@ export type EnglishArticle = Article & { sourceSlug: string };
 
 export const englishArticles: EnglishArticle[] = [
   {
+    slug: "revit-hvac-duct-beam-clearance",
+    sourceSlug: "revit-tubulatura-hvac-grinda-izolatie",
+    title: "The HVAC duct clears the beam in Revit. Then the insulation goes on.",
+    metaTitle: "HVAC duct clearance under a beam in Revit MEP",
+    description:
+      "A duct with 60 mm to spare can still be 70 mm short. Work through a beam crossing and see what to put on the coordination section.",
+    date: "2026-11-25",
+    readingTime: 4,
+    tags: ["Revit MEP", "HVAC", "Coordination"],
+    image: {
+      src: "/resurse/duct-beam-clearance-20261125.webp",
+      socialSrc: "/resurse/duct-beam-clearance-20261125.webp",
+      width: 1200,
+      height: 630,
+      alt: "Insulated rectangular HVAC duct passing close to a concrete beam in an unfinished corridor",
+      caption:
+        "AI-generated illustration of a fictional installation. The dimensions below belong to a separate worked example.",
+    },
+    sections: [
+      {
+        paragraphs: [
+          "The model gives you 60 mm to spare under the beam. The installer needs another 70 mm. Both numbers can be right: one describes the bare duct and the other describes the space needed for the assembly and its installation.",
+          "Imagine a ceiling void with 360 mm between the underside of the beam and the top of the ceiling frame. A 300 mm tall duct fits in the bare geometry. Now check the section where the trapeze support is assumed to sit within that same height constraint.",
+        ],
+      },
+      {
+        heading: "Where the 60 mm goes",
+        table: {
+          head: ["Item at the checked section", "Height"],
+          rows: [
+            ["Clear height available", "360 mm"],
+            ["Bare duct", "300 mm"],
+            ["External insulation above and below (25 mm each)", "+50 mm"],
+            ["Support projection below the insulated duct", "+40 mm"],
+            ["Installation allowance (total across top and bottom)", "+40 mm"],
+            ["Required height", "430 mm"],
+            ["Shortfall", "70 mm"],
+          ],
+        },
+        note: "All dimensions and support positions are illustrative assumptions. Check each actual beam, joint and support section. Where components occupy the same space, measure the outside envelope rather than counting that space twice.",
+      },
+      {
+        heading: "Put the decision on the section",
+        list: [
+          "Dimension both limits from one datum: the structural soffit and the top of the ceiling frame or other lower obstruction. Record the revision of each linked model.",
+          "Show the installed outer extent at the beam, the joint and the support. Use approved details for the insulation, flange and fixing system, plus the space the installer needs to assemble them.",
+          "Write the available height and the shortfall on the section. Assign the issue to the people who can approve a route, ceiling or duct change before the drawing is released.",
+        ],
+        paragraphs: [
+          "Autodesk documents that duct insulation can be included in an interference check. Confirm the insulation and relevant geometry are present in the model and verify installation allowances separately on the section.",
+          "A shallower duct is one option to review with the responsible engineer. The revised dimensions still need to satisfy airflow, pressure loss and acoustic criteria, and the team needs to confirm the effect on the adjacent services.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit: add insulation and lining to duct",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-GetStarted/files/GUID-BB1F39AE-1736-4E18-8916-3ADCFB03EF83.htm",
+          },
+          {
+            label: "Inspect the NOD BIM HVAC sample PDF and sheet checklist",
+            href: "/en/portfolio",
+          },
+          {
+            label: "Request a quote for an HVAC drawing package",
+            href: "/en/revit-mep-outsourcing#estimate",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "hvac-service-access-clearances",
     sourceSlug: "clash-detection-ce-este",
     title: "A clash-free Revit HVAC model can still be impossible to service",

@@ -40,6 +40,69 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "revit-tubulatura-hvac-grinda-izolatie",
+    title: "Tubulatura HVAC încape sub grindă în Revit. Apoi vine izolația.",
+    metaTitle: "Tubulatură HVAC sub grindă: verificare în Revit MEP",
+    description:
+      "Cum ajungi de la 60 mm liberi în model la un deficit de 70 mm la montaj. Exemplu calculat și verificări pentru secțiunea HVAC.",
+    date: "2026-11-25",
+    readingTime: 4,
+    tags: ["Revit MEP", "HVAC", "Coordonare"],
+    image: {
+      src: "/resurse/duct-beam-clearance-20261125.webp",
+      socialSrc: "/resurse/duct-beam-clearance-20261125.webp",
+      width: 1200,
+      height: 630,
+      alt: "Tubulatură HVAC rectangulară izolată trecând aproape de o grindă de beton într-un coridor neterminat",
+      caption:
+        "Ilustrație generată cu AI pentru un șantier fictiv. Cotele din articol fac parte dintr-un exemplu separat.",
+    },
+    sections: [
+      {
+        paragraphs: [
+          "În model ai 60 mm liberi sub grindă. La montaj mai ai nevoie de 70 mm. Primul calcul folosește tubulatura neizolată. Al doilea include gabaritul ansamblului și spațiul necesar instalării.",
+          "Să luăm un coridor cu 360 mm între intradosul grinzii și partea de sus a structurii tavanului fals. Un canal de 300 mm încape în model. Verificăm apoi secțiunea unde, în exemplul nostru, traversa suportului se află în aceeași zonă cu înălțime limitată.",
+        ],
+      },
+      {
+        heading: "Unde dispar cei 60 mm",
+        table: {
+          head: ["Element în secțiunea verificată", "Înălțime"],
+          rows: [
+            ["Înălțime liberă disponibilă", "360 mm"],
+            ["Tubulatură neizolată", "300 mm"],
+            ["Izolație exterioară sus și jos (25 mm pe fiecare parte)", "+50 mm"],
+            ["Traversa suportului sub tubulatura izolată", "+40 mm"],
+            ["Spațiu pentru instalare (total sus și jos)", "+40 mm"],
+            ["Înălțime necesară", "430 mm"],
+            ["Deficit", "70 mm"],
+          ],
+        },
+        note: "Cotele și poziția suportului sunt ipoteze ale exemplului. Verifică secțiunile reale la grinzi, îmbinări și suporturi. Dacă elementele ocupă același spațiu în secțiune, măsoară gabaritul exterior și evită numărarea lui de două ori.",
+      },
+      {
+        heading: "Ce treci pe secțiunea de coordonare",
+        list: [
+          "Cotează din aceeași referință intradosul grinzii și partea de sus a structurii tavanului sau a obstacolului de dedesubt. Notează revizia fiecărui model legat.",
+          "Arată gabaritul montat la grindă, la îmbinare și la suport. Folosește detaliile aprobate pentru izolație, flanșă și prinderi. Confirmă cu montatorul spațiul necesar asamblării.",
+          "Scrie pe planșă cât loc ai, cât lipsește și cine poate aproba schimbarea traseului, a tavanului sau a secțiunii tubulaturii înainte de predare.",
+        ],
+        paragraphs: [
+          "Autodesk arată că izolația tubulaturii poate fi luată în calcul la verificarea interferențelor în Revit. Confirmă că izolația și geometria relevantă există în model, apoi verifică separat spațiul de montaj pe secțiune.",
+          "O tubulatură mai joasă este o opțiune de analizat cu proiectantul. Secțiunea revizuită trebuie verificată pentru debit, pierderi de presiune și zgomot. Echipa trebuie să verifice și impactul asupra celorlalte instalații.",
+        ],
+        links: [
+          {
+            label: "Autodesk Revit: adăugarea izolației pe tubulatură",
+            href: "https://help.autodesk.com/cloudhelp/2027/ENU/Revit-GetStarted/files/GUID-BB1F39AE-1736-4E18-8916-3ADCFB03EF83.htm",
+          },
+          { label: "Vezi mostra HVAC și checklistul de planșe", href: "/portofoliu" },
+          { label: "Solicită o ofertă pentru planșe Revit MEP", href: "/#estimare" },
+        ],
+      },
+    ],
+  },
+  {
     slug: "culori-sisteme-hvac-filtre-revit-mep",
     title: "Culorile sistemelor HVAC în Revit MEP: cum ceri filtrele de vedere",
     metaTitle: "Filtre de vedere pentru sisteme HVAC în Revit MEP",
