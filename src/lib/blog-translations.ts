@@ -1,6 +1,10 @@
 export const blogTranslations = [
   { ro: "/blog", en: "/en/blog" },
   {
+    ro: "/blog/revit-tubulatura-hvac-grinda-izolatie",
+    en: "/en/blog/revit-hvac-duct-beam-clearance",
+  },
+  {
     ro: "/blog/clash-detection-ce-este",
     en: "/en/blog/hvac-service-access-clearances",
   },
