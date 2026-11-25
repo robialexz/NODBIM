@@ -1,5 +1,9 @@
 # NOD BIM — current agent objectives
 
+## Editorial checkpoint — 25 November 2026
+
+Published the bilingual HVAC beam clearance article and illustrated posts on the official NODBIM LinkedIn and Facebook pages. The worked example compares 360 mm of available space with a 430 mm installed height requirement. Verified production and both platform publications. See [the dated editorial report](../reports/2026-11-25-editorial-release.md). The orchestrator will review campaign traffic, indexation and enquiries at the 1 December checkpoint.
+
 ## Latest checkpoint — EN portfolio and quote path, 24 November 2026
 
 **Baseline and decision.** Canonical `main` before this change was `625e8fbfd08af3340d9decc6510448e81e3c7161`. The 23 Nov production audit showed the Romanian portfolio was live but had no English equivalent; its language switch fell back to the EN service. Search Console and GA4 were reread directly on 24 Nov: over three months GSC reported 26 clicks, 367 impressions, 7.1% CTR and average position 50.9. For the last 28 complete days it showed 2 clicks, 3 impressions and average position 3.3, with no query rows; this tiny sample is not a rank trend. GA4 reported 56 sessions, 52 active users and 10 engaged sessions for 27 Oct–23 Nov; 48 sessions were Organic Social, 6 Direct and 2 Unassigned, with no Organic Search sessions. Several US city/network rows look automated, so the user count is not a count of qualified people. Coverage last updated 16 Nov (2 indexed, 57 not indexed); latest recorded page inspections still showed EN service/guide URLs as Crawled — currently not indexed. These are crawl/index states, not evidence of conversion.
